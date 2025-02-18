@@ -1,0 +1,1 @@
+[17-Feb-2025 14:20:36 UTC] PHP Fatal error:  Cannot use App\Models\User as User because the name is already in use in /home/laravelteam/public_html/market-place/database/seeders/DatabaseSeeder.php on line 10
