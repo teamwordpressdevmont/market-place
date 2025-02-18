@@ -23,9 +23,9 @@ Route::middleware('auth:api')->group(function () {
         });
     });
     
-    Route::middleware('role:contractor')->group(function(){
-        Route::get('/contractor-dashboard', function() {
-            return response()->json(['message' => 'Welcome contractor']);
+    Route::middleware('role:tradeperson')->group(function(){
+        Route::get('/tradeperson-dashboard', function() {
+            return response()->json(['message' => 'Welcome tradeperson']);
         });
     });
     

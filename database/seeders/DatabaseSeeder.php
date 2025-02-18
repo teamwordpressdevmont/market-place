@@ -21,17 +21,17 @@ class DatabaseSeeder extends Seeder
         // Pehle roles create karte hain
         $adminRole = Role::create(['name' => 'admin']);
         $customerRole = Role::create(['name' => 'customer']);
-        $contractorRole = Role::create(['name' => 'contractor']);
+        $tradepersonRole = Role::create(['name' => 'tradeperson']);
 
         // Permissions create karte hain
         $viewAdmin = Permission::create(['name' => 'view admin']);
         $viewCustomer = Permission::create(['name' => 'view customer']);
-        $viewContractor = Permission::create(['name' => 'view contractor']);
+        $viewTradeperson = Permission::create(['name' => 'view tradeperson']);
 
         // Har role ko sirf uski permission assign karte hain
         $adminRole->givePermissionTo($viewAdmin);
         $customerRole->givePermissionTo($viewCustomer);
-        $contractorRole->givePermissionTo($viewContractor);
+        $tradepersonRole->givePermissionTo($viewTradeperson);
 
         // Teen users create karte hain aur unko roles assign karte hain
         $admin = User::create([
@@ -48,11 +48,11 @@ class DatabaseSeeder extends Seeder
         ]);
         $customer->assignRole($customerRole);
 
-        $contractor = User::create([
-            'name' => 'Contractor',
-            'email' => 'contractor@mailinator.com',
+        $tradeperson = User::create([
+            'name' => 'Tradeperson',
+            'email' => 'tradeperson@mailinator.com',
             'password' => Hash::make('password'),
         ]);
-        $contractor->assignRole($contractorRole);
+        $tradeperson->assignRole($tradepersonRole);
     }
 }
