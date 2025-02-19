@@ -14,11 +14,11 @@ class Tradeperson extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
-
+    
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'tradeperson_category');
+        return $this->belongsToMany(Category::class, 'tradeperson_categories', 'tradeperson_id', 'category_id');
     }
 }

@@ -14,6 +14,6 @@ class Category extends Model
 
     public function tradepersons()
     {
-        return $this->belongsToMany(Tradeperson::class, 'tradeperson_category');
+        return $this->belongsToMany(Tradeperson::class, 'tradeperson_categories', 'category_id', 'tradeperson_id');
     }
 }

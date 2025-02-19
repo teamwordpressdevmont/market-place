@@ -48,4 +48,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
+    public function tradeperson()
+    {
+        return $this->hasOne(Tradeperson::class, 'user_id', 'id');
+    }
+    
+    public function testimonials()
+    {
+        return $this->hasMany(Testimonial::class, 'user_id', 'id');
+    }
+    
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class, 'user_id', 'id');
+    }
 }

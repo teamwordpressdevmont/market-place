@@ -11,4 +11,9 @@ class Testimonial extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'heading', 'description', 'rating', 'verified'];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
