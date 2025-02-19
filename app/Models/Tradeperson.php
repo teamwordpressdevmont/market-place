@@ -21,4 +21,9 @@ class Tradeperson extends Model
     {
         return $this->belongsToMany(Category::class, 'tradeperson_categories', 'tradeperson_id', 'category_id');
     }
+    
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'tradeperson_id', 'id');
+    }
 }

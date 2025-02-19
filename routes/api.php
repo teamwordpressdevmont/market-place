@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\CustomerApiController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -18,6 +18,10 @@ Route::middleware('auth:api')->group(function () {
     });
 
     Route::middleware('role:customer')->group(function(){
+        //orders
+        Route::post('/create-order', [CustomerApiController::class, 'createOrder']);
+        Route::get('/orders', [CustomerApiController::class, 'getOrders']);
+        
         Route::get('/customer-dashboard', function() {
             return response()->json(['message' => 'Welcome customer']);
         });
