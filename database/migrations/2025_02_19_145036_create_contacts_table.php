@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('testimonials', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->string('name');
-            $table->string('heading');
-            $table->text('description');
-            $table->integer('rating'); // 1-5 stars
-            $table->boolean('verified')->default(false);
+            $table->string('email');
+            $table->string('phone')->nullable();
+            $table->text('message');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('testimonials');
+        Schema::dropIfExists('contacts');
     }
 };
