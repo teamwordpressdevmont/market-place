@@ -16,4 +16,9 @@ class Testimonial extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+    
+    public function approvedTestimonial()
+    {
+        return $this->hasOne(ApprovedTestimonial::class, 'testimonial_id', 'id');
+    }
 }

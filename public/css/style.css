@@ -1,0 +1,47 @@
+/* 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+    --color-*: initial;
+    --color-purple: #3f3cbb;
+} */
+
+#closeIcon{
+    left: 10%;
+    position: absolute;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+}
+div#imagePreviewContainer{
+    position: relative;
+}
+
+.bg_dark {
+    background-color: #01040A;
+}
+
+.bg_light_dark {
+    background-color: #021F11;
+}
+
+.bg_light {
+    background-color: #20BF0E;
+}
+
+.border-light {
+    border: 2px solid #20BF0E;
+}
+.flex.items-center.gap-4:first-child a.add_sub_cons_btn, .flex.items-center.gap-4:first-child a.add_sub_btn {
+    margin-top: 0 !important;
+}
+a.add_sub_cons_btn, a.add_sub_btn {
+    margin-top: 5px !important;
+    display: block;
+}
+

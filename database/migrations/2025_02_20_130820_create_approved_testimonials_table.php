@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // creaye categories table
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('approved_testimonials', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('parent_id')->nullable()->constrained('categories')->onDelete('cascade');
-            $table->string('name');
-            $table->string('description')->nullable();
-            $table->string('icon')->nullable();
+            $table->foreignId('testimonial_id')->constrained('testimonials')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('order_number')->nullable();
             $table->timestamps();
         });
-
     }
 
     /**
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('approved_testimonials');
     }
 };
