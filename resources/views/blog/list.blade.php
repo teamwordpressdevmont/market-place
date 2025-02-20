@@ -30,18 +30,13 @@
                             <th scope="col" class="px-6 py-3">#S.n</th>
                             <th scope="col" class="px-6 py-3">ID</th>
                             <th scope="col" class="px-6 py-3">
-                                <a href="{{ route('blog.list', array_merge(request()->all(), ['sort_by' => 'name', 'sort_direction' => request('sort_direction') == 'asc' ? 'desc' : 'asc'])) }}">
-                                    Name
+                                <a href="{{ route('blog.list', array_merge(request()->all(), ['sort_by' => 'title', 'sort_direction' => request('sort_direction') == 'asc' ? 'desc' : 'asc'])) }}">
+                                    Title
                                 </a>
                             </th>
-                            <th scope="col" class="px-6 py-3">
-                                <a href="{{ route('blog.list', array_merge(request()->all(), ['sort_by' => 'slug', 'sort_direction' => request('sort_direction') == 'asc' ? 'desc' : 'asc'])) }}">
-                                    Slug
-                                </a>
-                            </th>
-                            <th scope="col" class="px-6 py-3">Category</th>
-                            <th scope="col" class="px-6 py-3">Featured Image</th>
-                            <th scope="col" class="px-6 py-3">Added By</th>
+                            <th scope="col" class="px-6 py-3">Banner</th>
+                            <th scope="col" class="px-6 py-3">Publish By</th>
+                            <th scope="col" class="px-6 py-3">Publish Date</th>
                             <th scope="col" class="px-6 py-3">Action</th>
                         </tr>
                     </thead>
@@ -61,23 +56,16 @@
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 {{ $blogs->id }}
                             </th>
-                            <td class="px-6 py-4">{{ $blogs->name }}</td>
-                            <td class="px-6 py-4">{{ $blogs->slug }}</td>
+                            <td class="px-6 py-4">{{ $blogs->title }}</td>
                             <td class="px-6 py-4">
-                                @if($blogs->category->isNotEmpty())
-                                    <span class="badge bg-info">{{ $blogs->category->pluck('name')->join(', ') }}</span>
-                                @else
-                                    <span class="badge bg-info">No Category</span>
-                                @endif
-                            </td>
-                            <td class="px-6 py-4">
-                                @if($blogs->featured_image)
-                                    <img src="{{ asset('public/storage/blog-images/' . $blogs->featured_image) }}" alt="Featured Image" width="100">
+                                @if($blogs->banner)
+                                    <img src="{{ asset('storage/blog-banner/' . $blogs->banner) }}" alt="banner" width="100">
                                 @else
                                     No Image
                                 @endif
                             </td>
-                            <td class="px-6 py-4">{{ $blogs->user_id }}</td>
+                            <td class="px-6 py-4">{{ $blogs->publish_by }}</td>
+                            <td class="px-6 py-4">{{ $blogs->pubish_date }}</td>
                             <td class="px-6 py-4">
                                 <div class="flex gap-4">
                                         <a href="{{ route('blog.edit', $blogs->id) }}">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Portal\BlogDataController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,6 +16,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// logout
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/login'); // Redirect to homepage or login
+})->name('logout');
+
+// Admin Blog
+Route::group(['prefix'  => 'blog'], function() {
+    Route::get('/', [BlogDataController::class, 'list'])->name('blog.list');
+    Route::get('/view/{id}', [BlogDataController::class, 'view'])->name('blog.view');
+    Route::get('/add', [BlogDataController::class, 'addEdit'])->name('blog.addEdit');
+    Route::post('/store', [BlogDataController::class, 'store'])->name('blog.store');
+    Route::get('/edit/{id}', [BlogDataController::class, 'edit'])->name('blog.edit');
+    Route::put('/update/{id}', [BlogDataController::class, 'update'])->name('blog.update');
+    Route::get('/delete/{id}', [BlogDataController::class, 'destroy'])->name('blog.delete');
 });
 
 require __DIR__.'/auth.php';

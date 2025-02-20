@@ -34,7 +34,7 @@
                 </p>
               </div>
               <ul class="py-1" role="none">
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
+                  <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
                 </li>
               </ul>
             </div>
@@ -71,7 +71,7 @@
             </button>
             <ul id="dropdown-1" class="hidden py-2 space-y-2">
                   <li>
-                     <a href="#" class="flex items-center w-full p-2 text-green-200 transition duration-75 rounded-lg pl-11 group hover:bg-green-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700">All Blog</a>
+                     <a href="" class="flex items-center w-full p-2 text-green-200 transition duration-75 rounded-lg pl-11 group hover:bg-green-100 hover:text-gray-900 dark:text-white dark:hover:bg-gray-700">All Blog</a>
                   </li>                 
             </ul>
          </li>         
