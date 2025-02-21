@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Portal\BlogDataController;
+use App\Http\Controllers\Portal\CategoryDataController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,6 +24,16 @@ Route::get('/logout', function () {
     Auth::logout();
     return redirect('/login'); // Redirect to homepage or login
 })->name('logout');
+
+// Admin Category
+Route::group(['prefix'  => 'categories'], function() {
+    Route::get('/', [CategoryDataController::class, 'list'])->name('category.list');
+    Route::get('/add', [CategoryDataController::class, 'addEdit'])->name('category.addEdit');
+    Route::post('/store', [CategoryDataController::class, 'store'])->name('category.store');
+    Route::get('/edit/{id}', [CategoryDataController::class, 'edit'])->name('category.edit');
+    Route::put('/update/{id}', [CategoryDataController::class, 'update'])->name('category.update');
+    Route::get('/delete/{id}', [CategoryDataController::class, 'destroy'])->name('category.delete');
+});
 
 // Admin Blog
 Route::group(['prefix'  => 'blog'], function() {

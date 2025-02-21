@@ -27,6 +27,10 @@ class BlogDataController extends Controller
 
             $validatedData = $request->only(['title', 'description', 'publish_by', 'publish_date']);
 
+            if ($request->filled('publish_date')) {
+                $validatedData['publish_date'] = Carbon::parse($request->publish_date)->format('Y-m-d');
+            }
+
             if ($request->hasFile('banner')) {
                 $image = $request->file('banner');
                 $imageName = 'blog_banner_' . Carbon::now()->timestamp . '.' . $image->getClientOriginalExtension();
@@ -82,6 +86,10 @@ class BlogDataController extends Controller
             
             $blog = Blog::findOrFail($id);
             $validatedData = $request->only(['title', 'description', 'publish_by', 'publish_date']);
+
+            if ($request->filled('publish_date')) {
+                $validatedData['publish_date'] = Carbon::parse($request->publish_date)->format('Y-m-d');
+            }
 
             if ($request->hasFile('banner')) {
                 if ($blog->banner) {

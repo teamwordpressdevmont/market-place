@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
    
         
@@ -6,9 +5,7 @@ $(document).ready(function() {
     $('.textarea_editor').trumbowyg({
         autogrow: true
     });
-
-     
-     
+    
     $('input[type="file"]').change(function(event) {
         let input = $(this); // Get current file input
         let file = event.target.files[0]; // Get selected file
