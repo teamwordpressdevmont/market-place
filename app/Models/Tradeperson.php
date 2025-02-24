@@ -10,6 +10,8 @@ class Tradeperson extends Model
     //
     use HasFactory;
 
+    protected $table = 'tradepersons';
+
     protected $fillable = ['user_id', 'business_name', 'description', 'phone', 'address'];
 
     public function user()

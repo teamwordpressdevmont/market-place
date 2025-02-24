@@ -3,7 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Portal\BlogDataController;
+use App\Http\Controllers\Portal\testimonialDataController;
 use App\Http\Controllers\Portal\CategoryDataController;
+use App\Http\Controllers\Portal\TraderPersonDataController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,6 +46,27 @@ Route::group(['prefix'  => 'blog'], function() {
     Route::get('/edit/{id}', [BlogDataController::class, 'edit'])->name('blog.edit');
     Route::put('/update/{id}', [BlogDataController::class, 'update'])->name('blog.update');
     Route::get('/delete/{id}', [BlogDataController::class, 'destroy'])->name('blog.delete');
+});
+
+// Admin Testimonial
+Route::group(['prefix'  => 'testimonial'], function() {
+    Route::get('/', [testimonialDataController::class, 'list'])->name('testimonial.list');
+    Route::get('/view/{id}', [testimonialDataController::class, 'view'])->name('testimonial.view');
+    Route::get('/add', [testimonialDataController::class, 'addEdit'])->name('testimonial.addEdit');
+    Route::post('/store', [testimonialDataController::class, 'store'])->name('testimonial.store');
+    Route::get('/edit/{id}', [testimonialDataController::class, 'edit'])->name('testimonial.edit');
+    Route::put('/update/{id}', [testimonialDataController::class, 'update'])->name('testimonial.update');
+    Route::get('/delete/{id}', [testimonialDataController::class, 'destroy'])->name('testimonial.delete');
+
+    // Toggle Approval Route
+    Route::post('/toggle-approval/{id}', [testimonialDataController::class, 'toggleApproval'])->name('testimonial.toggleApproval');
+});
+
+// Admin Blog
+Route::group(['prefix'  => 'tradeperson'], function() {
+    Route::get('/', [TraderPersonDataController::class, 'list'])->name('tradeperson.list');
+    Route::get('/view/{id}', [TraderPersonDataController::class, 'view'])->name('tradeperson.view');
+    Route::get('/delete/{id}', [TraderPersonDataController::class, 'destroy'])->name('tradeperson.delete');
 });
 
 require __DIR__.'/auth.php';
