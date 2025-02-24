@@ -65,6 +65,8 @@ Route::group(['prefix'  => 'testimonial'], function() {
 // Admin Blog
 Route::group(['prefix'  => 'tradeperson'], function() {
     Route::get('/', [TraderPersonDataController::class, 'list'])->name('tradeperson.list');
+    Route::get('/edit/{id}', [TraderPersonDataController::class, 'edit'])->name('testimonial.edit');
+    Route::put('/update/{id}', [TraderPersonDataController::class, 'update'])->name('testimonial.update');
     Route::get('/view/{id}', [TraderPersonDataController::class, 'view'])->name('tradeperson.view');
     Route::get('/delete/{id}', [TraderPersonDataController::class, 'destroy'])->name('tradeperson.delete');
 });
