@@ -6,6 +6,7 @@ use App\Http\Controllers\Portal\BlogDataController;
 use App\Http\Controllers\Portal\testimonialDataController;
 use App\Http\Controllers\Portal\CategoryDataController;
 use App\Http\Controllers\Portal\TraderPersonDataController;
+use App\Http\Controllers\Portal\ContactDataController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -70,5 +71,8 @@ Route::group(['prefix'  => 'tradeperson'], function() {
     Route::get('/view/{id}', [TraderPersonDataController::class, 'view'])->name('tradeperson.view');
     Route::get('/delete/{id}', [TraderPersonDataController::class, 'destroy'])->name('tradeperson.delete');
 });
+
+// Contact
+Route::get('/contact', [ContactDataController::class, 'list'])->name('contact');
 
 require __DIR__.'/auth.php';
