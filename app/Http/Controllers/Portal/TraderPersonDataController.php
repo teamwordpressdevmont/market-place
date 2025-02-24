@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tradeperson;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class TraderPersonDataController extends Controller
 {
@@ -25,7 +28,8 @@ class TraderPersonDataController extends Controller
 
     public function edit($id) {
         $tradeperson = Tradeperson::findOrFail($id);
-        return view('tradeperson.add-edit', compact('tradeperson'));
+        $users = User::select('id', 'name')->get();
+        return view('tradeperson.add-edit', compact('tradeperson', 'users'));
     }
 
     public function update(Request $request, $id) {

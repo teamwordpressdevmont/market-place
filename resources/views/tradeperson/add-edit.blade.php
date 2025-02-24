@@ -20,6 +20,19 @@
                         </div>
                     </div>
                     <div class="col-span-full mb-5">
+                        <label for="category_id" class="block text-sm/6 font-medium text-gray-900">User</label>
+                        <div class="mt-2 grid grid-cols-1">
+                            <select id="user_id" name="user_id" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                <option value="" disabled selected>Select a User</option>
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id }}" {{ isset($tradeperson) && $tradeperson->user_id == $user->id ? 'selected' : '' }}>
+                                        {{ $user->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-span-full mb-5">
                         <label for="description" class="block text-sm/6 font-medium text-gray-900">Description</label>
                         <div class="mt-2">
                             <textarea name="description" id="content" rows="3" class="textarea_editor block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
@@ -46,13 +59,13 @@
                     <div class="flex items-center mb-4">
                         <input id="featured-checkbox" type="checkbox" name="featured" value="1"
                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                            {{ isset($blog) && $blog->featured == '1' ? 'checked' : '' }}>
+                            {{ isset($tradeperson) && $tradeperson->featured == '1' ? 'checked' : '' }}>
                         <label for="featured-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Featured</label>
                     </div>
                     <div class="flex items-center justify-end gap-x-6">
                         <button type="submit"
                             class="rounded-md bg-green-700 px-3 py-2 cursor-pointer text-sm font-semibold text-white shadow-xs hover:bg-green-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            {{ isset($blog) ? 'Update' : 'Add' }}
+                            {{ isset($tradeperson) ? 'Update' : 'Add' }}
                         </button>
                     </div>
                 </form>

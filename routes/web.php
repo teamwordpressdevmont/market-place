@@ -64,13 +64,24 @@ Route::group(['prefix'  => 'testimonial'], function() {
     Route::post('/toggle-approval/{id}', [testimonialDataController::class, 'toggleApproval'])->name('testimonial.toggleApproval');
 });
 
-// Admin Blog
+// Admin Trade Person
 Route::group(['prefix'  => 'tradeperson'], function() {
     Route::get('/', [TraderPersonDataController::class, 'list'])->name('tradeperson.list');
-    Route::get('/edit/{id}', [TraderPersonDataController::class, 'edit'])->name('testimonial.edit');
-    Route::put('/update/{id}', [TraderPersonDataController::class, 'update'])->name('testimonial.update');
+    Route::post('/store', [TraderPersonDataController::class, 'store'])->name('tradeperson.store');
+    Route::get('/edit/{id}', [TraderPersonDataController::class, 'edit'])->name('tradeperson.edit');
+    Route::put('/update/{id}', [TraderPersonDataController::class, 'update'])->name('tradeperson.update');
     Route::get('/view/{id}', [TraderPersonDataController::class, 'view'])->name('tradeperson.view');
     Route::get('/delete/{id}', [TraderPersonDataController::class, 'destroy'])->name('tradeperson.delete');
+});
+
+// Admin Job Listing
+Route::group(['prefix'  => 'joblisting'], function() {
+    Route::get('/', [jobListingDataController::class, 'list'])->name('joblisting.list');
+    Route::post('/store', [jobListingDataController::class, 'store'])->name('joblisting.store');
+    Route::get('/edit/{id}', [jobListingDataController::class, 'edit'])->name('joblisting.edit');
+    Route::put('/update/{id}', [jobListingDataController::class, 'update'])->name('joblisting.update');
+    Route::get('/view/{id}', [jobListingDataController::class, 'view'])->name('joblisting.view');
+    Route::get('/delete/{id}', [jobListingDataController::class, 'destroy'])->name('joblisting.delete');
 });
 
 // Contact
