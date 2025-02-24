@@ -106,5 +106,45 @@ $(document).ready(function() {
     });
   
   
+    $(document).on("click", ".add_sub_btn", function () {
+        let element = $(this);
+        let element_type = element.data("field_type");
+    
+        if (element_type === "features") {
+            if (element.hasClass("add_field")) {
+                let featuresContainer = element.closest(".setting_fields").find(".features_container").first();
+                let featuresCount = featuresContainer.find('input[name="features[title][]"]').length;
+    
+                let html = `
+                <div class="flex items-center gap-4 mt-2">
+                    <input type="text" name="features[title][]" id="features_title_${featuresCount}"
+                        class="rounded-md bg-white block w-full py-1.5 px-3 text-base text-gray-900 outline-1 w-full -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-green-600"
+                        value="">
+                    <div class="col-1">
+                        <a href="javascript:void(0)" class="add_sub_btn add_field" data-field_type="features">
+                             <svg width="25" height="25" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.5 0C31.775 0 41 9.225 41 20.5C41 31.775 31.775 41 20.5 41C9.225 41 0 31.775 0 20.5C0 9.225 9.225 0 20.5 0Z" fill="#3fa872"></path>
+                                <svg x="11" y="11" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.7809 18.4199H7.86689V10.6354H0.332115V8.01279H7.86689V0.35313H10.7809V8.01279H18.3157V10.6354H10.7809V18.4199Z" fill="white"></path>
+                                </svg>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0)" class="add_sub_btn sub_field" data-field_type="features">
+                            <svg width="25" height="25" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.5 0C31.775 0 41 9.225 41 20.5C41 31.775 31.775 41 20.5 41C9.225 41 0 31.775 0 20.5C0 9.225 9.225 0 20.5 0Z" fill="#3fa872"></path>
+                                <svg x="13.5" y="19" width="14" height="4" viewBox="0 0 14 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.957458 3.29962V0.552137H13.6126V3.29962H0.957458Z" fill="white"></path>
+                                </svg>
+                            </svg>
+                        </a>
+                    </div>
+                </div>`;
+    
+                featuresContainer.append(html);
+            } else if (element.hasClass("sub_field")) {
+                element.closest(".flex").remove();
+            }
+        }
+    });
   
 });

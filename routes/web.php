@@ -7,6 +7,7 @@ use App\Http\Controllers\Portal\testimonialDataController;
 use App\Http\Controllers\Portal\CategoryDataController;
 use App\Http\Controllers\Portal\TraderPersonDataController;
 use App\Http\Controllers\Portal\ContactDataController;
+use App\Http\Controllers\Portal\PackageController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -74,5 +75,16 @@ Route::group(['prefix'  => 'tradeperson'], function() {
 
 // Contact
 Route::get('/contact', [ContactDataController::class, 'list'])->name('contact');
+
+
+// Admin package
+Route::group(['prefix'  => 'package'], function() {
+    Route::get('/', [PackageController::class, 'list'])->name('package.list');
+    Route::get('/add', [PackageController::class, 'addEdit'])->name('package.addEdit');
+    Route::post('/store', [PackageController::class, 'store'])->name('package.store');
+    Route::get('/edit/{id}', [PackageController::class, 'edit'])->name('package.edit');
+    Route::put('/update/{id}', [PackageController::class, 'update'])->name('package.update');
+    Route::get('/delete/{id}', [PackageController::class, 'destroy'])->name('package.delete');
+});
 
 require __DIR__.'/auth.php';
