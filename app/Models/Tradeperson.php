@@ -12,6 +12,7 @@ class Tradeperson extends Model
 
     protected $fillable = ['user_id', 'business_name', 'description', 'phone', 'address', 'featured'];
 
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

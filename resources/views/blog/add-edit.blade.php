@@ -2,7 +2,7 @@
 @section('content')
 
         <div class="mb-6">
-            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Add Blog</h1>
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900"> {{ isset($blog) ? 'Update Blog' : 'Add Blog' }}</h1>
         </div>
         <div class="">
 
@@ -12,57 +12,27 @@
                         @method('PUT')  <!-- Use PUT for update -->
                     @endif
                     <div class="sm:col-span-4 mb-5">
-                        <label for="username" class="block text-sm/6 font-medium text-gray-900">Title</label>
+                        <label for="title" class="block text-sm/6 font-medium text-gray-900">Title</label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                                <input type="text" name="name" id="name" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="janesmith" value="{{ old('name', $blog->name ?? '') }}">
-                            </div>
-                        </div>
-                    </div>
-                      <div class="sm:col-span-4 mb-5">
-                        <label for="slug" class="block text-sm/6 font-medium text-gray-900">Slug</label>
-                        <div class="mt-2">
-                            <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                                <input type="text" name="slug" id="slug" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="" value="{{ old('slug', $blog->slug ?? '') }}">
+                                <input type="text" name="title" id="title" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="janesmith" value="{{ old('title', $blog->title ?? '') }}">
                             </div>
                         </div>
                     </div>
                     <div class="col-span-full mb-5">
-                        <label for="content" class="block text-sm/6 font-medium text-gray-900">Content</label>
+                        <label for="description" class="block text-sm/6 font-medium text-gray-900">Description</label>
                         <div class="mt-2">
-                            <textarea name="content" id="content" rows="3" class="textarea_editor block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                              {{ old('content', $blog->content ?? '') }}
+                            <textarea name="description" id="content" rows="3" class="textarea_editor block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                              {{ old('description', $blog->description ?? '') }}
                             </textarea>
                         </div>
                     </div>
                     <div class="col-span-full mb-5">
-                        <label for="category_id" class="block text-sm/6 font-medium text-gray-900">Categories</label>
-                        <div class="mt-2 grid grid-cols-1">
-                            <select id="category_id" name="category[]" multiple class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                                <option value="" disabled selected>Select a category</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}"
-                                          {{ in_array($category->id, $selectedCategories) ? 'selected' : '' }}>
-                                          {{ $category->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="sm:col-span-4 mb-5">
-                        <label for="username" class="block text-sm/6 font-medium text-gray-900">Reading Time</label>
-                        <div class="mt-2">
-                            <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                                <input type="number" name="reading_time" id="reading_time" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="janesmith" value="{{ old('reading_time', $blog->reading_time ?? '') }}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-span-full mb-5">
-                        <label class="block text-sm font-medium">Fearured Image</label>
-                        <input type="file" name="featured_image" id="featured_image" accept="image/*" class="w-full p-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
-                         @if(isset($blog) && $blog->featured_image)
+                        <label class="block text-sm font-medium">Banner</label>
+                        <input type="file" name="banner" id="banner" accept="image/*" class="w-full p-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                         @if(isset($blog) && $blog->banner)
                               <div id="PreviewContainer" class="mt-2  relative">
-                                  <img  src="{{ asset('public/storage/blog-images/' . $blog->featured_image) }}" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">
+                                  <img  src="{{ asset('storage/blog-banner/' . $blog->banner) }}" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">
                                   <span  class="CloseIcon  absolute top-0 right-0 bg-gray-600 text-white text-xs px-2 py-1 rounded-full cursor-pointer">X</span>
                               </div>
                           @else
@@ -71,83 +41,34 @@
                                   <span class="CloseIcon absolute top-0 right-0 bg-gray-600 text-white text-xs px-2 py-1 rounded-full cursor-pointer">X</span>
                               </div>
                            @endif
+                    </div> 
+                    <div class="flex items-center mb-4">
+                        <input id="featured-checkbox" type="checkbox" name="featured" value="1"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                            {{ isset($blog) && $blog->featured == '1' ? 'checked' : '' }}>
+                        <label for="featured-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Featured</label>
                     </div>
-                    <div class="col-span-full mb-5">
-                        <label class="block text-sm font-medium">Left Image</label>
-                        <input type="file" name="left_image" id="left_image" accept="image/*" class="w-full p-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
-                            @if(isset($blog) && $blog->left_image)
-                                 <div id="PreviewContainer" class="mt-2  relative">
-                                     <img  src="{{ asset('public/storage/blog-images/' . $blog->left_image) }}" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">
-                                     <span  class="CloseIcon absolute top-0 right-0 bg-gray-600 text-white text-xs px-2 py-1 rounded-full cursor-pointer">X</span>
-                                 </div>
-                            @else
-                                 <div id="PreviewContainer" class="mt-2 hidden relative">
-                                     <img src="" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">
-                                     <span class="CloseIcon absolute top-0 right-0 bg-gray-600 text-white text-xs px-2 py-1 rounded-full cursor-pointer">X</span>
-                                 </div>
-                            @endif
-                    </div>
-                    <div class="col-span-full mb-5">
-                        <label for="right_text" class="block text-sm/6 font-medium text-gray-900">Right Text</label>
-                        <div class="mt-2">
-                            <textarea name="right_text" id="right_text" rows="3" class="textarea_editor block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                               {{ old('right_text', $blog->right_text ?? '') }}
-                            </textarea>
-
-                        </div>
-                    </div>
-                    <div class="col-span-full mb-5">
-                        <label for="middle_text" class="block text-sm/6 font-medium text-gray-900">Middle Text</label>
-                        <div class="mt-2">
-                            <textarea name="middle_text" id="middle_text" rows="3" class="textarea_editor block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                              {{ old('middle_text', $blog->middle_text ?? '') }}
-                            </textarea>
-                        </div>
-                    </div>
-                    <div class="col-span-full mb-5">
-                        <label class="block text-sm font-medium">Middle Image</label>
-                        <input type="file" name="middle_image" id="middle_image" accept="image/*" class="w-full p-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
-                         @if(isset($blog) && $blog->middle_image)
-                             <div id="PreviewContainer" class="mt-2 eee relative">
-                                 <img  src="{{ asset('public/storage/blog-images/' . $blog->middle_image) }}" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">
-                                 <span  class="CloseIcon absolute top-0 right-0 bg-gray-600 text-white text-xs px-2 py-1 rounded-full cursor-pointer">X</span>
-                             </div>
-                         @else
-                             <div id="PreviewContainer" class="mt-2 hidden relative">
-                                 <img src="" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">
-                                 <span  class="CloseIcon absolute top-0 right-0 bg-gray-600 text-white text-xs px-2 py-1 rounded-full cursor-pointer">X</span>
-                             </div>
-                          @endif
-                    </div>      
                     <div class="sm:col-span-4 mb-5">
-                        <label for="sub_title" class="block text-sm/6 font-medium text-gray-900">Sub Title</label>
+                        <label for="publish_by" class="block text-sm/6 font-medium text-gray-900">Publish By</label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                                <input type="text" name="sub_title" id="sub_title" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="janesmith" value="{{ old('sub_title', $blog->sub_title ?? '') }}">
+                                <input type="text" name="publish_by" id="publish_by" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="janesmith" value="{{ old('publish_by', $blog->publish_by ?? '') }}">
                             </div>
-                    </div>
-                    <div class="col-span-full mb-5">
-                        <label for="sub_content" class="block text-sm/6 font-medium text-gray-900">Sub Content</label>
-                        <div class="mt-2">
-                            <textarea name="sub_content" id="sub_content" rows="3" class="textarea_editor block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                                {{ old('sub_content', $blog->sub_content ?? '') }}
-                            </textarea>
                         </div>
                     </div>
-                    <div class="col-span-full mb-5">
-                        <label class="block text-sm font-medium">Sub Image</label>
-                        <input type="file" name="sub_image" id="sub_image" accept="image/*" class="w-full p-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
-                         @if(isset($blog) && $blog->sub_image)
-                             <div id="PreviewContainer" class="mt-2  relative">
-                                 <img  src="{{ asset('public/storage/blog-images/' . $blog->sub_image) }}" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">
-                                 <span class="CloseIcon absolute top-0 right-0 bg-gray-600 text-white text-xs px-2 py-1 rounded-full cursor-pointer">X</span>
-                             </div>
-                         @else
-                             <div id="PreviewContainer" class="mt-2 hidden relative">
-                                 <img  src="" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">
-                                 <span  class="CloseIcon absolute top-0 right-0 bg-gray-600 text-white text-xs px-2 py-1 rounded-full cursor-pointer">X</span>
-                             </div>
-                          @endif
+                    <div class="sm:col-span-4 mb-5">
+                        <label for="publish_by" class="block text-sm/6 font-medium text-gray-900">Publish Date</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                              </svg>
+                            </div>
+                            <input datepicker datepicker-autohide name="publish_date" id="publish_date" type="text" 
+                            class="outline-1 -outline-offset-1 outline-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                            placeholder="Select date" 
+                            value="{{ old('publish_date', isset($blog->publish_date) ? \Carbon\Carbon::parse($blog->publish_date)->format('d-m-Y') : '') }}">
+                        </div>
                     </div>
                     <div class="flex items-center justify-end gap-x-6">
                         <button type="submit"

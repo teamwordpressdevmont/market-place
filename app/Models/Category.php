@@ -10,7 +10,7 @@ class Category extends Model
     //
     use HasFactory;
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'parent_id', 'icon'];
 
     public function tradepersons()
     {
