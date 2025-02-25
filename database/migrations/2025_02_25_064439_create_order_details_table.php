@@ -11,13 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blogs', function (Blueprint $table) {
+        Schema::create('order_details', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('order_id')->constrained('orders')->onDelete('cascade'); // Order relation
             $table->string('title');
-            $table->string('banner'); // Image URL
             $table->text('description');
-            $table->string('publish_by');
-            $table->date('publish_date');
+            $table->decimal('budget', 10, 2)->nullable();
+            $table->string('job_start_time')->nullable();
+            $table->string('job_end_time')->nullable();
+            $table->string('location')->nullable();
+            $table->string('image')->nullable(); 
+            $table->text('additional_notes')->nullable();
             $table->string('featured')->nullable();
             $table->timestamps();
         });
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('order_details');
     }
 };

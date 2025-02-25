@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerApiController;
+use App\Http\Controllers\MainController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -12,6 +13,9 @@ Route::middleware('auth:api')->group(function () {
     
     
     Route::middleware('role:admin')->group(function(){
+        Route::get('/get-report', [MainController::class, 'getReports']); 
+        Route::post('/add-report', [MainController::class, 'storeReport']);
+    
         Route::get('/admin-dashboard', function() {
             return response()->json(['message' => 'Welcome Admin']);
         });

@@ -10,7 +10,7 @@ class Tradeperson extends Model
     //
     use HasFactory;
 
-    protected $fillable = ['user_id', 'business_name', 'description', 'phone', 'address'];
+    protected $fillable = ['user_id', 'business_name', 'description', 'phone', 'address', 'featured'];
 
     public function user()
     {
@@ -25,5 +25,10 @@ class Tradeperson extends Model
     public function orders()
     {
         return $this->hasMany(Order::class, 'tradeperson_id', 'id');
+    }
+    
+    public function reviews()
+    {
+        return $this->hasMany(TradepersonReview::class, 'tradeperson_id', 'id');
     }
 }
