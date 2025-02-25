@@ -2,7 +2,7 @@
 @section('content')
 
         <div class="mb-6">
-            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Add Blog</h1>
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900"> {{ isset($blog) ? 'Update Blog' : 'Add Blog' }}</h1>
         </div>
         <div class="">
 

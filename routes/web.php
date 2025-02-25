@@ -9,7 +9,7 @@ use App\Http\Controllers\Portal\TraderPersonDataController;
 use App\Http\Controllers\Portal\ContactDataController;
 use App\Http\Controllers\Portal\PackageController;
 use App\Http\Controllers\Portal\ReportController;
-
+use App\Http\Controllers\Portal\jobListingDataController;
 
 Route::get('/', function () {
     return view('welcome');
