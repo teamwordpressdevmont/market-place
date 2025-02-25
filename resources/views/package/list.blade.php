@@ -67,7 +67,7 @@
                                 {{ $package->id }}
                             </th>
                             <td class="px-6 py-4">{{ $package->name }}</td>
-                            <td class="px-6 py-4">{{ $package->description }}</td>
+                            <td class="px-6 py-4">{!! html_entity_decode($package->description) !!}</td>
                             <td class="px-6 py-4">{{ $package->price }}</td>
                             <td class="px-6 py-4">
                                 <div class="flex gap-4">

@@ -10,7 +10,8 @@
 
             <div class="pb-12">
 
-                <form id="package" action="{{ isset($package) ? route('package.update', $package->id) : route('package.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+                <form  action="{{ isset($package) && $package ? route('package.update', $package) : route('package.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+
                     @csrf
                     @if (isset($package))
                         @method('PUT')  <!-- Use PUT for update -->

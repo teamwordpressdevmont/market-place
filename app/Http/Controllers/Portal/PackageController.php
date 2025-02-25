@@ -11,8 +11,7 @@ class PackageController extends Controller
 {
     public function addEdit(){
 
-        $package = Package::all();
-        return view('package.add-edit', compact('package'));
+        return view('package.add-edit');
     }
 
     public function store(Request $request)

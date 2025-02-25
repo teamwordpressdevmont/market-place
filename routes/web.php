@@ -8,6 +8,8 @@ use App\Http\Controllers\Portal\CategoryDataController;
 use App\Http\Controllers\Portal\TraderPersonDataController;
 use App\Http\Controllers\Portal\ContactDataController;
 use App\Http\Controllers\Portal\PackageController;
+use App\Http\Controllers\Portal\ReportController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -97,5 +99,10 @@ Route::group(['prefix'  => 'package'], function() {
     Route::put('/update/{id}', [PackageController::class, 'update'])->name('package.update');
     Route::get('/delete/{id}', [PackageController::class, 'destroy'])->name('package.delete');
 });
+
+// Report
+// Route::get('/dashboard', [ReportController::class, 'dashboard']);
+Route::get('/dashboard', [ReportController::class, 'dashboard'])->name('dashboard');
+
 
 require __DIR__.'/auth.php';

@@ -9,6 +9,8 @@ class Package extends Model
 {
     use HasFactory;
 
+    protected $table = 'packages';
+
     protected $fillable = ['name', 'description', 'price', 'features'];
     
     // One Package can be purchased many times (One-to-Many)
