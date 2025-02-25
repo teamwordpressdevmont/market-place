@@ -24,7 +24,7 @@ class PackageController extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
                 'description' => 'nullable|string',
-                'price' => 'nullable|string',
+                'price' => 'nullable|numeric',
                 'features' => 'nullable|array',
             ]);
 
@@ -117,7 +117,7 @@ class PackageController extends Controller
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
                 'description' => 'nullable|string',
-                'price' => 'nullable|string',
+                'price' => 'nullable|numeric',
                 'features' => 'nullable|array',
             ]);
 

@@ -21,6 +21,14 @@ class jobListingDataController extends Controller
         ->orderBy($sortBy, $sortDirection)
         ->paginate(10);
 
+         // Check if the request is AJAX
+         if ($request->ajax()) {
+            return response()->json([
+                'html' => view('job-listing.list', compact('OrderDetails'))->render(),
+                'pagination' => (string) $OrderDetails->appends($request->all())->links()
+            ]);
+        }
+
         return view('job-listing.list', compact('OrderDetails', 'search', 'sortBy', 'sortDirection'));
     }
 

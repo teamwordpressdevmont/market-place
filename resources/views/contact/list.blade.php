@@ -15,7 +15,7 @@
     </form>
     <div id="table-container">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3">#S.n</th>
                     <th scope="col" class="px-6 py-3">ID</th>
@@ -32,14 +32,14 @@
             </thead>   
             <tbody>
                 @if($contacts->isEmpty())
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" colspan="5">
+                    <tr class="bg-white border-b border-gray-200">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap " colspan="5">
                             No contact data available.
                         </th>
                     </tr>
                 @else
                 @foreach($contacts as $index => $contact)
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                    <tr class="bg-white border-b border-gray-200">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {{ ($contacts->currentPage() - 1) * $contacts->perPage() + $index + 1 }}
                         </th>

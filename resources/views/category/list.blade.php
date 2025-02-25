@@ -70,7 +70,7 @@
                             {{ $category->name }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $category->description }}
+                            {!! html_entity_decode($category->description); !!}
                         </td>
 
                         <td class="px-6 py-4">

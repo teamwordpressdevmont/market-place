@@ -23,6 +23,14 @@ class TraderPersonDataController extends Controller
         ->orderBy($sortBy, $sortDirection)
         ->paginate(10);
 
+         // Check if the request is AJAX
+         if ($request->ajax()) {
+            return response()->json([
+                'html' => view('tradeperson.list', compact('tradeperson'))->render(),
+                'pagination' => (string) $tradeperson->appends($request->all())->links()
+            ]);
+        }
+
         return view('tradeperson.list', compact('tradeperson', 'search', 'sortBy', 'sortDirection'));
     }
 
