@@ -60,6 +60,18 @@
                         </div>
                     </div>
                     <div class="col-span-full mb-5">
+                        <label class="block text-sm/6 font-medium text-gray-900">Current Photos</label>
+                        <div class="mt-2 flex flex-wrap">
+                            @if(isset($OrderDetails->photos))
+                                @foreach($OrderDetails->photos as $photo)
+                                    <div class="mr-2 mb-2">
+                                        <img src="{{ asset('storage/photos/' . $photo) }}" alt="Current Photo" class="h-20 w-20 object-cover rounded-md">
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-span-full mb-5">
                         <label for="address" class="block text-sm/6 font-medium text-gray-900">Additional Notes</label>
                         <div class="mt-2">
                             <textarea name="additional_notes" id="additional_notes" rows="3" class="textarea_editor block w-full min-w-0 grow py-1.5 pr-3 pl-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('additional_notes', $OrderDetails->additional_notes ?? '') }}</textarea>
