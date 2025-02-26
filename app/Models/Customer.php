@@ -37,4 +37,9 @@ class Customer extends Model
         return $this->belongsToMany(Package::class, 'purchase_packages', 'customer_id', 'package_id');
     }
     
+    public function tradepersonReviews()
+    {
+        return $this->hasMany(TradepersonReview::class, 'customer_id', 'id');
+    }
+    
 }

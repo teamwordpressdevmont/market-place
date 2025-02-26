@@ -21,4 +21,20 @@ class Order extends Model
     {
         return $this->belongsTo(Tradeperson::class, 'tradeperson_id', 'id');
     }
+    
+    public function orderDetail()
+    {
+        return $this->hasOne(OrderDetail::class, 'order_id', 'id');
+    }
+    
+    public function orderStatus()
+    {
+        return $this->belongsTo(OrderStatus::class, 'order_status', 'id');
+    }
+    
+    public function review()
+    {
+        return $this->hasOne(TradepersonReview::class, 'order_id', 'id');
+    }
+    
 }
