@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-full mb-5">
+                    {{-- <div class="col-span-full mb-5">
                         <label class="block text-sm/6 font-medium text-gray-900">Current Photos</label>
                         <div class="mt-2 flex flex-wrap">
                             @if(isset($OrderDetails->photos))
@@ -70,7 +70,7 @@
                                 @endforeach
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-span-full mb-5">
                         <label for="address" class="block text-sm/6 font-medium text-gray-900">Additional Notes</label>
                         <div class="mt-2">
