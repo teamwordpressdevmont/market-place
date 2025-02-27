@@ -9,6 +9,7 @@ use App\Models\Customer;
 use App\Models\Tradeperson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
 class jobListingDataController extends Controller
@@ -39,11 +40,15 @@ class jobListingDataController extends Controller
     public function edit($id) 
     {
         $OrderDetails = OrderDetail::findOrFail($id);
-        return view('job-listing.add-edit', compact('OrderDetails'));
+
+        // Decode JSON images from database
+        $imagesDetails = json_decode($OrderDetails->image, true) ?? [];
+
+        return view('job-listing.add-edit', compact('OrderDetails' , 'imagesDetails'));
     }
 
     public function update(Request $request, $id) 
-    {
+   {
         DB::beginTransaction();
         try {
             $request->validate([
@@ -53,20 +58,18 @@ class jobListingDataController extends Controller
                 'job_start_time'        => 'nullable|string',
                 'job_end_time'        => 'nullable|string',
                 'location'        => 'nullable|string',
-                'image'          => 'nullable|array',
+                'image' => 'nullable|array',
+                'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'additional_notes'=> 'nullable|string',
                 'featured'        => 'nullable|boolean',
             ]);
-
+ 
             $OrderDetail = OrderDetail::findOrFail($id);
 
             $validatedData = $request->only([
-                'title', 'description', 'budget', 'job_start_time', 'job_end_time', 'location', 'image', 'additional_notes', 'featured'
+                'title', 'description', 'budget', 'job_start_time', 'job_end_time', 'location',  'additional_notes', 'featured'
             ]);
-
-            if ($request->has('image')) {
-                $validatedData['image'] = json_encode($request->image);
-            }
+           
 
             if ($request->filled('job_start_time')) {
                 $validatedData['job_start_time'] = Carbon::parse($request->job_start_time)->format('Y-m-d');
@@ -76,7 +79,37 @@ class jobListingDataController extends Controller
                 $validatedData['job_end_time'] = Carbon::parse($request->job_end_time)->format('Y-m-d');
             }
 
+            // Handle image uploads
+            $existingImages = json_decode($OrderDetail->image, true) ?? [];
+            $imageData = [];
+            $counter = 0;
+
+            // Preserve existing images
+            foreach ($existingImages as $key => $image) {
+                $imageData["image_{$counter}"] = $image;
+                $counter++;
+            }
+
+             // Upload new images
+            if ($request->hasFile('image')) {
+               
+                foreach ($request->file('image') as $image) {
+                  
+                    $timestamp = Carbon::now()->timestamp;
+                    $uniqueID = uniqid();
+                    // $originalName = $image->getClientOriginalName(); // Get original filename
+                    $filename = "order-image-{$timestamp}-{$uniqueID}." . $image->getClientOriginalExtension(); // Unique filename for storage
+                    $image->storeAs('order-images', $filename, 'public'); // Save file
+
+                    $imageData["image_{$counter}"] = $filename; // Store only original filename in DB
+                    $counter++;
+                }
+            }
+
+            $validatedData['image'] = json_encode($imageData, JSON_UNESCAPED_SLASHES);
+
             $OrderDetail->update($validatedData);
+            
             DB::commit();
             return redirect()->route('job-listing.list')->with('success', 'Order detail updated successfully!');
         } catch (\Exception $e) {

@@ -177,5 +177,36 @@ $(document).ready(function() {
     });
     
     
+
+    // Multi Image Select
+    $(".image").on("change", function(event) {
+        let preview = $(".preview");
+        preview.html(""); // Clear previous previews
+        let files = event.target.files;
+
+        if (files.length > 0) {
+            $.each(files, function(index, file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    let img = $("<img>").attr("src", e.target.result)
+                        .addClass("h-20 w-20 object-cover rounded-md border");
+                    preview.append(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+    });
+
+    // Remove Images
+    let removedImages = [];
+
+    $(".remove-image").click(function () {
+        let imageName = $(this).data("image");
+        removedImages.push(imageName);
+
+        $(".removed_images").val(JSON.stringify(removedImages));
+
+        $(this).closest(".image-container").remove();
+    });
   
 });

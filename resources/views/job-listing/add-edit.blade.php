@@ -65,26 +65,34 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Image Upload Field -->
                     <div class="sm:col-span-4 mb-5">
-                        <label for="phone" class="block text-sm/6 font-medium text-gray-900">Upload Photos</label>
+                        <label for="image" class="block text-sm/6 font-medium text-gray-900">Upload Photos</label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                                <input type="file" name="image[]" id="image" multiple class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6">
+                                <input type="file" name="image[]" id="image" multiple accept="image/*" 
+                                    class="image block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6">
                             </div>
                         </div>
-                    </div>
-                    {{-- <div class="col-span-full mb-5">
-                        <label class="block text-sm/6 font-medium text-gray-900">Current Photos</label>
-                        <div class="mt-2 flex flex-wrap">
-                            @if(isset($OrderDetails->photos))
-                                @foreach($OrderDetails->photos as $photo)
-                                    <div class="mr-2 mb-2">
-                                        <img src="{{ asset('storage/photos/' . $photo) }}" alt="Current Photo" class="h-20 w-20 object-cover rounded-md">
-                                    </div>
-                                @endforeach
-                            @endif
+                        <!-- Existing Image Previews -->
+                        {{-- <div id="preview" class="mt-3 flex flex-wrap gap-2">
+                            @foreach($images as $key => $image)
+                                <div class="relative image-container ">
+                                    <img src="{{ asset('storage/order-images/' . $image ) }}" alt="Uploaded Image" class="h-20 w-20 rounded-md object-cover">
+                                    <button type="button" class="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full text-xs remove-image" data-key="{{ $key }}">✕</button>
+                                </div>
+                            @endforeach
+                        </div> --}}
+                        <input type="hidden" name="removed_images" id="removed_images" value="">
+                        <div id="preview" class="mt-3 flex flex-wrap gap-2">
+                            @foreach($imagesDetails as $key => $image)
+                                <div class="relative image-container ">
+                                    <img src="{{ asset('storage/order-images/' . $image ) }}" alt="Uploaded Image" class="h-20 w-20 rounded-md object-cover">
+                                    <button type="button" class="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full text-xs remove-image" data-key="{{ $key }}">✕</button>
+                                </div>
+                            @endforeach
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="col-span-full mb-5">
                         <label for="address" class="block text-sm/6 font-medium text-gray-900">Additional Notes</label>
                         <div class="mt-2">

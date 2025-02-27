@@ -76,16 +76,22 @@
                             <textarea name="services" id="services" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900">{{ old('services', $tradepersonDetail->services ?? '') }}</textarea>
                         </div>
                     </div>
-                    
-                    <div class="col-span-full mb-5">
-                        <label for="portfolio" class="block text-sm/6 font-medium text-gray-900">Portfolio</label>
-                        <input type="file" name="portfolio[]" id="portfolio" multiple class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50">
+                    --}}
+                    {{-- <div class="sm:col-span-4 mb-5">
+                        <label for="image" class="block text-sm/6 font-medium text-gray-900">Portfolio</label>
+                        <div class="mt-2">
+                            <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+                                <input type="file" name="portfolio[]" id="portfolio" multiple accept="image/*" 
+                                    class="image block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6">
+                            </div>
+                        </div>
                     </div>
+                    
                     
                     <div class="col-span-full mb-5">
                         <label for="certifications" class="block text-sm/6 font-medium text-gray-900">Certifications</label>
                         <input type="file" name="certifications[]" id="certifications" multiple class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50">
-                    </div> --}}
+                    </div>  --}}
                 
                     <div class="flex items-center justify-end gap-x-6">
                         <button type="submit"
