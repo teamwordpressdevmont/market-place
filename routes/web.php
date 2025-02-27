@@ -104,5 +104,7 @@ Route::group(['prefix'  => 'package'], function() {
 // Route::get('/dashboard', [ReportController::class, 'dashboard']);
 Route::get('/dashboard', [ReportController::class, 'dashboard'])->name('dashboard');
 
+Route::post('/user/{id}/toggle-approval', [TraderPersonDataController::class, 'toggleUserApproval'])->name('user.toggleApproval');
+
 
 require __DIR__.'/auth.php';

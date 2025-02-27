@@ -99,4 +99,18 @@ class TraderPersonDataController extends Controller
         $tradepersonDetail = TradepersonDetails::where('tradeperson_id', $id)->first();
         return view('tradeperson.view', compact('tradeperson', 'tradepersonDetail'));
     }
+
+    public function toggleUserApproval($id)
+    {
+        $user = User::findOrFail($id);
+        $user->user_approved = !$user->user_approved;
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User ' . ($user->user_approved ? 'approved' : 'disapproved') . ' successfully!',
+            'user_approved' => $user->user_approved
+        ]);
+    }
+
 }
