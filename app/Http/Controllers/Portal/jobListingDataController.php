@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
 use App\Models\OrderDetail;
+use App\Models\Order;
+use App\Models\Customer;
+use App\Models\Tradeperson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class jobListingDataController extends Controller
 {
@@ -15,13 +19,13 @@ class jobListingDataController extends Controller
         $sortBy = $request->input('sort_by', 'id');
         $sortDirection = $request->input('sort_direction', 'asc');
 
-        $OrderDetails = OrderDetail::when($search, function ($query, $search) {
+        $OrderDetails = OrderDetail::with(['order.customer', 'order.tradeperson'])
+        ->when($search, function ($query, $search) {
             return $query->where('title', 'like', "%{$search}%");
         })
         ->orderBy($sortBy, $sortDirection)
         ->paginate(10);
 
-         // Check if the request is AJAX
          if ($request->ajax()) {
             return response()->json([
                 'html' => view('job-listing.list', compact('OrderDetails'))->render(),
@@ -46,9 +50,10 @@ class jobListingDataController extends Controller
                 'title'           => 'required|string|max:255',
                 'description'     => 'nullable|string',
                 'budget'          => 'nullable|numeric',
-                'timeline'        => 'nullable|string',
+                'job_start_time'        => 'nullable|string',
+                'job_end_time'        => 'nullable|string',
                 'location'        => 'nullable|string',
-                'photos'          => 'nullable|array',
+                'image'          => 'nullable|array',
                 'additional_notes'=> 'nullable|string',
                 'featured'        => 'nullable|boolean',
             ]);
@@ -56,11 +61,19 @@ class jobListingDataController extends Controller
             $OrderDetail = OrderDetail::findOrFail($id);
 
             $validatedData = $request->only([
-                'title', 'description', 'budget', 'timeline', 'location', 'photos', 'additional_notes', 'featured'
+                'title', 'description', 'budget', 'job_start_time', 'job_end_time', 'location', 'image', 'additional_notes', 'featured'
             ]);
 
-            if ($request->has('photos')) {
-                $validatedData['photos'] = json_encode($request->photos);
+            if ($request->has('image')) {
+                $validatedData['image'] = json_encode($request->image);
+            }
+
+            if ($request->filled('job_start_time')) {
+                $validatedData['job_start_time'] = Carbon::parse($request->job_start_time)->format('Y-m-d');
+            }
+
+            if ($request->filled('job_end_time')) {
+                $validatedData['job_end_time'] = Carbon::parse($request->job_end_time)->format('Y-m-d');
             }
 
             $OrderDetail->update($validatedData);

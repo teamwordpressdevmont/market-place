@@ -62,15 +62,15 @@ class TraderPersonDataController extends Controller
 
             $tradeperson->update($validatedData);
 
-            TradepersonDetails::updateOrCreate(
-                ['tradeperson_id' => $id],
-                [
-                    'about'          => $request->input('about'),
-                    'services'       => $request->input('services'),
-                    'portfolio'      => $request->input('portfolio'),
-                    'certifications' => $request->input('certifications'),
-                ]
-            );
+            // TradepersonDetails::updateOrCreate(
+            //     ['tradeperson_id' => $id],
+            //     [
+            //         'about'          => $request->input('about'),
+            //         'services'       => $request->input('services'),
+            //         'portfolio'      => $request->input('portfolio'),
+            //         'certifications' => $request->input('certifications'),
+            //     ]
+            // );
 
             DB::commit();
             return redirect()->route('tradeperson.list')->with('success', 'Tradeperson updated successfully!');

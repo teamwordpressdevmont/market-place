@@ -63,7 +63,7 @@
                         <label for="featured-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Featured</label>
                     </div>
 
-                    <div class="col-span-full mb-5">
+                    {{-- <div class="col-span-full mb-5">
                         <label for="about" class="block text-sm/6 font-medium text-gray-900">About</label>
                         <div class="mt-2">
                             <textarea name="about" id="about" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900">{{ old('about', $tradepersonDetail->about ?? '') }}</textarea>
@@ -85,7 +85,7 @@
                     <div class="col-span-full mb-5">
                         <label for="certifications" class="block text-sm/6 font-medium text-gray-900">Certifications</label>
                         <input type="file" name="certifications[]" id="certifications" multiple class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50">
-                    </div>
+                    </div> --}}
                 
                     <div class="flex items-center justify-end gap-x-6">
                         <button type="submit"

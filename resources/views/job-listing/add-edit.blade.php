@@ -36,10 +36,24 @@
                         </div>
                     </div>
                     <div class="sm:col-span-4 mb-5">
-                        <label for="phone" class="block text-sm/6 font-medium text-gray-900">Timeline</label>
-                        <div class="mt-2">
-                            <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                                <input type="text" name="timeline" id="timeline" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" value="{{ old('timeline', $OrderDetails->timeline ?? '') }}">
+                        <label for="phone" class="block text-sm/6 font-medium text-gray-900 mb-2">Timeline</label>                     
+                        <div id="date-range-picker" date-rangepicker class="flex items-center">
+                            <div class="relative w-1/2">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                    </svg>
+                                </div>
+                                <input id="datepicker-range-start" name="job_start_time" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ old('job_start_time', isset($OrderDetails->job_start_time) ? \Carbon\Carbon::parse($OrderDetails->job_start_time)->format('d-m-Y') : '') }}" placeholder="Select date start">
+                            </div>
+                            <span class="mx-4 text-gray-500">to</span>
+                            <div class="relative w-1/2">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                    </svg>
+                                </div>
+                                <input id="datepicker-range-end" name="job_end_time" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ old('job_end_time', isset($OrderDetails->job_end_time) ? \Carbon\Carbon::parse($OrderDetails->job_end_time)->format('d-m-Y') : '') }}" placeholder="Select date end">
                             </div>
                         </div>
                     </div>
@@ -55,7 +69,7 @@
                         <label for="phone" class="block text-sm/6 font-medium text-gray-900">Upload Photos</label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                                <input type="file" name="photos[]" id="photos" multiple class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6">
+                                <input type="file" name="image[]" id="image" multiple class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6">
                             </div>
                         </div>
                     </div>
