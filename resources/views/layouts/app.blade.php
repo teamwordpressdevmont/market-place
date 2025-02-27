@@ -12,11 +12,11 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/trumbowyg@2.27.3/dist/ui/trumbowyg.min.css">
 
-        {{-- <link rel="stylesheet" href="{{ url('/public/css/style.css') }}"> --}}
-        <link rel="stylesheet" href="{{ url('/css/style.css') }}">
+        <link rel="stylesheet" href="{{ url('/public/css/style.css') }}">
+        {{-- <link rel="stylesheet" href="{{ url('/css/style.css') }}"> --}}
         
-       {{-- <script src="{{ url('/public/js/tailwind.js') }}"></script> --}}
-       <script src="{{ url('/js/tailwind.js') }}"></script>
+       <script src="{{ url('/public/js/tailwind.js') }}"></script>
+       {{-- <script src="{{ url('/js/tailwind.js') }}"></script> --}}
 
 
     </head>
