@@ -12,7 +12,7 @@ class OrderDetail extends Model
      use HasFactory;
 
     protected $fillable = [
-        'order_id', 'title', 'description', 'budget', 'job_start_time', 'job_end_time', 'location',
+        'order_id', 'title', 'description', 'budget', 'urgent', 'urgent_price', 'job_start_timeline', 'job_end_timeline', 'location', 'address',
         'image', 'additional_notes', 'featured'
     ];
     

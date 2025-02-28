@@ -17,10 +17,13 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->decimal('budget', 10, 2)->nullable();
-            $table->string('job_start_time')->nullable();
-            $table->string('job_end_time')->nullable();
+            $table->boolean('urgent')->nullable();
+            $table->string('urgent_price')->nullable();
+            $table->string('job_start_timeline')->nullable();
+            $table->string('job_end_timeline')->nullable();
             $table->string('location')->nullable();
-            $table->string('image')->nullable(); 
+            $table->string('address')->nullable();
+            $table->json('image')->nullable(); 
             $table->text('additional_notes')->nullable();
             $table->string('featured')->nullable();
             $table->timestamps();

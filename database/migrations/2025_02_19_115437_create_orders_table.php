@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('customer_id')->nullable()->constrained('customers')->nullOnDelete();
             $table->foreignId('tradeperson_id')->nullable()->constrained('tradepersons')->nullOnDelete();
             $table->string('order_status')->nullable();
-            $table->string('payment_status')->nullable();
+            $table->foreignId('payment_status')->nullable()->constrained('payment_statuses')->onDelete('set null');
             $table->timestamps();
         });
 

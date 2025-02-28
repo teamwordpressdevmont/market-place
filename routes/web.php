@@ -10,10 +10,12 @@ use App\Http\Controllers\Portal\ContactDataController;
 use App\Http\Controllers\Portal\PackageController;
 use App\Http\Controllers\Portal\ReportController;
 use App\Http\Controllers\Portal\jobListingDataController;
+use App\Http\Controllers\Portal\AdminMainController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -103,6 +105,15 @@ Route::group(['prefix'  => 'package'], function() {
 // Report
 // Route::get('/dashboard', [ReportController::class, 'dashboard']);
 Route::get('/dashboard', [ReportController::class, 'dashboard'])->name('dashboard');
+
+//json file
+Route::get('/json', [AdminMainController::class, 'showJsonContent'])->name('json.show');
+Route::post('/json/create', [AdminMainController::class, 'createJsonFile'])->name('json.create');
+Route::post('/json/save', [AdminMainController::class, 'appendToJson'])->name('json.save');
+
+
+Route::post('/user/{id}/toggle-approval', [TraderPersonDataController::class, 'toggleUserApproval'])->name('user.toggleApproval');
+Route::get('/accept-review/{id}' , [jobListingDataController::class, 'acceptReview'])->name('accept.review');
 
 
 require __DIR__.'/auth.php';

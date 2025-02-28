@@ -26,13 +26,13 @@
                         Title
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Description
+                        Customer
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        TradePerson Business
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Budget
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Timeline
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
@@ -62,13 +62,13 @@
                             {{ $order->title }}
                         </td>
                         <td class="px-6 py-4">
-                            {!! html_entity_decode($order->description) !!}
+                            {{ $order->order->customer->name ?? 'No Customer' }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $order->order->tradeperson->business_name ?? 'No Business' }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $order->budget }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $order->timeline }}
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex gap-4">

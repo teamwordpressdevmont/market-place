@@ -75,7 +75,8 @@
 
                         <td class="px-6 py-4">
                             @if($category->icon)
-                                <img src="{{ asset('storage/category-images/' . $category->icon) }}" alt="Logo" width="50">
+                                {{-- <img src="{{ asset('storage/category-images/' . $category->icon) }}" alt="Logo" width="50"> --}}
+                                <img src="{{ $category->icon }}" class="bg-green-700 p-2" alt="Logo" width="50">
                             @else
                                 No Icon
                             @endif                    

@@ -21,9 +21,9 @@
 @section('content')
 
     <main>
-        <dl class="flex gap-4">
+        <dl class="flex flex-wrap gap-4">
             @foreach($reports as $report)
-            <div class="w-[600px] h-[167px] flex justify-between items-center border-2 border-orange-400 rounded-lg p-6">
+            <div class="w-[500px] h-[167px] flex justify-between items-center border-2 border-orange-400 rounded-lg p-6">
                 <div>
                     <p class="text-6xl font-light text-orange-400"> {{$report->value}} </p>
                     <p class="font-semibold text-gray-800 mt-2"> {{$report->key}} </p>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tradeperson;
+use App\Models\TradepersonDetails;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,6 @@ class TraderPersonDataController extends Controller
         ->orderBy($sortBy, $sortDirection)
         ->paginate(10);
 
-         // Check if the request is AJAX
          if ($request->ajax()) {
             return response()->json([
                 'html' => view('tradeperson.list', compact('tradeperson'))->render(),
@@ -37,7 +37,8 @@ class TraderPersonDataController extends Controller
     public function edit($id) {
         $tradeperson = Tradeperson::findOrFail($id);
         $users = User::select('id', 'name')->get();
-        return view('tradeperson.add-edit', compact('tradeperson', 'users'));
+        $tradepersonDetail = TradepersonDetails::where('tradeperson_id', $id)->first();
+        return view('tradeperson.add-edit', compact('tradeperson', 'users', 'tradepersonDetail'));
     }
 
     public function update(Request $request, $id) {
@@ -50,12 +51,27 @@ class TraderPersonDataController extends Controller
                 'phone'      => 'nullable|string',
                 'address'      => 'nullable|string',
                 'featured'      => 'nullable|string',
+                'about'          => 'nullable|string',
+                'services'       => 'nullable|string',
+                'portfolio'      => 'nullable|array',
+                'certifications' => 'nullable|array',
             ]);
             
             $tradeperson = Tradeperson::findOrFail($id);
             $validatedData = $request->only(['user_id', 'business_name', 'description', 'phone', 'address', 'featured']);
 
             $tradeperson->update($validatedData);
+
+            // TradepersonDetails::updateOrCreate(
+            //     ['tradeperson_id' => $id],
+            //     [
+            //         'about'          => $request->input('about'),
+            //         'services'       => $request->input('services'),
+            //         'portfolio'      => $request->input('portfolio'),
+            //         'certifications' => $request->input('certifications'),
+            //     ]
+            // );
+
             DB::commit();
             return redirect()->route('tradeperson.list')->with('success', 'Tradeperson updated successfully!');
         } catch (\Exception $e) {
@@ -69,16 +85,32 @@ class TraderPersonDataController extends Controller
         $tradeperson = Tradeperson::findOrFail($id);
 
         if (!is_null($tradeperson)) {
+            TradepersonDetails::where('tradeperson_id', $id)->delete();
             $tradeperson->delete();
         }
 
-            return redirect()->back()->with('success', 'Tradeperson deleted successfully.');
+        return redirect()->back()->with('success', 'Tradeperson deleted successfully.');
 
     }
 
     public function view($id)
     {
         $tradeperson = Tradeperson::findOrFail($id);
-        return view('tradeperson.view', compact('tradeperson'));
+        $tradepersonDetail = TradepersonDetails::where('tradeperson_id', $id)->first();
+        return view('tradeperson.view', compact('tradeperson', 'tradepersonDetail'));
     }
+
+    public function toggleUserApproval($id)
+    {
+        $user = User::findOrFail($id);
+        $user->user_approved = !$user->user_approved;
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User ' . ($user->user_approved ? 'approved' : 'disapproved') . ' successfully!',
+            'user_approved' => $user->user_approved
+        ]);
+    }
+
 }

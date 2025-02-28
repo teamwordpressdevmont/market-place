@@ -16,4 +16,11 @@ class Category extends Model
     {
         return $this->belongsToMany(Tradeperson::class, 'tradeperson_categories', 'category_id', 'tradeperson_id');
     }
+    
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_categories', 'category_id', 'order_id');
+    }
+
+
 }

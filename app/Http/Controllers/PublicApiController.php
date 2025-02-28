@@ -353,8 +353,7 @@ class PublicApiController extends Controller
                 'with_tradeperson' => 'sometimes|boolean',
                 'status'           => 'sometimes|string',
                 'payment_status'   => 'sometimes|string|in:0,1',
-                'ids'              => 'sometimes|array',
-                'ids.*'            => 'integer|exists:orders,id',
+                'id'            => 'integer|exists:orders,id',
                 'perPage'          => 'sometimes|integer|min:1|max:100',
                 'offset'           => 'sometimes|integer|min:0',
             ]);
@@ -377,8 +376,8 @@ class PublicApiController extends Controller
                 $query->where('payment_status', $request->payment_status);
             }
 
-            if ($request->has('ids')) {
-                $query->whereIn('id', $request->ids);
+            if ($request->has('id')) {
+                $query->where('id', $request->id);
             }
 
 
