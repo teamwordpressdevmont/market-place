@@ -17,11 +17,11 @@
    </div>
 </div>
 --}}
-<div class="">
-   <div class="grid grid-cols-1 md:grid-cols-2 gap-9 mt-6">
+<div class="mt-5">
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
       <h1 class="font-semibold text-4xl">Let's Find The Right Expert For Your Job.</h1>
       <div class="flex justify-end">
-         <a href="#" class="bg-orange-400 rounded-4xl px-4 py-2 text-sm text-white flex items-center justify-between w-40 border border-orange-600">
+         <a href="#" class="bg-secondary rounded-full px-4 py-2 text-sm text-white flex items-center justify-between w-40 border border-primary hover:bg-primary transition">
             Create a job
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="pl-1">
                <path d="M11 7V15M15 11L7 11" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -33,7 +33,7 @@
    <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-9 mt-6">
       <div class="bg-white py-5 px-8 rounded-xl flex justify-between border border-[#22222233]">
          <div>
-            <h3 class="text-6xl font-light text-orange-500 mb-10">05</h3>
+            <h3 class="text-6xl font-light text-secondary mb-10">05</h3>
             <p class="text-gray-600 font-bold text-sm">Active Jobs</p>
          </div>
          <div>
@@ -112,7 +112,7 @@
                   </p>
                </div>
                <div class="flex flex-col items-end mr-4">
-                  <span class="bg-orange-400 text-white text-xs px-4 py-1 rounded-full mb-8">Active</span>
+                  <span class="bg-secondary text-white text-xs px-4 py-1 rounded-full mb-8">Active</span>
                   <a href="#" class="text-[#222222] text-sm flex items-center mt-2 font-semibold">View Job Details →</a>
                </div>
             </div>
