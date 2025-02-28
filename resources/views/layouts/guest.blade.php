@@ -13,14 +13,23 @@
 
         <!-- Scripts -->
         <link rel="stylesheet" href="{{ url('/public/css/style.css') }}">
+        {{-- <link rel="stylesheet" href="{{ url('/css/style.css') }}"> --}}
+
         
           <script src="{{ url('/public/js/jquery.min.js') }}"></script>
+          {{-- <script src="{{ url('/js/jquery.min.js') }}"></script> --}}
+
+
     
         <script src="{{ url('/public/js/tailwind.js') }}"></script>
+        {{-- <script src="{{ url('/js/tailwind.js') }}"></script> --}}
+
         
         <script src="{{ url('/public/js/custom-script.js') }}"></script>
+        {{-- <script src="{{ url('/js/custom-script.js') }}"></script> --}}
+
     </head>
-    <body class="bg-[url('{{ asset('public/storage/aiguy-images/Login.jpg') }}')] bg-no-repeat bg-cover bg-center h-auto w-full">
+    <body class="bg-[url('{{ asset('storage/aiguy-images/Login.jpg') }}')] bg-no-repeat bg-cover bg-center h-auto w-full">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
             <div class="pt-[50px]">
                 <a href="/">

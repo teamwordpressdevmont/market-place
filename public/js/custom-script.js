@@ -146,5 +146,67 @@ $(document).ready(function() {
             }
         }
     });
+
+    $(".toggle-user-approval").click(function () {
+        let button = $(this);
+        let userId = button.data("id");
+    
+        $.ajax({
+            url: "/user/" + userId + "/toggle-approval",
+            type: "POST",
+            data: {
+                _token: $('meta[name="csrf-token"]').attr('content') // Send CSRF token
+            },
+            success: function (response) {
+                if (response.success) {
+                    if (response.user_approved) {
+                        button.removeClass("bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300")
+                              .addClass("bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300")
+                              .text("Approved");
+                    } else {
+                        button.removeClass("bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300")
+                              .addClass("bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300")
+                              .text("Disapproved");
+                    }
+                }
+            },
+            error: function () {
+                alert("Something went wrong!");
+            }
+        });
+    });
+    
+    
+
+    // Multi Image Select
+    $(".image").on("change", function(event) {
+        let preview = $(".preview");
+        preview.html(""); // Clear previous previews
+        let files = event.target.files;
+
+        if (files.length > 0) {
+            $.each(files, function(index, file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    let img = $("<img>").attr("src", e.target.result)
+                        .addClass("h-20 w-20 object-cover rounded-md border");
+                    preview.append(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+    });
+
+    // Remove Images
+    let removedImages = [];
+
+    $(".remove-image").click(function () {
+        let imageName = $(this).data("image");
+        removedImages.push(imageName);
+
+        $(".removed_images").val(JSON.stringify(removedImages));
+
+        $(this).closest(".image-container").remove();
+    });
   
 });
