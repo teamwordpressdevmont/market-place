@@ -12,6 +12,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/trumbowyg@2.27.3/dist/ui/trumbowyg.min.css">
 
+
         <script src="{{ url('/js/tailwindcss.js') }}"></script>
 
        <script>
@@ -26,7 +27,7 @@
             }
         }
         </script>
-
+        <link rel="stylesheet" href="{{ url('/css/flowbite.min.css') }}">
         <link rel="stylesheet" href="{{ url('/css/style.css') }}">
     </head>
     <body>

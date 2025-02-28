@@ -3,7 +3,7 @@
     <ul class="space-y-2">
       <li>
         <a href="{{ route( 'dashboard' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white">
-            <svg class="shrink-0 w-5 h-5 transition duration-75" viewBox="0 0 15 15" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg class="shrink-0 w-5 h-5 transition" viewBox="0 0 15 15" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"

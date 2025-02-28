@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="text-3xl font-bold tracking-tight text-gray-900 mb-6"> {{ isset($category) ? 'Update Category' : 'Add Category' }}</h1>
+    <h1 class="font-semibold text-4xl mb-6"> {{ isset($category) ? 'Update Category' : 'Add Category' }}</h1>
     <form id="Category" action="{{ isset($category) ? route('category.update', $category->id) : route('category.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
         @csrf
 
@@ -10,7 +10,15 @@
         @method('PUT') 
 
         @endif 
-        
+        <div class="">
+          <label for="username" class="block text-sm/6 font-medium text-gray-900">Username</label>
+            <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+              <span class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg">workcation.com/</span>
+              <div class="relative w-full"> 
+                  <input type="text" name="username" id="username" class="bg-gray-50 border border-e-0 border-gray-300 text-gray-500 dark:text-gray-400 text-sm border-s-0 block w-full p-2.5" placeholder="janesmith">
+              </div>
+            </div>
+        </div>
         <!-- Name Field -->
         <div class="sm:col-span-4 mb-5">
             <label for="name" class="block text-sm/6 font-medium text-gray-900">Name</label>
@@ -39,7 +47,7 @@
         <div class="col-span-full mb-5">
             <label class="block text-sm/6 font-medium text-gray-900">Icon</label>
             <div class="mt-2 grid grid-cols-1">
-                <input type="file" name="icon" accept="image/*" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="file" name="icon" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
                     @if(isset($category) && $category->icon)
                     <div id="PreviewContainer" class="mt-2  relative">
                         <img  src="{{ asset('storage/category-images/' . $category->icon) }}" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">

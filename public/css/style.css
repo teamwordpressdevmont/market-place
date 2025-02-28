@@ -1,13 +1,10 @@
-/* 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@import "tailwindcss";
+.site_dasboard_content{
+    background-image: url(../images/dash-shadow.svg);
+    background-position: top center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
-@theme {
-    --color-*: initial;
-    --color-purple: #3f3cbb;
-} */
 
 #closeIcon{
     left: 10%;
