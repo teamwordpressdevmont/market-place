@@ -11,11 +11,23 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/trumbowyg@2.27.3/dist/ui/trumbowyg.min.css">
+        
+        <script src="{{ url('/js/tailwindcss.js') }}"></script>
+
+       <script>
+        tailwind.config = {
+            theme: {
+            extend: {
+                colors: {
+                primary: '#DB4A2B', 
+                secondary: '#F59E0B', 
+                }
+            }
+            }
+        }
+        </script>    
 
         <link rel="stylesheet" href="{{ url('/css/style.css') }}">
-        
-       <script src="{{ url('/js/tailwind.js') }}"></script>
-
     </head>
     <body>
     

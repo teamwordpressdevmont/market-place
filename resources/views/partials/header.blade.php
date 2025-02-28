@@ -16,7 +16,7 @@
             </svg>
          </button>
         <a href="" class="flex ms-2 md:me-24">
-          <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Market Place</span>
+          <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"><img src="{{ asset( '/images/dm-logo.svg' ) }}" alt=""></span>
         </a>
       </div>
       <div class="flex items-center">
