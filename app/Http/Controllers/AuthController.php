@@ -45,6 +45,7 @@ class AuthController extends Controller
     // Login User & Generate Access Token
     public function login(Request $request)
     {
+        
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',

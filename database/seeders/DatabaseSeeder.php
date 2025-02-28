@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        /*
+        
         
         $adminRole = Role::create(['name' => 'admin']);
         $customerRole = Role::create(['name' => 'customer']);
@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
         $tradeperson->assignRole($tradepersonRole);
-        */
+        
         //create status
         $statuses = ['Processing', 'In Progress', 'Pending', 'Completed', 'Cancelled'];
 

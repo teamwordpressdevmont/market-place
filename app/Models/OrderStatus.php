@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class OrderStatus extends Model
 {
     //
-     use HasFactory;
+    use HasFactory;
 
     protected $fillable = [
         'status'

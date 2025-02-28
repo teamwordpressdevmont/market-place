@@ -70,7 +70,7 @@
                     <td class="px-6 py-4">
                         <form action="{{ route('testimonial.toggleApproval', $testimonial->id) }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-sm {{ $testimonial->approvedTestimonial ? 'btn-danger' : 'btn-success' }}">
+                            <button type="submit" class=" rounded-xl p-2 cursor-pointer text-white {{ $testimonial->approvedTestimonial ? 'bg-red-700' : 'bg-green-700' }}">
                                 {{ $testimonial->approvedTestimonial ? 'Remove from Website' : 'Add to Website' }}
                             </button>
                         </form>
