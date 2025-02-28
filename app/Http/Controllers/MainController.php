@@ -6,6 +6,7 @@ use App\Models\Report;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Token;
+use App\Models\OrderProposal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -93,14 +94,14 @@ class MainController extends Controller
         try {
             $request->validate([
                 'id' => 'nullable|integer|exists:users,id',
-                'filter' => 'nullable|string|in:active_job,pending_job,completed_job',
+                'filter' => 'nullable|string|in:active_job,pending_job,completed_job,recent_jobs',
                 'offset' => 'nullable|integer|min:0',
                 'per_page' => 'nullable|integer|min:1|max:100',
                 'with_proposal' => 'nullable|boolean',
                 'with_reviews' => 'nullable|boolean'
             ]);
 
-         
+
             $user =  User::find(auth()->user()->id);
             if (!$user->hasRole('customer')) {
                 return response()->json([
@@ -110,7 +111,7 @@ class MainController extends Controller
                 ], 400);
             }
 
-            $query = Order::with(['orderDetail', 'customer', 'tradeperson'])->orderByDesc('created_at');
+            $query = Order::with(['orderDetail', 'customer', 'tradeperson']);
 
             if ($request->has('id')) {
                 $query->where('id', $request->id);
@@ -126,6 +127,10 @@ class MainController extends Controller
 
             if ($request->has('filter') && $request->get('filter') == "completed_job") {
                 $query->where('order_status', 4);
+            }
+
+            if ($request->has('filter') && $request->get('filter') == "recent_jobs") {
+                $query->orderByDesc('created_at');
             }
 
             if ($request->has('with_proposal') && $request->get('with_proposal') == true) {
@@ -166,7 +171,7 @@ class MainController extends Controller
     public function getCustomerProfile(Request $request)
     {
         try {
-            
+
 
             $user = User::with('customer')->find(auth()->user()->id);
 
@@ -209,7 +214,7 @@ class MainController extends Controller
 
             $user = User::findOrFail(auth()->user()->id);
 
-            
+
 
             if ($request->has('password')) {
                 $request->validate([
@@ -301,7 +306,7 @@ class MainController extends Controller
                 'decrypted_token' => $decryptedToken
             ], 200);
         } catch (\Exception $e) {
-    
+
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to retrieve token',
@@ -309,28 +314,75 @@ class MainController extends Controller
             ], 500);
         }
     }
-    
-    // public function getCustomerReview(Request $request)
-    // {
-    //     try {
-    //         $request->validate([
-    //             'user_id' => 'required|integer|exist:users,id'
-    //         ]);
 
+    public function getAcceptedProposal(Request $request)
+    {
+        try {
+            $request->validate([
+                'perPage' => 'nullable|integer',
+                'offset' => 'nullable|integer',
+                'proposal_id' => 'nullable|integer|exists:order_proposals,id',
+                'status' => 'nullable|string|in:pending,accepted,rejected'
+            ]);
 
+            $customer_id = optional($request->user()->customer)->id;
 
-    //     } catch (ValidationException $e) {
-    //         return response()->json([
-    //             'success' => false,
-    //             'message' => 'Validation error',
-    //             'errors' => $e->errors()
-    //         ], 422);
-    //     } catch (\Exception $e) {
-    //         return response()->json([
-    //             'success' => false,
-    //             'message' => 'Error',
-    //             'error' => $e->getMessage()
-    //         ], 500);
-    //     }
-    // }
+            if (!$customer_id) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Unauthorized: No associated customer found',
+                ], 403);
+            }
+
+            $perPage = $request->get('perPage', 10);
+            $offset = $request->get('offset', 0);
+
+            $query = OrderProposal::where('customer_id', $customer_id)
+                ->with([
+                    'order.orderDetail',
+                    'tradeperson' => function ($q) {
+                        $q->withCount('reviews')->withAvg('reviews', 'rating');
+                    }
+                ]);
+            if ($request->has('proposal_id')) {
+                $query->where('id', $request->proposal_id);
+            }
+
+            if ($request->has('status') && $request->get('status') == "pending") {
+                $query->where('id', 3);
+            }
+
+            if ($request->has('status') && $request->get('status') == "accepted") {
+                $query->where('id', 1);
+            }
+
+            if ($request->has('status') && $request->get('status') == "rejected") {
+                $query->where('id', 2);
+            }
+
+            $orders = $query->offset($offset)
+                ->limit($perPage)
+                ->get();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Proposal Retrieved Successfully',
+                'offset' => $offset,
+                'per_page' => $perPage,
+                'data' => $orders
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 }

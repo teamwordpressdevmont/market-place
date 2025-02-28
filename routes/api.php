@@ -13,20 +13,19 @@ use App\Http\Controllers\PublicApiController;
 
 Route::get('/get-token', [MainController::class, 'getToken']);
 
-Route::middleware('verify_token')->group(function(){
-    
+Route::middleware('verify_token')->group(function () {
+
     Route::get('/get-blog', [PublicApiController::class, 'getBlogs']);
     Route::get('/get-category', [PublicApiController::class, 'getCategories']);
-    
-    
+
+
     Route::get('/get-testimonial', [PublicApiController::class, 'getTestimonials']);
     Route::post('/store-testimonial', [PublicApiController::class, 'storeTestimonial']);
-    
+
     Route::get('/get-tradeperson', [PublicApiController::class, "getTradePerson"]);
     Route::post('/store-contact', [PublicApiController::class, "storeContact"]);
-    
+
     Route::get('/get-order', [PublicApiController::class, "getOrder"]);
-    
 });
 
 
@@ -57,7 +56,10 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/get-customer-profile', [MainController::class, 'getCustomerProfile']);
         Route::patch('/update-customer-profile', [MainController::class, 'updateCustomerProfile']);
 
-        
+
+        Route::get('/get-accepted-proposal', [MainController::class, 'getAcceptedProposal']);
+
+
         Route::get('/customer-dashboard', function () {
             return response()->json(['message' => 'Welcome customer']);
         });

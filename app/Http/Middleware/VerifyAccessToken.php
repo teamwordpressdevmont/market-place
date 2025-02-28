@@ -51,7 +51,9 @@ class VerifyAccessToken
         }
 
         $currentTime = Carbon::now();
-
+        
+        // if ( ($decryptedHeaderToken !== $decryptedStoredToken || $currentTime->gt($expiresAt)) && 
+        // ($decryptedHeaderToken !== $decryptedStoredTokenPrev || !$previousExpiresAt || $currentTime->gt($previousExpiresAt)) )
         if (
             ($decryptedHeaderToken === $decryptedStoredToken && $currentTime->gt($expiresAt)) ||
             ($decryptedHeaderToken === $decryptedStoredTokenPrev && $previousExpiresAt && $currentTime->gt($previousExpiresAt))

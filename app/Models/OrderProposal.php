@@ -31,4 +31,9 @@ class OrderProposal extends Model
         return $this->belongsTo(Customer::class, 'customer_id', 'id');
     }
     
+    public function proposalStatus()
+    {
+        return $this->belongsTo(ProposalStatus::class, 'proposal_status', 'id');
+    }
+    
 }

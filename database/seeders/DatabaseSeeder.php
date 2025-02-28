@@ -9,6 +9,8 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
 use App\Models\OrderStatus;
+use App\Models\PaymentStatus;
+use App\Models\ProposalStatus;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -57,11 +59,26 @@ class DatabaseSeeder extends Seeder
         ]);
         $tradeperson->assignRole($tradepersonRole);
         
-        //create status
+        //create order status
         $statuses = ['Processing', 'In Progress', 'Pending', 'Completed', 'Cancelled'];
 
         foreach ($statuses as $status) {
             OrderStatus::create(['status' => $status]);
+        }
+        
+        
+        //create payment status
+        $statuses = ['Accepted', 'Failed', 'Refund', 'Rejected', 'In-Compelete'];
+
+        foreach ($statuses as $status) {
+            PaymentStatus::create(['status' => $status]);
+        }
+        
+        //create proposal status
+        $statuses = ['Accepted', 'Rejected', 'Pending'];
+
+        foreach ($statuses as $status) {
+            ProposalStatus::create(['status' => $status]);
         }
         
     }

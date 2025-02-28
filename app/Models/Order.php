@@ -47,4 +47,9 @@ class Order extends Model
         return $this->hasMany(Proposal::class, 'order_id', 'id');
     }
     
+    public function paymentStatus()
+    {
+        return $this->belongsTo(PaymentStatus::class, 'payment_status', 'id');
+    }
+    
 }

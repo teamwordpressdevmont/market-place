@@ -7,6 +7,7 @@ use App\Models\OrderDetail;
 use App\Models\Order;
 use App\Models\Customer;
 use App\Models\Tradeperson;
+use App\Models\TradepersonReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -21,13 +22,13 @@ class jobListingDataController extends Controller
         $sortDirection = $request->input('sort_direction', 'asc');
 
         $OrderDetails = OrderDetail::with(['order.customer', 'order.tradeperson'])
-        ->when($search, function ($query, $search) {
-            return $query->where('title', 'like', "%{$search}%");
-        })
-        ->orderBy($sortBy, $sortDirection)
-        ->paginate(10);
+            ->when($search, function ($query, $search) {
+                return $query->where('title', 'like', "%{$search}%");
+            })
+            ->orderBy($sortBy, $sortDirection)
+            ->paginate(10);
 
-         if ($request->ajax()) {
+        if ($request->ajax()) {
             return response()->json([
                 'html' => view('job-listing.list', compact('OrderDetails'))->render(),
                 'pagination' => (string) $OrderDetails->appends($request->all())->links()
@@ -37,18 +38,18 @@ class jobListingDataController extends Controller
         return view('job-listing.list', compact('OrderDetails', 'search', 'sortBy', 'sortDirection'));
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
         $OrderDetails = OrderDetail::findOrFail($id);
 
         // Decode JSON images from database
         $imagesDetails = json_decode($OrderDetails->image, true) ?? [];
 
-        return view('job-listing.add-edit', compact('OrderDetails' , 'imagesDetails'));
+        return view('job-listing.add-edit', compact('OrderDetails', 'imagesDetails'));
     }
 
-    public function update(Request $request, $id) 
-   {
+    public function update(Request $request, $id)
+    {
         DB::beginTransaction();
         try {
             $request->validate([
@@ -60,16 +61,23 @@ class jobListingDataController extends Controller
                 'location'        => 'nullable|string',
                 'image' => 'nullable|array',
                 'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'additional_notes'=> 'nullable|string',
+                'additional_notes' => 'nullable|string',
                 'featured'        => 'nullable|boolean',
             ]);
- 
+
             $OrderDetail = OrderDetail::findOrFail($id);
 
             $validatedData = $request->only([
-                'title', 'description', 'budget', 'job_start_time', 'job_end_time', 'location',  'additional_notes', 'featured'
+                'title',
+                'description',
+                'budget',
+                'job_start_time',
+                'job_end_time',
+                'location',
+                'additional_notes',
+                'featured'
             ]);
-           
+
 
             if ($request->filled('job_start_time')) {
                 $validatedData['job_start_time'] = Carbon::parse($request->job_start_time)->format('Y-m-d');
@@ -90,11 +98,11 @@ class jobListingDataController extends Controller
                 $counter++;
             }
 
-             // Upload new images
+            // Upload new images
             if ($request->hasFile('image')) {
-               
+
                 foreach ($request->file('image') as $image) {
-                  
+
                     $timestamp = Carbon::now()->timestamp;
                     $uniqueID = uniqid();
                     // $originalName = $image->getClientOriginalName(); // Get original filename
@@ -109,7 +117,7 @@ class jobListingDataController extends Controller
             $validatedData['image'] = json_encode($imageData, JSON_UNESCAPED_SLASHES);
 
             $OrderDetail->update($validatedData);
-            
+
             DB::commit();
             return redirect()->route('job-listing.list')->with('success', 'Order detail updated successfully!');
         } catch (\Exception $e) {
@@ -131,7 +139,30 @@ class jobListingDataController extends Controller
 
     public function view($id)
     {
-        $OrderDetail = OrderDetail::findOrFail($id);
-        return view('job-listing.view', compact('OrderDetail'));
+        try {
+            $OrderDetail = OrderDetail::with('order.review.tradeperson')->findOrFail($id);
+            return view('job-listing.view', compact('OrderDetail'));
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            return redirect()->back()->with('success', 'Something went wrong.');
+        }
+    }
+
+    public function acceptReview($id)
+    {
+        try {
+            $tradePersonReview =  TradepersonReview::find($id);
+            if (!$tradePersonReview) {
+                return back()->with('error', 'review not found');
+            }
+
+            $tradePersonReview->update([
+                'approved' => 1
+            ]);
+
+            return back()->with('success', 'Review Approved Successfully!');
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Failed to update  review');
+        }
     }
 }

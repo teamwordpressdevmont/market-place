@@ -18,7 +18,8 @@ return new class extends Migration
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
             $table->decimal('proposed_price', 10, 2)->nullable();
             $table->text('comment')->nullable();
-            $table->integer('proposal_status')->nullable();
+            $table->foreignId('proposal_status')->nullable()->constrained('proposal_statuses')->onDelete('set null');
+            $table->boolean('approved')->nullable();
             $table->timestamps();
         });
     }
