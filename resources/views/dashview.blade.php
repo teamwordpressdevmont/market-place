@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+<style>
+    ::-webkit-scrollbar {
+        width: 3px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #cbcbcb;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #ABABAB;
+    }
+</style>
 {{--
 <div>
    <div class="columns-2 gap-4">
@@ -47,7 +58,7 @@
         </div>
         <div class="bg-white py-5 px-8 rounded-xl flex justify-between border border-[#22222233]">
             <div>
-                <h3 class="text-6xl font-light text-green-500 mb-10">10</h3>
+                <h3 class="text-6xl font-light text-[#24C500] mb-10">10</h3>
                 <p class="text-gray-600 font-bold text-sm">completed Jobs</p>
             </div>
             <div>
@@ -62,7 +73,7 @@
         </div>
         <div class="bg-white py-5 px-8 rounded-xl flex justify-between border border-[#22222233]">
             <div>
-                <h3 class="text-6xl font-light text-orange-300 mb-10">03</h3>
+                <h3 class="text-6xl font-light text-[#FFC600] mb-10">03</h3>
                 <p class="text-gray-600 font-bold text-sm">pending jobs Post</p>
             </div>
             <div>
@@ -74,7 +85,7 @@
             </div>
         </div>
     </div>
-    <div class="grid grid-cols-2 gap-6 mt-8">
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
         <div class="rounded-xl p-5 bg-white border border-[#22222233]">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-lg font-semibold">Recent Jobs</h2>
@@ -188,34 +199,240 @@
         </div>
         <div class="rounded-xl p-5 bg-white border border-[#22222233]">
             <h2 class="text-lg font-semibold mb-3">Accept Proposals</h2>
-            <!-- Job Card 1 -->
-            <div class="flex bg-[#FCFCFA] border border-gray-200 rounded-xl shadow-sm max-w-3xl mx-auto">
-                <!-- Left Section -->
-                <div class="flex-1 p-4">
-                    <h3 class="text-sm font-bold border-b border-gray-300 pb-2 mb-3">
-                        Job Title: Need To Fix Kitchen Pipe
-                    </h3>
-                    <div class="flex justify-between items-center">
-                        <!-- Profile Info -->
-                        <div class="flex items-center">
-                            <img src="http://127.0.0.1:8000/images/proposal.png" alt="Plumber" class="w-12 h-12 rounded-full object-cover mr-3">
-                            <div>
-                                <p class="text-sm font-medium text-gray-800">Brian Simmons</p>
-                                <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
+            <div class="space-y-5 h-[600px] overflow-y-auto pr-3">
+                <div class="flex bg-[#FCFCFA] border border-gray-200 rounded-xl shadow-sm max-w-3xl mx-auto">
+                    <!-- Left Section -->
+                    <div class="flex-1 py-4">
+                        <h3 class="text-sm font-bold border-b border-gray-300 pb-2 mb-4 px-4">
+                            Job Title: Need To Fix Kitchen Pipe
+                        </h3>
+                        <div class="flex justify-between items-center px-4">
+                            <!-- Profile Info -->
+                            <div class="flex items-center">
+                                <img src="http://127.0.0.1:8000/images/proposal.png" alt="Plumber" class="w-12 h-12 rounded-full object-cover mr-3">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-800">Brian Simmons</p>
+                                    <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
+                                </div>
+                            </div>
+                            <!-- Rating Section -->
+                            <div class="flex items-center">
+                                <span class="flex items-center gap-2 text-sm font-bold text-[#2B2B2B] bg-[#F4F3F3] px-4 py-1 rounded-full">4.5/5
+
+                    <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.07057 1.62215L6.89578 3.28619C7.0083 3.51783 7.30838 3.74002 7.56156 3.78257L9.05724 4.03312C10.0137 4.19385 10.2388 4.8935 9.54955 5.5837L8.38677 6.7561C8.18984 6.95465 8.082 7.33757 8.14296 7.61175L8.47585 9.06307C8.73841 10.2118 8.13358 10.6562 7.12552 10.0558L5.72361 9.21907C5.47043 9.06779 5.05314 9.06779 4.79526 9.21907L3.39336 10.0558C2.38998 10.6562 1.78046 10.2071 2.04302 9.06307L2.37592 7.61175C2.43687 7.33757 2.32903 6.95465 2.13211 6.7561L0.969324 5.5837C0.284781 4.8935 0.505148 4.19385 1.46163 4.03312L2.95731 3.78257C3.20581 3.74002 3.50588 3.51783 3.61841 3.28619L4.44361 1.62215C4.89372 0.719213 5.62515 0.719213 6.07057 1.62215Z" fill="#EEDD2B"></path>
+                    </svg>
+
+                    </span>
+
+                                <span class="text-xs text-[#ABABAB] ml-2">(28 reviews)</span>
                             </div>
                         </div>
-                        <!-- Rating Section -->
-                        <div class="flex items-center">
-                            <span class="text-sm font-bold text-[#2B2B2B] bg-[#F4F3F3] px-5 py-1 rounded-full">4.5/5</span>
+                    </div>
 
-                            <span class="text-xs text-[#ABABAB] ml-2">(28 reviews)</span>
-                        </div>
+                    <!-- Right Arrow Section -->
+                    <div class="w-24 flex items-center justify-center border-l border-gray-200">
+                        <span class="text-gray-500 text-lg">
+                            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.00005 1C1.00005 1 6.99999 5.41893 7 7.00005C7.00001 8.58116 1 13 1 13" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
                     </div>
                 </div>
+                <div class="flex bg-[#FCFCFA] border border-gray-200 rounded-xl shadow-sm max-w-3xl mx-auto">
+                    <!-- Left Section -->
+                    <div class="flex-1 py-4">
+                        <h3 class="text-sm font-bold border-b border-gray-300 pb-2 mb-4 px-4">
+                            Job Title: Need To Fix Kitchen Pipe
+                        </h3>
+                        <div class="flex justify-between items-center px-4">
+                            <!-- Profile Info -->
+                            <div class="flex items-center">
+                                <img src="http://127.0.0.1:8000/images/proposal.png" alt="Plumber" class="w-12 h-12 rounded-full object-cover mr-3">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-800">Brian Simmons</p>
+                                    <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
+                                </div>
+                            </div>
+                            <!-- Rating Section -->
+                            <div class="flex items-center">
+                                <span class="flex items-center gap-2 text-sm font-bold text-[#2B2B2B] bg-[#F4F3F3] px-4 py-1 rounded-full">4.5/5
 
-                <!-- Right Arrow Section -->
-                <div class="w-14 flex items-center justify-center border-l border-gray-200">
-                    <span class="text-gray-500 text-lg">&gt;</span>
+                    <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.07057 1.62215L6.89578 3.28619C7.0083 3.51783 7.30838 3.74002 7.56156 3.78257L9.05724 4.03312C10.0137 4.19385 10.2388 4.8935 9.54955 5.5837L8.38677 6.7561C8.18984 6.95465 8.082 7.33757 8.14296 7.61175L8.47585 9.06307C8.73841 10.2118 8.13358 10.6562 7.12552 10.0558L5.72361 9.21907C5.47043 9.06779 5.05314 9.06779 4.79526 9.21907L3.39336 10.0558C2.38998 10.6562 1.78046 10.2071 2.04302 9.06307L2.37592 7.61175C2.43687 7.33757 2.32903 6.95465 2.13211 6.7561L0.969324 5.5837C0.284781 4.8935 0.505148 4.19385 1.46163 4.03312L2.95731 3.78257C3.20581 3.74002 3.50588 3.51783 3.61841 3.28619L4.44361 1.62215C4.89372 0.719213 5.62515 0.719213 6.07057 1.62215Z" fill="#EEDD2B"></path>
+                    </svg>
+
+                    </span>
+
+                                <span class="text-xs text-[#ABABAB] ml-2">(28 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Arrow Section -->
+                    <div class="w-24 flex items-center justify-center border-l border-gray-200">
+                        <span class="text-gray-500 text-lg">
+                            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.00005 1C1.00005 1 6.99999 5.41893 7 7.00005C7.00001 8.58116 1 13 1 13" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="flex bg-[#FCFCFA] border border-gray-200 rounded-xl shadow-sm max-w-3xl mx-auto">
+                    <!-- Left Section -->
+                    <div class="flex-1 py-4">
+                        <h3 class="text-sm font-bold border-b border-gray-300 pb-2 mb-4 px-4">
+                            Job Title: Need To Fix Kitchen Pipe
+                        </h3>
+                        <div class="flex justify-between items-center px-4">
+                            <!-- Profile Info -->
+                            <div class="flex items-center">
+                                <img src="http://127.0.0.1:8000/images/proposal.png" alt="Plumber" class="w-12 h-12 rounded-full object-cover mr-3">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-800">Brian Simmons</p>
+                                    <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
+                                </div>
+                            </div>
+                            <!-- Rating Section -->
+                            <div class="flex items-center">
+                                <span class="flex items-center gap-2 text-sm font-bold text-[#2B2B2B] bg-[#F4F3F3] px-4 py-1 rounded-full">4.5/5
+
+                    <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.07057 1.62215L6.89578 3.28619C7.0083 3.51783 7.30838 3.74002 7.56156 3.78257L9.05724 4.03312C10.0137 4.19385 10.2388 4.8935 9.54955 5.5837L8.38677 6.7561C8.18984 6.95465 8.082 7.33757 8.14296 7.61175L8.47585 9.06307C8.73841 10.2118 8.13358 10.6562 7.12552 10.0558L5.72361 9.21907C5.47043 9.06779 5.05314 9.06779 4.79526 9.21907L3.39336 10.0558C2.38998 10.6562 1.78046 10.2071 2.04302 9.06307L2.37592 7.61175C2.43687 7.33757 2.32903 6.95465 2.13211 6.7561L0.969324 5.5837C0.284781 4.8935 0.505148 4.19385 1.46163 4.03312L2.95731 3.78257C3.20581 3.74002 3.50588 3.51783 3.61841 3.28619L4.44361 1.62215C4.89372 0.719213 5.62515 0.719213 6.07057 1.62215Z" fill="#EEDD2B"></path>
+                    </svg>
+
+                    </span>
+
+                                <span class="text-xs text-[#ABABAB] ml-2">(28 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Arrow Section -->
+                    <div class="w-24 flex items-center justify-center border-l border-gray-200">
+                        <span class="text-gray-500 text-lg">
+                            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.00005 1C1.00005 1 6.99999 5.41893 7 7.00005C7.00001 8.58116 1 13 1 13" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="flex bg-[#FCFCFA] border border-gray-200 rounded-xl shadow-sm max-w-3xl mx-auto">
+                    <!-- Left Section -->
+                    <div class="flex-1 py-4">
+                        <h3 class="text-sm font-bold border-b border-gray-300 pb-2 mb-4 px-4">
+                            Job Title: Need To Fix Kitchen Pipe
+                        </h3>
+                        <div class="flex justify-between items-center px-4">
+                            <!-- Profile Info -->
+                            <div class="flex items-center">
+                                <img src="http://127.0.0.1:8000/images/proposal.png" alt="Plumber" class="w-12 h-12 rounded-full object-cover mr-3">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-800">Brian Simmons</p>
+                                    <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
+                                </div>
+                            </div>
+                            <!-- Rating Section -->
+                            <div class="flex items-center">
+                                <span class="flex items-center gap-2 text-sm font-bold text-[#2B2B2B] bg-[#F4F3F3] px-4 py-1 rounded-full">4.5/5
+
+                    <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.07057 1.62215L6.89578 3.28619C7.0083 3.51783 7.30838 3.74002 7.56156 3.78257L9.05724 4.03312C10.0137 4.19385 10.2388 4.8935 9.54955 5.5837L8.38677 6.7561C8.18984 6.95465 8.082 7.33757 8.14296 7.61175L8.47585 9.06307C8.73841 10.2118 8.13358 10.6562 7.12552 10.0558L5.72361 9.21907C5.47043 9.06779 5.05314 9.06779 4.79526 9.21907L3.39336 10.0558C2.38998 10.6562 1.78046 10.2071 2.04302 9.06307L2.37592 7.61175C2.43687 7.33757 2.32903 6.95465 2.13211 6.7561L0.969324 5.5837C0.284781 4.8935 0.505148 4.19385 1.46163 4.03312L2.95731 3.78257C3.20581 3.74002 3.50588 3.51783 3.61841 3.28619L4.44361 1.62215C4.89372 0.719213 5.62515 0.719213 6.07057 1.62215Z" fill="#EEDD2B"></path>
+                    </svg>
+
+                    </span>
+
+                                <span class="text-xs text-[#ABABAB] ml-2">(28 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Arrow Section -->
+                    <div class="w-24 flex items-center justify-center border-l border-gray-200">
+                        <span class="text-gray-500 text-lg">
+                            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.00005 1C1.00005 1 6.99999 5.41893 7 7.00005C7.00001 8.58116 1 13 1 13" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="flex bg-[#FCFCFA] border border-gray-200 rounded-xl shadow-sm max-w-3xl mx-auto">
+                    <!-- Left Section -->
+                    <div class="flex-1 py-4">
+                        <h3 class="text-sm font-bold border-b border-gray-300 pb-2 mb-4 px-4">
+                            Job Title: Need To Fix Kitchen Pipe
+                        </h3>
+                        <div class="flex justify-between items-center px-4">
+                            <!-- Profile Info -->
+                            <div class="flex items-center">
+                                <img src="http://127.0.0.1:8000/images/proposal.png" alt="Plumber" class="w-12 h-12 rounded-full object-cover mr-3">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-800">Brian Simmons</p>
+                                    <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
+                                </div>
+                            </div>
+                            <!-- Rating Section -->
+                            <div class="flex items-center">
+                                <span class="flex items-center gap-2 text-sm font-bold text-[#2B2B2B] bg-[#F4F3F3] px-4 py-1 rounded-full">4.5/5
+
+                    <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.07057 1.62215L6.89578 3.28619C7.0083 3.51783 7.30838 3.74002 7.56156 3.78257L9.05724 4.03312C10.0137 4.19385 10.2388 4.8935 9.54955 5.5837L8.38677 6.7561C8.18984 6.95465 8.082 7.33757 8.14296 7.61175L8.47585 9.06307C8.73841 10.2118 8.13358 10.6562 7.12552 10.0558L5.72361 9.21907C5.47043 9.06779 5.05314 9.06779 4.79526 9.21907L3.39336 10.0558C2.38998 10.6562 1.78046 10.2071 2.04302 9.06307L2.37592 7.61175C2.43687 7.33757 2.32903 6.95465 2.13211 6.7561L0.969324 5.5837C0.284781 4.8935 0.505148 4.19385 1.46163 4.03312L2.95731 3.78257C3.20581 3.74002 3.50588 3.51783 3.61841 3.28619L4.44361 1.62215C4.89372 0.719213 5.62515 0.719213 6.07057 1.62215Z" fill="#EEDD2B"></path>
+                    </svg>
+
+                    </span>
+
+                                <span class="text-xs text-[#ABABAB] ml-2">(28 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Arrow Section -->
+                    <div class="w-24 flex items-center justify-center border-l border-gray-200">
+                        <span class="text-gray-500 text-lg">
+                            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.00005 1C1.00005 1 6.99999 5.41893 7 7.00005C7.00001 8.58116 1 13 1 13" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="flex bg-[#FCFCFA] border border-gray-200 rounded-xl shadow-sm max-w-3xl mx-auto">
+                    <!-- Left Section -->
+                    <div class="flex-1 py-4">
+                        <h3 class="text-sm font-bold border-b border-gray-300 pb-2 mb-4 px-4">
+                            Job Title: Need To Fix Kitchen Pipe
+                        </h3>
+                        <div class="flex justify-between items-center px-4">
+                            <!-- Profile Info -->
+                            <div class="flex items-center">
+                                <img src="http://127.0.0.1:8000/images/proposal.png" alt="Plumber" class="w-12 h-12 rounded-full object-cover mr-3">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-800">Brian Simmons</p>
+                                    <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
+                                </div>
+                            </div>
+                            <!-- Rating Section -->
+                            <div class="flex items-center">
+                                <span class="flex items-center gap-2 text-sm font-bold text-[#2B2B2B] bg-[#F4F3F3] px-4 py-1 rounded-full">4.5/5
+
+                    <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.07057 1.62215L6.89578 3.28619C7.0083 3.51783 7.30838 3.74002 7.56156 3.78257L9.05724 4.03312C10.0137 4.19385 10.2388 4.8935 9.54955 5.5837L8.38677 6.7561C8.18984 6.95465 8.082 7.33757 8.14296 7.61175L8.47585 9.06307C8.73841 10.2118 8.13358 10.6562 7.12552 10.0558L5.72361 9.21907C5.47043 9.06779 5.05314 9.06779 4.79526 9.21907L3.39336 10.0558C2.38998 10.6562 1.78046 10.2071 2.04302 9.06307L2.37592 7.61175C2.43687 7.33757 2.32903 6.95465 2.13211 6.7561L0.969324 5.5837C0.284781 4.8935 0.505148 4.19385 1.46163 4.03312L2.95731 3.78257C3.20581 3.74002 3.50588 3.51783 3.61841 3.28619L4.44361 1.62215C4.89372 0.719213 5.62515 0.719213 6.07057 1.62215Z" fill="#EEDD2B"></path>
+                    </svg>
+
+                    </span>
+
+                                <span class="text-xs text-[#ABABAB] ml-2">(28 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Arrow Section -->
+                    <div class="w-24 flex items-center justify-center border-l border-gray-200">
+                        <span class="text-gray-500 text-lg">
+                            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.00005 1C1.00005 1 6.99999 5.41893 7 7.00005C7.00001 8.58116 1 13 1 13" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
