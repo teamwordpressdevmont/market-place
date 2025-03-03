@@ -25,7 +25,7 @@
             <form id="searchForm" method="GET" action="{{ route('category.list') }}" class="relative flex  mb-5 md:w-96 w-full">
             <input type="text" name="search" value="{{ request('search') }}" 
             id="table-search" 
-            class="block pt-3 flex-1  rounded-tl-full rounded-bl-full pb-3 ps-5  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:outline-2 focus:-outline-offset-0 focus:outline-gray-300" 
+            class="rounded-tl-full rounded-bl-full bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm px-5" 
             placeholder="Search for items">
 
 
@@ -69,27 +69,27 @@
                 @else       
                 @foreach($categories as $index => $category)
                     <tr class="bg-white border-b border-gray-200">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        <th scope="row" class="px-6 py-4 whitespace-nowrap">
                             {{ ($categories->currentPage() - 1) * $categories->perPage() + $index + 1 }}
                         </th>
-                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                         <th scope="row" class="px-6 py-4 whitespace-nowrap">
                            {{ $category->id }}
                         </th>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 whitespace-nowrap">
                             {{ $category->name }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 whitespace-nowrap">
                             {!! html_entity_decode($category->description); !!}
                         </td>
 
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 whitespace-nowrap">
                             @if($category->icon)
                                 <img src="{{ asset('storage/category-images/' . $category->icon) }}" alt="Logo" width="50">
                             @else
                                 No Icon
                             @endif                    
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex gap-4">
                                     <a href="{{ route('category.edit', $category->id) }}">
                                     <svg fill="#0D0D0D" width="20px" height="20px" viewBox="0 0 36 36" version="1.1"  preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
