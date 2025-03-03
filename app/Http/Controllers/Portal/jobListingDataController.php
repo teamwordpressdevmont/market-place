@@ -42,13 +42,21 @@ class jobListingDataController extends Controller
 
     public function edit($id)
     {
-        $OrderDetails = OrderDetail::findOrFail($id);
+        try {
+            $OrderDetails = OrderDetail::find($id);
 
-        // Decode JSON images from database
-        $imagesDetails = json_decode($OrderDetails->image, true) ?? [];
+            $imagesDetails = json_decode($OrderDetails->image, true) ?? [];
+            
+            if (!$OrderDetails) {
+                return redirect()->route('joblisting.list')->with('error', 'Order Detail not found.');
+            }
 
-        return view('job-listing.add-edit', compact('OrderDetails', 'imagesDetails'));
+            return view('job-listing.add-edit', compact('OrderDetails'));
+        } catch (\Exception $e) {
+            return redirect()->route('joblisting.list')->with('error', 'Something went wrong.');
+        }
     }
+
 
     public function update(Request $request, $id)
     {
