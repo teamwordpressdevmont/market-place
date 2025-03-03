@@ -8,8 +8,11 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+
+        
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/trumbowyg@2.27.3/dist/ui/trumbowyg.min.css">
 
 
@@ -22,6 +25,9 @@
                 colors: {
                 primary: '#DB4A2B',
                 secondary: '#FF904E',
+                },
+                fontFamily: {
+                    sora: ['Sora', 'sans-serif'],
                 }
             }
             }
@@ -30,7 +36,7 @@
         <link rel="stylesheet" href="{{ url('/css/flowbite.min.css') }}">
         <link rel="stylesheet" href="{{ url('/css/style.css') }}">
     </head>
-    <body class="bg-[#F4F4F4]">
+    <body class="bg-[#F4F4F4] font-sora">
 
         <!-- Trumbowyg CSS -->
 

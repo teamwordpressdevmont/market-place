@@ -2,7 +2,7 @@
   <div class="h-full px-3 py-4 overflow-y-auto dark:bg-gray-800 flex flex-col">
     <ul class="space-y-2">
       <li>
-        <a href="{{ route( 'dashboard' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white">
+        <a href="{{ route( 'dashboard' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('dashboard') ? 'bg-primary' : '' }}">
             <svg class="shrink-0 w-5 h-5 transition" viewBox="0 0 15 15" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
@@ -17,13 +17,13 @@
       <li>
           <button type="button" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white w-full" aria-controls="dropdown-1" data-collapse-toggle="dropdown-1">
           <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="9" y="2" width="6" height="6" rx="1" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4 18V14C4 13.4477 4.44772 13 5 13H19C19.5523 13 20 13.4477 20 14V18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="4" cy="20" r="2" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="20" cy="20" r="2" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="12" cy="20" r="2" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12 8V18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+            <rect x="9" y="2" width="6" height="6" rx="1" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 18V14C4 13.4477 4.44772 13 5 13H19C19.5523 13 20 13.4477 20 14V18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="4" cy="20" r="2" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="20" cy="20" r="2" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="20" r="2" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 8V18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
                 <span class="flex-1 ms-3 text-left whitespace-nowrap ">Categories</span>
                 <svg class="w-3 h-3 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
@@ -31,10 +31,10 @@
           </button>
           <ul id="dropdown-1" class="hidden py-2 space-y-2">
             <li>
-              <a href="{{ route( 'category.list' ) }}" class="flex items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white">All Categories</a>
+              <a href="{{ route( 'category.list' ) }}" class="flex text-sm items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('categories') ? 'bg-primary' : '' }}">All Categories</a>
             </li>
             <li>
-              <a href="{{ route( 'category.addEdit' ) }}" class="flex items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white">Add New Category</a>
+              <a href="{{ route( 'category.addEdit' ) }}" class="flex text-sm items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('categories/add') ? 'bg-primary' : '' }}">Add New Category</a>
             </li>          
           </ul>
       </li>               
@@ -55,10 +55,10 @@
             </button>
             <ul id="dropdown-2" class="hidden py-2 space-y-2">
               <li>
-                <a href="{{ route( 'blog.list' ) }}" class="flex items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white">All Blogs</a>
+                <a href="{{ route( 'blog.list' ) }}" class="flex text-sm items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('blog') ? 'bg-primary' : '' }}">All Blogs</a>
               </li>
               <li>
-                <a href="{{ route( 'blog.addEdit' ) }}" class="flex items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white">Add New Blog</a>
+                <a href="{{ route( 'blog.addEdit' ) }}" class="flex text-sm items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('blog/add') ? 'bg-primary' : '' }}">Add New Blog</a>
               </li>          
             </ul>
       </li>
@@ -73,10 +73,10 @@
         </button>
         <ul id="dropdown-3" class="hidden py-2 space-y-2">
           <li>
-            <a href="{{ route( 'testimonial.list' ) }}" class="flex items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white">All Testimonials</a>
+            <a href="{{ route( 'testimonial.list' ) }}" class="flex text-sm items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('testimonial') ? 'bg-primary' : '' }}">All Testimonials</a>
           </li>
           <li>
-            <a href="{{ route( 'testimonial.addEdit' ) }}" class="flex items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white">Add New Testimonial</a>
+            <a href="{{ route( 'testimonial.addEdit' ) }}" class="flex text-sm items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('testimonial/add') ? 'bg-primary' : '' }}">Add New Testimonial</a>
           </li>          
         </ul>
       </li>
@@ -94,16 +94,16 @@
         </button>
         <ul id="dropdown-4" class="hidden py-2 space-y-2">
           <li>
-            <a href="{{ route( 'package.list' ) }}" class="flex items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white">All Package</a>
+            <a href="{{ route( 'package.list' ) }}" class="flex text-sm items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('package') ? 'bg-primary' : '' }}">All Package</a>
           </li>
           <li>
-            <a href="{{ route( 'package.addEdit' ) }}" class="flex items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white">Add New Package</a>
+            <a href="{{ route( 'package.addEdit' ) }}" class="flex text-sm items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('package/add') ? 'bg-primary' : '' }}">Add New Package</a>
           </li>          
         </ul>
       </li>     
       
       <li>
-        <a href="{{ route( 'tradeperson.list' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white">
+        <a href="{{ route( 'tradeperson.list' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('tradeperson') ? 'bg-primary' : '' }}">
         <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8 10L8 16" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M12 12V16" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"/>
@@ -115,7 +115,7 @@
       </li>
 
       <li>
-        <a href="{{ route( 'joblisting.list' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white">
+        <a href="{{ route( 'joblisting.list' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('joblisting') ? 'bg-primary' : '' }}">
 
            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="none">
           <path d="M8 10L8 11" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"/>
@@ -128,7 +128,7 @@
       </li>
 
       <li>
-        <a href="{{ route( 'contact' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white">
+        <a href="{{ route( 'contact' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('contact') ? 'bg-primary' : '' }}">
            <svg class="shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-green-900 dark:group-hover:text-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18"><path d="M19,4H5A3,3,0,0,0,2,7V17a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4ZM5,6H19a1,1,0,0,1,1,1l-8,4.88L4,7A1,1,0,0,1,5,6ZM20,17a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V9.28l7.48,4.57a1,1,0,0,0,1,0L20,9.28Z"/></svg>               
            <span class="flex-1 ms-3 whitespace-nowrap ">Contact</span>
         </a>
