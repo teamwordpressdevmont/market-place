@@ -42,20 +42,22 @@ class TraderPersonDataController extends Controller
     }
 
     public function update(Request $request, $id) {
+
+        $request->validate([
+            'user_id'        => 'nullable|exists:users,id',
+            'business_name'       => 'nullable|string',
+            'description'      => 'nullable|string',
+            'phone'      => 'nullable|string',
+            'address'      => 'nullable|string',
+            'featured'      => 'nullable|string',
+            'about'          => 'nullable|string',
+            'services'       => 'nullable|string',
+            'portfolio'      => 'nullable|array',
+            'certifications' => 'nullable|array',
+        ]);
+
         DB::beginTransaction();
         try {
-            $request->validate([
-                'user_id'        => 'nullable|exists:users,id',
-                'business_name'       => 'nullable|string',
-                'description'      => 'nullable|string',
-                'phone'      => 'nullable|string',
-                'address'      => 'nullable|string',
-                'featured'      => 'nullable|string',
-                'about'          => 'nullable|string',
-                'services'       => 'nullable|string',
-                'portfolio'      => 'nullable|array',
-                'certifications' => 'nullable|array',
-            ]);
             
             $tradeperson = Tradeperson::findOrFail($id);
             $validatedData = $request->only(['user_id', 'business_name', 'description', 'phone', 'address', 'featured']);
@@ -74,6 +76,9 @@ class TraderPersonDataController extends Controller
 
             DB::commit();
             return redirect()->route('tradeperson.list')->with('success', 'Tradeperson updated successfully!');
+         } catch (ValidationException $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to update Tradeperson: ' . $e->getMessage());
@@ -82,14 +87,20 @@ class TraderPersonDataController extends Controller
 
     public function destroy($id)
     {
-        $tradeperson = Tradeperson::findOrFail($id);
+        DB::beginTransaction();
+        try {
+            $tradeperson = Tradeperson::findOrFail($id);
+            if (!is_null($tradeperson)) {
+                TradepersonDetails::where('tradeperson_id', $id)->delete();
+                $tradeperson->delete();
+            }
 
-        if (!is_null($tradeperson)) {
-            TradepersonDetails::where('tradeperson_id', $id)->delete();
-            $tradeperson->delete();
+            DB::commit();
+            return redirect()->back()->with('success', 'Tradeperson deleted successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to delete Tradeperson: ' . $e->getMessage());
         }
-
-        return redirect()->back()->with('success', 'Tradeperson deleted successfully.');
 
     }
 
