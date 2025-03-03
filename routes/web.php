@@ -19,6 +19,10 @@ Route::get('/dashview', function() {
     return view('dashview');
 })->name('dashview');
 
+Route::get('/job-post', function() {
+    return view('job-post');
+})->name('job-post');;
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

@@ -30,14 +30,14 @@
         <link rel="stylesheet" href="{{ url('/css/flowbite.min.css') }}">
         <link rel="stylesheet" href="{{ url('/css/style.css') }}">
     </head>
-    <body>
+    <body class="bg-[#F4F4F4]">
 
         <!-- Trumbowyg CSS -->
 
 
         @include('partials.header')
 
-        <div class="site_dasboard_content p-4 sm:ml-64 mt-14 bg-[#F4F4F4]">
+        <div class="site_dasboard_content p-4 sm:ml-64 mt-14">
             <div class="p-4">
                 @include('partials.sidebar')
                 @yield('content')

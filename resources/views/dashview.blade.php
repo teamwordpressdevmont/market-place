@@ -120,7 +120,7 @@
                   </p>
                </div>
                <div class="flex flex-col md:items-end items-center md:pr-4 pr-0 md:py-2 py-4">
-                  <span class="bg-secondary text-white text-xs px-4 py-1 rounded-full md:mb-8 mb-3 hover:bg-primary transition">Active</span>
+                  <span class="bg-secondary text-white text-xs px-4 pb-1 leading-[20px] rounded-full md:mb-8 mb-3 hover:bg-[#24C500] transition">Active</span>
                     <a href="#" class="text-[#222222] text-xs flex items-center mt-2 font-semibold hover:text-[#db4a2b] transition">
                         View Job Details
                         <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-2 group-hover:stroke-[#db4a2b]">
@@ -160,7 +160,7 @@
                   </p>
                </div>
                <div class="flex flex-col md:items-end items-center md:pr-4 pr-0 md:py-2 py-4">
-                  <span class="bg-[#24C500] text-white text-xs px-4 py-1 rounded-full md:mb-8 mb-3 hover:bg-secondary transition">Completed</span>
+                  <span class="bg-[#24C500] text-white text-xs px-4 pb-1 leading-[20px] rounded-full md:mb-8 mb-3 hover:bg-secondary transition">Completed</span>
                     <a href="#" class="text-[#222222] text-xs flex items-center mt-2 font-semibold hover:text-[#db4a2b] transition">
                         View Job Details
                         <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-2 group-hover:stroke-[#db4a2b]">
@@ -200,7 +200,7 @@
                   </p>
                </div>
                <div class="flex flex-col md:items-end items-center md:pr-4 pr-0 md:py-2 py-4">
-                  <span class="bg-[#FFC600] text-white text-xs px-4 py-1 rounded-full md:mb-8 mb-3 hover:bg-primary transition">Pending</span>
+                  <span class="bg-[#FFC600] text-white text-xs px-4 pb-1 leading-[20px] rounded-full md:mb-8 mb-3 hover:bg-primary transition">Pending</span>
                     <a href="#" class="text-[#222222] text-xs flex items-center mt-2 font-semibold hover:text-[#db4a2b] transition">
                         View Job Details
                         <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-2 group-hover:stroke-[#db4a2b]">
@@ -240,7 +240,7 @@
                   </p>
                </div>
                <div class="flex flex-col md:items-end items-center md:pr-4 pr-0 md:py-2 py-4">
-                  <span class="bg-[#FFC600] text-white text-xs px-4 py-1 rounded-full md:mb-8 mb-3 hover:bg-primary transition">Pending</span>
+                  <span class="bg-[#FFC600] text-white text-xs px-4 pb-1 leading-[20px] rounded-full md:mb-8 mb-3 hover:bg-primary transition">Pending</span>
                     <a href="#" class="text-[#222222] text-xs flex items-center mt-2 font-semibold hover:text-[#db4a2b] transition">
                         View Job Details
                         <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-2 group-hover:stroke-[#db4a2b]">
