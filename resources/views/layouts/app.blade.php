@@ -37,7 +37,7 @@
 
         @include('partials.header')
 
-        <div class="site_dasboard_content p-4 sm:ml-64 mt-14">
+        <div class="site_dasboard_content p-4 sm:ml-64 mt-14 bg-[#F4F4F4]">
             <div class="p-4">
                 @include('partials.sidebar')
                 @yield('content')

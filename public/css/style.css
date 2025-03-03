@@ -41,4 +41,15 @@ a.add_sub_cons_btn, a.add_sub_btn {
     margin-top: 5px !important;
     display: block;
 }
+/* MR CSS START */
+::-webkit-scrollbar {
+    width: 3px;
+}
+::-webkit-scrollbar-track {
+    background: #cbcbcb;
+}
+::-webkit-scrollbar-thumb {
+    background: #ABABAB;
+}
+/* MR CSS END */
 
