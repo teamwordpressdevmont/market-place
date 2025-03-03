@@ -28,7 +28,7 @@
           <p class="text-[#ABABAB] text-xs">Published on: Feb 25, 2025</p>
           <div class="mt-4 flex gap-4 items-center">
              <h2 class="text-xs font-bold text-[#222222]">Skills</h2>
-             <span class="bg-[#ABABAB] text-white text-gray-700 px-4 pt-1 pb-2 rounded-full text-xs leading-[12px]">Plumber</span>
+             <span class="bg-[#ABABAB] text-white text-gray-700 px-4 pt-1 pb-2 rounded-full text-xs leading-[12px] hover:bg-secondary transition">Plumber</span>
           </div>
        </div>
        <!-- Right Section (Budget) -->

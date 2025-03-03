@@ -23,6 +23,11 @@ Route::get('/job-post', function() {
     return view('job-post');
 })->name('job-post');;
 
+Route::get('/job-post-two', function() {
+    return view('job-post-two');
+})->name('job-post-two');;
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

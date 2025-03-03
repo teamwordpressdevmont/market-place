@@ -264,7 +264,7 @@
                   <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
                      <!-- Profile Info -->
                      <div class="flex items-center">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="Plumber" class="w-12 h-12 rounded-full object-cover mr-3">
+                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover mr-3">
                         <div>
                            <p class="text-sm font-medium text-gray-800">Brian Simmons</p>
                            <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
@@ -300,7 +300,7 @@
                   <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
                      <!-- Profile Info -->
                      <div class="flex items-center">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="Plumber" class="w-12 h-12 rounded-full object-cover mr-3">
+                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover mr-3">
                         <div>
                            <p class="text-sm font-medium text-gray-800">Brian Simmons</p>
                            <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
@@ -336,7 +336,7 @@
                   <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
                      <!-- Profile Info -->
                      <div class="flex items-center">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="Plumber" class="w-12 h-12 rounded-full object-cover mr-3">
+                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover mr-3">
                         <div>
                            <p class="text-sm font-medium text-gray-800">Brian Simmons</p>
                            <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
@@ -372,7 +372,7 @@
                   <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
                      <!-- Profile Info -->
                      <div class="flex items-center">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="Plumber" class="w-12 h-12 rounded-full object-cover mr-3">
+                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover mr-3">
                         <div>
                            <p class="text-sm font-medium text-gray-800">Brian Simmons</p>
                            <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
@@ -408,7 +408,7 @@
                   <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
                      <!-- Profile Info -->
                      <div class="flex items-center">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="Plumber" class="w-12 h-12 rounded-full object-cover mr-3">
+                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover mr-3">
                         <div>
                            <p class="text-sm font-medium text-gray-800">Brian Simmons</p>
                            <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
@@ -444,7 +444,7 @@
                   <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
                      <!-- Profile Info -->
                      <div class="flex items-center">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="Plumber" class="w-12 h-12 rounded-full object-cover mr-3">
+                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover mr-3">
                         <div>
                            <p class="text-sm font-medium text-gray-800">Brian Simmons</p>
                            <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
