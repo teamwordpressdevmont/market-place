@@ -80,9 +80,18 @@ class CategoryDataController extends Controller
     // Display the form for editing a category
     public function edit($id)
     {
-        $category = Category::findOrFail($id); 
-        $allCategories = Category::all();
-        return view('category.add-edit', compact('category', 'allCategories'));
+        try {
+            $category = Category::findOrFail($id); 
+            $allCategories = Category::all();
+            
+            if (!$category) {
+                return redirect()->route('category.list')->with('error', 'Category not found.');
+            }
+
+            return view('category.add-edi', compact('category', 'allCategories'));
+        } catch (\Exception $e) {
+            return redirect()->route('category.list')->with('error', 'Something went wrong.');
+        }
     }
 
     public function update(Request $request, $id)
