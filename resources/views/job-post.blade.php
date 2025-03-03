@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div class="mt-5">
-    <div class="grid grid-cols-1 xl:grid-cols-3 md:gap-9 gap-8 mt-8 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 gap-5 mt-8 items-center">
        <!-- Left Section -->
-       <div class="col-span-2">
+       <div class="lg:col-span-2 col-span-1">
           <div class="flex items-center gap-2 bg-white rounded-full text-sm w-fit pr-4">
              <div class="bg-[#FFE9DC] px-3 py-2 rounded-full">
                 <svg width="16" height="16" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +24,7 @@
              </div>
              <span class="">Urgent</span>
           </div>
-          <h1 class="text-[#222222] text-4xl font-semibold mt-2 mb-2">Need To Fix Kitchen Pipe</h1>
+          <h1 class="text-[#222222] lg:text-4xl md:text-2xl text-xl font-semibold mt-2 mb-2">Need To Fix Kitchen Pipe</h1>
           <p class="text-[#ABABAB] text-xs">Published on: Feb 25, 2025</p>
           <div class="mt-4 flex gap-4 items-center">
              <h2 class="text-xs font-bold text-[#222222]">Skills</h2>
@@ -32,13 +32,13 @@
           </div>
        </div>
        <!-- Right Section (Budget) -->
-       <div class="bg-[#EDE9D0] p-4 rounded-2xl flex items-end gap-4 justify-center w-64 ml-auto self-end">
+       <div class="bg-[#EDE9D0] p-4 rounded-2xl flex items-end gap-4 justify-center xl:w-64 w-fit lg:ml-auto self-end">
           <p class="text-[#072130] text-sm font-semibold">Task Budget</p>
-          <p class="text-4xl font-bold text-[#222222]">$2500</p>
+          <p class="lg:text-4xl md:text-2xl text-xl font-bold text-[#222222]">$2500</p>
        </div>
     </div>
-    <div class="grid grid-cols-1 xl:grid-cols-3 md:gap-9 gap-8 mt-5">
-       <div class="xl:col-span-2 rounded-xl p-5 bg-white border border-[#22222233]">
+    <div class="grid grid-cols-1 lg:grid-cols-3 xl:gap-9 gap-6 mt-5">
+       <div class="lg:col-span-2 rounded-xl p-5 bg-white border border-[#22222233]">
           <div class="border-b border-[#e5e7eb] mb-8 pb-8">
              <h2 class="text-md font-semibold">Job Description</h2>
              <p class="text-[#ABABAB] text-sm mt-2">John is seeking a skilled and reliable plumber for his kitchen pipes. The ideal candidate will be responsible for diagnosing and repairing issues with kitchen plumbing, including clogged drains, leaks, or damaged pipes...</p>
@@ -46,12 +46,12 @@
           <!-- Contract Timeline -->
           <div class="border-b border-[#e5e7eb] mb-8 pb-8">
              <h2 class="text-md font-semibold">Contract Timeline</h2>
-             <div class="flex gap-9 border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-sm mt-2 w-fit px-9 py-4 rounded-2xl"><span>Start Date: <strong class="text-[#222222] font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-[#222222] font-light">  18 Mar 2025</strong></span></div>
+             <div class="flex md:flex-row flex-col md:gap-9 gap-4 border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-sm mt-2 md:w-fit w-100 md:px-9 px-5 py-4 rounded-2xl items-center"><span>Start Date: <strong class="text-[#222222] font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-[#222222] font-light">  18 Mar 2025</strong></span></div>
           </div>
           <!-- Location -->
           <div class="border-b border-[#e5e7eb] mb-8 pb-8">
              <h2 class="text-md font-semibold">Location</h2>
-             <p class="text-[#ABABAB] text-sm mt-2 flex items-center gap-2">
+             <p class="text-[#ABABAB] text-sm mt-2 flex leading-none gap-2">
                 <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                    <path d="M8.0785 14.2446C7.78937 14.5153 7.40293 14.6666 7.00075 14.6666C6.59856 14.6666 6.21212 14.5153 5.92299 14.2446C3.27535 11.7506 -0.272825 8.96459 1.45751 4.91976C2.39309 2.73275 4.6389 1.33331 7.00075 1.33331C9.36259 1.33331 11.6084 2.73275 12.544 4.91976C14.2721 8.95949 10.7327 11.7592 8.0785 14.2446Z" stroke="#ABABAB"></path>
                    <path d="M9.33268 7.33333C9.33268 8.622 8.28801 9.66667 6.99935 9.66667C5.71068 9.66667 4.66602 8.622 4.66602 7.33333C4.66602 6.04467 5.71068 5 6.99935 5C8.28801 5 9.33268 6.04467 9.33268 7.33333Z" stroke="#ABABAB"></path>
@@ -62,17 +62,17 @@
           <!-- Images -->
           <div class="mt-6">
              <h2 class="text-md font-semibold">Images</h2>
-             <div class="grid grid-cols-4 gap-2 mt-2 w-[58%]">
-                <img src="http://127.0.0.1:8000/images/job-post.png" alt="Pipe issue" class="">
-                <img src="http://127.0.0.1:8000/images/job-post.png" alt="Pipe issue" class="">
-                <img src="http://127.0.0.1:8000/images/job-post.png" alt="Pipe issue" class="">
-                <img src="http://127.0.0.1:8000/images/job-post.png" alt="Pipe issue" class="">
-                <img src="http://127.0.0.1:8000/images/job-post.png" alt="Pipe issue" class="">
-                <img src="http://127.0.0.1:8000/images/job-post.png" alt="Pipe issue" class="">
+             <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 mt-2 xl:w-[58%]">
+                <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
+                <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
+                <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
+                <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
+                <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
+                <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
              </div>
           </div>
        </div>
-       <div class="rounded-2xl p-12 bg-[#222222] text-white flex items-center justify-center text-center h-fit">
+       <div class="rounded-2xl xl:p-12 p-8 bg-[#222222] text-white flex items-center justify-center text-center h-fit">
           <div>
              <!-- Icon -->
              <div class="flex justify-center mb-4">

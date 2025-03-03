@@ -51,6 +51,10 @@ a.add_sub_cons_btn, a.add_sub_btn {
 ::-webkit-scrollbar-thumb {
     background: #ABABAB;
 }
-
+@media (max-width: 1536px) {
+    br {
+        display: none;
+    }
+}
 /* MR CSS END */
 
