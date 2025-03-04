@@ -58,11 +58,6 @@ background-color:#fff;
 .tabsScroll::-webkit-scrollbar {
     height: 3px; /* Horizontal scrollbar */
 }
-@media (max-width: 1536px) {
-    br {
-        display: none;
-    }
-}
 .tabsWrapper [aria-selected="true"] {
     background-color: white !important;
     color: black !important;
@@ -75,6 +70,10 @@ background-color:#fff;
     font-weight: bold;
     border: none !important;
 }
-
+@media (max-width: 1536px) {
+    br {
+        display: none;
+    }
+}
 /* MR CSS END */
 

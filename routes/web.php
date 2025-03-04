@@ -31,6 +31,10 @@ Route::get('/job-post-three', function() {
     return view('job-post-three');
 })->name('job-post-three');
 
+Route::get('/job-post-four', function() {
+    return view('job-post-four');
+})->name('job-post-four');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
