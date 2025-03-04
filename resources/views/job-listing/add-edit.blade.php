@@ -98,12 +98,14 @@
                         </div> --}}
                         <input type="hidden" name="removed_images" id="removed_images" value="">
                         <div id="preview" class="mt-3 flex flex-wrap gap-2">
+                            @if (!empty($imagesDetails) && is_array($imagesDetails))
                             @foreach($imagesDetails as $key => $image)
                                 <div class="relative image-container ">
                                     <img src="{{ asset('storage/order-images/' . $image ) }}" alt="Uploaded Image" class="h-20 w-20 rounded-md object-cover">
                                     <button type="button" class="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full text-xs remove-image" data-key="{{ $key }}">✕</button>
                                 </div>
                             @endforeach
+                            @endif
                         </div>
                     </div>
                     <div class="col-span-full mb-5">

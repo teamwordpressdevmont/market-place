@@ -15,7 +15,7 @@ class CategoryDataController extends Controller
 {
     public function addEdit()
     {
-        $allCategories = Category::all();
+        $allCategories = Category::whereNull('parent_id')->get(); // Only fetch parent categories
         return view('category.add-edit', compact('allCategories'));
 
     }

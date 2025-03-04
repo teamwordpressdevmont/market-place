@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Portal;
 use App\Http\Controllers\Controller;
 use App\Models\Tradeperson;
 use App\Models\TradepersonDetails;
+use App\Models\TradepersonCategory;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,13 +41,18 @@ class TraderPersonDataController extends Controller
         try {
             $tradeperson = Tradeperson::findOrFail($id);
             $users = User::select('id', 'name')->get();
-            $tradepersonDetail = TradepersonDetails::where('tradeperson_id', $id)->first();
+            $tradepersonDetail = TradepersonDetails::where('tradeperson_id',  $id)->first();
+            $categories = Category::select('id', 'name')->get(); // Fetch categories
+
+            // Fetch the selected category
+            $tradepersonCategory = TradepersonCategory::where('tradeperson_id', $id)->first();
+
             
             if (!$tradeperson) {
                 return redirect()->route('tradeperson.list')->with('error', 'Tradeperson not found.');
             }
 
-            return view('tradeperson.add-edit', compact('tradeperson', 'users', 'tradepersonDetail'));
+            return view('tradeperson.add-edit', compact('tradeperson', 'users', 'tradepersonDetail' , 'categories' , 'tradepersonCategory'));
         } catch (\Exception $e) {
             return redirect()->route('tradeperson.list')->with('error', 'Something went wrong.');
         }
@@ -65,6 +72,8 @@ class TraderPersonDataController extends Controller
             'services'       => 'nullable|string',
             'portfolio'      => 'nullable|array',
             'certifications' => 'nullable|array',
+            'category_id'    => 'required|exists:categories,id', // Validate category
+
         ]);
 
         DB::beginTransaction();
@@ -84,6 +93,12 @@ class TraderPersonDataController extends Controller
             //         'certifications' => $request->input('certifications'),
             //     ]
             // );
+
+             // Update Tradeperson Category
+            TradepersonCategory::updateOrCreate(
+                ['tradeperson_id' => $id], // Find by tradeperson_id
+                ['category_id' => $request->input('category_id')] // Update or insert category_id
+            );
 
             DB::commit();
             return redirect()->route('tradeperson.list')->with('success', 'Tradeperson updated successfully!');

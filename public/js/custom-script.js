@@ -159,33 +159,58 @@ $(document).ready(function() {
         }
     });
 
-    $(".toggle-user-approval").click(function () {
+    $(".toggleApprovalBtn").click(function () {
         let button = $(this);
-        let userId = button.data("id");
-    
+        let testimonialId = button.data("id");
+
+        if (button.text().trim() === "Add to Website") {
+            // Open modal for order number input
+            $("#testimonialId").val(testimonialId);
+            $("#approvalModal").removeClass("hidden");
+        } else {
+            // Directly remove testimonial without modal
+            $.ajax({
+                url: "/testimonial/toggle-approval/" + testimonialId,
+                type: "POST",
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr("content")
+                },
+                success: function (response) {
+                    alert(response.message);
+                    button.removeClass("bg-red-700").addClass("bg-green-700").text("Add to Website");
+                },
+                error: function () {
+                    alert("Error removing testimonial.");
+                }
+            });
+        }
+    });
+
+    $(".toggle-user-approval").click(function () {
+        let testimonialId = $("#testimonialId").val();
+        let orderNumber = $("#order_number").val();
+
         $.ajax({
-            url: "/user/" + userId + "/toggle-approval",
+            url: "/testimonial/toggle-approval/" + testimonialId,
             type: "POST",
             data: {
-                _token: $('meta[name="csrf-token"]').attr('content') // Send CSRF token
+                _token: $('meta[name="csrf-token"]').attr("content"),
+                order_number: orderNumber
             },
             success: function (response) {
-                if (response.success) {
-                    if (response.user_approved) {
-                        button.removeClass("bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300")
-                              .addClass("bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300")
-                              .text("Approved");
-                    } else {
-                        button.removeClass("bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300")
-                              .addClass("bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300")
-                              .text("Disapproved");
-                    }
-                }
+                alert(response.message);
+                $("#approvalModal").addClass("hidden");
+                let button = $('.toggleApprovalBtn[data-id="' + testimonialId + '"]');
+                button.removeClass("bg-green-700").addClass("bg-red-700").text("Remove from Website");
             },
             error: function () {
-                alert("Something went wrong!");
+                alert("Error approving testimonial.");
             }
         });
+    });
+
+    $("#closeModal").click(function () {
+        $("#approvalModal").addClass("hidden");
     });
     
     

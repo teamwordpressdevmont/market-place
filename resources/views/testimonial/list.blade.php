@@ -73,12 +73,11 @@
                     <td class="px-6 py-4 font-medium whitespace-nowrap">{{ $testimonial->heading }}</td>
                     <td class="px-6 py-4 font-medium whitespace-nowrap">{{ $testimonial->rating }}</td>
                     <td class="px-6 py-4 font-medium whitespace-nowrap">
-                        <form action="{{ route('testimonial.toggleApproval', $testimonial->id) }}" method="POST">
-                            @csrf
-                            <button type="submit" class=" rounded-xl p-2 cursor-pointer text-white {{ $testimonial->approvedTestimonial ? 'bg-red-700' : 'bg-green-700' }}">
-                                {{ $testimonial->approvedTestimonial ? 'Remove from Website' : 'Add to Website' }}
-                            </button>
-                        </form>
+                        <button type="button" class="toggleApprovalBtn rounded-xl p-2 cursor-pointer text-white 
+                            {{ $testimonial->approvedTestimonial ? 'bg-red-700' : 'bg-green-700' }}"
+                            data-id="{{ $testimonial->id }}">
+                            {{ $testimonial->approvedTestimonial ? 'Remove from Website' : 'Add to Website' }}
+                        </button>
                     </td>
                     <td class="px-6 py-4">
                         <div class="flex gap-4">
@@ -111,7 +110,21 @@
         {{ $testimonials->appends(request()->query())->links() }}
     </div>
 
-    
+  <!-- Modal -->
+<div id="approvalModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-1/3">
+        <input type="hidden" id="testimonialId">
+        
+        <!-- Order Number Input -->
+        <label class="block text-sm font-medium text-gray-700">Order Number:</label>
+        <input type="number" id="order_number" class="w-full p-2 border rounded-lg mt-2">
+
+        <div class="flex justify-end mt-4">
+            <button id="closeModal" class="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2">Cancel</button>
+            <button id="confirmAdd" class="bg-green-600 text-white px-4 py-2 rounded-lg toggle-user-approval">Confirm</button>
+        </div>
+    </div>
+</div>  
     @endsection
 
 

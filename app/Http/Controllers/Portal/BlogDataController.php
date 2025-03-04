@@ -19,6 +19,7 @@ class BlogDataController extends Controller
 
         $request->validate([
             'title'         => 'required|string|max:255',
+            'slug'          => 'required|string|max:255',
             'banner'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'description'   => 'nullable|string',
             'featured'      => 'nullable|string',
@@ -28,7 +29,7 @@ class BlogDataController extends Controller
 
         DB::beginTransaction();
         try {
-            $validatedData = $request->only(['title', 'banner', 'description', 'featured', 'publish_by', 'publish_date']);
+            $validatedData = $request->only(['title', 'slug' , 'banner', 'description', 'featured', 'publish_by', 'publish_date']);
 
             if ($request->filled('publish_date')) {
                 $validatedData['publish_date'] = Carbon::parse($request->publish_date)->format('Y-m-d');
@@ -96,6 +97,7 @@ class BlogDataController extends Controller
 
         $request->validate([
             'title'        => 'required|string|max:255',
+            'slug'          => 'required|string|max:255',
             'banner'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'description'      => 'nullable|string',
             'featured'      => 'nullable|string',
@@ -107,7 +109,7 @@ class BlogDataController extends Controller
         try {
 
             $blog = Blog::findOrFail($id);
-            $validatedData = $request->only(['title', 'banner', 'description', 'featured', 'publish_by', 'publish_date']);
+            $validatedData = $request->only(['title', 'slug' , 'banner', 'description', 'featured', 'publish_by', 'publish_date']);
 
             if ($request->filled('publish_date')) {
                 $validatedData['publish_date'] = Carbon::parse($request->publish_date)->format('Y-m-d');

@@ -130,7 +130,7 @@ class testimonialDataController extends Controller
         return view('testimonial.view', compact('testimonial'));
     }
 
-    public function toggleApproval($id)
+    public function toggleApproval(Request $request, $id)
     {
         DB::beginTransaction();
         try {
@@ -141,19 +141,24 @@ class testimonialDataController extends Controller
                 $testimonial->approvedTestimonial->delete();
                 $message = 'Testimonial removed from website!';
             } else {
+                // Validate order_number
+                $request->validate([
+                    'order_number' => 'required|integer',
+                ]);
 
-                // Add to approved_testimonials
+                // Add to approved_testimonials with order_number
                 $testimonial->approvedTestimonial()->create([
                     'user_id' => $testimonial->user_id,
+                    'order_number' => $request->order_number, // Save order_number
                 ]);
                 $message = 'Testimonial added to website!';
             }
 
             DB::commit();
-            return redirect()->back()->with('success', $message);
+            return response()->json(['success' => true, 'message' => $message]);
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Failed to update approval: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Failed to update approval: ' . $e->getMessage()], 500);
         }
     }
 
