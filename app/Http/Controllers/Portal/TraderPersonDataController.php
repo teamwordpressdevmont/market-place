@@ -87,10 +87,7 @@ class TraderPersonDataController extends Controller
 
             DB::commit();
             return redirect()->route('tradeperson.list')->with('success', 'Tradeperson updated successfully!');
-         } catch (ValidationException $e) {
-            DB::rollBack();
-            return redirect()->back()->withErrors($e->errors())->withInput();
-        } catch (\Exception $e) {
+         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to update Tradeperson: ' . $e->getMessage());
         }

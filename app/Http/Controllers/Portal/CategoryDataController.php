@@ -45,9 +45,6 @@ class CategoryDataController extends Controller
 
             DB::commit();
             return redirect()->route('category.list')->with('success', 'Category created successfully.');
-        } catch (ValidationException $e) {
-            DB::rollBack();
-            return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to submit Category: ' . $e->getMessage());
@@ -127,9 +124,6 @@ class CategoryDataController extends Controller
 
             DB::commit();
             return redirect()->route('category.list')->with('success', 'Category updated successfully.');
-        } catch (ValidationException $e) {
-            DB::rollBack();
-            return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to submit Category: ' . $e->getMessage());

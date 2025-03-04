@@ -56,9 +56,6 @@ class PackageController extends Controller
             DB::commit();
             return redirect()->route('package.list')->with('success', 'Package submitted successfully!');
 
-        } catch (ValidationException $e) {
-            DB::rollBack();
-            return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to submit Package: ' . $e->getMessage());
@@ -145,9 +142,6 @@ class PackageController extends Controller
 
             DB::commit();
             return redirect()->route('package.list')->with('success', 'Package updated successfully!');
-        } catch (ValidationException $e) {
-            DB::rollBack();
-            return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to submit Package: ' . $e->getMessage());

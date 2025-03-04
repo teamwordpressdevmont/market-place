@@ -45,9 +45,6 @@ class BlogDataController extends Controller
 
             DB::commit();
             return redirect()->route('blog.list')->with('success', 'Blog submitted successfully!');
-        } catch (ValidationException $e) {
-            DB::rollBack();
-            return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to submit Blog: ' . $e->getMessage());
@@ -83,7 +80,7 @@ class BlogDataController extends Controller
             if (!$blog) {
                 return redirect()->route('blog.list')->with('error', 'Order Detail not found.');
             }
-            
+
             return view('blog.add-edit', compact('blog'));
 
         } catch (\Exception $e) {
@@ -129,9 +126,6 @@ class BlogDataController extends Controller
             $blog->update($validatedData);
             DB::commit();
             return redirect()->route('blog.list')->with('success', 'Blog updated successfully!');
-        } catch (ValidationException $e) {
-            DB::rollBack();
-            return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to update Blog: ' . $e->getMessage());

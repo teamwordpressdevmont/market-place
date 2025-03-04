@@ -35,9 +35,6 @@ class testimonialDataController extends Controller
             Testimonial::create($validatedData);
             DB::commit();
             return redirect()->route('testimonial.list')->with('success', 'Testimonial submitted successfully!');
-        } catch (ValidationException $e) {
-            DB::rollBack();
-            return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to update Testimonial: ' . $e->getMessage());
@@ -104,10 +101,7 @@ class testimonialDataController extends Controller
             $testimonial->update($validatedData);
             DB::commit();
             return redirect()->route('testimonial.list')->with('success', 'Testimonial updated successfully!');
-         } catch (ValidationException $e) {
-            DB::rollBack();
-            return redirect()->back()->withErrors($e->errors())->withInput();
-        } catch (\Exception $e) {
+         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to update Testimonial: ' . $e->getMessage());
         }

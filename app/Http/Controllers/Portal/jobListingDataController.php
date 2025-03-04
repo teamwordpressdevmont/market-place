@@ -131,9 +131,6 @@ class jobListingDataController extends Controller
 
             DB::commit();
             return redirect()->route('joblisting.list')->with('success', 'Order detail updated successfully!');
-        } catch (ValidationException $e) {
-            DB::rollBack();
-            return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to update Order Detail: ' . $e->getMessage());
