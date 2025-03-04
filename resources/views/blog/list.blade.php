@@ -31,9 +31,9 @@
     <form id="searchForm" method="GET" action="{{ route('blog.list') }}" class="relative flex  mb-5 md:w-96 w-full">
         <input type="text" name="search" value="{{ request('search') }}" id="table-search" class="rounded-tl-full rounded-bl-full bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm px-5" placeholder="Search for items">
         <button type="submit" class="bg-secondary cursor-pointer inset-y-0 right-0 px-4 py-2  text-white border border-primary hover:bg-primary transition rounded-tr-full rounded-br-full">Search</button>
-        <div class="input-group-append absolute top-[13px] right-[90px]">
+        <div class="input-group-append absolute top-[13px] right-[100px]">
             <span class="input-group-text close-icon" style="cursor: pointer; display: none;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="20px" height="20px"><path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="15px" height="20px"><path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"></path></svg>
             </span>
         </div>
     </form>
@@ -75,8 +75,8 @@
                     <td class="px-6 py-4 whitespace-nowrap">{{ $blogs->slug }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         @if($blogs->banner)
-                            {{-- <img src="{{ asset('storage/blog-banner/' . $blogs->banner) }}" alt="banner" width="100"> --}}
-                            <img src="{{ $blogs->banner }}" alt="banner" width="100">
+                            <img src="{{ asset('storage/blog-banner/' . $blogs->banner) }}" alt="banner" width="100">
+                            {{-- <img src="{{ $blogs->banner }}" alt="banner" width="100"> --}}
                         @else
                             No Image
                         @endif

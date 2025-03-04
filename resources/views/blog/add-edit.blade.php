@@ -42,8 +42,8 @@
                     </div>
                     <div class="site_field_col">
                         <label for="description" class="block text-sm/6 font-medium text-gray-900">Description</label>
-                        <div class="mt-2">
-                            <textarea name="description" id="content" rows="3" class="textarea_editor block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                        <div class="mt-2 bg-white">
+                            <textarea name="description" id="content" rows="3" class="textarea_editor block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 sm:text-sm/6">
                               {{ old('description', $blog->description ?? '') }}
                             </textarea>
                         </div>
@@ -80,7 +80,7 @@
                             <label for="publish_by" class="block text-sm/6 font-medium text-gray-900 mb-2">Publish Date</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                 </svg>
                                 </div>
@@ -96,9 +96,9 @@
 
                     <div class="flex items-center site_field_col">
                             <input id="featured-checkbox" type="checkbox" name="featured" value="1"
-                                class="w-4 h-4 text-primary bg-gray-200 border-gray-300 rounded-sm focus:ring-gray-500 dark:gray:ring-blue-600"
+                                class="w-4 h-4 text-primary bg-white border-white rounded-sm focus:ring-gray-500"
                                 {{ isset($blog) && $blog->featured == '1' ? 'checked' : '' }}>
-                            <label for="featured-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Featured</label>
+                            <label for="featured-checkbox" class="ms-2 text-sm font-medium text-gray-900">Featured</label>
                         </div>       
 
 
