@@ -41,6 +41,8 @@ class BlogDataController extends Controller
                 $image->storeAs('blog-banner', $imageName, 'public');
                 $validatedData['banner'] = $imageName;
             }
+
+            $validatedData['slug'] = Str::slug($validatedData['slug']);
             
             Blog::create($validatedData);
 
@@ -114,6 +116,8 @@ class BlogDataController extends Controller
             if ($request->filled('publish_date')) {
                 $validatedData['publish_date'] = Carbon::parse($request->publish_date)->format('Y-m-d');
             }
+
+            $validatedData['slug'] = Str::slug($request->input('slug'));
 
             if ($request->hasFile('banner')) {
                 if ($blog->banner) {
