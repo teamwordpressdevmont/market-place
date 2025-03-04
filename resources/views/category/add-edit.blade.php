@@ -27,19 +27,17 @@
 
         @endif 
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">        
             
 
-            <div class="site_field_col">
-                <label for="name" class="block text-sm/6 font-medium text-gray-900">Name</label>
-                <div class="mt-2">                
-                        <input type="text" name="name" id="name"
-                                class="rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5"
-                                placeholder="Category Name" value="{{ isset($category) ? $category->name : '' }}"> <!-- Pre-fill if editing -->
-                </div>
+        <div class="site_field_col">
+            <label for="name" class="block text-sm/6 font-medium text-gray-900">Category Name</label>
+            <div class="mt-2">                
+                    <input type="text" name="name" id="name"
+                            class="rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5"
+                            placeholder="Category Name" value="{{ isset($category) ? $category->name : '' }}"> <!-- Pre-fill if editing -->
             </div>
-
         </div>
+
         
         <!-- Description Field -->
         <div class="site_field_col">
