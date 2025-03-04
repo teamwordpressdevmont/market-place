@@ -35,10 +35,21 @@ class TraderPersonDataController extends Controller
     }
 
     public function edit($id) {
-        $tradeperson = Tradeperson::findOrFail($id);
-        $users = User::select('id', 'name')->get();
-        $tradepersonDetail = TradepersonDetails::where('tradeperson_id', $id)->first();
-        return view('tradeperson.add-edit', compact('tradeperson', 'users', 'tradepersonDetail'));
+
+        try {
+            $tradeperson = Tradeperson::findOrFail($id);
+            $users = User::select('id', 'name')->get();
+            $tradepersonDetail = TradepersonDetails::where('tradeperson_id', $id)->first();
+            
+            if (!$tradeperson) {
+                return redirect()->route('tradeperson.list')->with('error', 'Tradeperson not found.');
+            }
+
+            return view('tradeperson.add-edit', compact('tradeperson', 'users', 'tradepersonDetail'));
+        } catch (\Exception $e) {
+            return redirect()->route('tradeperson.list')->with('error', 'Something went wrong.');
+        }
+
     }
 
     public function update(Request $request, $id) {

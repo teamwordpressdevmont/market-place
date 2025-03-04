@@ -66,9 +66,22 @@ class testimonialDataController extends Controller
     }
 
     public function edit($id) {
-        $testimonials = Testimonial::findOrFail($id);
-        $users = User::select('id', 'name')->get();
-        return view('testimonial.add-edit', compact('testimonials', 'users'));
+
+        try {
+            $testimonials = Testimonial::findOrFail($id);
+
+            $users = User::select('id', 'name')->get();
+            
+            if (!$testimonials) {
+                return redirect()->route('testimonial.list')->with('error', 'Testimonial not found.');
+            }
+
+            return view('testimonial.add-edit', compact('testimonials', 'users'));
+        } catch (\Exception $e) {
+            return redirect()->route('testimonial.list')->with('error', 'Something went wrong.');
+        }
+       
+       
     }
 
     public function update(Request $request, $id) {

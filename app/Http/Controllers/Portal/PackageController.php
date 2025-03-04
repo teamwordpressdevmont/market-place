@@ -93,13 +93,19 @@ class PackageController extends Controller
 
     public function edit($id)
     {
-        $package = Package::findOrFail($id);
+        try {
+            $package = Package::findOrFail($id);
 
-        // Decode JSON data for features
-        $features = json_decode(json_decode($package->features, true), true);
-        
+            $features = json_decode(json_decode($package->features, true), true);
+            
+            if (!$package) {
+                return redirect()->route('package.list')->with('error', 'Package not found.');
+            }
 
-        return view('package.add-edit', compact('package', 'features'));
+            return view('package.add-edit', compact('package', 'features'));
+        } catch (\Exception $e) {
+            return redirect()->route('package.list')->with('error', 'Something went wrong.');
+        }
     }
 
     public function update(Request $request, $id)

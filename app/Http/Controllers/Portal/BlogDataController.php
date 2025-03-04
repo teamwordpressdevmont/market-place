@@ -76,8 +76,22 @@ class BlogDataController extends Controller
     }
 
     public function edit($id) {
-        $blog = Blog::findOrFail($id);
-        return view('blog.add-edit', compact('blog'));
+
+        try {
+            $blog = Blog::findOrFail($id);
+            
+            if (!$blog) {
+                return redirect()->route('blog.list')->with('error', 'Order Detail not found.');
+            }
+            
+            return view('blog.add-edit', compact('blog'));
+
+        } catch (\Exception $e) {
+            return redirect()->route('blog.list')->with('error', 'Something went wrong.');
+        }
+
+       
+       
     }
 
     public function update(Request $request, $id) 

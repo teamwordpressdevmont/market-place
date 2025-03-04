@@ -88,7 +88,7 @@ class CategoryDataController extends Controller
                 return redirect()->route('category.list')->with('error', 'Category not found.');
             }
 
-            return view('category.add-edi', compact('category', 'allCategories'));
+            return view('category.add-edit', compact('category', 'allCategories'));
         } catch (\Exception $e) {
             return redirect()->route('category.list')->with('error', 'Something went wrong.');
         }
