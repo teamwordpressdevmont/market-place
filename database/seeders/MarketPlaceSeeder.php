@@ -20,61 +20,66 @@ class MarketPlaceSeeder extends Seeder
         //     [
         //         'name' => 'Basic Trades Services',
         //         'subcategories' => [
-        //             ['name' => 'Carpenter', 'icon' => 'https://devmontdigital.co/service-place-image/carpenter.png'],
-        //             ['name' => 'Electrician', 'icon' => 'https://devmontdigital.co/service-place-image/electrician.png'],
-        //             ['name' => 'Plumber', 'icon' => 'https://devmontdigital.co/service-place-image/plumber.png'],
-        //             ['name' => 'Painter', 'icon' => 'https://devmontdigital.co/service-place-image/painter.png'],
+        //             ['name' => 'Carpenter', 'icon' => 'carpenter.png'],
+        //             ['name' => 'Electrician', 'icon' => 'electrician.png'],
+        //             ['name' => 'Plumber', 'icon' => 'plumber.png'],
+        //             ['name' => 'Painter', 'icon' => 'painter.png'],
+        //             ['name' => 'Masonry/Bricklayer', 'icon' => 'painter.png'],
+
         //         ]
         //     ],
         //     [
         //         'name' => 'Specialized Services',
         //         'subcategories' => [
-        //             ['name' => 'Roofer', 'icon' => 'https://devmontdigital.co/service-place-image/roofer.png'],
-        //             ['name' => 'Ventilation and Heating (HVAC)', 'icon' => 'https://devmontdigital.co/service-place-image/ventilation.png'],
-        //             ['name' => 'Tiler', 'icon' => 'https://devmontdigital.co/service-place-image/tiler.png'],
-        //             ['name' => 'Flooring Specialist', 'icon' => 'https://devmontdigital.co/service-place-image/flooring-specialist.png'],
+        //             ['name' => 'Roofer', 'icon' => 'roofer.png'],
+        //             ['name' => 'Ventilation and Heating (HVAC)', 'icon' => 'ventilation.png'],
+        //             ['name' => 'Tiler', 'icon' => 'tiler.png'],
+        //             ['name' => 'Flooring Specialist', 'icon' => 'flooring-specialist.png'],
+        //             ['name' => 'Window Installer', 'icon' => 'flooring-specialist.png'],
+        //             ['name' => 'Drainage and waterproofing Specialist', 'icon' => 'flooring-specialist.png'],
+
         //         ]
         //     ],
         //     [
         //         'name' => 'Energy Efficiency',
         //         'subcategories' => [
-        //             ['name' => 'Insulation Specialist', 'icon' => 'https://devmontdigital.co/service-place-image/insulation-specialist.png'],
-        //             ['name' => 'Solar Panel Installer', 'icon' => 'https://devmontdigital.co/service-place-image/solar-panel-installer.png'],
-        //             ['name' => 'Energy Auditor', 'icon' => 'https://devmontdigital.co/service-place-image/energy-consultant.png'],
+        //             ['name' => 'Insulation Specialist', 'icon' => 'insulation-specialist.png'],
+        //             ['name' => 'Solar Panel Installer', 'icon' => 'solar-panel-installer.png'],
+        //             ['name' => 'Energy Auditor', 'icon' => 'energy-consultant.png'],
         //         ]
         //     ],
         //     [
         //         'name' => 'Creative Professionals',
         //         'subcategories' => [
-        //             ['name' => 'Architect', 'icon' => 'https://devmontdigital.co/service-place-image/architect.png'],
-        //             ['name' => 'Interior Designer', 'icon' => 'https://devmontdigital.co/service-place-image/interior-designer.png'],
-        //             ['name' => 'Landscape Architect', 'icon' => 'https://devmontdigital.co/service-place-image/landscape-architect.png'],
-        //             ['name' => 'Furniture Designer', 'icon' => 'https://devmontdigital.co/service-place-image/furniture-designer.png'],
+        //             ['name' => 'Architect', 'icon' => 'architect.png'],
+        //             ['name' => 'Interior Designer', 'icon' => 'interior-designer.png'],
+        //             ['name' => 'Landscape Architect', 'icon' => 'landscape-architect.png'],
+        //             ['name' => 'Furniture Designer', 'icon' => 'furniture-designer.png'],
 
         //         ]
         //     ],
         //     [
         //         'name' => 'Special Projects',
         //         'subcategories' => [
-        //             ['name' => 'Smart Home Technician', 'icon' => 'https://devmontdigital.co/service-place-image/smart-home-technician.png'],
-        //             ['name' => 'Landscaping and Gardening', 'icon' => 'https://devmontdigital.co/service-place-image/landscapig-and-gardening.png'],
-        //             ['name' => 'Fireplace Installer', 'icon' => 'https://devmontdigital.co/service-place-image/fireplace-installer.png'],
+        //             ['name' => 'Smart Home Technician', 'icon' => 'smart-home-technician.png'],
+        //             ['name' => 'Landscaping and Gardening', 'icon' => 'landscapig-and-gardening.png'],
+        //             ['name' => 'Fireplace Installer', 'icon' => 'fireplace-installer.png'],
         //         ]
         //     ],
         //     [
         //         'name' => 'Emergency Services',
         //         'subcategories' => [
-        //             ['name' => 'Emergency Plumber', 'icon' => 'https://devmontdigital.co/service-place-image/emergency-plumber.png'],
-        //             ['name' => 'Emergency Electrician', 'icon' => 'https://devmontdigital.co/service-place-image/emergency-electrician.png'],
-        //             ['name' => 'Snow Removal Specialist', 'icon' => 'https://devmontdigital.co/service-place-image/snow-removal-specialist.png'],
+        //             ['name' => 'Emergency Plumber', 'icon' => 'emergency-plumber.png'],
+        //             ['name' => 'Emergency Electrician', 'icon' => 'emergency-electrician.png'],
+        //             ['name' => 'Snow Removal Specialist', 'icon' => 'snow-removal-specialist.png'],
         //         ]
         //     ],
         //     [
         //         'name' => 'General Services',
         //         'subcategories' => [
-        //             ['name' => 'Handyman', 'icon' => 'https://devmontdigital.co/service-place-image/handyman.png'],
-        //             ['name' => 'Moving and Transport Services', 'icon' => 'https://devmontdigital.co/service-place-image/moving-and-transport-services.png'],
-        //             ['name' => 'Cleaning Services', 'icon' => 'https://devmontdigital.co/service-place-image/cleaning-services.png'],
+        //             ['name' => 'Handyman', 'icon' => 'handyman.png'],
+        //             ['name' => 'Moving and Transport Services', 'icon' => 'moving-and-transport-services.png'],
+        //             ['name' => 'Cleaning Services', 'icon' => 'cleaning-services.png'],
         //         ]
         //     ]
         // ];
@@ -280,51 +285,51 @@ class MarketPlaceSeeder extends Seeder
 
         // // Blog Open
 
-        // $blogs = [
-        //     [
-        //         'title' => 'Winter: Essential Home Care for the Season',
-        //         'banner' => 'https://devmontdigital.co/service-place-image/winter-home-care.jpg', 
-        //         'description' => 'Managing your home’s upkeep can seem overwhelming, but breaking it down by season makes it easier and more efficient. As the seasons change from autumn to winter, your home requires different care and attention. Winter brings a need for draft-proofing, pipe insulation, and HVAC maintenance. Each season has its own unique maintenance needs, and when handled by trusted professionals, your home stays safe and beautiful all year round.',
-        //         'publish_by' => 'Dinbyggemarked',
-        //         'publish_date' => '2024-12-23',
-        //         'featured' => 1,
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ],
-        //     [
-        //         'title' => 'Top Home Renovation Trends You Need to Know',
-        //         'banner' => 'https://devmontdigital.co/service-place-image/home-renovation-trends.jpg',
-        //         'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard.',
-        //         'publish_by' => 'Admin',
-        //         'publish_date' => now(),
-        //         'featured' => 1,
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ],
-        //     [
-        //         'title' => 'How to Ensure a Smooth Home Repair Experience?',
-        //         'banner' => 'https://devmontdigital.co/service-place-image/home-repair-experience.jpg',
-        //         'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard.',
-        //         'publish_by' => 'Admin',
-        //         'publish_date' => now(),
-        //         'featured' => 1,
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ],
-        //     [
-        //         'title' => 'Why Trusting Experienced Tradespeople?',
-        //         'banner' => 'https://devmontdigital.co/service-place-image/winter-home-care.jpg',
-        //         'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard.',
-        //         'publish_by' => 'Admin',
-        //         'publish_date' => now(),
-        //         'featured' => 1,
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ],
+        $blogs = [
+            [
+                'title' => 'Winter: Essential Home Care for the Season',
+                'banner' => 'winter-home-care.jpg', 
+                'description' => 'Managing your home’s upkeep can seem overwhelming, but breaking it down by season makes it easier and more efficient. As the seasons change from autumn to winter, your home requires different care and attention. Winter brings a need for draft-proofing, pipe insulation, and HVAC maintenance. Each season has its own unique maintenance needs, and when handled by trusted professionals, your home stays safe and beautiful all year round.',
+                'publish_by' => 'Dinbyggemarked',
+                'publish_date' => '2024-12-23',
+                'featured' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Top Home Renovation Trends You Need to Know',
+                'banner' => 'home-renovation-trends.jpg',
+                'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard.',
+                'publish_by' => 'Admin',
+                'publish_date' => now(),
+                'featured' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'How to Ensure a Smooth Home Repair Experience?',
+                'banner' => 'home-repair-experience.jpg',
+                'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard.',
+                'publish_by' => 'Admin',
+                'publish_date' => now(),
+                'featured' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Why Trusting Experienced Tradespeople?',
+                'banner' => 'winter-home-care.jpg',
+                'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard.',
+                'publish_by' => 'Admin',
+                'publish_date' => now(),
+                'featured' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
            
-        // ];
+        ];
 
-        // DB::table('blogs')->insert($blogs);
+        DB::table('blogs')->insert($blogs);
         
         // Blog Close
 
@@ -416,52 +421,56 @@ class MarketPlaceSeeder extends Seeder
 
         //   $tradepersons = [
         //     [
-        //         'user_id' => 4,
-        //         'business_name' => 'East Sami',
-        //         'description' => 'High-quality plumbing services',
-        //         'phone' => '123456789',
-        //         'address' => '123 Main Street',
-        //         'featured' => 1,
-        //         'created_at' => Carbon::now(),
-        //         'updated_at' => Carbon::now(),
-        //     ],
-        //     [
-        //         'user_id' => 5,
-        //         'business_name' => 'DM Service',
-        //         'description' => 'Expert electrical and plumbing solutions',
-        //         'phone' => '987654321',
-        //         'address' => '456 Elm Street',
-        //         'featured' => 1,
-        //         'created_at' => Carbon::now(),
-        //         'updated_at' => Carbon::now(),
-        //     ],
-        //     [
         //         'user_id' => 6,
-        //         'business_name' => 'Alba Plumbing',
-        //         'description' => 'Reliable plumbing for homes and offices',
+        //         'first_name' => 'John',
+        //         'last_name' => 'Doe',
+        //         'gender' => 'Male',
         //         'phone' => '555666777',
+        //         'city' => 'New York',
+        //         'postal_code' => '10001',
+        //         'about_me' => 'Experienced trade professional specializing in plumbing and home repairs.',
         //         'address' => '789 Oak Avenue',
-        //         'featured' => 1,
+        //         'portfolio' => json_encode([
+        //             'portfolio1.jpg',
+        //             'portfolio2.jpg'
+        //         ]),
+        //         'certificate' => 'certificate.pdf',
         //         'created_at' => Carbon::now(),
         //         'updated_at' => Carbon::now(),
         //     ],
         //     [
         //         'user_id' => 7,
-        //         'business_name' => 'Carl Plumbing Ltd.',
-        //         'description' => 'Professional plumbing services at affordable rates',
-        //         'phone' => '111222333',
-        //         'address' => '159 Pine Road',
-        //         'featured' => 0,
+        //         'first_name' => 'Carl',
+        //         'last_name' => 'Plumbing',
+        //         'gender' => 'Male',
+        //         'phone' => '555666777',
+        //         'city' => 'New York',
+        //         'postal_code' => '10001',
+        //         'about_me' => 'Professional plumbing services at affordable rates and home repairs.',
+        //         'address' => '789 Oak Avenue',
+        //         'portfolio' => json_encode([
+        //             'portfolio1.jpg',
+        //             'portfolio2.jpg'
+        //         ]),
+        //         'certificate' => 'certificate.pdf',
         //         'created_at' => Carbon::now(),
         //         'updated_at' => Carbon::now(),
         //     ],
         //     [
         //         'user_id' => 8,
-        //         'business_name' => 'Nick Plumbing',
-        //         'description' => 'Trusted plumbing solutions for every need',
-        //         'phone' => '444555666',
-        //         'address' => '753 Cedar Lane',
-        //         'featured' => 0,
+        //         'first_name' => 'Nick',
+        //         'last_name' => 'Plumbing',
+        //         'gender' => 'Male',
+        //         'phone' => '555666777',
+        //         'city' => 'New York',
+        //         'postal_code' => '10001',
+        //         'about_me' => 'Experienced trade professional specializing in plumbing and home repairs.',
+        //         'address' => '789 Oak Avenue',
+        //         'portfolio' => json_encode([
+        //             'portfolio1.jpg',
+        //             'portfolio2.jpg'
+        //         ]),
+        //         'certificate' => 'certificate.pdf',
         //         'created_at' => Carbon::now(),
         //         'updated_at' => Carbon::now(),
         //     ],
@@ -499,7 +508,7 @@ class MarketPlaceSeeder extends Seeder
         //                 'job_end_timeline' => '2025-03-06',
         //                 'location' => 'New York, NY',
         //                 'address' => '45 5th Ave, NY',
-        //                 'image' => json_encode(['https://devmontdigital.co/service-place-image/sink-install.png']), // Multiple images support
+        //                 'image' => json_encode(['sink-install.png']), // Multiple images support
         //                 'additional_notes' => 'Ensure all fittings are leak-proof.',
         //                 'featured' => 1,
         //                 'created_at' => now(),
@@ -517,7 +526,7 @@ class MarketPlaceSeeder extends Seeder
         //                 'job_end_timeline' => '2025-03-08',
         //                 'location' => 'Los Angeles, CA',
         //                 'address' => '123 Sunset Blvd, LA',
-        //                 'image' => json_encode(['https://devmontdigital.co/service-place-image/leak-repair.png']),
+        //                 'image' => json_encode(['leak-repair.png']),
         //                 'additional_notes' => 'Need quick repair before water damage spreads.',
         //                 'featured' => 1,
         //                 'created_at' => now(),
@@ -535,7 +544,7 @@ class MarketPlaceSeeder extends Seeder
         //                 'job_end_timeline' => '2025-03-11',
         //                 'location' => 'Chicago, IL',
         //                 'address' => '678 West Street, Chicago',
-        //                 'image' => json_encode(['https://devmontdigital.co/service-place-image/boiler-maintenance.png']),
+        //                 'image' => json_encode(['boiler-maintenance.png']),
         //                 'additional_notes' => 'Check pressure levels and clean burners.',
         //                 'featured' => 0,
         //                 'created_at' => now(),
@@ -553,7 +562,7 @@ class MarketPlaceSeeder extends Seeder
         //                 'job_end_timeline' => '2025-04-15',
         //                 'location' => 'San Francisco, CA',
         //                 'address' => '321 Ocean Drive, SF',
-        //                 'image' => json_encode(['https://devmontdigital.co/service-place-image/bathroom-reno.png']),
+        //                 'image' => json_encode(['bathroom-reno.png']),
         //                 'additional_notes' => 'Install water-efficient fixtures.',
         //                 'featured' => 1,
         //                 'created_at' => now(),
@@ -571,7 +580,7 @@ class MarketPlaceSeeder extends Seeder
         //                 'job_end_timeline' => '2025-04-21',
         //                 'location' => 'Houston, TX',
         //                 'address' => '789 Maple Street, TX',
-        //                 'image' => json_encode(['https://devmontdigital.co/service-place-image/gas-line.png']),
+        //                 'image' => json_encode(['gas-line.png']),
         //                 'additional_notes' => 'Ensure safety measures are met.',
         //                 'featured' => 0,
         //                 'created_at' => now(),
@@ -679,7 +688,7 @@ class MarketPlaceSeeder extends Seeder
         //         'tradeperson_id' => 2,
         //         'order_id' => 2,
         //         'proposed_price' => 55,
-        //         'comment' => 'lorem ipsum',
+        //         'proposal_descripton' => 'lorem ipsum',
         //         'proposal_status' => 1,
         //         'created_at' => Carbon::now(),
         //         'updated_at' => Carbon::now(),

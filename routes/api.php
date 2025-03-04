@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryApiController;
 use App\Http\Controllers\CustomerApiController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PublicApiController;
+use App\Http\Controllers\TradepersonApiController;
 
 
 
@@ -26,6 +27,8 @@ Route::middleware('verify_token')->group(function () {
     Route::post('/store-contact', [PublicApiController::class, "storeContact"]);
 
     Route::get('/get-order', [PublicApiController::class, "getOrder"]);
+
+    Route::post('/store-tradeperson', [MainController::class, 'storeTradePerson']);
 });
 
 
@@ -56,8 +59,11 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/get-customer-profile', [MainController::class, 'getCustomerProfile']);
         Route::patch('/update-customer-profile', [MainController::class, 'updateCustomerProfile']);
 
-
         Route::get('/get-accepted-proposal', [MainController::class, 'getAcceptedProposal']);
+
+        Route::post('/accept-proposal', [MainController::class, 'acceptProposal']);
+        Route::post('/reject-proposal', [MainController::class, 'rejectProposal']);
+
 
 
         Route::get('/customer-dashboard', function () {
@@ -66,6 +72,22 @@ Route::middleware('auth:api')->group(function () {
     });
 
     Route::middleware('role:tradeperson')->group(function () {
+        
+        //order search
+        Route::post('/search-orders', [TradepersonApiController::class, 'searchOrders']);
+        
+        // deactivate account
+        Route::post('/delete-account', [TradepersonApiController::class, 'deleteAccount']);
+        
+        // get reviews
+        Route::post('/tradeperson-reviews', [TradepersonApiController::class, 'getTradepersonReviews']);
+        
+        // submit proposal
+        Route::post('/submit-proposal', [TradepersonApiController::class, 'submitProposal']);
+
+        Route::get('/get-tradeperson-profile', [MainController::class, 'getTradePersonProfile']);
+        Route::patch('/update-tradeperson-profile', [MainController::class, 'updateTradePerson']);
+
         Route::get('/tradeperson-dashboard', function () {
             return response()->json(['message' => 'Welcome tradeperson']);
         });

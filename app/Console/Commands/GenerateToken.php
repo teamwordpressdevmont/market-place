@@ -40,7 +40,7 @@ class GenerateToken extends Command
 
             if ($token) {
                 $token->update([
-                    'previous_token' => $token->token, // Store previous token
+                    'previous_token' => $token->token, 
                     'previous_expires_at' => $token->expires_at, // Store old expiry
                     'token' => $encryptedToken,
                     'expires_at' => $expiresAt,

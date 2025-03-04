@@ -9,32 +9,33 @@ class Tradeperson extends Model
 {
     //
     use HasFactory;
-    
-   protected $table = "tradepersons";
 
-    protected $fillable = ['user_id', 'business_name', 'description', 'phone', 'address', 'featured'];
+    protected $table = "tradepersons";
+
+    // protected $fillable = ['user_id', 'business_name', 'description', 'phone', 'address', 'featured'];
+    protected $fillable = ['user_id', 'first_name', 'last_name', 'gender', 'phone', 'city', 'postal_code', 'about_me', 'address', 'portfolio', 'certificate'];
 
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    
+
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'tradeperson_categories', 'tradeperson_id', 'category_id');
     }
-    
+
     public function orders()
     {
         return $this->hasMany(Order::class, 'tradeperson_id', 'id');
     }
-    
+
     public function reviews()
     {
         return $this->hasMany(TradepersonReview::class, 'tradeperson_id', 'id');
     }
-    
+
     public function proposals()
     {
         return $this->hasOne(Proposal::class, 'tradeperson_id', 'id');

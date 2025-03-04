@@ -18,26 +18,23 @@ class VerifyAccessToken
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Get the token from the request headers
         $accessToken = $request->header('Authorization');
 
         if (!$accessToken) {
             return response()->json(['message' => 'Access Token is required'], 401);
         }
 
-        // Fetch the stored token from the database
         $tokenRecord = Token::first();
 
         if (!$tokenRecord) {
             return response()->json(['message' => 'Invalid Access Token'], 401);
         }
 
-        // Attempt to decrypt stored tokens and retrieve expiration times
         try {
             $decryptedStoredToken = Crypt::decryptString($tokenRecord->token);
             $decryptedStoredTokenPrev = $tokenRecord->previous_token ? Crypt::decryptString($tokenRecord->previous_token) : null;
 
-            $expiresAt = Carbon::parse($tokenRecord->expires_at)->addDay(); // Extend expiration by 1 day
+            $expiresAt = $tokenRecord->expires_at; // Extend expiration by 1 day
             $previousExpiresAt = $tokenRecord->previous_expires_at ? Carbon::parse($tokenRecord->previous_expires_at)->addDay() : null;
         } catch (\Exception $e) {
             return response()->json(['message' => 'Stored token decryption failed'], 401);
@@ -51,15 +48,13 @@ class VerifyAccessToken
         }
 
         $currentTime = Carbon::now();
-        
-        // if ( ($decryptedHeaderToken !== $decryptedStoredToken || $currentTime->gt($expiresAt)) && 
-        // ($decryptedHeaderToken !== $decryptedStoredTokenPrev || !$previousExpiresAt || $currentTime->gt($previousExpiresAt)) )
-        if (
-            ($decryptedHeaderToken === $decryptedStoredToken && $currentTime->gt($expiresAt)) ||
-            ($decryptedHeaderToken === $decryptedStoredTokenPrev && $previousExpiresAt && $currentTime->gt($previousExpiresAt))
-        ) {
+    
+        if ( ($decryptedHeaderToken !== $decryptedStoredToken || $currentTime->gt($expiresAt)) && 
+        ($decryptedHeaderToken !== $decryptedStoredTokenPrev || !$previousExpiresAt || $currentTime->gt($previousExpiresAt)) )
+        {
             return response()->json(['message' => 'Unauthorized: Token Expired'], 401);
         }
+
 
         return $next($request);
     }

@@ -11,7 +11,7 @@ class OrderProposal extends Model
     use HasFactory;
     
     protected $fillable = [
-        'customer_id', 'tradeperson_id', 'order_id', 'proposed_price', 'comment', 'proposal_status'
+        'customer_id', 'tradeperson_id', 'order_id', 'proposed_price', 'proposal_description', 'proposal_status', 'featured'
     ];
     
     public function order()

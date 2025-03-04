@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreignId('tradeperson_id')->constrained('tradepersons')->onDelete('cascade');
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
             $table->decimal('proposed_price', 10, 2)->nullable();
-            $table->text('comment')->nullable();
+            $table->text('proposal_description')->nullable();
             $table->foreignId('proposal_status')->nullable()->constrained('proposal_statuses')->onDelete('set null');
-            $table->boolean('approved')->nullable();
+            $table->boolean('featured')->nullable();
             $table->timestamps();
         });
     }
