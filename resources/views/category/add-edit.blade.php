@@ -29,15 +29,6 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">        
             
-            <div class="site_field_col">
-                <label for="username" class="block text-sm/6 font-medium text-gray-900">Username</label>
-                <div class="flex mt-2">
-                    <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                        workcation.com/
-                    </span>
-                    <input type="text" name="username" id="username" placeholder="janesmith" class="rounded-none rounded-e-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5" placeholder="Bonnie Green">
-                </div>        
-            </div>
 
             <div class="site_field_col">
                 <label for="name" class="block text-sm/6 font-medium text-gray-900">Name</label>
