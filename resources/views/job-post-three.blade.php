@@ -38,7 +38,7 @@
        </div>
     </div>
     <div class="grid grid-cols-1 xl:grid-cols-3 2xl:gap-9 gap-6 mt-5">
-       <div class="rounded-xl p-5 bg-white border border-[#22222233]">
+       <div class="rounded-xl p-5 bg-white border border-[#22222233] h-fit">
           <div class="border-b border-[#e5e7eb] md:mb-8 mb-5 md:pb-8 pb-5">
              <h2 class="text-sm font-semibold">Job Description</h2>
              <p class="text-[#ABABAB] text-xs mt-2">John is seeking a skilled and reliable plumber for his kitchen pipes. The ideal candidate will be responsible for diagnosing and repairing issues with kitchen plumbing, including clogged drains, leaks, or damaged pipes...</p>
@@ -217,10 +217,10 @@
              <div class="flex border-b border-[#e5e7eb]">
                 <!-- Left Section -->
                 <div class="flex-1 py-4">
-                   <div class="flex justify-between items-center flex-col sm:flex-row">
+                   <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
                       <!-- Profile Info -->
                       <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
-                      <div class="flex flex-1 gap-4 justify-between items-center">
+                      <div class="flex flex-1 gap-4 justify-between items-center sm:flex-row flex-col">
                          <div>
                             <h4 class="font-semibold text-[#072130] text-sm">Brian Simmons</h4>
                             <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
@@ -240,7 +240,7 @@
              </div>
              <!-- Message Button -->
              <div class="flex border-b border-[#e5e7eb] pb-4 text-center">
-                <a href="#" class="bg-[#FF904E] text-white px-6 py-3 rounded-full text-sm font-semibold inline-block w-full max-w-lg">
+                <a href="#" class="bg-[#FF904E] text-white px-6 py-3 rounded-full text-sm inline-block w-full max-w-lg hover:bg-primary transition">
                 Message
                 </a>
              </div>
@@ -248,72 +248,144 @@
              <div class="mt-4">
                 <p class="text-sm text-[#2C2C2C] font-semibold mb-4">Do you want to hire Brian Simmons?</p>
                 <div class="flex justify-between gap-4 border-b border[#222222] mb-5 pb-5">
-                   <a href="#" class="px-6 py-3 border border-[#ABABAB] text-[#2C2C2C]
-                      font-semibold rounded-full text-xs w-full text-center">
+                   <a href="#" class="px-6 py-3 border border-[#ABABAB] text-[#2C2C2C] font-semibold rounded-full text-xs w-full text-center hover:bg-secondary transition hover:text-white hover:border-secondary">
                    Yes
                    </a>
-                   <a href="#" class="px-6 py-3 bg-gray-200 text-[#ABABAB] rounded-full text-xs w-full text-center">
+                   <a href="#" class="px-6 py-3 bg-gray-200 text-[#ABABAB] rounded-full text-xs w-full text-center hover:bg-secondary transition hover:text-white hover:border-secondary">
                    No
                    </a>
                 </div>
              </div>
              <!-- Tabs -->
-             <div class="mt-6 flex justify-between border-b bg-gray-200  rounded-full p-1">
-                <button class="text-xs text-[#222222] font-semibold bg-white px-12 py-3 rounded-full">Proposal</button>
-                <button class="text-xs text-[#ababab] font-semibold px-10 py-3 rounded-full">Profile</button>
-                <button class="text-xs text-[#ababab] font-semibold px-10 py-3 rounded-full">Reviews</button>
-             </div>
-            <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
-                <li class="me-2">
-                    <a href="#" aria-current="page" class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500">Profile</a>
-                </li>
-                <li class="me-2">
-                    <a href="#" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Dashboard</a>
-                </li>
-                <li class="me-2">
-                    <a href="#" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Settings</a>
-                </li>
-                <li class="me-2">
-                    <a href="#" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Contacts</a>
-                </li>
-                <li>
-                    <a class="inline-block p-4 text-gray-400 rounded-t-lg cursor-not-allowed dark:text-gray-500">Disabled</a>
-                </li>
-            </ul>
-             <!-- Proposal Content -->
-             <div class="pt-3 rounded-lg text-xs text-[#ABABAB] h-[500px] overflow-y-auto">
-                <p class="mb-4">Dear Alex,</p>
-                <p class="mb-4">Thank you for reaching out regarding your kitchen plumbing repairs. Below is a breakdown of my proposed approach:</p>
-                <h4 class="mb-4 font-bold">Proposal Overview:</h4>
-                <ul class="list-disc pl-5 mb-4">
-                   <li>Diagnosis of kitchen plumbing issues</li>
-                   <li>Selection of suitable plumbing materials</li>
-                   <li>Efficient and timely repairs</li>
-                </ul>
-                <h4 class="mb-4 font-bold">Project Milestones:</h4>
-                <ul class="list-disc pl-5 mb-4">
-                   <li>Inspection &amp; Diagnostic Report</li>
-                   <li>Material Procurement &amp; Preparation</li>
-                   <li>Installation &amp; Testing</li>
-                </ul>
-                <h4 class="mb-4 font-bold">Project Milestones:</h4>
-                <ul class="list-disc pl-5 mb-4">
-                   <li>Inspection &amp; Diagnostic Report</li>
-                   <li>Material Procurement &amp; Preparation</li>
-                   <li>Installation &amp; Testing</li>
-                </ul>
-                <h4 class="mb-4 font-bold">Project Milestones:</h4>
-                <ul class="list-disc pl-5 mb-4">
-                   <li>Inspection &amp; Diagnostic Report</li>
-                   <li>Material Procurement &amp; Preparation</li>
-                   <li>Installation &amp; Testing</li>
-                </ul>
-                <h4 class="mb-4 font-bold">Project Milestones:</h4>
-                <ul class="list-disc pl-5 mb-4">
-                   <li>Inspection &amp; Diagnostic Report</li>
-                   <li>Material Procurement &amp; Preparation</li>
-                   <li>Installation &amp; Testing</li>
-                </ul>
+             <div class="tabsWrapper">
+                <div class="tabsScroll w-full pb-2 overflow-x-auto relative">
+                   <ul class="flex flex-nowrap border-b bg-gray-200 rounded-full p-1 min-w-max justify-between" id="default-styled-tab" data-tabs-toggle="#default-styled-tab-content" data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" role="tablist">
+                      <li role="presentation">
+                         <button class="transition text-xs text-[#ababab] font-semibold px-12 py-3 rounded-full text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" data-tabs-target="#styled-profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Proposal</button>
+                      </li>
+                      <li role="presentation">
+                         <button class="transition text-xs text-[#ababab] font-semibold px-12 py-3 rounded-full dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" id="dashboard-styled-tab" data-tabs-target="#styled-dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Profile</button>
+                      </li>
+                      <li role="presentation">
+                         <button class="transition text-xs text-[#ababab] font-semibold px-12 py-3 rounded-full dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" id="settings-styled-tab" data-tabs-target="#styled-settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Reviews</button>
+                      </li>
+                   </ul>
+                </div>
+                <div id="default-styled-tab-content">
+                    <div class="mt-6 rounded-lg text-xs text-[#ABABAB] h-[500px] overflow-y-auto" id="styled-profile" role="tabpanel" aria-labelledby="proposal-tab">
+                      <div>
+                         <p class="mb-4">Dear Alex, 1</p>
+                         <p class="mb-4">Thank you for reaching out regarding your kitchen plumbing repairs. Below is a breakdown of my proposed approach:</p>
+                         <h4 class="mb-4 font-bold">Proposal Overview:</h4>
+                         <p class="mb-4">1. Inspection &amp; Diagnosis (Day 1)</p>
+                         <ul class="list-disc pl-5 mb-4">
+                            <li>Diagnosis of kitchen plumbing issues</li>
+                            <li>Selection of suitable plumbing materials</li>
+                            <li>Efficient and timely repairs</li>
+                         </ul>
+                         <h4 class="mb-4 font-bold">Project Milestones:</h4>
+                         <p class="mb-4">1. Inspection &amp; Diagnosis (Day 1)</p>
+                         <ul class="list-disc pl-5 mb-4">
+                            <li>Inspection &amp; Diagnostic Report</li>
+                            <li>Material Procurement &amp; Preparation</li>
+                            <li>Installation &amp; Testing</li>
+                         </ul>
+                         <h4 class="mb-4 font-bold">Project Milestones:</h4>
+                         <p class="mb-4">1. Inspection &amp; Diagnosis (Day 1)</p>
+                         <ul class="list-disc pl-5 mb-4">
+                            <li>Inspection &amp; Diagnostic Report</li>
+                            <li>Material Procurement &amp; Preparation</li>
+                            <li>Installation &amp; Testing</li>
+                         </ul>
+                         <h4 class="mb-4 font-bold">Project Milestones:</h4>
+                         <p class="mb-4">1. Inspection &amp; Diagnosis (Day 1)</p>
+                         <ul class="list-disc pl-5 mb-4">
+                            <li>Inspection &amp; Diagnostic Report</li>
+                            <li>Material Procurement &amp; Preparation</li>
+                            <li>Installation &amp; Testing</li>
+                         </ul>
+                         <h4 class="mb-4 font-bold">Project Milestones:</h4>
+                         <p class="mb-4">1. Inspection &amp; Diagnosis (Day 1)</p>
+                         <ul class="list-disc pl-5 mb-4">
+                            <li>Inspection &amp; Diagnostic Report</li>
+                            <li>Material Procurement &amp; Preparation</li>
+                            <li>Installation &amp; Testing</li>
+                         </ul>
+                      </div>
+                    </div>
+                    <div class="mt-6 rounded-lg text-xs text-[#ABABAB] h-[500px] overflow-y-auto hidden" id="styled-dashboard" role="tabpanel" aria-labelledby="profile-tab">
+                        <div>
+                            <p class="mb-4">Dear Alex,</p>
+                            <p class="mb-4">Thank you for reaching out regarding your kitchen plumbing repairs. Below is a breakdown of my proposed approach:</p>
+                            <h4 class="mb-4 font-bold">Proposal Overview:</h4>
+                            <ul class="list-disc pl-5 mb-4">
+                                <li>Diagnosis of kitchen plumbing issues</li>
+                                <li>Selection of suitable plumbing materials</li>
+                                <li>Efficient and timely repairs</li>
+                            </ul>
+                            <h4 class="mb-4 font-bold">Project Milestones:</h4>
+                            <ul class="list-disc pl-5 mb-4">
+                                <li>Inspection &amp; Diagnostic Report</li>
+                                <li>Material Procurement &amp; Preparation</li>
+                                <li>Installation &amp; Testing</li>
+                            </ul>
+                            <h4 class="mb-4 font-bold">Project Milestones:</h4>
+                            <ul class="list-disc pl-5 mb-4">
+                                <li>Inspection &amp; Diagnostic Report</li>
+                                <li>Material Procurement &amp; Preparation</li>
+                                <li>Installation &amp; Testing</li>
+                            </ul>
+                            <h4 class="mb-4 font-bold">Project Milestones:</h4>
+                            <ul class="list-disc pl-5 mb-4">
+                                <li>Inspection &amp; Diagnostic Report</li>
+                                <li>Material Procurement &amp; Preparation</li>
+                                <li>Installation &amp; Testing</li>
+                            </ul>
+                            <h4 class="mb-4 font-bold">Project Milestones:</h4>
+                            <ul class="list-disc pl-5 mb-4">
+                                <li>Inspection &amp; Diagnostic Report</li>
+                                <li>Material Procurement &amp; Preparation</li>
+                                <li>Installation &amp; Testing</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 rounded-lg text-xs text-[#ABABAB] h-[500px] overflow-y-auto hidden" id="styled-settings" role="tabpanel" aria-labelledby="reviews-tab">
+                        <div>
+                            <p class="mb-4">Dear Alex,</p>
+                            <p class="mb-4">Thank you for reaching out regarding your kitchen plumbing repairs. Below is a breakdown of my proposed approach:</p>
+                            <h4 class="mb-4 font-bold">Proposal Overview:</h4>
+                            <ul class="list-disc pl-5 mb-4">
+                                <li>Diagnosis of kitchen plumbing issues</li>
+                                <li>Selection of suitable plumbing materials</li>
+                                <li>Efficient and timely repairs</li>
+                            </ul>
+                            <h4 class="mb-4 font-bold">Project Milestones:</h4>
+                            <ul class="list-disc pl-5 mb-4">
+                                <li>Inspection &amp; Diagnostic Report</li>
+                                <li>Material Procurement &amp; Preparation</li>
+                                <li>Installation &amp; Testing</li>
+                            </ul>
+                            <h4 class="mb-4 font-bold">Project Milestones:</h4>
+                            <ul class="list-disc pl-5 mb-4">
+                                <li>Inspection &amp; Diagnostic Report</li>
+                                <li>Material Procurement &amp; Preparation</li>
+                                <li>Installation &amp; Testing</li>
+                            </ul>
+                            <h4 class="mb-4 font-bold">Project Milestones:</h4>
+                            <ul class="list-disc pl-5 mb-4">
+                                <li>Inspection &amp; Diagnostic Report</li>
+                                <li>Material Procurement &amp; Preparation</li>
+                                <li>Installation &amp; Testing</li>
+                            </ul>
+                            <h4 class="mb-4 font-bold">Project Milestones:</h4>
+                            <ul class="list-disc pl-5 mb-4">
+                                <li>Inspection &amp; Diagnostic Report</li>
+                                <li>Material Procurement &amp; Preparation</li>
+                                <li>Installation &amp; Testing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
              </div>
           </div>
        </div>

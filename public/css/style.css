@@ -55,10 +55,26 @@ background-color:#fff;
 ::-webkit-scrollbar-thumb {
     background: #ABABAB;
 }
+.tabsScroll::-webkit-scrollbar {
+    height: 3px; /* Horizontal scrollbar */
+}
 @media (max-width: 1536px) {
     br {
         display: none;
     }
 }
+.tabsWrapper [aria-selected="true"] {
+    background-color: white !important;
+    color: black !important;
+    font-weight: bold;
+    border: none !important;
+}
+.tabsWrapper button:hover {
+    background-color: white !important;
+    color: black !important;
+    font-weight: bold;
+    border: none !important;
+}
+
 /* MR CSS END */
 
