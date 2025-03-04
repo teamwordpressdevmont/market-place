@@ -21,11 +21,15 @@ Route::get('/dashview', function() {
 
 Route::get('/job-post', function() {
     return view('job-post');
-})->name('job-post');;
+})->name('job-post');
 
 Route::get('/job-post-two', function() {
     return view('job-post-two');
-})->name('job-post-two');;
+})->name('job-post-two');
+
+Route::get('/job-post-three', function() {
+    return view('job-post-three');
+})->name('job-post-three');
 
 
 Route::get('/dashboard', function () {
