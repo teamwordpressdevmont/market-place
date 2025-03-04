@@ -1,6 +1,19 @@
 @extends('layouts.app')
 @section('content')
-
+@if (session('error'))
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <span class="font-medium">{{ session('error') }}</span>
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
         <div class="mb-6">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900">Edit Job</h1>
         </div>
@@ -85,12 +98,14 @@
                         </div> --}}
                         <input type="hidden" name="removed_images" id="removed_images" value="">
                         <div id="preview" class="mt-3 flex flex-wrap gap-2">
+                            @if (!empty($imagesDetails) && is_array($imagesDetails))
                             @foreach($imagesDetails as $key => $image)
                                 <div class="relative image-container ">
                                     <img src="{{ asset('storage/order-images/' . $image ) }}" alt="Uploaded Image" class="h-20 w-20 rounded-md object-cover">
                                     <button type="button" class="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full text-xs remove-image" data-key="{{ $key }}">✕</button>
                                 </div>
                             @endforeach
+                            @endif
                         </div>
                     </div>
                     <div class="col-span-full mb-5">

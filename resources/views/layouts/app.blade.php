@@ -9,8 +9,11 @@
         
         <script src="{{ url('/public/js/jquery.min.js') }}"></script>
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+
+        
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/trumbowyg@2.27.3/dist/ui/trumbowyg.min.css">
 
         <link rel="stylesheet" href="{{ url('/public/css/style.css') }}">
@@ -20,42 +23,66 @@
        {{-- <script src="{{ url('/js/tailwind.js') }}"></script> --}}
 
 
+       <script src="{{ url('/public/js/tailwindcss.js') }}"></script> 
+       {{-- <script src="{{ url('/js/tailwindcss.js') }}"></script> --}}
+
+       <script>
+        tailwind.config = {
+            theme: {
+            extend: {
+                colors: {
+                primary: '#DB4A2B',
+                secondary: '#FF904E',
+                },
+                fontFamily: {
+                    sora: ['Sora', 'sans-serif'],
+                }
+            }
+            }
+        }
+        </script>
+        {{-- <link rel="stylesheet" href="{{ url('/css/flowbite.min.css') }}">
+        <link rel="stylesheet" href="{{ url('/css/style.css') }}"> --}}
+
+        <link rel="stylesheet" href="{{ url('/public/css/flowbite.min.css') }}">
+        <link rel="stylesheet" href="{{ url('/public/css/style.css') }}">
     </head>
-    <body>
-    
+    <body class="bg-[#F4F4F4] font-sora">
+
         <!-- Trumbowyg CSS -->
-       
-    
+
+
         @include('partials.header')
-    
+
         <div class="site_dasboard_content p-4 sm:ml-64 mt-14">
             <div class="p-4">
+                @include('partials.sidebar')
                 @yield('content')
             </div>
         </div>
-        
+
         @include('partials.footer')
 
 
-        {{-- <script src="{{ url('/public/js/jquery.min.js') }}"></script> --}}
+        <script src="{{ url('/public/js/jquery.min.js') }}"></script>
         
 
     
         <script src="{{ url('/public/js/flowbite.min.js') }}"></script>
-        <script src="{{ url('/js/flowbite.min.js') }}"></script>
+        {{-- <script src="{{ url('/js/flowbite.min.js') }}"></script> --}}
 
 
         <!-- Trumbowyg JS -->
         <script src="https://cdn.jsdelivr.net/npm/trumbowyg@2.27.3/dist/trumbowyg.min.js"></script>
 
-        
+
         <!-- validation -->
-        {{-- <script src="{{ url('/public/js/jquery.validate.min.js') }}"></script> --}}
-        <script src="{{ url('/js/jquery.validate.min.js') }}"></script>
+        <script src="{{ url('/public/js/jquery.validate.min.js') }}"></script>
+        {{-- <script src="{{ url('/js/jquery.validate.min.js') }}"></script> --}}
 
         
-        {{-- <script src="{{ url('/public/js/custom-script.js') }}"></script> --}}
-        <script src="{{ url('/js/custom-script.js') }}"></script>
+        <script src="{{ url('/public/js/custom-script.js') }}"></script>
+        {{-- <script src="{{ url('/js/custom-script.js') }}"></script> --}}
 
 
     

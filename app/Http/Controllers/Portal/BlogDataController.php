@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Str;
 
 class BlogDataController extends Controller
 {
@@ -15,19 +17,20 @@ class BlogDataController extends Controller
     }
 
     public function store(Request $request) {
-        // dd($request->all());
+
+        $request->validate([
+            'title'         => 'required|string|max:255',
+            'slug'          => 'required|string|max:255',
+            'banner'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'description'   => 'nullable|string',
+            'featured'      => 'nullable|string',
+            'publish_by'    => 'nullable|string|max:255',
+            'publish_date'  => 'nullable|date',
+        ]);
+
         DB::beginTransaction();
         try {
-            $request->validate([
-                'title'         => 'required|string|max:255',
-                'banner'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-                'description'   => 'nullable|string',
-                'featured'      => 'nullable|string',
-                'publish_by'    => 'nullable|string|max:255',
-                'publish_date'  => 'nullable|date',
-            ]);
-
-            $validatedData = $request->only(['title', 'description', 'featured', 'publish_by', 'publish_date']);
+            $validatedData = $request->only(['title', 'slug' , 'banner', 'description', 'featured', 'publish_by', 'publish_date']);
 
             if ($request->filled('publish_date')) {
                 $validatedData['publish_date'] = Carbon::parse($request->publish_date)->format('Y-m-d');
@@ -39,8 +42,11 @@ class BlogDataController extends Controller
                 $image->storeAs('blog-banner', $imageName, 'public');
                 $validatedData['banner'] = $imageName;
             }
+
+            $validatedData['slug'] = Str::slug($validatedData['slug']);
             
             Blog::create($validatedData);
+
             DB::commit();
             return redirect()->route('blog.list')->with('success', 'Blog submitted successfully!');
         } catch (\Exception $e) {
@@ -71,28 +77,48 @@ class BlogDataController extends Controller
     }
 
     public function edit($id) {
-        $blog = Blog::findOrFail($id);
-        return view('blog.add-edit', compact('blog'));
+
+        try {
+            $blog = Blog::findOrFail($id);
+            
+            if (!$blog) {
+                return redirect()->route('blog.list')->with('error', 'Order Detail not found.');
+            }
+
+            return view('blog.add-edit', compact('blog'));
+
+        } catch (\Exception $e) {
+            return redirect()->route('blog.list')->with('error', 'Something went wrong.');
+        }
+
+       
+       
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id) 
+    {
+
+        $request->validate([
+            'title'        => 'required|string|max:255',
+            'slug'          => 'required|string|max:255',
+            'banner'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'description'      => 'nullable|string',
+            'featured'      => 'nullable|string',
+            'publish_by'   => 'nullable|string|max:255',
+            'publish_date' => 'nullable|date',
+        ]);
+
         DB::beginTransaction();
         try {
-            $request->validate([
-                'title'        => 'required|string|max:255',
-                'banner'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-                'description'      => 'nullable|string',
-                'featured'      => 'nullable|string',
-                'publish_by'   => 'nullable|string|max:255',
-                'publish_date' => 'nullable|date',
-            ]);
-            
+
             $blog = Blog::findOrFail($id);
-            $validatedData = $request->only(['title', 'description', 'featured', 'publish_by', 'publish_date']);
+            $validatedData = $request->only(['title', 'slug' , 'banner', 'description', 'featured', 'publish_by', 'publish_date']);
 
             if ($request->filled('publish_date')) {
                 $validatedData['publish_date'] = Carbon::parse($request->publish_date)->format('Y-m-d');
             }
+
+            $validatedData['slug'] = Str::slug($request->input('slug'));
 
             if ($request->hasFile('banner')) {
                 if ($blog->banner) {
@@ -114,12 +140,24 @@ class BlogDataController extends Controller
     }
 
     public function destroy($id) {
-        $blog = Blog::findOrFail($id);
-        if ($blog->banner) {
-            Storage::disk('public')->delete('blog-banner/' . $blog->banner);
+
+        DB::beginTransaction();
+        try {
+            $blog = Blog::findOrFail($id);
+            if ($blog->banner) {
+                Storage::disk('public')->delete('blog-banner/' . $blog->banner);
+            }
+
+            if (!is_null($blog)) {
+                $blog->delete();
+            }
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Blog deleted successfully!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to delete Blog: ' . $e->getMessage());
         }
-        $blog->delete();
-        return redirect()->back()->with('success', 'Blog deleted successfully!');
     }
 
     public function view($id) {

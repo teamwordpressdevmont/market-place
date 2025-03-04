@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Package;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class PackageController extends Controller
 {
@@ -16,23 +17,18 @@ class PackageController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        
-        DB::beginTransaction();
-        
-        try {
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'description' => 'nullable|string',
-                'price' => 'nullable|numeric',
-                'features' => 'nullable|array',
-            ]);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'nullable|numeric',
+            'features' => 'nullable|array',
+        ]);
 
-            
+        DB::beginTransaction();
+        try {
             $validatedData = $request->only([
                 'name', 'description', 'price', 'features', 
             ]);
-            
 
             
             // Handle features data if available and format it as required
@@ -53,16 +49,11 @@ class PackageController extends Controller
 
             }
             
-            
         
             // Save to Database
             $package = Package::create($validatedData);
-
-        
             
             DB::commit();
-            
-
             return redirect()->route('package.list')->with('success', 'Package submitted successfully!');
 
         } catch (\Exception $e) {
@@ -99,31 +90,35 @@ class PackageController extends Controller
 
     public function edit($id)
     {
-        $package = Package::findOrFail($id);
+        try {
+            $package = Package::findOrFail($id);
 
-        // Decode JSON data for features
-        $features = json_decode(json_decode($package->features, true), true);
-        
+            $features = json_decode(json_decode($package->features, true), true);
+            
+            if (!$package) {
+                return redirect()->route('package.list')->with('error', 'Package not found.');
+            }
 
-        return view('package.add-edit', compact('package', 'features'));
+            return view('package.add-edit', compact('package', 'features'));
+        } catch (\Exception $e) {
+            return redirect()->route('package.list')->with('error', 'Something went wrong.');
+        }
     }
 
     public function update(Request $request, $id)
     {
-        // dd($request->all());
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'nullable|numeric',
+            'features' => 'nullable|array',
+        ]);
         
         DB::beginTransaction();
         try {
-            $validatedData = $request->validate([
-                'name' => 'required|string|max:255',
-                'description' => 'nullable|string',
-                'price' => 'nullable|numeric',
-                'features' => 'nullable|array',
-            ]);
+           
 
             $package = Package::findOrFail($id);
-          
-            
             
             // Handle features Formatting
             if ($request->has('features')) {
@@ -138,12 +133,8 @@ class PackageController extends Controller
                 
                  $formattedJson = json_encode($formattedFeatures, JSON_UNESCAPED_UNICODE);
     
-                // Serialize the formatted features array before saving
                 $validatedData['features'] = "\"" . str_replace('"', '\\"', $formattedJson) . "\"";
             }
-            
-            
-            // dd($validatedData);
 
             // Update record
             $package->update($validatedData);
@@ -159,13 +150,19 @@ class PackageController extends Controller
 
     public function destroy($id)
     {
-        $package = Package::findOrFail($id);
+        DB::beginTransaction();
+        try {
+            $package = Package::findOrFail($id);
 
-        if (!is_null($package)) {
-            $package->delete();
-        }
-
+            if (!is_null($package)) {
+                $package->delete();
+            }
+    
+            DB::commit();
             return redirect()->back()->with('success', 'Package deleted successfully.');
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to delete Package: ' . $e->getMessage());
+        }
     }
 }

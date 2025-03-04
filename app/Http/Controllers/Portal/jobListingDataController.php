@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Illuminate\Validation\ValidationException;
+
 
 class jobListingDataController extends Controller
 {
@@ -40,30 +42,39 @@ class jobListingDataController extends Controller
 
     public function edit($id)
     {
-        $OrderDetails = OrderDetail::findOrFail($id);
+        try {
+            $OrderDetails = OrderDetail::find($id);
 
-        // Decode JSON images from database
-        $imagesDetails = json_decode($OrderDetails->image, true) ?? [];
+            $imagesDetails = json_decode($OrderDetails->image, true) ?? [];
+            
+            if (!$OrderDetails) {
+                return redirect()->route('joblisting.list')->with('error', 'Order Detail not found.');
+            }
 
-        return view('job-listing.add-edit', compact('OrderDetails', 'imagesDetails'));
+            return view('job-listing.add-edit', compact('OrderDetails'));
+        } catch (\Exception $e) {
+            return redirect()->route('joblisting.list')->with('error', 'Something went wrong.');
+        }
     }
+
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title'           => 'required|string|max:255',
+            'description'     => 'nullable|string',
+            'budget'          => 'nullable|numeric',
+            'job_start_time'        => 'nullable|string',
+            'job_end_time'        => 'nullable|string',
+            'location'        => 'nullable|string',
+            'image' => 'nullable|array',
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'additional_notes' => 'nullable|string',
+            'featured'        => 'nullable|boolean',
+        ]);
+
         DB::beginTransaction();
         try {
-            $request->validate([
-                'title'           => 'required|string|max:255',
-                'description'     => 'nullable|string',
-                'budget'          => 'nullable|numeric',
-                'job_start_time'        => 'nullable|string',
-                'job_end_time'        => 'nullable|string',
-                'location'        => 'nullable|string',
-                'image' => 'nullable|array',
-                'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'additional_notes' => 'nullable|string',
-                'featured'        => 'nullable|boolean',
-            ]);
 
             $OrderDetail = OrderDetail::findOrFail($id);
 
@@ -119,7 +130,7 @@ class jobListingDataController extends Controller
             $OrderDetail->update($validatedData);
 
             DB::commit();
-            return redirect()->route('job-listing.list')->with('success', 'Order detail updated successfully!');
+            return redirect()->route('joblisting.list')->with('success', 'Order detail updated successfully!');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to update Order Detail: ' . $e->getMessage());
@@ -128,14 +139,22 @@ class jobListingDataController extends Controller
 
     public function destroy($id)
     {
-        $OrderDetail = OrderDetail::findOrFail($id);
+        DB::beginTransaction();
+        try {
+            $OrderDetail = OrderDetail::findOrFail($id);
 
-        if (!is_null($OrderDetail)) {
-            $OrderDetail->delete();
+            if (!is_null($OrderDetail)) {
+                $OrderDetail->delete();
+            }
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Order Detail deleted successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to delete Order Detail: ' . $e->getMessage());
         }
-
-        return redirect()->back()->with('success', 'Order Detail deleted successfully.');
     }
+
 
     public function view($id)
     {

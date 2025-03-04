@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
     @if(session('success'))
         <div id="alert-3" class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
             <div class="ms-3 text-sm font-medium">
@@ -18,28 +20,31 @@
 
 
 
-        <div class="flex mb-6">
-            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Package List</h1>
-            <a href="{{ route('package.addEdit') }}" class="ml-auto rounded-md bg-green-700 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-green-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                Add New 
+        <div class="flex flex-col md:flex-row gap-4 mb-6">
+            <h1 class="font-semibold text-4xl">Package List</h1>
+            <a href="{{ route('package.addEdit') }}" class="md:ml-auto  bg-secondary rounded-full px-4 py-2 text-sm text-white flex items-center justify-between w-40 border border-primary hover:bg-primary transition">
+                Add New <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-current group-hover:text-white">
+                    <path d="M12 8V16M16 12L8 12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" stroke-width="1.5"></path>
+                </svg>
             </a>   
 
         </div>
         <div class="relative overflow-x-auto">
-            <form id="searchForm" method="GET" action="{{ route('package.list') }}" class="relative mt-1 w-96 mb-5">
-                <input type="text" name="search" value="{{ request('search') }}" id="table-search" class="block pt-2 pb-2 ps-5 pe-7 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search for items">
-                <button  type="submit" class="absolute cursor-pointer inset-y-0 right-0 flex items-center px-3 bg-green-700 text-white rounded-r-lg hover:bg-green-900">Search</button>
-                <div class="input-group-append absolute top-[10px] right-[80px]">
+            <form id="searchForm" method="GET" action="{{ route('package.list') }}" class="relative flex  mb-5 md:w-96 w-full">
+                <input type="text" name="search" value="{{ request('search') }}" id="table-search" class="rounded-tl-full rounded-bl-full bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm px-5" placeholder="Search for items">
+                <button  type="submit" class="bg-secondary cursor-pointer inset-y-0 right-0 px-4 py-2  text-white border border-primary hover:bg-primary transition rounded-tr-full rounded-br-full">Search</button>
+                <div class="input-group-append absolute top-[13px] right-[90px]">
                     <span class="input-group-text close-icon" style="cursor: pointer; display: none;">
                         <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="20px" height="20px"><path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"/></svg>
                     </span>
                 </div>
             </form>
-            <div id="table-container">
+            <div id="table-container" class="border rounded-lg overflow-x-auto ">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <thead class="text-xs text-gray-700 bg-gray-50">
                         <tr>
-                            <th scope="col" class="px-6 py-3">#S.n</th>
+                            <th scope="col" class="px-6 py-3">S.No</th>
                             <th scope="col" class="px-6 py-3">ID</th>
                             <th scope="col" class="px-6 py-3">
                                 <a href="{{ route('package.list', array_merge(request()->all(), ['sort_by' => 'name', 'sort_direction' => request('sort_direction') == 'asc' ? 'desc' : 'asc'])) }}">
@@ -48,28 +53,29 @@
                             </th>
                             <th scope="col" class="px-6 py-3">Description</th>
                             <th scope="col" class="px-6 py-3">Price</th>
+                            <th scope="col" class="px-6 py-3" width="150">Action</th>
                         </tr>
                     </thead>
                     <tbody>     
                     @if($packages->isEmpty())
-                    <tr class="bg-white border-b   border-gray-200">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap " colspan="8">
+                    <tr class="bg-white border-b border-gray-200">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" colspan="8">
                             No data available.
                         </th>
                     </tr>
                     @else      
                     @foreach($packages as $index => $package)
                         <tr class="bg-white border-b border-gray-200">
-                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                             <th scope="row" class="px-6 py-4">
                                 {{ ($packages->currentPage() - 1) * $packages->perPage() + $index + 1 }}
                             </th>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            <th scope="row" class="px-6 py-4">
                                 {{ $package->id }}
                             </th>
-                            <td class="px-6 py-4">{{ $package->name }}</td>
-                            <td class="px-6 py-4">{!! html_entity_decode($package->description) !!}</td>
-                            <td class="px-6 py-4">{{ $package->price }}</td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $package->name }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{!! html_entity_decode($package->description) !!}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $package->price }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex gap-4">
                                         <a href="{{ route('package.edit', $package->id) }}" class="edit_package">
                                         <svg fill="#0D0D0D" width="20px" height="20px" viewBox="0 0 36 36" version="1.1"  preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

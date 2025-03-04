@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Validation\ValidationException;
 
 class testimonialDataController extends Controller
 {
@@ -18,17 +18,18 @@ class testimonialDataController extends Controller
     }
 
     public function store(Request $request) {
+
+        $request->validate([
+            'user_id'        => 'nullable|exists:users,id',
+            'name'        => 'required|string|max:255',
+            'heading'        => 'required|string|max:255',
+            'description'      => 'nullable|string',
+            'rating'         => 'nullable|integer|between:1,5',
+            'verified'       => 'nullable|boolean',
+        ]);
+
         DB::beginTransaction();
         try {
-            $request->validate([
-                'user_id'        => 'nullable|exists:users,id',
-                'name'        => 'required|string|max:255',
-                'heading'        => 'required|string|max:255',
-                'description'      => 'nullable|string',
-                'rating'         => 'nullable|integer|between:1,5',
-                'verified'       => 'nullable|boolean',
-            ]);
-
             $validatedData = $request->only(['user_id', 'name', 'heading', 'description', 'rating', 'verified']);
             
             Testimonial::create($validatedData);
@@ -36,7 +37,7 @@ class testimonialDataController extends Controller
             return redirect()->route('testimonial.list')->with('success', 'Testimonial submitted successfully!');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Failed to submit Blog: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Failed to update Testimonial: ' . $e->getMessage());
         }
     }
 
@@ -62,22 +63,37 @@ class testimonialDataController extends Controller
     }
 
     public function edit($id) {
-        $testimonials = Testimonial::findOrFail($id);
-        $users = User::select('id', 'name')->get();
-        return view('testimonial.add-edit', compact('testimonials', 'users'));
+
+        try {
+            $testimonials = Testimonial::findOrFail($id);
+
+            $users = User::select('id', 'name')->get();
+            
+            if (!$testimonials) {
+                return redirect()->route('testimonial.list')->with('error', 'Testimonial not found.');
+            }
+
+            return view('testimonial.add-edit', compact('testimonials', 'users'));
+        } catch (\Exception $e) {
+            return redirect()->route('testimonial.list')->with('error', 'Something went wrong.');
+        }
+       
+       
     }
 
     public function update(Request $request, $id) {
+
+        $request->validate([
+            'user_id'        => 'nullable|exists:users,id',
+            'name'        => 'required|string|max:255',
+            'heading'        => 'required|string|max:255',
+            'description'      => 'nullable|string',
+            'rating'         => 'nullable|integer|between:1,5',
+            'verified'       => 'nullable|boolean',
+        ]);
+
         DB::beginTransaction();
         try {
-            $request->validate([
-                'user_id'        => 'nullable|exists:users,id',
-                'name'        => 'required|string|max:255',
-                'heading'        => 'required|string|max:255',
-                'description'      => 'nullable|string',
-                'rating'         => 'nullable|integer|between:1,5',
-                'verified'       => 'nullable|boolean',
-            ]);
             
             $testimonial = Testimonial::findOrFail($id);
             $validatedData = $request->only(['user_id', 'name', 'heading', 'description', 'rating', 'verified']);
@@ -85,16 +101,28 @@ class testimonialDataController extends Controller
             $testimonial->update($validatedData);
             DB::commit();
             return redirect()->route('testimonial.list')->with('success', 'Testimonial updated successfully!');
-        } catch (\Exception $e) {
+         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to update Testimonial: ' . $e->getMessage());
         }
     }
 
     public function destroy($id) {
-        $testimonial = Testimonial::findOrFail($id);
-        $testimonial->delete();
-        return redirect()->back()->with('success', 'Testimonial deleted successfully!');
+
+        DB::beginTransaction();
+        try {
+            $testimonial = Testimonial::findOrFail($id);
+
+            if (!is_null($testimonial)) {
+                $testimonial->delete();
+            }
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Testimonial deleted successfully!.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to delete Testimonial: ' . $e->getMessage());
+        }
     }
 
     public function view($id) {
@@ -102,7 +130,7 @@ class testimonialDataController extends Controller
         return view('testimonial.view', compact('testimonial'));
     }
 
-    public function toggleApproval($id)
+    public function toggleApproval(Request $request, $id)
     {
         DB::beginTransaction();
         try {
@@ -113,19 +141,24 @@ class testimonialDataController extends Controller
                 $testimonial->approvedTestimonial->delete();
                 $message = 'Testimonial removed from website!';
             } else {
+                // Validate order_number
+                $request->validate([
+                    'order_number' => 'required|integer',
+                ]);
 
-                // Add to approved_testimonials
+                // Add to approved_testimonials with order_number
                 $testimonial->approvedTestimonial()->create([
                     'user_id' => $testimonial->user_id,
+                    'order_number' => $request->order_number, // Save order_number
                 ]);
                 $message = 'Testimonial added to website!';
             }
 
             DB::commit();
-            return redirect()->back()->with('success', $message);
+            return response()->json(['success' => true, 'message' => $message]);
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Failed to update approval: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Failed to update approval: ' . $e->getMessage()], 500);
         }
     }
 
