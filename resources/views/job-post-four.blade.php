@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div class="mt-5">
-    <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 gap-5 mt-8 items-end">
+    <div class="grid grid-cols-1 xl:grid-cols-2 lg:gap-8 gap-5 mt-8 items-end">
        <!-- Left Section -->
-       <div class="lg:col-span-2 col-span-1">
+       <div class="">
           <div class="flex items-center gap-2 bg-white rounded-full text-sm w-fit pr-4">
              <div class="bg-[#FFE9DC] px-3 py-2 rounded-full">
                 <svg width="16" height="16" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +32,7 @@
           </div>
        </div>
        <!-- Right Section (Budget) -->
-       <div class="flex items-end">
+       <div class="flex md:items-end md:gap-12 gap-5 xl:justify-end md:flex-row flex-col items-left">
           <a href="#" class="bg-secondary rounded-full px-4 py-2 text-sm text-white flex items-center justify-between w-40 hover:bg-primary transition">
              <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 14.6667C5.23989 14.6667 6.12719 14.2618 7.0329 13.4519M7.0329 13.4519C7.8052 12.7613 8.59089 11.7763 9 10.4968C9.88889 7.71688 4.55556 10.4968 6.33333 12.8134C6.55207 13.0985 6.78763 13.3068 7.0329 13.4519ZM7.0329 13.4519C8.10138 14.084 9.35406 13.5161 10.2028 12.863C10.4621 12.6634 10.5918 12.5636 10.6692 12.5947C10.7466 12.6257 10.7919 12.8043 10.8824 13.1615C11.1721 14.3046 12.0277 15.2274 13 13.7404" stroke="#EDE9D0" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -41,7 +41,7 @@
              </svg>
              View Contract
           </a>
-          <div class="bg-[#EDE9D0] p-4 rounded-2xl flex items-end gap-4 justify-center xl:w-82 w-fit lg:ml-auto self-end">
+          <div class="bg-[#EDE9D0] p-4 rounded-2xl flex items-end gap-4 justify-center xl:w-[280px] w-fit">
              <p class="text-[#072130] text-sm font-semibold">Task Budget</p>
              <p class="lg:text-4xl md:text-2xl text-xl font-bold text-[#222222]">$2500</p>
           </div>
@@ -92,7 +92,7 @@
                    <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
                       <!-- Profile Info -->
                       <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
-                      <div class="flex flex-1 gap-4 justify-between items-center sm:flex-row flex-col">
+                      <div class="flex flex-1 gap-4 justify-between md:items-center sm:flex-row flex-col">
                          <div>
                             <h4 class="font-semibold text-[#072130] text-sm">Brian Simmons</h4>
                             <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
@@ -111,7 +111,7 @@
                 </div>
              </div>
              <!-- Message Button -->
-             <div class="flex border-b border-[#e5e7eb] pb-4 text-center">
+             <div class="border-b border-[#e5e7eb] pb-4 text-center">
                 <a href="#" class="bg-[#FF904E] text-white px-6 py-3 rounded-full text-sm inline-block w-full max-w-lg hover:bg-primary transition">
                 Message
                 </a>
@@ -122,15 +122,15 @@
                 <div class="tabsScroll w-full pb-2 overflow-x-auto relative">
                    <ul class="flex flex-nowrap border-b bg-gray-200 rounded-full p-1 min-w-max justify-between" id="default-styled-tab" data-tabs-toggle="#default-styled-tab-content" data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" role="tablist">
                       <li role="presentation" class="w-full">
-                         <button class="w-full transition text-xs text-[#ababab] font-semibold px-12 py-3 rounded-full text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" data-tabs-target="#styled-profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
+                         <button class="w-full transition text-xs text-[#ababab] font-semibold px-12 py-3 rounded-full dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" data-tabs-target="#styled-profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
                       </li>
                       <li role="presentation" class="w-full">
-                         <button class="w-full transition text-xs text-[#ababab] font-semibold px-12 py-3 rounded-full dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" id="settings-styled-tab" data-tabs-target="#styled-settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Reviews</button>
+                         <button class="w-full transition text-xs text-[#ababab] font-semibold px-12 py-3 rounded-full text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" id="settings-styled-tab" data-tabs-target="#styled-settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Reviews</button>
                       </li>
                    </ul>
                 </div>
                 <div id="default-styled-tab-content">
-                   <div class="mt-6 rounded-lg text-xs text-[#ABABAB]" id="styled-profile" role="tabpanel" aria-labelledby="proposal-tab">
+                   <div class="mt-6 rounded-lg text-xs text-[#ABABAB] hidden" id="styled-profile" role="tabpanel" aria-labelledby="proposal-tab">
                       <div>
                          <p class="mb-6 flex gap-2">
                             <span>
@@ -164,7 +164,7 @@
                          </div>
                       </div>
                    </div>
-                   <div class="mt-6 rounded-lg text-xs text-[#ABABAB] hidden" id="styled-settings" role="tabpanel" aria-labelledby="reviews-tab">
+                   <div class="mt-6 rounded-lg text-xs text-[#ABABAB]" id="styled-settings" role="tabpanel" aria-labelledby="reviews-tab">
                       <div>
                          <p class="mb-6 flex gap-2">
                             <span>
@@ -209,13 +209,14 @@
              <!-- 1st Milestone (Completed) -->
              <div class="flex items-start space-x-4">
                 <div class="flex flex-col items-center">
-                   <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center" style="
-                      ">
-                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                   <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <circle cx="14" cy="14" r="14" fill="#20AD00"></circle>
+                         <circle cx="14" cy="14" r="10" fill="#24C500"></circle>
+                         <path d="M17.073 10L13.1148 14.9829L10.3804 13.2L9 14.8801L13.6615 18L19 11.28L17.073 10Z" fill="white"></path>
                       </svg>
                    </div>
-                   <div class="h-10 w-0.5 divide-dashed divide-indigo-500"></div>
+                   <div class="h-10 w-0.5 bg-gray-300"></div>
                 </div>
                 <div>
                    <h3 class="font-semibold text-xs text-black mb-1">1st Milestone</h3>
@@ -223,11 +224,13 @@
                 </div>
              </div>
              <!-- 2nd Milestone (Ongoing) -->
-             <div class="flex items-start space-x-4 mt-4">
+             <div class="flex items-start space-x-4">
                 <div class="flex flex-col items-center">
                    <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
-                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <circle cx="14" cy="14" r="14" fill="#FF904E"></circle>
+                         <circle cx="14" cy="14" r="10" fill="#DB4A2B"></circle>
+                         <path d="M17.073 10L13.1148 14.9829L10.3804 13.2L9 14.8801L13.6615 18L19 11.28L17.073 10Z" fill="white"></path>
                       </svg>
                    </div>
                    <div class="h-10 w-0.5 bg-gray-300"></div>
@@ -238,38 +241,46 @@
                 </div>
              </div>
              <!-- 3rd Milestone (Pending) -->
-             <div class="flex items-start space-x-4 mt-4 opacity-50">
+             <div class="flex items-start space-x-4 opacity-50">
                 <div class="flex flex-col items-center">
                    <div class="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center">
-                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <circle cx="14" cy="14" r="14" fill="#F5F5F5"></circle>
+                         <circle cx="14" cy="14" r="10" fill="#DEDEDE"></circle>
+                         <path d="M17.073 10L13.1148 14.9829L10.3804 13.2L9 14.8801L13.6615 18L19 11.28L17.073 10Z" fill="white"></path>
                       </svg>
                    </div>
                    <div class="h-10 w-0.5 bg-gray-300"></div>
                 </div>
                 <div>
                    <h3 class="font-semibold text-xs text-[#ABABAB] mb-1">3rd Milestone</h3>
-                   <p class="text-[#ABABAB] text-xs text-light">Repair &amp; Installation</p>
+                   <p class="text-[#ABABAB] text-xs font-light">Repair &amp; Installation</p>
                 </div>
              </div>
              <!-- 4th Milestone (Pending) -->
-             <div class="flex items-start space-x-4 mt-4 opacity-50">
+             <div class="flex items-start space-x-4 opacity-50">
                 <div class="flex flex-col items-center">
                    <div class="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center">
-                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <circle cx="14" cy="14" r="14" fill="#F5F5F5"></circle>
+                         <circle cx="14" cy="14" r="10" fill="#DEDEDE"></circle>
+                         <path d="M17.073 10L13.1148 14.9829L10.3804 13.2L9 14.8801L13.6615 18L19 11.28L17.073 10Z" fill="white"></path>
                       </svg>
                    </div>
                 </div>
                 <div>
                    <h3 class="font-semibold text-xs text-[#ABABAB] mb-1">4th Milestone</h3>
-                   <p class="text-[#ABABAB] text-xs text-light">Final Testing &amp; Cleanup</p>
+                   <p class="text-[#ABABAB] text-xs font-light">Final Testing &amp; Cleanup</p>
                 </div>
              </div>
           </div>
           <div class="text-center px-5 mb-5">
-             <a href="#" class="bg-[#ABABAB] text-white px-6 py-3 rounded-full text-sm inline-block w-full max-w-lg hover:bg-primary transition mb-2">Job Completed</a>
-             <a href="#" class="bg-[#FF904E] text-white px-6 py-3 rounded-full text-sm inline-block w-full max-w-lg hover:bg-primary transition">Extend Date</a>
+             <a href="#" class="flex justify-center bg-[#ABABAB] text-white px-6 py-3 rounded-full text-sm inline-block w-full max-w-lg hover:bg-primary transition mb-2">Job Completed</a>
+             <a href="#" class="flex justify-center bg-[#FF904E] text-white px-6 py-3 rounded-full text-sm inline-block w-full max-w-lg hover:bg-primary transition" style="
+                align-items: center;
+                /* justify-content: center; */
+                /* display: flex; */
+                ">Extend Date</a>
           </div>
           <p class="px-5 font-semibold text-xs text-[#ABABAB]">Job completed?<span class="text-black"> Leave a review</span></p>
        </div>

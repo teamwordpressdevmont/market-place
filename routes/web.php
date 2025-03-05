@@ -35,6 +35,10 @@ Route::get('/job-post-four', function() {
     return view('job-post-four');
 })->name('job-post-four');
 
+Route::get('/job-management', function() {
+    return view('job-management');
+})->name('job-management');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
