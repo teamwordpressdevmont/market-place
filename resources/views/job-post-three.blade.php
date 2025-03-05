@@ -2,7 +2,6 @@
 @section('content')
 <div class="mt-5">
     <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 gap-5 mt-8 items-center">
-       <!-- Left Section -->
        <div class="lg:col-span-2 col-span-1">
           <div class="flex items-center gap-2 bg-white rounded-full text-sm w-fit pr-4">
              <div class="bg-[#FFE9DC] px-3 py-2 rounded-full">
@@ -31,7 +30,6 @@
              <span class="bg-[#ABABAB] text-white text-gray-700 px-4 pt-1 pb-1 leading[0] rounded-full text-xs hover:bg-secondary transition">Plumber</span>
           </div>
        </div>
-       <!-- Right Section (Budget) -->
        <div class="bg-[#EDE9D0] p-4 rounded-2xl flex items-end gap-4 justify-center xl:w-82 w-fit lg:ml-auto self-end">
           <p class="text-[#072130] text-sm font-semibold">Task Budget</p>
           <p class="lg:text-4xl md:text-2xl text-xl font-bold text-[#222222]">$2500</p>
@@ -43,12 +41,10 @@
              <h2 class="text-sm font-semibold">Job Description</h2>
              <p class="text-[#ABABAB] text-xs mt-2">John is seeking a skilled and reliable plumber for his kitchen pipes. The ideal candidate will be responsible for diagnosing and repairing issues with kitchen plumbing, including clogged drains, leaks, or damaged pipes...</p>
           </div>
-          <!-- Contract Timeline -->
           <div class="border-b border-[#e5e7eb] md:mb-8 mb-5 md:pb-8 pb-5">
              <h2 class="text-sm font-semibold">Contract Timeline</h2>
              <div class="flex md:flex-row flex-col md:gap-9 gap-4 border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit w-100 md:px-9 px-5 py-4 rounded-2xl items-center"><span>Start Date: <strong class="text-[#222222] font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-[#222222] font-light">  18 Mar 2025</strong></span></div>
           </div>
-          <!-- Location -->
           <div class="border-b border-[#e5e7eb] md:mb-8 mb-5 md:pb-8 pb-5">
              <h2 class="text-sm font-semibold">Location</h2>
              <p class="text-[#ABABAB] text-xs mt-2 flex leading-none gap-2">
@@ -59,7 +55,6 @@
                 John’s Home | 21 Crescent St, York UK
              </p>
           </div>
-          <!-- Images -->
           <div class="mt-6">
              <h2 class="text-sm font-semibold">Images</h2>
              <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 mt-2">
@@ -75,12 +70,9 @@
        <div class="bg-white rounded-2xl border border-[#22222233] py-4 h-fit">
           <h3 class="text-[#2C2C2C] font-semibold mb-4 text-sm border-b border-[#e5e7eb] px-5 pb-2">Accept Proposals</h3>
           <div class="space-y-4 px-5">
-             <!-- Tradeperson Card -->
              <div class="flex bg-[#FCFCFA] border border-[#e5e7eb] rounded-xl">
-                <!-- Left Section -->
                 <div class="flex-1 py-4">
                    <div class="flex justify-between items-start lg:px-4 px-3 flex-col sm:flex-row">
-                      <!-- Profile Info -->
                       <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                       <div class="flex-1">
                          <div>
@@ -97,10 +89,8 @@
                             <span class="text-xs text-[#ABABAB] md:ml-2 ml-0 md:mt-0 mt-2">(28 reviews)</span>
                          </div>
                       </div>
-                      <!-- Rating Section -->
                    </div>
                 </div>
-                <!-- Right Arrow Section -->
                 <a href="#" class="md:w-24 w-14 flex items-center justify-center border-l border-gray-200">
                    <span class="text-gray-500 text-lg">
                       <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -110,10 +100,8 @@
                 </a>
              </div>
              <div class="flex bg-[#FCFCFA] border border-[#e5e7eb] rounded-xl">
-                <!-- Left Section -->
                 <div class="flex-1 py-4">
                    <div class="flex justify-between items-start lg:px-4 px-3 flex-col sm:flex-row">
-                      <!-- Profile Info -->
                       <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                       <div class="flex-1">
                          <div>
@@ -130,10 +118,8 @@
                             <span class="text-xs text-[#ABABAB] md:ml-2 ml-0 md:mt-0 mt-2">(28 reviews)</span>
                          </div>
                       </div>
-                      <!-- Rating Section -->
                    </div>
                 </div>
-                <!-- Right Arrow Section -->
                 <a href="#" class="md:w-24 w-14 flex items-center justify-center border-l border-gray-200">
                    <span class="text-gray-500 text-lg">
                       <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -143,10 +129,8 @@
                 </a>
              </div>
              <div class="flex bg-[#FCFCFA] border border-[#e5e7eb] rounded-xl">
-                <!-- Left Section -->
                 <div class="flex-1 py-4">
                    <div class="flex justify-between items-start lg:px-4 px-3 flex-col sm:flex-row">
-                      <!-- Profile Info -->
                       <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                       <div class="flex-1">
                          <div>
@@ -163,10 +147,8 @@
                             <span class="text-xs text-[#ABABAB] md:ml-2 ml-0 md:mt-0 mt-2">(28 reviews)</span>
                          </div>
                       </div>
-                      <!-- Rating Section -->
                    </div>
                 </div>
-                <!-- Right Arrow Section -->
                 <a href="#" class="md:w-24 w-14 flex items-center justify-center border-l border-gray-200">
                    <span class="text-gray-500 text-lg">
                       <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -176,10 +158,8 @@
                 </a>
              </div>
              <div class="flex bg-[#FCFCFA] border border-[#e5e7eb] rounded-xl">
-                <!-- Left Section -->
                 <div class="flex-1 py-4">
                    <div class="flex justify-between items-start lg:px-4 px-3 flex-col sm:flex-row">
-                      <!-- Profile Info -->
                       <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                       <div class="flex-1">
                          <div>
@@ -196,10 +176,8 @@
                             <span class="text-xs text-[#ABABAB] md:ml-2 ml-0 md:mt-0 mt-2">(28 reviews)</span>
                          </div>
                       </div>
-                      <!-- Rating Section -->
                    </div>
                 </div>
-                <!-- Right Arrow Section -->
                 <a href="#" class="md:w-24 w-14 flex items-center justify-center border-l border-gray-200">
                    <span class="text-gray-500 text-lg">
                       <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -213,12 +191,9 @@
        <div class="bg-white rounded-2xl border border-[#22222233] py-4">
           <h3 class="text-[#2C2C2C] text-sm font-semibold text-base border-b border-[#e5e7eb] px-5 pb-3">Assign Tradeperson:</h3>
           <div class="space-y-4 px-5">
-             <!-- Tradeperson Card -->
              <div class="flex border-b border-[#e5e7eb]">
-                <!-- Left Section -->
                 <div class="flex-1 py-4">
                    <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
-                      <!-- Profile Info -->
                       <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                       <div class="flex flex-1 gap-4 justify-between items-center sm:flex-row flex-col">
                          <div>
@@ -238,13 +213,11 @@
                    </div>
                 </div>
              </div>
-             <!-- Message Button -->
              <div class="flex border-b border-[#e5e7eb] pb-4 text-center">
                 <a href="#" class="bg-[#FF904E] text-white px-6 py-3 rounded-full text-sm inline-block w-full max-w-lg hover:bg-primary transition">
                 Message
                 </a>
              </div>
-             <!-- Hire Question -->
              <div class="mt-4">
                 <p class="text-sm text-[#2C2C2C] font-semibold mb-4">Do you want to hire Brian Simmons?</p>
                 <div class="flex justify-between gap-4 border-b border[#222222] mb-5 pb-5">
@@ -256,7 +229,6 @@
                    </a>
                 </div>
              </div>
-             <!-- Tabs -->
              <div class="tabsWrapper">
                 <div class="tabsScroll w-full pb-2 overflow-x-auto relative">
                    <ul class="flex flex-nowrap border-b bg-gray-200 rounded-full p-1 min-w-max justify-between" id="default-styled-tab" data-tabs-toggle="#default-styled-tab-content" data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" role="tablist">

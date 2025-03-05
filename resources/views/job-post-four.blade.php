@@ -2,7 +2,6 @@
 @section('content')
 <div class="mt-5">
     <div class="grid grid-cols-1 xl:grid-cols-2 lg:gap-8 gap-5 mt-8 items-end">
-       <!-- Left Section -->
        <div class="">
           <div class="flex items-center gap-2 bg-white rounded-full text-sm w-fit pr-4">
              <div class="bg-[#FFE9DC] px-3 py-2 rounded-full">
@@ -31,7 +30,6 @@
              <span class="bg-[#ABABAB] text-white text-gray-700 px-4 pt-1 pb-1 leading[0] rounded-full text-xs hover:bg-secondary transition">Plumber</span>
           </div>
        </div>
-       <!-- Right Section (Budget) -->
        <div class="flex md:items-end md:gap-12 gap-5 xl:justify-end md:flex-row flex-col items-left">
           <a href="#" class="bg-secondary rounded-full px-4 py-2 text-sm text-white flex items-center justify-between w-40 hover:bg-primary transition">
              <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,12 +51,10 @@
              <h2 class="text-sm font-semibold">Job Description</h2>
              <p class="text-[#ABABAB] text-xs mt-2">John is seeking a skilled and reliable plumber for his kitchen pipes. The ideal candidate will be responsible for diagnosing and repairing issues with kitchen plumbing, including clogged drains, leaks, or damaged pipes...</p>
           </div>
-          <!-- Contract Timeline -->
           <div class="border-b border-[#e5e7eb] md:mb-8 mb-5 md:pb-8 pb-5">
              <h2 class="text-sm font-semibold">Contract Timeline</h2>
              <div class="flex md:flex-row flex-col md:gap-9 gap-4 border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit w-100 md:px-9 px-5 py-4 rounded-2xl items-center"><span>Start Date: <strong class="text-[#222222] font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-[#222222] font-light">  18 Mar 2025</strong></span></div>
           </div>
-          <!-- Location -->
           <div class="border-b border-[#e5e7eb] md:mb-8 mb-5 md:pb-8 pb-5">
              <h2 class="text-sm font-semibold">Location</h2>
              <p class="text-[#ABABAB] text-xs mt-2 flex leading-none gap-2">
@@ -69,7 +65,6 @@
                 John’s Home | 21 Crescent St, York UK
              </p>
           </div>
-          <!-- Images -->
           <div class="mt-6">
              <h2 class="text-sm font-semibold">Images</h2>
              <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 mt-2">
@@ -85,12 +80,9 @@
        <div class="bg-white rounded-2xl border border-[#22222233] py-4">
           <h3 class="text-[#2C2C2C] text-sm font-semibold text-base border-b border-[#e5e7eb] px-5 pb-3">Assign Tradeperson:</h3>
           <div class="space-y-4 px-5">
-             <!-- Tradeperson Card -->
              <div class="flex border-b border-[#e5e7eb]">
-                <!-- Left Section -->
                 <div class="flex-1 py-4">
                    <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
-                      <!-- Profile Info -->
                       <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                       <div class="flex flex-1 gap-4 justify-between md:items-center sm:flex-row flex-col">
                          <div>
@@ -110,14 +102,11 @@
                    </div>
                 </div>
              </div>
-             <!-- Message Button -->
              <div class="border-b border-[#e5e7eb] pb-4 text-center">
                 <a href="#" class="bg-[#FF904E] text-white px-6 py-3 rounded-full text-sm inline-block w-full max-w-lg hover:bg-primary transition">
                 Message
                 </a>
              </div>
-             <!-- Hire Question -->
-             <!-- Tabs -->
              <div class="tabsWrapper">
                 <div class="tabsScroll w-full pb-2 overflow-x-auto relative">
                    <ul class="flex flex-nowrap border-b bg-gray-200 rounded-full p-1 min-w-max justify-between" id="default-styled-tab" data-tabs-toggle="#default-styled-tab-content" data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" role="tablist">
@@ -206,7 +195,6 @@
           <h3 class="text-[#2C2C2C] font-semibold mb-7 text-sm border-b border-[#e5e7eb] px-5 pb-2">Project Milestones</h3>
           <p class="text-[#ABABAB] mb-12 text-sm px-5">This project involves diagnosing and repairing kitchen plumbing issues, including clogged drains, leaks, and damaged pipes. The goal is to ensure a fully functional and leak-free kitchen plumbing system that operates safely and efficiently.</p>
           <div class="px-5 mb-12">
-             <!-- 1st Milestone (Completed) -->
              <div class="flex items-start space-x-4">
                 <div class="flex flex-col items-center">
                    <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
@@ -223,7 +211,6 @@
                    <p class="text-black text-xs text-light">Diagnosis &amp; Inspection</p>
                 </div>
              </div>
-             <!-- 2nd Milestone (Ongoing) -->
              <div class="flex items-start space-x-4">
                 <div class="flex flex-col items-center">
                    <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
@@ -240,7 +227,6 @@
                    <p class="text-black text-xs text-light">Material Procurement <span class="ml-4 text-gray-400 text-xs">4 days left</span></p>
                 </div>
              </div>
-             <!-- 3rd Milestone (Pending) -->
              <div class="flex items-start space-x-4 opacity-50">
                 <div class="flex flex-col items-center">
                    <div class="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center">
@@ -257,7 +243,6 @@
                    <p class="text-[#ABABAB] text-xs font-light">Repair &amp; Installation</p>
                 </div>
              </div>
-             <!-- 4th Milestone (Pending) -->
              <div class="flex items-start space-x-4 opacity-50">
                 <div class="flex flex-col items-center">
                    <div class="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center">

@@ -36,11 +36,8 @@
                    <h2 class="text-lg font-bold">4 Active Jobs</h2>
                 </div>
                 <div class="space-y-5">
-                   <!-- Job Card 1 -->
                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                      <!-- Job Image -->
                       <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
-                      <!-- Job Details -->
                       <div class="md:py-2 py-4 flex-1">
                          <div class="text-xs text-gray-500 flex items-center mb-1">
                             <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -68,9 +65,7 @@
                             As soon as one is interested we will let you know.
                          </p>
                       </div>
-                      <!-- Tradesperson & Task Deadline -->
                       <div class="grid md:grid-cols-2 grid-cols-1 h-full border-r border-l border-[#22222233]">
-                         <!-- Assigned Tradesperson -->
                          <div class="text-xs text-gray-600 border-r border-[#22222233] px-8">
                             <span class="font-semibold text-[#072130] text-sm block mb-5">Assign Tradesperson:</span>
                             <div class="flex items-center gap-2">
@@ -81,13 +76,11 @@
                                </div>
                             </div>
                          </div>
-                         <!-- Task Deadline -->
                          <div class="text-xs text-gray-600 pl-7 pr-7">
                             <span class="font-semibold text-[#072130] text-sm block mb-4">Task Deadline:</span>
                             <div class="flex flex-col border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit w-100 px-3 py-3 rounded-3xl items-center"><span class="border-b border-[#22222233] pb-2 mb-2">Start Date: <strong class="text-[#222222] font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-[#222222] font-light">  18 Mar 2025</strong></span></div>
                          </div>
                       </div>
-                      <!-- View Contract -->
                       <div class="flex flex-col gap-12 pr-7">
                          <a href="#" class="text-[#222222] text-xs ml-auto font-semibold hover:text-[#db4a2b] transition">
                             <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,9 +99,7 @@
                       </div>
                    </div>
                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                      <!-- Job Image -->
                       <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
-                      <!-- Job Details -->
                       <div class="md:py-2 py-4 flex-1">
                          <div class="text-xs text-gray-500 flex items-center mb-1">
                             <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -136,9 +127,7 @@
                             As soon as one is interested we will let you know.
                          </p>
                       </div>
-                      <!-- Tradesperson & Task Deadline -->
                       <div class="grid md:grid-cols-2 grid-cols-1 h-full border-r border-l border-[#22222233]">
-                         <!-- Assigned Tradesperson -->
                          <div class="text-xs text-gray-600 border-r border-[#22222233] px-8">
                             <span class="font-semibold text-[#072130] text-sm block mb-5">Assign Tradesperson:</span>
                             <div class="flex items-center gap-2">
@@ -149,13 +138,11 @@
                                </div>
                             </div>
                          </div>
-                         <!-- Task Deadline -->
                          <div class="text-xs text-gray-600 pl-7 pr-7">
                             <span class="font-semibold text-[#072130] text-sm block mb-4">Task Deadline:</span>
                             <div class="flex flex-col border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit w-100 px-3 py-3 rounded-3xl items-center"><span class="border-b border-[#22222233] pb-2 mb-2">Start Date: <strong class="text-[#222222] font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-[#222222] font-light">  18 Mar 2025</strong></span></div>
                          </div>
                       </div>
-                      <!-- View Contract -->
                       <div class="flex flex-col gap-12 pr-7">
                          <a href="#" class="text-[#222222] text-xs ml-auto font-semibold hover:text-[#db4a2b] transition">
                             <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -174,9 +161,7 @@
                       </div>
                    </div>
                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                      <!-- Job Image -->
                       <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
-                      <!-- Job Details -->
                       <div class="md:py-2 py-4 flex-1">
                          <div class="text-xs text-gray-500 flex items-center mb-1">
                             <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -204,9 +189,7 @@
                             As soon as one is interested we will let you know.
                          </p>
                       </div>
-                      <!-- Tradesperson & Task Deadline -->
                       <div class="grid md:grid-cols-2 grid-cols-1 h-full border-r border-l border-[#22222233]">
-                         <!-- Assigned Tradesperson -->
                          <div class="text-xs text-gray-600 border-r border-[#22222233] px-8">
                             <span class="font-semibold text-[#072130] text-sm block mb-5">Assign Tradesperson:</span>
                             <div class="flex items-center gap-2">
@@ -217,13 +200,11 @@
                                </div>
                             </div>
                          </div>
-                         <!-- Task Deadline -->
                          <div class="text-xs text-gray-600 pl-7 pr-7">
                             <span class="font-semibold text-[#072130] text-sm block mb-4">Task Deadline:</span>
                             <div class="flex flex-col border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit w-100 px-3 py-3 rounded-3xl items-center"><span class="border-b border-[#22222233] pb-2 mb-2">Start Date: <strong class="text-[#222222] font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-[#222222] font-light">  18 Mar 2025</strong></span></div>
                          </div>
                       </div>
-                      <!-- View Contract -->
                       <div class="flex flex-col gap-12 pr-7">
                          <a href="#" class="text-[#222222] text-xs ml-auto font-semibold hover:text-[#db4a2b] transition">
                             <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -242,9 +223,7 @@
                       </div>
                    </div>
                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                      <!-- Job Image -->
                       <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
-                      <!-- Job Details -->
                       <div class="md:py-2 py-4 flex-1">
                          <div class="text-xs text-gray-500 flex items-center mb-1">
                             <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -272,9 +251,7 @@
                             As soon as one is interested we will let you know.
                          </p>
                       </div>
-                      <!-- Tradesperson & Task Deadline -->
                       <div class="grid md:grid-cols-2 grid-cols-1 h-full border-r border-l border-[#22222233]">
-                         <!-- Assigned Tradesperson -->
                          <div class="text-xs text-gray-600 border-r border-[#22222233] px-8">
                             <span class="font-semibold text-[#072130] text-sm block mb-5">Assign Tradesperson:</span>
                             <div class="flex items-center gap-2">
@@ -285,13 +262,11 @@
                                </div>
                             </div>
                          </div>
-                         <!-- Task Deadline -->
                          <div class="text-xs text-gray-600 pl-7 pr-7">
                             <span class="font-semibold text-[#072130] text-sm block mb-4">Task Deadline:</span>
                             <div class="flex flex-col border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit w-100 px-3 py-3 rounded-3xl items-center"><span class="border-b border-[#22222233] pb-2 mb-2">Start Date: <strong class="text-[#222222] font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-[#222222] font-light">  18 Mar 2025</strong></span></div>
                          </div>
                       </div>
-                      <!-- View Contract -->
                       <div class="flex flex-col gap-12 pr-7">
                          <a href="#" class="text-[#222222] text-xs ml-auto font-semibold hover:text-[#db4a2b] transition">
                             <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -318,11 +293,8 @@
                    <h2 class="text-lg font-bold">2 Active Jobs</h2>
                 </div>
                 <div class="space-y-5">
-                   <!-- Job Card 1 -->
                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                      <!-- Job Image -->
                       <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
-                      <!-- Job Details -->
                       <div class="md:py-2 py-4 flex-1">
                          <div class="text-xs text-gray-500 flex items-center mb-1">
                             <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -350,20 +322,16 @@
                             As soon as one is interested we will let you know.
                          </p>
                       </div>
-                      <!-- Tradesperson & Task Deadline -->
                       <div class="grid md:grid-cols-2 grid-cols-1 h-full border-r border-l border-[#22222233] w-[450px]">
-                         <!-- Assigned Tradesperson -->
                          <div class="flex flex-col items-center justify-center text-center text-xs text-gray-600 border-r border-[#22222233] bg-[#ffe5d8] px-8">
                             <p class="font-semibold text-primary text-sm block mb-3">Job Pending</p>
                             <p class="text-[#222222] text-xs font-light">Approval Pending from Admin</p>
                          </div>
-                         <!-- Task Deadline -->
                          <div class="text-xs text-gray-600 pl-7 pr-7">
                             <span class="font-semibold text-[#072130] text-sm block mb-4">Task Deadline:</span>
                             <div class="flex flex-col border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit w-100 px-3 py-3 rounded-3xl items-center"><span class="border-b border-[#22222233] pb-2 mb-2">Start Date: <strong class="text-[#222222] font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-[#222222] font-light">  18 Mar 2025</strong></span></div>
                          </div>
                       </div>
-                      <!-- View Contract -->
                       <div class="flex flex-col gap-12 pr-7">
                          <a href="#" class="text-[#222222] text-xs ml-auto font-semibold hover:text-[#db4a2b] transition">
                             <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -382,9 +350,7 @@
                       </div>
                    </div>
                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                      <!-- Job Image -->
                       <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
-                      <!-- Job Details -->
                       <div class="md:py-2 py-4 flex-1">
                          <div class="text-xs text-gray-500 flex items-center mb-1">
                             <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -412,9 +378,7 @@
                             As soon as one is interested we will let you know.
                          </p>
                       </div>
-                      <!-- Tradesperson & Task Deadline -->
                       <div class="grid md:grid-cols-2 grid-cols-1 h-full border-r border-[#22222233] w-[450px]">
-                         <!-- Assigned Tradesperson -->
                          <div class="flex items-center justify-center text-xs text-gray-600 border-r border-[#22222233] pr-5">
                             <svg width="98" height="32" viewBox="0 0 98 32" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                <circle cx="16" cy="16" r="15.25" fill="url(#pattern0_1_64)" stroke="white" stroke-width="1.5"></circle>
@@ -439,13 +403,11 @@
                             </svg>
                             <span class=" text-[#ABABAB] text-xs block ml-2 whitespace-nowrap">8 Proposals Submitted</span>
                          </div>
-                         <!-- Task Deadline -->
                          <div class="text-xs text-gray-600 px-7">
                             <span class="font-semibold text-[#072130] text-sm block mb-4">Task Deadline:</span>
                             <div class="flex flex-col border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit w-100 px-3 py-3 rounded-3xl items-center"><span class="border-b border-[#22222233] pb-2 mb-2">Start Date: <strong class="text-[#222222] font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-[#222222] font-light">  18 Mar 2025</strong></span></div>
                          </div>
                       </div>
-                      <!-- View Contract -->
                       <div class="flex flex-col gap-12 pr-7">
                          <a href="#" class="text-[#222222] text-xs ml-auto font-semibold hover:text-[#db4a2b] transition">
                             <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -472,11 +434,8 @@
                    <h2 class="text-lg font-bold">2 Active Jobs</h2>
                 </div>
                 <div class="space-y-5">
-                   <!-- Job Card 1 -->
                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                      <!-- Job Image -->
                       <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
-                      <!-- Job Details -->
                       <div class="md:py-2 py-4 flex-1">
                          <div class="text-xs text-gray-500 flex items-center mb-1">
                             <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -504,7 +463,6 @@
                             As soon as one is interested we will let you know.
                          </p>
                       </div>
-                      <!-- Tradesperson & Task Deadline -->
                       <div class="grid grid-cols-1 h-full border-r border-[#22222233]">
                          <div class="flex flex-col gap-3 md:justify-end justify-start self-start pr-7">
                             <a href="#" class="bg-[#ABABAB] rounded-full px-5 py-2 text-sm text-white flex items-center justify-center hover:bg-primary transition">Submit Reviews
@@ -513,7 +471,6 @@
                             </a>
                          </div>
                       </div>
-                      <!-- View Contract -->
                       <div class="flex flex-col gap-12 pr-7">
                          <a href="#" class="text-[#222222] text-xs ml-auto font-semibold hover:text-[#db4a2b] transition">
                             <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -532,9 +489,7 @@
                       </div>
                    </div>
                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                      <!-- Job Image -->
                       <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
-                      <!-- Job Details -->
                       <div class="md:py-2 py-4 flex-1">
                          <div class="text-xs text-gray-500 flex items-center mb-1">
                             <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -562,7 +517,6 @@
                             As soon as one is interested we will let you know.
                          </p>
                       </div>
-                      <!-- Tradesperson & Task Deadline -->
                       <div class="grid grid-cols-1 h-full border-r border-[#22222233]">
                          <div class="flex flex-col gap-3 pr-7">
                             <a href="#" class="bg-[#222222] rounded-full pl-1 pr-3 py-1 text-sm text-white flex items-center justify-center hover:bg-primary transition">
@@ -578,7 +532,6 @@
                             </a>
                          </div>
                       </div>
-                      <!-- View Contract -->
                       <div class="flex flex-col gap-12 pr-7">
                          <a href="#" class="text-[#222222] text-xs ml-auto font-semibold hover:text-[#db4a2b] transition">
                             <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">

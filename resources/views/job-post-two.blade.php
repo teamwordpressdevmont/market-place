@@ -2,7 +2,6 @@
 @section('content')
 <div class="mt-5">
     <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 gap-5 mt-8 items-center">
-       <!-- Left Section -->
        <div class="lg:col-span-2 col-span-1">
           <div class="flex items-center gap-2 bg-white rounded-full text-sm w-fit pr-4">
              <div class="bg-[#FFE9DC] px-3 py-2 rounded-full">
@@ -31,7 +30,6 @@
              <span class="bg-[#ABABAB] text-white text-gray-700 px-4 pt-1 pb-1 leading[0] rounded-full text-xs hover:bg-secondary transition">Plumber</span>
           </div>
        </div>
-       <!-- Right Section (Budget) -->
        <div class="bg-[#EDE9D0] p-4 rounded-2xl flex items-end gap-4 justify-center xl:w-82 w-fit lg:ml-auto self-end">
           <p class="text-[#072130] text-sm font-semibold">Task Budget</p>
           <p class="lg:text-4xl md:text-2xl text-xl font-bold text-[#222222]">$2500</p>
@@ -43,12 +41,10 @@
              <h2 class="text-sm font-semibold">Job Description</h2>
              <p class="text-[#ABABAB] text-xs mt-2">John is seeking a skilled and reliable plumber for his kitchen pipes. The ideal candidate will be responsible for diagnosing and repairing issues with kitchen plumbing, including clogged drains, leaks, or damaged pipes...</p>
           </div>
-          <!-- Contract Timeline -->
           <div class="border-b border-[#e5e7eb] md:mb-8 mb-5 md:pb-8 pb-5">
              <h2 class="text-sm font-semibold">Contract Timeline</h2>
              <div class="flex md:flex-row flex-col md:gap-9 gap-4 border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit w-100 md:px-9 px-5 py-4 rounded-2xl items-center"><span>Start Date: <strong class="text-[#222222] font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-[#222222] font-light">  18 Mar 2025</strong></span></div>
           </div>
-          <!-- Location -->
           <div class="border-b border-[#e5e7eb] md:mb-8 mb-5 md:pb-8 pb-5">
              <h2 class="text-sm font-semibold">Location</h2>
              <p class="text-[#ABABAB] text-xs mt-2 flex leading-none gap-2">
@@ -59,7 +55,6 @@
                 John’s Home | 21 Crescent St, York UK
              </p>
           </div>
-          <!-- Images -->
           <div class="mt-6">
              <h2 class="text-sm font-semibold">Images</h2>
              <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 mt-2 xl:w-[58%]">
@@ -80,12 +75,9 @@
           <div class="bg-white rounded-2xl border border-[#22222233] py-4">
              <h3 class="text-[#2C2C2C] font-semibold mb-4 text-sm border-b border-[#e5e7eb] px-5 pb-2">Recommended Tradepersons</h3>
              <div class="space-y-4 px-5">
-                <!-- Tradeperson Card -->
                 <div class="flex bg-[#FCFCFA] border border-[#e5e7eb] rounded-xl shadow-sm">
-                   <!-- Left Section -->
                    <div class="flex-1 py-4">
                       <div class="flex justify-between items-start lg:px-4 px-3 flex-col sm:flex-row">
-                         <!-- Profile Info -->
                          <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                          <div class="flex-1">
                             <div>
@@ -102,19 +94,15 @@
                                <span class="text-xs text-[#ABABAB] md:ml-2 ml-0 md:mt-0 mt-2">(28 reviews)</span>
                             </div>
                          </div>
-                         <!-- Rating Section -->
                       </div>
                    </div>
-                   <!-- Right Arrow Section -->
                    <a href="#" class="2xl:w-28 w-24 flex items-center justify-center border-l border-gray-200">
                    <span class="text-[#2C2C2C] sm:text-sm text-xs">Invite Sent</span>
                    </a>
                 </div>
                 <div class="flex bg-[#FCFCFA] border border-[#e5e7eb] rounded-xl shadow-sm">
-                   <!-- Left Section -->
                    <div class="flex-1 py-4">
                       <div class="flex justify-between items-start lg:px-4 px-3 flex-col sm:flex-row">
-                         <!-- Profile Info -->
                          <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                          <div class="flex-1">
                             <div>
@@ -131,19 +119,15 @@
                                <span class="text-xs text-[#ABABAB] md:ml-2 ml-0 md:mt-0 mt-2">(28 reviews)</span>
                             </div>
                          </div>
-                         <!-- Rating Section -->
                       </div>
                    </div>
-                   <!-- Right Arrow Section -->
                    <a href="#" class="2xl:w-28 w-24 flex items-center justify-center border-l border-gray-200">
                    <span class="text-[#2C2C2C] sm:text-sm text-xs">Invite Sent</span>
                    </a>
                 </div>
                 <div class="flex bg-[#FCFCFA] border border-[#e5e7eb] rounded-xl shadow-sm">
-                   <!-- Left Section -->
                    <div class="flex-1 py-4">
                       <div class="flex justify-between items-start lg:px-4 px-3 flex-col sm:flex-row">
-                         <!-- Profile Info -->
                          <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                          <div class="flex-1">
                             <div>
@@ -160,19 +144,15 @@
                                <span class="text-xs text-[#ABABAB] md:ml-2 ml-0 md:mt-0 mt-2">(28 reviews)</span>
                             </div>
                          </div>
-                         <!-- Rating Section -->
                       </div>
                    </div>
-                   <!-- Right Arrow Section -->
                    <a href="#" class="2xl:w-28 w-24 flex items-center justify-center border-l border-gray-200">
                    <span class="text-[#2C2C2C] sm:text-sm text-xs">Invite Sent</span>
                    </a>
                 </div>
                 <div class="flex bg-[#FCFCFA] border border-[#e5e7eb] rounded-xl shadow-sm">
-                   <!-- Left Section -->
                    <div class="flex-1 py-4">
                       <div class="flex justify-between items-start lg:px-4 px-3 flex-col sm:flex-row">
-                         <!-- Profile Info -->
                          <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                          <div class="flex-1">
                             <div>
@@ -189,10 +169,8 @@
                                <span class="text-xs text-[#ABABAB] md:ml-2 ml-0 md:mt-0 mt-2">(28 reviews)</span>
                             </div>
                          </div>
-                         <!-- Rating Section -->
                       </div>
                    </div>
-                   <!-- Right Arrow Section -->
                    <a href="#" class="2xl:w-28 w-24 flex items-center justify-center border-l border-gray-200">
                    <span class="text-[#2C2C2C] sm:text-sm text-xs">Invite Sent</span>
                    </a>

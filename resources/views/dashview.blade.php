@@ -72,7 +72,6 @@
              </a>
           </div>
           <div class="space-y-5">
-             <!-- Job Card 1 -->
              <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col">
                 <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
                 <div class="md:py-2 py-4 lg:px-5 px-3 flex-1">
@@ -239,13 +238,11 @@
           <h2 class="text-lg font-bold mb-3">Accept Proposals</h2>
           <div class="space-y-5 h-[600px] overflow-y-auto pr-3">
              <div class="flex bg-[#FCFCFA] border border-[#EDE9D0] rounded-xl">
-                <!-- Left Section -->
                 <div class="flex-1 py-4">
                    <h3 class="sm:text-sm text-xs font-bold border-b border-gray-300 pb-2 mb-4 lg:px-4 px-3">
                       Job Title: Need To Fix Kitchen Pipe
                    </h3>
                    <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
-                      <!-- Profile Info -->
                       <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
                          <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                          <div>
@@ -253,7 +250,6 @@
                             <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
                          </div>
                       </div>
-                      <!-- Rating Section -->
                       <div class="flex items-center md:mt-0 mt-3 md:flex-row flex-col">
                          <span class="flex items-center gap-2 text-xs font-bold text-[#2B2B2B] bg-[#F4F3F3] px-4 py-1 rounded-full">
                             4.5/5
@@ -265,7 +261,6 @@
                       </div>
                    </div>
                 </div>
-                <!-- Right Arrow Section -->
                 <a href="#" class="md:w-24 w-14 flex items-center justify-center border-l border-gray-200">
                    <span class="text-gray-500 text-lg">
                       <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -275,13 +270,11 @@
                 </a>
              </div>
              <div class="flex bg-[#FCFCFA] border border-[#EDE9D0] rounded-xl">
-                <!-- Left Section -->
                 <div class="flex-1 py-4">
                    <h3 class="sm:text-sm text-xs font-bold border-b border-gray-300 pb-2 mb-4 lg:px-4 px-3">
                       Job Title: Need To Fix Kitchen Pipe
                    </h3>
                    <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
-                      <!-- Profile Info -->
                       <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
                          <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                          <div>
@@ -289,7 +282,6 @@
                             <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
                          </div>
                       </div>
-                      <!-- Rating Section -->
                       <div class="flex items-center md:mt-0 mt-3 md:flex-row flex-col">
                          <span class="flex items-center gap-2 text-xs font-bold text-[#2B2B2B] bg-[#F4F3F3] px-4 py-1 rounded-full">
                             4.5/5
@@ -301,7 +293,6 @@
                       </div>
                    </div>
                 </div>
-                <!-- Right Arrow Section -->
                 <a href="#" class="md:w-24 w-14 flex items-center justify-center border-l border-gray-200">
                    <span class="text-gray-500 text-lg">
                       <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -311,13 +302,11 @@
                 </a>
              </div>
              <div class="flex bg-[#FCFCFA] border border-[#EDE9D0] rounded-xl">
-                <!-- Left Section -->
                 <div class="flex-1 py-4">
                    <h3 class="sm:text-sm text-xs font-bold border-b border-gray-300 pb-2 mb-4 lg:px-4 px-3">
                       Job Title: Need To Fix Kitchen Pipe
                    </h3>
                    <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
-                      <!-- Profile Info -->
                       <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
                          <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                          <div>
@@ -325,7 +314,6 @@
                             <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
                          </div>
                       </div>
-                      <!-- Rating Section -->
                       <div class="flex items-center md:mt-0 mt-3 md:flex-row flex-col">
                          <span class="flex items-center gap-2 text-xs font-bold text-[#2B2B2B] bg-[#F4F3F3] px-4 py-1 rounded-full">
                             4.5/5
@@ -337,7 +325,6 @@
                       </div>
                    </div>
                 </div>
-                <!-- Right Arrow Section -->
                 <a href="#" class="md:w-24 w-14 flex items-center justify-center border-l border-gray-200">
                    <span class="text-gray-500 text-lg">
                       <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -347,13 +334,11 @@
                 </a>
              </div>
              <div class="flex bg-[#FCFCFA] border border-[#EDE9D0] rounded-xl">
-                <!-- Left Section -->
                 <div class="flex-1 py-4">
                    <h3 class="sm:text-sm text-xs font-bold border-b border-gray-300 pb-2 mb-4 lg:px-4 px-3">
                       Job Title: Need To Fix Kitchen Pipe
                    </h3>
                    <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
-                      <!-- Profile Info -->
                       <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
                          <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                          <div>
@@ -361,7 +346,6 @@
                             <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
                          </div>
                       </div>
-                      <!-- Rating Section -->
                       <div class="flex items-center md:mt-0 mt-3 md:flex-row flex-col">
                          <span class="flex items-center gap-2 text-xs font-bold text-[#2B2B2B] bg-[#F4F3F3] px-4 py-1 rounded-full">
                             4.5/5
@@ -373,7 +357,6 @@
                       </div>
                    </div>
                 </div>
-                <!-- Right Arrow Section -->
                 <a href="#" class="md:w-24 w-14 flex items-center justify-center border-l border-gray-200">
                    <span class="text-gray-500 text-lg">
                       <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -383,13 +366,11 @@
                 </a>
              </div>
              <div class="flex bg-[#FCFCFA] border border-[#EDE9D0] rounded-xl">
-                <!-- Left Section -->
                 <div class="flex-1 py-4">
                    <h3 class="sm:text-sm text-xs font-bold border-b border-gray-300 pb-2 mb-4 lg:px-4 px-3">
                       Job Title: Need To Fix Kitchen Pipe
                    </h3>
                    <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
-                      <!-- Profile Info -->
                       <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
                          <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                          <div>
@@ -397,7 +378,6 @@
                             <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
                          </div>
                       </div>
-                      <!-- Rating Section -->
                       <div class="flex items-center md:mt-0 mt-3 md:flex-row flex-col">
                          <span class="flex items-center gap-2 text-xs font-bold text-[#2B2B2B] bg-[#F4F3F3] px-4 py-1 rounded-full">
                             4.5/5
@@ -409,7 +389,6 @@
                       </div>
                    </div>
                 </div>
-                <!-- Right Arrow Section -->
                 <a href="#" class="md:w-24 w-14 flex items-center justify-center border-l border-gray-200">
                    <span class="text-gray-500 text-lg">
                       <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -419,13 +398,11 @@
                 </a>
              </div>
              <div class="flex bg-[#FCFCFA] border border-[#EDE9D0] rounded-xl">
-                <!-- Left Section -->
                 <div class="flex-1 py-4">
                    <h3 class="sm:text-sm text-xs font-bold border-b border-gray-300 pb-2 mb-4 lg:px-4 px-3">
                       Job Title: Need To Fix Kitchen Pipe
                    </h3>
                    <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
-                      <!-- Profile Info -->
                       <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
                          <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                          <div>
@@ -433,7 +410,6 @@
                             <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
                          </div>
                       </div>
-                      <!-- Rating Section -->
                       <div class="flex items-center md:mt-0 mt-3 md:flex-row flex-col">
                          <span class="flex items-center gap-2 text-xs font-bold text-[#2B2B2B] bg-[#F4F3F3] px-4 py-1 rounded-full">
                             4.5/5
@@ -445,7 +421,6 @@
                       </div>
                    </div>
                 </div>
-                <!-- Right Arrow Section -->
                 <a href="#" class="md:w-24 w-14 flex items-center justify-center border-l border-gray-200">
                    <span class="text-gray-500 text-lg">
                       <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">

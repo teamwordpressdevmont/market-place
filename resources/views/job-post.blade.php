@@ -2,7 +2,6 @@
 @section('content')
 <div class="mt-5">
     <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 gap-5 mt-8 items-center">
-       <!-- Left Section -->
        <div class="lg:col-span-2 col-span-1">
           <div class="flex items-center gap-2 bg-white rounded-full text-sm w-fit pr-4">
              <div class="bg-[#FFE9DC] px-3 py-2 rounded-full">
@@ -31,7 +30,6 @@
              <span class="bg-[#ABABAB] text-white text-gray-700 px-4 pt-1 pb-2 rounded-full text-xs leading-[12px] hover:bg-secondary transition">Plumber</span>
           </div>
        </div>
-       <!-- Right Section (Budget) -->
        <div class="bg-[#EDE9D0] p-4 rounded-2xl flex items-end gap-4 justify-center xl:w-82 w-fit lg:ml-auto self-end">
           <p class="text-[#072130] text-sm font-semibold">Task Budget</p>
           <p class="lg:text-4xl md:text-2xl text-xl font-bold text-[#222222]">$2500</p>
@@ -43,12 +41,10 @@
              <h2 class="text-sm font-semibold">Job Description</h2>
              <p class="text-[#ABABAB] text-xs mt-2">John is seeking a skilled and reliable plumber for his kitchen pipes. The ideal candidate will be responsible for diagnosing and repairing issues with kitchen plumbing, including clogged drains, leaks, or damaged pipes...</p>
           </div>
-          <!-- Contract Timeline -->
           <div class="border-b border-[#e5e7eb] md:mb-8 mb-5 md:pb-8 pb-5">
              <h2 class="text-sm font-semibold">Contract Timeline</h2>
              <div class="flex md:flex-row flex-col md:gap-9 gap-4 border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit w-100 md:px-9 px-5 py-4 rounded-2xl items-center"><span>Start Date: <strong class="text-[#222222] font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-[#222222] font-light">  18 Mar 2025</strong></span></div>
           </div>
-          <!-- Location -->
           <div class="border-b border-[#e5e7eb] md:mb-8 mb-5 md:pb-8 pb-5">
              <h2 class="text-sm font-semibold">Location</h2>
              <p class="text-[#ABABAB] text-xs mt-2 flex leading-none gap-2">
@@ -59,7 +55,6 @@
                 John’s Home | 21 Crescent St, York UK
              </p>
           </div>
-          <!-- Images -->
           <div class="mt-6">
              <h2 class="text-sm font-semibold">Images</h2>
              <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 mt-2 xl:w-[58%]">
@@ -74,7 +69,6 @@
        </div>
        <div class="rounded-2xl xl:p-12 p-8 bg-[#222222] text-white flex items-center justify-center text-center h-fit">
           <div>
-             <!-- Icon -->
              <div class="flex justify-center mb-4">
                 <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                    <path d="M22.9993 43.8333C11.4933 43.8333 2.16602 34.5059 2.16602 23C2.16602 11.494 11.4934 2.16663 22.9994 2.16663C32.3278 2.16663 40.1362 8.29765 42.7909 16.75H37.5826" stroke="#FF904E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -82,9 +76,7 @@
                    <path d="M43.7397 25.0833C43.8017 24.3976 43.8333 23.7027 43.8333 23M29.25 43.8333C29.9617 43.5991 30.6569 43.3259 31.3333 43.0162M41.3138 33.4167C41.7155 32.6425 42.0739 31.8401 42.3855 31.013M35.9009 40.1442C36.6186 39.5503 37.2981 38.9079 37.935 38.2219" stroke="#FF904E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
              </div>
-             <!-- Title -->
              <h2 class="text-xl font-semibold text-[#FF904E] mb-3">Your Job Post<br>Is Under Review!</h2>
-             <!-- Description -->
              <p class="text-white text-xs">
                 Our team is checking the details to ensure<br> everything is good to go. You’ll be notified once<br> it's approved and ready to live.
              </p>
