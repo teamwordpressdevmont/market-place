@@ -7,7 +7,7 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
         
-        <script src="{{ url('/public/js/jquery.min.js') }}"></script>
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,15 +16,12 @@
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/trumbowyg@2.27.3/dist/ui/trumbowyg.min.css">
 
-        <link rel="stylesheet" href="{{ url('/public/css/style.css') }}">
-        {{-- <link rel="stylesheet" href="{{ url('/css/style.css') }}"> --}}
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
         
-       <script src="{{ url('/public/js/tailwind.js') }}"></script>
-       {{-- <script src="{{ url('/js/tailwind.js') }}"></script> --}}
+       <script src="{{ asset('/js/tailwind.js') }}"></script>
 
 
-       <script src="{{ url('/public/js/tailwindcss.js') }}"></script> 
-       {{-- <script src="{{ url('/js/tailwindcss.js') }}"></script> --}}
+       <script src="{{ asset('/js/tailwindcss.js') }}"></script>
 
        <script>
         tailwind.config = {
@@ -41,11 +38,9 @@
             }
         }
         </script>
-        {{-- <link rel="stylesheet" href="{{ url('/css/flowbite.min.css') }}">
-        <link rel="stylesheet" href="{{ url('/css/style.css') }}"> --}}
+        <link rel="stylesheet" href="{{ asset('/css/flowbite.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 
-        <link rel="stylesheet" href="{{ url('/public/css/flowbite.min.css') }}">
-        <link rel="stylesheet" href="{{ url('/public/css/style.css') }}">
     </head>
     <body class="bg-[#F4F4F4] font-sora">
 
@@ -64,12 +59,12 @@
         @include('partials.footer')
 
 
-        <script src="{{ url('/public/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('/js/jquery.min.js') }}"></script>
+
         
 
     
-        <script src="{{ url('/public/js/flowbite.min.js') }}"></script>
-        {{-- <script src="{{ url('/js/flowbite.min.js') }}"></script> --}}
+        <script src="{{ asset('/js/flowbite.min.js') }}"></script>
 
 
         <!-- Trumbowyg JS -->
@@ -77,12 +72,10 @@
 
 
         <!-- validation -->
-        <script src="{{ url('/public/js/jquery.validate.min.js') }}"></script>
-        {{-- <script src="{{ url('/js/jquery.validate.min.js') }}"></script> --}}
+        <script src="{{ asset('/js/jquery.validate.min.js') }}"></script>
 
         
-        <script src="{{ url('/public/js/custom-script.js') }}"></script>
-        {{-- <script src="{{ url('/js/custom-script.js') }}"></script> --}}
+        <script src="{{ asset('/js/custom-script.js') }}"></script>
 
 
     
