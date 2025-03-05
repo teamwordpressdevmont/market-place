@@ -10,7 +10,7 @@ class TradepersonReview extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['customer_id', 'tradeperson_id', 'order_id', 'review', 'rating'];
+    protected $fillable = ['customer_id', 'tradeperson_id', 'order_id', 'review', 'rating' , 'approved'];
 
     // Relationship with User (Reviewer)
     public function customer()

@@ -6,6 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
+        
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +16,12 @@
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/trumbowyg@2.27.3/dist/ui/trumbowyg.min.css">
 
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+        
+       <script src="{{ asset('/js/tailwind.js') }}"></script>
 
-        <script src="{{ url('/js/tailwindcss.js') }}"></script>
+
+       <script src="{{ asset('/js/tailwindcss.js') }}"></script>
 
        <script>
         tailwind.config = {
@@ -33,8 +38,9 @@
             }
         }
         </script>
-        <link rel="stylesheet" href="{{ url('/css/flowbite.min.css') }}">
-        <link rel="stylesheet" href="{{ url('/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/flowbite.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+
     </head>
     <body class="bg-[#F4F4F4] font-sora">
 
@@ -53,18 +59,25 @@
         @include('partials.footer')
 
 
-        <script src="{{ url('/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('/js/jquery.min.js') }}"></script>
 
-        <script src="{{ url('/js/flowbite.min.js') }}"></script>
+        
+
+    
+        <script src="{{ asset('/js/flowbite.min.js') }}"></script>
+
 
         <!-- Trumbowyg JS -->
         <script src="https://cdn.jsdelivr.net/npm/trumbowyg@2.27.3/dist/trumbowyg.min.js"></script>
 
 
         <!-- validation -->
-        <script src="{{ url('/js/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('/js/jquery.validate.min.js') }}"></script>
 
-        <script src="{{ url('/js/custom-script.js') }}"></script>
+        
+        <script src="{{ asset('/js/custom-script.js') }}"></script>
 
+
+    
     </body>
 </html>

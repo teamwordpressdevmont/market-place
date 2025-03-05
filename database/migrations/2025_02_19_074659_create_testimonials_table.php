@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->string('name');
-            $table->string('heading');
-            $table->text('description');
-            $table->integer('rating'); // 1-5 stars
+            $table->string('heading')->nullable();
+            $table->text('description')->nullable();
+            $table->integer('rating')->nullable(); // 1-5 stars
             $table->boolean('verified')->default(false);
             $table->timestamps();
         });

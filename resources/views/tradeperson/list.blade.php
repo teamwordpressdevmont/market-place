@@ -23,6 +23,9 @@
                         Business Name
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        User Status
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Phone
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -55,7 +58,13 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             {{ $trade->business_name }}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-4">
+                            <button class="btn btn-sm {{ $trade->user->user_approved ? 'bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300' }} toggle-user-approval" 
+                                data-id="{{ $trade->user->id }}">
+                                {{ $trade->user->user_approved ? 'Approved' : 'Disapproved' }}
+                            </button>
+                        </td>
+                        <td class="px-6 py-4">
                             {{ $trade->phone }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">

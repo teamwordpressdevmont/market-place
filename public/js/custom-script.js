@@ -158,5 +158,92 @@ $(document).ready(function() {
             }
         }
     });
+
+    $(".toggleApprovalBtn").click(function () {
+        let button = $(this);
+        let testimonialId = button.data("id");
+
+        if (button.text().trim() === "Add to Website") {
+            // Open modal for order number input
+            $("#testimonialId").val(testimonialId);
+            $("#approvalModal").removeClass("hidden");
+        } else {
+            // Directly remove testimonial without modal
+            $.ajax({
+                url: "/testimonial/toggle-approval/" + testimonialId,
+                type: "POST",
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr("content")
+                },
+                success: function (response) {
+                    alert(response.message);
+                    button.removeClass("bg-red-700").addClass("bg-green-700").text("Add to Website");
+                },
+                error: function () {
+                    alert("Error removing testimonial.");
+                }
+            });
+        }
+    });
+
+    $(".toggle-user-approval").click(function () {
+        let testimonialId = $("#testimonialId").val();
+        let orderNumber = $("#order_number").val();
+
+        $.ajax({
+            url: "/testimonial/toggle-approval/" + testimonialId,
+            type: "POST",
+            data: {
+                _token: $('meta[name="csrf-token"]').attr("content"),
+                order_number: orderNumber
+            },
+            success: function (response) {
+                alert(response.message);
+                $("#approvalModal").addClass("hidden");
+                let button = $('.toggleApprovalBtn[data-id="' + testimonialId + '"]');
+                button.removeClass("bg-green-700").addClass("bg-red-700").text("Remove from Website");
+            },
+            error: function () {
+                alert("Error approving testimonial.");
+            }
+        });
+    });
+
+    $("#closeModal").click(function () {
+        $("#approvalModal").addClass("hidden");
+    });
+    
+    
+
+    // Multi Image Select
+    $(".image").on("change", function(event) {
+        let preview = $(".preview");
+        preview.html(""); // Clear previous previews
+        let files = event.target.files;
+
+        if (files.length > 0) {
+            $.each(files, function(index, file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    let img = $("<img>").attr("src", e.target.result)
+                        .addClass("h-20 w-20 object-cover rounded-md border");
+                    preview.append(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+    });
+
+    // Remove Images
+    let removedImages = [];
+
+    $(".remove-image").click(function () {
+        let imageName = $(this).data("image");
+        removedImages.push(imageName);
+
+        $(".removed_images").val(JSON.stringify(removedImages));
+
+        $(this).closest(".image-container").remove();
+    });
   
 });

@@ -17,8 +17,6 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-500"> 
             <thead class="text-xs text-gray-700 bg-gray-50 ">
                 <tr>
-                    <th scope="col" class="px-6 py-3">S.No</th>
-                    <th scope="col" class="px-6 py-3">ID</th>
                     <th scope="col" class="px-6 py-3">
                         Order id
                     </th>
@@ -26,13 +24,13 @@
                         Title
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Description
+                        Customer
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        TradePerson Business
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Budget
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Timeline
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
@@ -50,25 +48,19 @@
                 @foreach($OrderDetails as $index => $order)
                     <tr class="bg-white border-b  border-gray-200">
                         <th scope="row" class="px-6 py-4 whitespace-nowrap">
-                            {{ ($OrderDetails->currentPage() - 1) * $OrderDetails->perPage() + $index + 1 }}
-                        </th>
-                        <th scope="row" class="px-6 py-4 whitespace-nowrap">
-                            {{ $order->id }}
-                        </th>
-                        <th scope="row" class="px-6 py-4 whitespace-nowrap">
                             {{ $order->order_id }}
                         </th>
                         <td class="px-6 py-4 whitespace-nowrap">
                             {{ $order->title }}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            {!! html_entity_decode($order->description) !!}
+                        <td class="px-6 py-4">
+                            {{ $order->order->customer->name ?? 'No Customer' }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $order->order->tradeperson->business_name ?? 'No Business' }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             {{ $order->budget }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            {{ $order->timeline }}
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex gap-4">

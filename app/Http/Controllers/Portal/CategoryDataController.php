@@ -9,12 +9,13 @@ use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class CategoryDataController extends Controller
 {
     public function addEdit()
     {
-        $allCategories = Category::all();
+        $allCategories = Category::whereNull('parent_id')->get(); // Only fetch parent categories
         return view('category.add-edit', compact('allCategories'));
 
     }
@@ -22,15 +23,15 @@ class CategoryDataController extends Controller
     // Store a new category in the database
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name'              => 'required|string|max:255',
+            'description'       => 'nullable|string',
+            'icon'              => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'parent_id'=> 'nullable|exists:categories,id',
+        ]);
+
         DB::beginTransaction();
         try {
-            $validatedData = $request->validate([
-                'name'              => 'required|string|max:255',
-                'description'       => 'nullable|string',
-                'icon'              => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'parent_id'=> 'nullable|exists:categories,id',
-            ]);
-
             if ($request->hasFile('icon')) {
                 $image = $request->file('icon');
                 $formattedDate = Carbon::now()->timestamp;
@@ -76,22 +77,31 @@ class CategoryDataController extends Controller
     // Display the form for editing a category
     public function edit($id)
     {
-        $category = Category::findOrFail($id); 
-        $allCategories = Category::all();
-        return view('category.add-edit', compact('category', 'allCategories'));
+        try {
+            $category = Category::findOrFail($id); 
+            $allCategories = Category::all();
+            
+            if (!$category) {
+                return redirect()->route('category.list')->with('error', 'Category not found.');
+            }
+
+            return view('category.add-edit', compact('category', 'allCategories'));
+        } catch (\Exception $e) {
+            return redirect()->route('category.list')->with('error', 'Something went wrong.');
+        }
     }
 
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'name'              => 'required|string|max:255',
+            'description'       => 'nullable|string',
+            'icon'              => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'parent_id'=> 'nullable|exists:categories,id',
+        ]);
+
         DB::beginTransaction();
         try {
-            $validatedData = $request->validate([
-                'name'              => 'required|string|max:255',
-                'description'       => 'nullable|string',
-                'icon'              => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'parent_id'=> 'nullable|exists:categories,id',
-            ]);
-            
 
             $category = Category::findOrFail($id);
 
@@ -122,12 +132,19 @@ class CategoryDataController extends Controller
 
     public function destroy($id)
     {
-        $category = Category::findOrFail($id); // Retrieve the category by ID
+        DB::beginTransaction();
+        try {
+            $category = Category::findOrFail($id);
         
-        if ($category) {
-            $category->delete();
+            if (!is_null($category)) {
+                $category->delete();
+            }
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Category deleted successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to delete Category: ' . $e->getMessage());
         }
-        
-        return redirect()->route('category.list')->with('success', 'Category deleted successfully.');
     }
 }

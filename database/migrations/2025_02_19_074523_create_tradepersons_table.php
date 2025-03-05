@@ -13,12 +13,17 @@ return new class extends Migration
     {
         Schema::create('tradepersons', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Relates to users
-            $table->string('business_name')->nullable();
-            $table->text('description')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('first_name');
+            $table->string('last_name')->nullable();
+            $table->string('gender')->nullable();
             $table->string('phone')->nullable();
-            $table->string('address')->nullable();
-            $table->string('featured')->nullable();
+            $table->string('city');
+            $table->string('postal_code');
+            $table->text('about_me')->nullable();
+            $table->string('address');
+            $table->json('portfolio')->nullable(); 
+            $table->string('certificate')->nullable();
             $table->timestamps();
         });
     }

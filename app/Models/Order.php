@@ -37,4 +37,19 @@ class Order extends Model
         return $this->hasOne(TradepersonReview::class, 'order_id', 'id');
     }
     
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'order_categories', 'order_id', 'category_id');
+    }
+    
+    public function proposals()
+    {
+        return $this->hasMany(Proposal::class, 'order_id', 'id');
+    }
+    
+    public function paymentStatus()
+    {
+        return $this->belongsTo(PaymentStatus::class, 'payment_status', 'id');
+    }
+    
 }

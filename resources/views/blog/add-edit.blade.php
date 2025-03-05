@@ -33,6 +33,14 @@
                         </div>
                     </div>
                     <div class="site_field_col">
+                        <label for="slug" class="block text-sm/6 font-medium text-gray-900">Slug</label>
+                        <div class="mt-2">
+                            <div class="flex items-center rounded-md bg-white outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+                                <input type="text" name="slug" id="slug" class="rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5" placeholder="jane-smith" value="{{ old('slug', $blog->slug ?? '') }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="site_field_col">
                         <label for="description" class="block text-sm/6 font-medium text-gray-900">Description</label>
                         <div class="mt-2 bg-white">
                             <textarea name="description" id="content" rows="3" class="textarea_editor block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 sm:text-sm/6">

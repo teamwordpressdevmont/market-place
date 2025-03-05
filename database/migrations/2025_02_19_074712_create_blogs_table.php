@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('banner'); // Image URL
-            $table->text('description');
-            $table->string('publish_by');
-            $table->date('publish_date');
+            $table->string( 'slug' )->unique();
+            $table->string('banner')->nullable(); // Image URL
+            $table->text('description')->nullable();
+            $table->string('publish_by')->nullable();
+            $table->date('publish_date')->nullable();
             $table->string('featured')->nullable();
             $table->timestamps();
         });

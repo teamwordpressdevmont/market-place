@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tradeperson_reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->foreignId('tradeperson_id')->constrained('tradepersons')->onDelete('cascade');
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
             $table->text('review')->nullable();

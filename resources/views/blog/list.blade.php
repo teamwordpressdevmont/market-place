@@ -48,6 +48,7 @@
                             Title
                         </a>
                     </th>
+                    <th scope="col" class="px-6 py-3">Slug</th>
                     <th scope="col" class="px-6 py-3">Banner</th>
                     <th scope="col" class="px-6 py-3">Publish By</th>
                     <th scope="col" class="px-6 py-3">Publish Date</th>
@@ -71,9 +72,13 @@
                         {{ $blogs->id }}
                     </th>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $blogs->title }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $blogs->slug }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         @if($blogs->banner)
-                            <img src="{{ asset('storage/blog-banner/' . $blogs->banner) }}" alt="banner" width="100">
+
+                            <img src="{{ asset('storage/app/public/blog-banner/' . $blogs->banner) }}" alt="banner" width="100">
+
+                            {{-- <img src="{{ $blogs->banner }}" alt="banner" width="100"> --}}
                         @else
                             No Image
                         @endif

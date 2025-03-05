@@ -11,7 +11,7 @@ class Customer extends Model
     //
     use HasFactory;
 
-    protected $fillable = ['user_id', 'name', 'email', 'phone', 'address', 'city', 'country'];
+    protected $fillable = ['user_id', 'first_name', 'last_name', 'phone', 'email', 'address', 'address2', 'post_code', 'city', 'country', 'gender'];
     
     // One Customer can belongs to one user
     public function user()
@@ -40,6 +40,11 @@ class Customer extends Model
     public function tradepersonReviews()
     {
         return $this->hasMany(TradepersonReview::class, 'customer_id', 'id');
+    }
+    
+    public function proposals()
+    {
+        return $this->hasMany(Proposal::class, 'customer_id', 'id');
     }
     
 }
