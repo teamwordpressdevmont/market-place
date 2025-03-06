@@ -1,7 +1,7 @@
-.site_dasboard_content{
+.bgShadow{
     background-image: url(../images/dash-shadow.svg);
     background-position: top center;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -41,6 +41,10 @@ a.add_sub_cons_btn, a.add_sub_btn {
     margin-top: 5px !important;
     display: block;
 }
+.textarea_editor
+{
+background-color:#fff;
+}
 /* MR CSS START */
 ::-webkit-scrollbar {
     width: 3px;
@@ -50,6 +54,24 @@ a.add_sub_cons_btn, a.add_sub_btn {
 }
 ::-webkit-scrollbar-thumb {
     background: #ABABAB;
+}
+.tabsScroll::-webkit-scrollbar {
+    height: 3px; /* Horizontal scrollbar */
+}
+.tabsWrapper [aria-selected="true"] {
+    background-color: white !important;
+    color: black !important;
+    font-weight: bold;
+    border: none !important;
+}
+.tabsWrapper button:hover {
+    background-color: white !important;
+    color: black !important;
+    font-weight: bold;
+    border: none !important;
+}
+.genericTable tbody tr:last-child {
+    border-bottom: none;
 }
 @media (max-width: 1536px) {
     br {

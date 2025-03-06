@@ -1,5 +1,10 @@
-<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-[#222222] border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
-  <div class="h-full px-3 py-4 overflow-y-auto dark:bg-gray-800 flex flex-col">
+<aside id="dashboard-sidedebar" class="site_dashboard_sidebar fixed sm:top-5! sm:left-5! max-sm:h-full bottom-5 z-40 w-64 transition-transform -translate-x-full bg-[#222222]  sm:translate-x-0 sm:rounded-xl" aria-label="Sidebar">
+  <div class="h-full px-3 py-4 overflow-y-auto flex flex-col">
+
+    <a href="" class="flex mt-7 mb-10">
+      <span class="mx-auto"><img src="{{ asset( '/images/logo.svg' ) }}" alt=""></span>
+    </a>
+
     <ul class="space-y-2">
       <li>
         <a href="{{ route( 'dashboard' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('dashboard') ? 'bg-primary' : '' }}">
@@ -129,7 +134,7 @@
 
       <li>
         <a href="{{ route( 'contact' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('contact') ? 'bg-primary' : '' }}">
-           <svg class="shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-green-900 dark:group-hover:text-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18"><path d="M19,4H5A3,3,0,0,0,2,7V17a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4ZM5,6H19a1,1,0,0,1,1,1l-8,4.88L4,7A1,1,0,0,1,5,6ZM20,17a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V9.28l7.48,4.57a1,1,0,0,0,1,0L20,9.28Z"/></svg>               
+           <svg class="shrink-0 w-5 h-5 text-white transition duration-75  group-hover:text-green-900" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18"><path d="M19,4H5A3,3,0,0,0,2,7V17a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4ZM5,6H19a1,1,0,0,1,1,1l-8,4.88L4,7A1,1,0,0,1,5,6ZM20,17a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V9.28l7.48,4.57a1,1,0,0,0,1,0L20,9.28Z"/></svg>               
            <span class="flex-1 ms-3 whitespace-nowrap ">Contact</span>
         </a>
       </li>

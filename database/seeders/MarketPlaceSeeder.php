@@ -7,6 +7,10 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Hash;
 
 class MarketPlaceSeeder extends Seeder
 {
@@ -16,12 +20,51 @@ class MarketPlaceSeeder extends Seeder
      public function run()
     {
 
-        // User Open
+        // Creating Roles
+        $adminRole = Role::create(['name' => 'admin']);
+        $customerRole = Role::create(['name' => 'customer']);
+        $tradepersonRole = Role::create(['name' => 'tradeperson']);
+
+        // Creating Permissions
+        $viewAdmin = Permission::create(['name' => 'view admin']);
+        $viewCustomer = Permission::create(['name' => 'view customer']);
+        $viewTradeperson = Permission::create(['name' => 'view tradeperson']);
+
+        // Assign Permissions to Roles
+        $adminRole->givePermissionTo($viewAdmin);
+        $customerRole->givePermissionTo($viewCustomer);
+        $tradepersonRole->givePermissionTo($viewTradeperson);
+
+        // Creating Users and Assigning Roles
+        $admin = User::create([
+            'name' => 'Admin',
+            'email' => 'admin@mailinator.com',
+            'password' => Hash::make('password'),
+        ]);
+        $admin->assignRole($adminRole);
+
+        $customer = User::create([
+            'name' => 'Customer',
+            'email' => 'customer@mailinator.com',
+            'password' => Hash::make('password'),
+        ]);
+        $customer->assignRole($customerRole);
+
+        $tradeperson = User::create([
+            'name' => 'Tradeperson',
+            'email' => 'tradeperson@mailinator.com',
+            'password' => Hash::make('password'),
+        ]);
+        $tradeperson->assignRole($tradepersonRole);
+
+
+
+    //     // User Open
         $users = [
           [
-              'id' => 1,
-              'name' => 'Admin',
-              'email' => 'admin@mailinator.com',
+              'id' => 4,
+              'name' => 'Kane',
+              'email' => 'kane@mailinator.com',
               'password' => Hash::make('password'), // Securely hash password
               'user_approved' => 0,
               'avatar' => 'avatar.png',
@@ -30,9 +73,9 @@ class MarketPlaceSeeder extends Seeder
               'updated_at' => Carbon::now(),
           ],
           [
-              'id' => 2,
-              'name' => 'Customer',
-              'email' => 'customer@mailinator.com',
+              'id' => 5,
+              'name' => 'Smith',
+              'email' => 'smith@mailinator.com',
               'password' => Hash::make('password'),
               'user_approved' => 0,
               'avatar' => 'avatar.png',
@@ -41,9 +84,9 @@ class MarketPlaceSeeder extends Seeder
               'updated_at' => Carbon::now(),
           ],
           [
-              'id' => 3,
-              'name' => 'Tradeperson',
-              'email' => 'tradeperson@mailinator.com',
+              'id' => 6,
+              'name' => 'David',
+              'email' => 'david@mailinator.com',
               'password' => Hash::make('password'),
               'user_approved' => 0,
               'avatar' => 'avatar.png',
@@ -52,7 +95,7 @@ class MarketPlaceSeeder extends Seeder
               'updated_at' => Carbon::now(),
           ],
           [
-              'id' => 4,
+              'id' => 7,
               'name' => 'John',
               'email' => 'john@mailinator.com',
               'password' => Hash::make('password'),
@@ -63,7 +106,7 @@ class MarketPlaceSeeder extends Seeder
               'updated_at' => Carbon::now(),
           ],
           [
-              'id' => 5,
+              'id' => 8,
               'name' => 'Dan',
               'email' => 'dan@mailinator.com',
               'password' => Hash::make('password'),
@@ -76,9 +119,9 @@ class MarketPlaceSeeder extends Seeder
       ];
 
       DB::table('users')->insert($users);
-      // User Close
+     // User Close
 
-      
+
         // Categories Open
         $categories = [
             [
@@ -168,7 +211,7 @@ class MarketPlaceSeeder extends Seeder
                 ]);
             }
         }
-        // // Categories Close 
+        // // Categories Close
 
 
         // // Testimonials Open
@@ -341,7 +384,6 @@ class MarketPlaceSeeder extends Seeder
             ],
         ];
 
-        
         DB::table('packages')->insert($packages);
 
         // // Packages Close
@@ -354,7 +396,7 @@ class MarketPlaceSeeder extends Seeder
             [
                 'title' => 'Winter: Essential Home Care for the Season',
                 'slug' => Str::slug('Winter: Essential Home Care for the Season'),
-                'banner' => 'winter-home-care.jpg', 
+                'banner' => 'winter-home-care.jpg',
                 'description' => 'Managing your home’s upkeep can seem overwhelming, but breaking it down by season makes it easier and more efficient. As the seasons change from autumn to winter, your home requires different care and attention. Winter brings a need for draft-proofing, pipe insulation, and HVAC maintenance. Each season has its own unique maintenance needs, and when handled by trusted professionals, your home stays safe and beautiful all year round.',
                 'publish_by' => 'Dinbyggemarked',
                 'publish_date' => '2024-12-23',
@@ -398,7 +440,7 @@ class MarketPlaceSeeder extends Seeder
         ];
 
         DB::table('blogs')->insert($blogs);
-        
+
         // Blog Close
 
         // // Customer Open
@@ -484,7 +526,7 @@ class MarketPlaceSeeder extends Seeder
         DB::table('customers')->insert($customers);
         // // Customer Close
 
-        
+
         // Tradepersons Open
         $tradepersons = [
           [
@@ -652,7 +694,7 @@ class MarketPlaceSeeder extends Seeder
 
       DB::table('payment_statuses')->insert($paymentstatuses);
       // Payment Status Close
-       
+
 
         //  // Order Open
          $orders = [
@@ -662,7 +704,6 @@ class MarketPlaceSeeder extends Seeder
             ['customer_id' => 4, 'tradeperson_id' => 4, 'order_status' => 4, 'payment_status' => 4, 'created_at' => now(), 'updated_at' => now()],
             ['customer_id' => 5, 'tradeperson_id' => 5, 'order_status' => 5, 'payment_status' => 5, 'created_at' => now(), 'updated_at' => now()],
         ];
-        
         DB::table('orders')->insert($orders);
         // // Order Close
 
@@ -675,7 +716,6 @@ class MarketPlaceSeeder extends Seeder
 
         DB::table('proposal_statuses')->insert($proposalstatuses);
         //  Proposal Statuses Close
-        
 
         // // Order Details Open
         $orderDetails = [
@@ -731,7 +771,6 @@ class MarketPlaceSeeder extends Seeder
               'updated_at' => now(),
           ],
       ];
-                
                 DB::table('order_details')->insert($orderDetails);
         // // Order Details Close
 
@@ -759,7 +798,7 @@ class MarketPlaceSeeder extends Seeder
         DB::table('tradeperson_reviews')->insert($tradepersonReviews);
         //  trade Person Reviews Close
 
-        
+
         // Report Open
         $reports = [
             [
@@ -780,13 +819,13 @@ class MarketPlaceSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
-            
+
         ];
 
         DB::table('reports')->insert($reports);
          // Report Close
-         
-         
+
+
         // Order Category Open
         $order_categories = [
             [
@@ -819,12 +858,12 @@ class MarketPlaceSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
-            
+
         ];
 
         DB::table('order_categories')->insert($order_categories);
          // Order Category Close
-         
+
           // Order Proposals Open
           $orderProposals = [
             [
@@ -864,8 +903,8 @@ class MarketPlaceSeeder extends Seeder
 
         DB::table('order_proposals')->insert($orderProposals);
          // Order Proposals Close
-         
-         
+
+
           // Purchase Packages Open
         $purchase_packages = [
             [
@@ -886,7 +925,7 @@ class MarketPlaceSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
-            
+
         ];
 
         DB::table('purchase_packages')->insert($purchase_packages);
@@ -924,11 +963,11 @@ class MarketPlaceSeeder extends Seeder
               'updated_at' => Carbon::now(),
           ],
       ];
-      
+
       DB::table('order_milestones')->insert($order_milestones);
       // Order Milestones Close
-        
 
-        
+
+
     }
 }
