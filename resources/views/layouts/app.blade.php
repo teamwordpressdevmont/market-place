@@ -47,12 +47,17 @@
         <!-- Trumbowyg CSS -->
 
 
-        @include('partials.header')
-
-        <div class="site_dasboard_content p-4 sm:ml-64 mt-14">
-            <div class="p-4">
+       
+        <!-- @include('partials.header') -->
+        <div class="site_dasboard_content sm:ml-64">
+            <div class="p-5">
                 @include('partials.sidebar')
-                @yield('content')
+
+                <div class="sm:pl-7">
+                    
+                    @include('partials.header')
+                    @yield('content')
+                </div>
             </div>
         </div>
 

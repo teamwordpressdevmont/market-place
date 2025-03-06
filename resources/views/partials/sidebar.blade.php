@@ -1,5 +1,10 @@
-<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-[#222222] border-r border-gray-200 sm:translate-x-0" aria-label="Sidebar">
+<aside id="dashboard-sidedebar" class="site_dashboard_sidebar fixed sm:top-5! sm:left-5! max-sm:h-full bottom-5 z-40 w-64 transition-transform -translate-x-full bg-[#222222]  sm:translate-x-0 sm:rounded-xl" aria-label="Sidebar">
   <div class="h-full px-3 py-4 overflow-y-auto flex flex-col">
+
+    <a href="" class="flex mt-7 mb-10">
+      <span class="mx-auto"><img src="{{ asset( '/images/logo.svg' ) }}" alt=""></span>
+    </a>
+
     <ul class="space-y-2">
       <li>
         <a href="{{ route( 'dashboard' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('dashboard') ? 'bg-primary' : '' }}">
