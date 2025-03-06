@@ -235,7 +235,7 @@
           </div>
        </div>
        <div class="rounded-xl p-5 bg-white border border-[#22222233]">
-          <h2 class="text-lg font-bold mb-3">Accept Proposals</h2>
+          <h2 class="text-lg font-bold mb-3 text-[#222222]">Accept Proposals</h2>
           <div class="space-y-5 h-[600px] overflow-y-auto pr-3">
              <div class="flex bg-[#FCFCFA] border border-[#EDE9D0] rounded-xl">
                 <div class="flex-1 py-4">
