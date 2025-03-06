@@ -30,6 +30,7 @@
                 colors: {
                 primary: '#DB4A2B',
                 secondary: '#FF904E',
+                mat: '#222222'
                 },
                 fontFamily: {
                     sora: ['Sora', 'sans-serif'],
