@@ -21,7 +21,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [ReportController::class, 'dashboard'])->name('dashboard');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -34,7 +36,7 @@ Route::get('/logout', function () {
 })->name('logout');
 
 // Admin Category
-Route::group(['prefix'  => 'categories'], function() {
+Route::group(['prefix' => 'categories', 'middleware' => 'auth'], function () {
     Route::get('/', [CategoryDataController::class, 'list'])->name('category.list');
     Route::get('/add', [CategoryDataController::class, 'addEdit'])->name('category.addEdit');
     Route::post('/store', [CategoryDataController::class, 'store'])->name('category.store');
@@ -44,7 +46,7 @@ Route::group(['prefix'  => 'categories'], function() {
 });
 
 // Admin Blog
-Route::group(['prefix'  => 'blog'], function() {
+Route::group(['prefix' => 'blog', 'middleware' => 'auth'], function () {
     Route::get('/', [BlogDataController::class, 'list'])->name('blog.list');
     Route::get('/view/{id}', [BlogDataController::class, 'view'])->name('blog.view');
     Route::get('/add', [BlogDataController::class, 'addEdit'])->name('blog.addEdit');
@@ -55,7 +57,7 @@ Route::group(['prefix'  => 'blog'], function() {
 });
 
 // Admin Testimonial
-Route::group(['prefix'  => 'testimonial'], function() {
+Route::group(['prefix'  => 'testimonial', 'middleware' => 'auth'], function() {
     Route::get('/', [testimonialDataController::class, 'list'])->name('testimonial.list');
     Route::get('/view/{id}', [testimonialDataController::class, 'view'])->name('testimonial.view');
     Route::get('/add', [testimonialDataController::class, 'addEdit'])->name('testimonial.addEdit');
@@ -69,7 +71,7 @@ Route::group(['prefix'  => 'testimonial'], function() {
 });
 
 // Admin Trade Person
-Route::group(['prefix'  => 'tradeperson'], function() {
+Route::group(['prefix'  => 'tradeperson', 'middleware' => 'auth'], function() {
     Route::get('/', [TraderPersonDataController::class, 'list'])->name('tradeperson.list');
     Route::post('/store', [TraderPersonDataController::class, 'store'])->name('tradeperson.store');
     Route::get('/edit/{id}', [TraderPersonDataController::class, 'edit'])->name('tradeperson.edit');
@@ -79,7 +81,7 @@ Route::group(['prefix'  => 'tradeperson'], function() {
 });
 
 // Admin Job Listing
-Route::group(['prefix'  => 'joblisting'], function() {
+Route::group(['prefix'  => 'joblisting', 'middleware' => 'auth'], function() {
     Route::get('/', [jobListingDataController::class, 'list'])->name('joblisting.list');
     Route::post('/store', [jobListingDataController::class, 'store'])->name('joblisting.store');
     Route::get('/edit/{id}', [jobListingDataController::class, 'edit'])->name('joblisting.edit');
@@ -93,7 +95,7 @@ Route::get('/contact', [ContactDataController::class, 'list'])->name('contact');
 
 
 // Admin package
-Route::group(['prefix'  => 'package'], function() {
+Route::group(['prefix'  => 'package', 'middleware' => 'auth'], function() {
     Route::get('/', [PackageController::class, 'list'])->name('package.list');
     Route::get('/add', [PackageController::class, 'addEdit'])->name('package.addEdit');
     Route::post('/store', [PackageController::class, 'store'])->name('package.store');
@@ -103,8 +105,7 @@ Route::group(['prefix'  => 'package'], function() {
 });
 
 // Report
-// Route::get('/dashboard', [ReportController::class, 'dashboard']);
-Route::get('/dashboard', [ReportController::class, 'dashboard'])->name('dashboard');
+
 
 //json file
 Route::get('/json', [AdminMainController::class, 'showJsonContent'])->name('json.show');
