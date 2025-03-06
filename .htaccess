@@ -4,6 +4,9 @@
     </IfModule>
 
     RewriteEngine On
+    RewriteBase /market-place/public/
+
+
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
