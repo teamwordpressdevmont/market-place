@@ -1,7 +1,7 @@
-.site_dasboard_content{
+.bgShadow{
     background-image: url(../images/dash-shadow.svg);
     background-position: top center;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -69,6 +69,9 @@ background-color:#fff;
     color: black !important;
     font-weight: bold;
     border: none !important;
+}
+.genericTable tbody tr:last-child {
+    border-bottom: none;
 }
 @media (max-width: 1536px) {
     br {

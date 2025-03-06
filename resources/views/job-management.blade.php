@@ -82,13 +82,33 @@
                          </div>
                       </div>
                       <div class="flex flex-col gap-12 pr-7">
-                         <a href="#" class="text-[#222222] text-xs ml-auto font-semibold hover:text-[#db4a2b] transition">
+                         {{--  <a href="#" class="text-[#222222] text-xs ml-auto font-semibold hover:text-[#db4a2b] transition">
                             <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
-                         </a>
+                         </a>  --}}
+                        <button id="dropdownMenuIconButton" data-dropdown-toggle="dropdownDots" class="bg-none hover:bg-none inline-flex justify-end" type="button">
+                            <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                               <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                               <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                               <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
+                         <!-- Dropdown menu -->
+                         <div id="dropdownDots" class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600 hidden" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1788px, 454px);" aria-hidden="true" data-popper-placement="bottom">
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
+                               <li>
+                                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                               </li>
+                               <li>
+                                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
+                               </li>
+
+                            </ul>
+
+                         </div>
                          <a href="#" class="text-[#222222] text-xs flex items-center font-semibold hover:text-[#db4a2b] transition">
                             View Contract
                             <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-4 group-hover:stroke-[#db4a2b]">

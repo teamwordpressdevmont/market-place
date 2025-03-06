@@ -2,55 +2,55 @@
 @section('content')
 
 <div class="mt-5">
-    <div class="grid grid-cols-1 mb-10 items-start">
-       <div>
-          <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2">Job Management</h1>
-          <p class="font-semibold text-sm text-[#222222]">Here is your listings statistic report from January 05 - Feburary 05.</p>
-       </div>
-    </div>
-    <div class="flex justify-between items-start">
-        <div class="relative">
-            <form id="searchForm" method="GET" action="http://127.0.0.1:8000/categories" class="relative flex  mb-5 md:w-[450px] w-full">
-                <input type="text" name="search" value="" id="table-search" class="rounded-tl-full rounded-bl-full bg-white text-[#222222] placeholder-[#222222] block flex-1 text-xs px-5" placeholder="Search for job">
-                <button type="submit" class="bg-secondary cursor-pointer inset-y-0 right-0 px-4 py-3 text-white text-xs border border-secondary hover:bg-primary transition rounded-tr-full rounded-br-full w-[120px]">Search</button>
-                <div class="input-group-append absolute top-[13px] right-[100px]">
-                    <span class="input-group-text close-icon" style="cursor: pointer; display: none;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="15px" height="20px">
-                        <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"></path>
-                    </svg>
-                    </span>
-                </div>
-            </form>
-        </div>
+    <div class="bgShadow pt-10">
+        <div class="grid grid-cols-1 mb-10 items-start">
         <div>
-            <span>Sort by:</span>
-            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown button <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                </svg>
-            </button>
-            <!-- Dropdown menu -->
-            <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                </li>
-                <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-                </li>
-                </ul>
+            <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2">Job Management</h1>
+            <p class="font-semibold text-sm text-[#222222]">Here is your listings statistic report from January 05 - Feburary 05.</p>
+        </div>
+        </div>
+        <div class="flex justify-between items-start">
+            <div class="relative">
+                <form id="searchForm" method="GET" action="http://127.0.0.1:8000/categories" class="relative flex md:w-[450px] w-full">
+                    <input type="text" name="search" value="" id="table-search" class="rounded-tl-full rounded-bl-full bg-white text-[#222222] placeholder-[#222222] block flex-1 text-xs px-5" placeholder="Search for job">
+                    <button type="submit" class="bg-secondary cursor-pointer inset-y-0 right-0 px-4 py-3 text-white text-xs border border-secondary hover:bg-primary transition rounded-tr-full rounded-br-full w-[120px]">Search</button>
+                    <div class="input-group-append absolute top-[13px] right-[100px]">
+                        <span class="input-group-text close-icon" style="cursor: pointer; display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="15px" height="20px">
+                            <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"></path>
+                        </svg>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <span class="text-sm font-bold mr-3">Sort by:</span>
+                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-xs bg-white text-[#ABABAB] text-center inline-flex items-center rounded-xl px-3 py-3 w-[160px] justify-between" type="button">Urgent<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"></path>
+                    </svg>
+                </button>
+                <!-- Dropdown menu -->
+                <div id="dropdown" class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-[160px] hidden" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1740px, 279px);" data-popper-placement="bottom">
+                    <ul class="bg-white text-sm border-1 border-[#ABABAB] rounded-xl" aria-labelledby="dropdownDefaultButton">
+                    <li class="border-b border-[#ABABAB]">
+                        <a href="#" class="block px-5 py-3 text-xs font-light transition">Acive</a>
+                    </li>
+                    <li class="border-b border-[#ABABAB]">
+                        <a href="#" class="block px-5 py-3 text-xs font-light transition">Pending</a>
+                    </li>
+                    <li class="">
+                        <a href="#" class="block px-5 py-3 text-xs font-light transition">Completed</a>
+                    </li>
+
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <div class="rounded-xl pt-5 bg-white border border-[#22222233] h-fit">
+    <div class="rounded-xl pt-5 bg-white border border-[#22222233] h-fit mt-8">
         <h2 class="text-lg font-bold mb-6 text-[#222222] px-5">Recent Jobs</h2>
         <div id="table-container" class="overflow-x-auto">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 genericTable">
                 <thead class="text-xs text-gray-700 bg-[#eee] border-t border-b border-[#22222233]">
                     <tr>
                         <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
