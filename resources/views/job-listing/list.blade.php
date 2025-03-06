@@ -2,8 +2,8 @@
 @section('content')
 
 <div class="mt-5">
-    <div class="bgShadow pt-10">
-        <div class="grid grid-cols-1 mb-10 items-start">
+    <div class="bgShadow pt-10 pb-8">
+        <div class="grid grid-cols-1 mb-6 items-start">
         <div>
             <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2">Job Management</h1>
             <p class="font-semibold text-sm text-[#222222]">Here is your listings statistic report from January 05 - Feburary 05.</p>
@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-    <div class="rounded-xl pt-5 bg-white border border-[#22222233] h-fit mt-8">
+    <div class="rounded-xl pt-5 bg-white border border-[#22222233] h-fit">
         <h2 class="text-lg font-bold mb-6 text-[#222222] px-5">Recent Jobs</h2>
         <div id="table-container" class="overflow-x-auto">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 genericTable">
@@ -102,7 +102,7 @@
                                 {{ $order->budget }}
                             </td>
                             <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222]">
-                                <div class="flex gap-4">
+                                {{--  <div class="flex gap-4">
                                     <a href="{{ route('joblisting.edit', $order->id) }}">
                                         <svg fill="#0D0D0D" width="20px" height="20px" viewBox="0 0 36 36" version="1.1"  preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                             <title>edit</title>
@@ -120,7 +120,29 @@
                                         <title>delete</title>
                                         <path d="M7 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2h4a1 1 0 1 1 0 2h-1.069l-.867 12.142A2 2 0 0 1 17.069 22H6.93a2 2 0 0 1-1.995-1.858L4.07 8H3a1 1 0 0 1 0-2h4V4zm2 2h6V4H9v2zM6.074 8l.857 12H17.07l.857-12H6.074zM10 10a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1z" fill="red"/></svg>
                                     </a>
+                                </div>  --}}
+                                <button id="dropdownMenuIconButton" data-dropdown-toggle="dropdownDots" data-popper-placement="bottom-end" class="inline-flex justify-end w-fit ml-auto"  type="button">
+                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                       <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                       <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                </button>
+                                 <!-- Dropdown menu -->
+                                <div id="dropdownDots" class="z-10 bg-white divide-gray-100 rounded-lg shadow-sm w-34 block" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1777px, 414px);" data-popper-placement="bottom-end">
+                                    <ul class="text-sm text-[072130] justify-between" aria-labelledby="dropdownMenuIconButton">
+                                       <li>
+                                          <a href="#" class="block px-4 py-3 text-xs border-b border-[#22222233] hover:bg-[#222222] hover:text-white transition">Edit</a>
+                                       </li>
+                                       <li>
+                                          <a href="#" class="block px-4 py-3 text-xs border-b border-[#22222233] hover:bg-[#222222] hover:text-white transition">View</a>
+                                       </li>
+                                       <li>
+                                          <a href="#" class="block px-4 py-3 text-xs hover:bg-[#222222] hover:text-white transition">Delete</a>
+                                       </li>
+                                    </ul>
                                 </div>
+
                             </td>
                         </tr>
                     @endforeach
