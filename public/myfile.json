@@ -7,5 +7,11 @@
     },
     {
         "admin.button": "Save"
+    },
+    {
+        "admin.button1": "Save1"
+    },
+    {
+        "admin.button12": "Save12"
     }
 ]
