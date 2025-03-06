@@ -87,7 +87,7 @@
 
           <div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
               <div class="px-4 py-3 text-sm text-gray-900">
-                <div>{{ Auth::user()->name }}</div>
+                {{--  <div>{{ Auth::user()->name }}</div>  --}}
                 <div class="font-medium truncate">name@flowbite.com</div>
               </div>
               <div class="py-1">
