@@ -82,6 +82,9 @@ Route::middleware('auth:api')->group(function () {
         // get reviews
         Route::post('/tradeperson-reviews', [TradepersonApiController::class, 'getTradepersonReviews']);
         
+        // get tradeperson orders
+        Route::get('/tradeperson-order', [TradepersonApiController::class, 'getTradepersonOrder']);
+        
         // submit proposal
         Route::post('/submit-proposal', [TradepersonApiController::class, 'submitProposal']);
 

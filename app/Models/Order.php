@@ -42,14 +42,19 @@ class Order extends Model
         return $this->belongsToMany(Category::class, 'order_categories', 'order_id', 'category_id');
     }
     
-    public function proposals()
+    public function orderProposals()
     {
-        return $this->hasMany(Proposal::class, 'order_id', 'id');
+        return $this->hasMany(OrderProposal::class, 'order_id', 'id');
     }
     
     public function paymentStatus()
     {
         return $this->belongsTo(PaymentStatus::class, 'payment_status', 'id');
+    }
+    
+    public function orderMilestones()
+    {
+        return $this->hasMany(OrderMilestone::class, 'order_id', 'id');
     }
     
 }

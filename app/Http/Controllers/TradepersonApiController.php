@@ -256,5 +256,119 @@ class TradepersonApiController extends Controller
             ], 500);
         }
     }
+    
+    public function getTradepersonOrder(Request $request)
+    {
+        try {
+            $tradeperson_id = optional($request->user()->tradeperson)->id;
+            
+            if (!$tradeperson_id) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Unauthorized: No associated tradeperson found',
+                ], 403);
+            }
+    
+            // Validate request parameters
+            $request->validate([
+                'customer_id' => 'nullable|integer|exists:orders,customer_id',
+                'filter' => 'nullable|string|in:active_job,progress_job,pending_job,completed_job,recent_jobs',
+                'offset' => 'nullable|integer|min:0',
+                'per_page' => 'nullable|integer|min:1|max:100',
+                'with_proposal' => 'nullable|boolean',
+                'with_reviews' => 'nullable|boolean',
+                'with_details' => 'nullable|boolean',
+                'with_categories' => 'nullable|boolean',
+                'with_milestones' => 'nullable|boolean'
+            ]);
+            
+            $customer_id = $request->input('customer_id');
+            $filter = $request->input('filter');
+            $offset = (int) $request->input('offset', 0);
+            $perPage = (int) $request->input('per_page', 10);
+        
+            // Query Builder
+            $query = Order::query();
+        
+            // Apply tradeperson filter
+            if ($tradeperson_id) {
+                $query->where('tradeperson_id', $tradeperson_id);
+            }
+        
+            // Apply customer filter
+            if ($customer_id) {
+                $query->where('customer_id', $customer_id);
+            }
+        
+            // Apply status filter
+            if ($filter) {
+                $statusMap = [
+                    'active_job' => 1,
+                    'progress_job' => 2,
+                    'pending_job' => 3,
+                    'completed_job' => 4
+                ];
+        
+                if ($filter === 'recent_jobs') {
+                    $query->orderByDesc('created_at');
+                } elseif (isset($statusMap[$filter])) {
+                    $query->where('order_status', $statusMap[$filter]);
+                }
+            }
+        
+            // Include relationships dynamically
+            $relations = [];
+        
+            if ($request->boolean('with_proposal')) {
+                $relations[] = 'orderProposals';
+            }
+        
+            if ($request->boolean('with_reviews')) {
+                $relations[] = 'review';
+            }
+        
+            if ($request->boolean('with_details')) {
+                $relations[] = 'orderDetail';
+            }
+        
+            if ($request->boolean('with_categories')) {
+                $relations[] = 'categories';
+            }
+        
+            if ($request->boolean('with_milestones')) {
+                $relations[] = 'orderMilestones';
+            }
+        
+            if (!empty($relations)) {
+                $query->with($relations);
+            }
+        
+            // Fetch results with pagination
+            $totalCount = $query->count();
+            $orders = $query->offset($offset)->limit($perPage)->get();
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Tradeperson orders retrieved successfully',
+                'total_orders' => $totalCount,
+                'offset' => $offset,
+                'per_page' => $perPage,
+                'data' => $orders,
+            ], 200);
+            
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 
 }

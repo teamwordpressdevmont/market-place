@@ -133,7 +133,7 @@ Route::get('/dashboard', [ReportController::class, 'dashboard'])->name('dashboar
 //json file
 Route::get('/json', [AdminMainController::class, 'showJsonContent'])->name('json.show');
 Route::post('/json/create', [AdminMainController::class, 'createJsonFile'])->name('json.create');
-Route::post('/json/save', [AdminMainController::class, 'appendToJson'])->name('json.save');
+Route::post('/json/save', [AdminMainController::class, 'updateJsonFile'])->name('json.save');
 
 
 Route::post('/user/{id}/toggle-approval', [TraderPersonDataController::class, 'toggleUserApproval'])->name('user.toggleApproval');
