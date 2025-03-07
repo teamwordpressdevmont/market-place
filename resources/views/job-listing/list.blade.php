@@ -26,7 +26,7 @@
             <span class="text-sm font-bold mr-3">Sort by:</span>
             <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="font-light text-xs bg-white text-[#ABABAB] border border-[#d3d3d3] text-center inline-flex items-center rounded-full px-3 py-1.5 w-[163px] justify-between" data-popper-placement="top end" type="button">Urgent</button>
             <!-- Dropdown menu -->
-            <div id="dropdown" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3]" data-popper-placement="bottom">
+            <div id="dropdown" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom">
                 <ul class="bg-white text-sm rounded-xl overflow-hidden" aria-labelledby="dropdownDefaultButton">
                     <li class="border-b border-[#d3d3d3]">
                         <a href="#" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Acive</a>
