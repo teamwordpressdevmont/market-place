@@ -6,18 +6,18 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-        
+
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
 
-        
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/trumbowyg@2.27.3/dist/ui/trumbowyg.min.css">
 
         <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
-        
+
        <script src="{{ asset('/js/tailwind.js') }}"></script>
 
 
@@ -49,14 +49,14 @@
         <!-- Trumbowyg CSS -->
 
 
-       
+
         <!-- @include('partials.header') -->
         <div class="site_dasboard_content sm:ml-64">
             <div class="p-5">
                 @include('partials.sidebar')
 
                 <div class="sm:pl-7">
-                    
+
                     @include('partials.header')
                     @yield('content')
                 </div>
@@ -68,7 +68,7 @@
 
         <script src="{{ asset('/js/jquery.min.js') }}"></script>
 
-    
+
         <script src="{{ asset('/js/flowbite.min.js') }}"></script>
 
 
@@ -82,10 +82,9 @@
         <!-- swiper -->
         <script src="{{ asset('/js/swiper-bundle.min.js') }}"></script>
 
-        
+
         <script src="{{ asset('/js/custom-script.js') }}"></script>
 
 
-    
     </body>
 </html>
