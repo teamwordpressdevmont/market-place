@@ -44,101 +44,30 @@
                     <td class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">Urgent</td>
                     <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222]">12-02-2025 - 18-03-2025</td>
                     <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#DB4A2B]">Active</td>
-                    <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#DB4A2B]">alexmorgan@gmail.com</td>
+                    <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#DB4A2B]">alexmorgan@gmail.com 1 e</td>
                     <td class="px-6 py-5 whitespace-nowrap text-xs">
-                    <a href="#" class="text-[#222222] text-xs font-semibold hover:text-[#db4a2b] transition flex justify-end">
-                        <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </a>
-                    </td>
-                </tr>
-                <tr class="border-b border-[#e9e9e9]">
-                    <th class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">#0016</th>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-bold text-[#222222]">Need to Fix Kitchen Pipe</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">Flexible</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">12-02-2025 - 18-03-2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#24C500]">Completed</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#FFC600]">alexmorgan@gmail.com</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs text-right">
-                    <a href="#" class="text-[#222222] text-xs font-semibold hover:text-[#db4a2b] transition flex justify-end">
-                        <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </a>
-                    </td>
-                </tr>
-                <tr class="border-b border-[#e9e9e9]">
-                    <th class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">#0016</th>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-bold text-[#222222]">Need to Fix Kitchen Pipe</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">Flexible</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">12-02-2025 - 18-03-2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#FFC600]">Pending</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal">alexmorgan@gmail.com</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs text-right">
-                    <a href="#" class="text-[#222222] text-xs font-semibold hover:text-[#db4a2b] transition flex justify-end">
-                        <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </a>
-                    </td>
-                </tr>
-                <tr class="border-b border-[#e9e9e9]">
-                    <th class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">#0016</th>
-                    <td class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">Need Urgent Insulation Specialist<span class="bg-secondary text-[#EDE9D0] text-xs font-normal px-2 py-1 rounded-full dark:bg-primary ml-2">High-priority</span>
-                    </td>
-                    <td class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">Urgent</td>
-                    <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222]">12-02-2025 - 18-03-2025</td>
-                    <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#DB4A2B]">Active</td>
-                    <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#DB4A2B]">alexmorgan@gmail.com</td>
-                    <td class="px-6 py-5 whitespace-nowrap text-xs">
-                    <a href="#" class="text-[#222222] text-xs font-semibold hover:text-[#db4a2b] transition flex justify-end">
-                        <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </a>
-                    </td>
-                </tr>
-                <tr class="border-b border-[#e9e9e9]">
-                    <th class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">#0016</th>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-bold text-[#222222]">Need to Fix Kitchen Pipe</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">Flexible</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">12-02-2025 - 18-03-2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#24C500]">Completed</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#FFC600]">alexmorgan@gmail.com</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs text-right">
-                    <a href="#" class="text-[#222222] text-xs font-semibold hover:text-[#db4a2b] transition flex justify-end">
-                        <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </a>
-                    </td>
-                </tr>
-                <tr class="border-b border-[#e9e9e9]">
-                    <th class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">#0016</th>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-bold text-[#222222]">Need to Fix Kitchen Pipe</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">Flexible</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">12-02-2025 - 18-03-2025</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#FFC600]">Pending</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal">alexmorgan@gmail.com</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs text-right">
-                    <a href="#" class="text-[#222222] text-xs font-semibold hover:text-[#db4a2b] transition flex justify-end">
-                        <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </a>
+                        <div class="site_user_dropdown">
+                            <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action" data-dropdown-placement="bottom-end">
+                                <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </div>
+                            <div id="userDropdown-action" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44" data-popper-placement="bottom-end">
+                                <ul class="bg-white text-sm rounded-xl overflow-hidden">
+                                    <li class="border-b border-[#d3d3d3]">
+                                        <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
+                                    </li>
+                                    <li class="border-b border-[#d3d3d3]">
+                                        <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">View</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             </tbody>

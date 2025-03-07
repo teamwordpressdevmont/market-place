@@ -86,14 +86,14 @@
                <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222]">
                   {{ $order->job_start_timeline }} -  {{ $order->job_end_timeline }}
                </td>
-               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal 
-                  @if($order->order->OrderStatus->status == 'Pending') text-yellow-500 
-                  @elseif($order->order->OrderStatus->status == 'Active') text-orange-500 
-                  @elseif($order->order->OrderStatus->status == 'Completed') text-green-500 
-                  @elseif($order->order->orderStatus->status == 'Processing') text-[#FFA500] 
-                  @elseif($order->order->orderStatus->status == 'In Progress') text-[#007BFF] 
+               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal
+                  @if($order->order->OrderStatus->status == 'Pending') text-yellow-500
+                  @elseif($order->order->OrderStatus->status == 'Active') text-orange-500
+                  @elseif($order->order->OrderStatus->status == 'Completed') text-green-500
+                  @elseif($order->order->orderStatus->status == 'Processing') text-[#FFA500]
+                  @elseif($order->order->orderStatus->status == 'In Progress') text-[#007BFF]
                   @else text-[#222222] @endif">
-                  {{ $order->order->OrderStatus->status }} 
+                  {{ $order->order->OrderStatus->status }}
                </td>
                <td class="px-6 py-5 whitespace-nowrap text-xs font-normal {{ $order && $order->urgent ? 'font-bold text-[#DB4A2B]' : 'text-[#222222]' }}">
                   {{ $order->order->tradeperson->user->email }}
@@ -106,7 +106,7 @@
                           <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                   </button>
-                  
+
                   <div id="dropdownDots-{{ $order->id }}" class="dropdown-menu absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden">
                       <ul class="bg-white text-sm rounded-xl overflow-hidden">
                           <li class="border-b border-[#d3d3d3]">
