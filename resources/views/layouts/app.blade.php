@@ -68,6 +68,8 @@
 
         <script src="{{ asset('/js/jquery.min.js') }}"></script>
 
+        
+
     
         <script src="{{ asset('/js/flowbite.min.js') }}"></script>
 
@@ -79,7 +81,6 @@
         <!-- validation -->
         <script src="{{ asset('/js/jquery.validate.min.js') }}"></script>
 
-        <!-- swiper -->
         <script src="{{ asset('/js/swiper-bundle.min.js') }}"></script>
 
         
