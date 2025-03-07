@@ -169,7 +169,7 @@ class jobListingDataController extends Controller
     public function view($id)
     {
         try {
-            $OrderDetail = OrderDetail::with('order.review.tradeperson')->findOrFail($id);
+            $OrderDetail = OrderDetail::with('order.review.tradeperson' , 'order.tradeperson.categories')->findOrFail($id);
             return view('job-listing.view', compact('OrderDetail'));
         } catch (\Throwable $th) {
             dd($th->getMessage());
