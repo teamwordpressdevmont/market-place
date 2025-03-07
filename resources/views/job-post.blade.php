@@ -2,7 +2,7 @@
 @section('content')
 <div class="mt-5">
     <div class="bgShadow pt-10 pb-8">
-        <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 gap-5 mt-8 items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 gap-5 items-center">
         <div class="lg:col-span-2 col-span-1">
             <div class="flex items-center gap-2 bg-white rounded-full text-sm w-fit pr-4">
                 <div class="bg-[#FFE9DC] px-3 py-2 rounded-full">
@@ -28,7 +28,7 @@
             <p class="text-[#ABABAB] text-xs">Published on: Feb 25, 2025</p>
             <div class="mt-4 flex gap-4 items-center">
                 <h2 class="text-xs font-bold text-[#222222]">Skills</h2>
-                <span class="bg-[#ABABAB] text-white text-gray-700 px-4 pt-1 pb-2 rounded-full text-xs leading-[12px] hover:bg-secondary transition">Plumber</span>
+                <span class="bg-[#ABABAB] text-white text-gray-700 px-4 py-1 rounded-full text-xs leading[0] hover:bg-secondary transition">Plumber</span>
             </div>
         </div>
         <div class="bg-[#EDE9D0] p-4 rounded-2xl flex items-end gap-4 justify-center xl:w-82 w-fit lg:ml-auto self-end">
@@ -37,7 +37,7 @@
         </div>
         </div>
     </div>
-    <div class="grid grid-cols-1 lg:grid-cols-3 xl:gap-9 gap-6 mt-5">
+    <div class="grid grid-cols-1 lg:grid-cols-3 xl:gap-9 gap-6">
        <div class="lg:col-span-2 rounded-xl p-5 bg-white border border-[#22222233]">
           <div class="border-b border-[#e5e7eb] md:mb-8 mb-5 md:pb-8 pb-5">
              <h2 class="text-sm font-semibold">Job Description</h2>

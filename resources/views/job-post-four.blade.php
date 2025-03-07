@@ -1,51 +1,53 @@
 @extends('layouts.app')
 @section('content')
 <div class="mt-5">
-    <div class="grid grid-cols-1 xl:grid-cols-2 lg:gap-8 gap-5 mt-8 items-end">
-       <div class="">
-          <div class="flex items-center gap-2 bg-white rounded-full text-sm w-fit pr-4">
-             <div class="bg-[#FFE9DC] px-3 py-2 rounded-full">
-                <svg width="16" height="16" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                   <g clip-path="url(#clip0_490_3278)">
-                      <ellipse cx="4.27322" cy="4.7875" rx="3.02419" ry="3.02419" stroke="#2B2B2B" stroke-width="0.8" stroke-linecap="round"></ellipse>
-                      <path d="M1.92107 6.80359L1.24902 7.47563M6.62537 6.80359L7.29741 7.47563" stroke="#2B2B2B" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M6.62545 1.61868L6.82555 1.51863C7.10958 1.37661 7.21628 1.39287 7.44209 1.61868C7.66789 1.84449 7.68415 1.95119 7.54214 2.23521L7.44209 2.43531M1.92115 1.61868L1.72105 1.51863C1.43703 1.37661 1.33033 1.39287 1.10452 1.61868C0.878709 1.84449 0.862455 1.95119 1.00447 2.23521L1.10452 2.43531" stroke="#2B2B2B" stroke-width="0.8" stroke-linecap="round"></path>
-                      <path d="M4.27344 3.61139V4.95547L4.94548 5.62752" stroke="#2B2B2B" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M4.27344 1.59528V1.09125" stroke="#2B2B2B" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M3.60107 1.09125H4.94516" stroke="#2B2B2B" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path>
-                   </g>
-                   <defs>
-                      <clipPath id="clip0_490_3278">
-                         <rect width="8.06452" height="8.06452" fill="white" transform="translate(0.241211 0.419189)"></rect>
-                      </clipPath>
-                   </defs>
+    <div class="bgShadow pt-10 pb-8">
+        <div class="grid grid-cols-1 xl:grid-cols-2 lg:gap-8 gap-5 items-end">
+        <div class="">
+            <div class="flex items-center gap-2 bg-white rounded-full text-sm w-fit pr-4">
+                <div class="bg-[#FFE9DC] px-3 py-2 rounded-full">
+                    <svg width="16" height="16" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_490_3278)">
+                        <ellipse cx="4.27322" cy="4.7875" rx="3.02419" ry="3.02419" stroke="#2B2B2B" stroke-width="0.8" stroke-linecap="round"></ellipse>
+                        <path d="M1.92107 6.80359L1.24902 7.47563M6.62537 6.80359L7.29741 7.47563" stroke="#2B2B2B" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M6.62545 1.61868L6.82555 1.51863C7.10958 1.37661 7.21628 1.39287 7.44209 1.61868C7.66789 1.84449 7.68415 1.95119 7.54214 2.23521L7.44209 2.43531M1.92115 1.61868L1.72105 1.51863C1.43703 1.37661 1.33033 1.39287 1.10452 1.61868C0.878709 1.84449 0.862455 1.95119 1.00447 2.23521L1.10452 2.43531" stroke="#2B2B2B" stroke-width="0.8" stroke-linecap="round"></path>
+                        <path d="M4.27344 3.61139V4.95547L4.94548 5.62752" stroke="#2B2B2B" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M4.27344 1.59528V1.09125" stroke="#2B2B2B" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M3.60107 1.09125H4.94516" stroke="#2B2B2B" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_490_3278">
+                            <rect width="8.06452" height="8.06452" fill="white" transform="translate(0.241211 0.419189)"></rect>
+                        </clipPath>
+                    </defs>
+                    </svg>
+                </div>
+                <span class="">Urgent</span>
+            </div>
+            <h1 class="text-[#222222] lg:text-4xl md:text-2xl text-xl font-semibold mt-2 mb-2">Need To Fix Kitchen Pipe</h1>
+            <p class="text-[#ABABAB] text-xs">Published on: Feb 25, 2025</p>
+            <div class="mt-4 flex gap-4 items-center">
+                <h2 class="text-xs font-bold text-[#222222]">Skills</h2>
+                <span class="bg-[#ABABAB] text-white text-gray-700 px-4 py-1 leading[0] rounded-full text-xs hover:bg-secondary transition">Plumber</span>
+            </div>
+        </div>
+        <div class="flex md:items-end md:gap-12 gap-5 xl:justify-end md:flex-row flex-col items-left">
+            <a href="#" class="bg-secondary rounded-full px-4 py-2 text-sm text-white flex items-center justify-between w-40 hover:bg-primary transition">
+                <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 14.6667C5.23989 14.6667 6.12719 14.2618 7.0329 13.4519M7.0329 13.4519C7.8052 12.7613 8.59089 11.7763 9 10.4968C9.88889 7.71688 4.55556 10.4968 6.33333 12.8134C6.55207 13.0985 6.78763 13.3068 7.0329 13.4519ZM7.0329 13.4519C8.10138 14.084 9.35406 13.5161 10.2028 12.863C10.4621 12.6634 10.5918 12.5636 10.6692 12.5947C10.7466 12.6257 10.7919 12.8043 10.8824 13.1615C11.1721 14.3046 12.0277 15.2274 13 13.7404" stroke="#EDE9D0" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M12.334 8.66675L12.334 5.26056C12.334 4.11766 12.334 3.54621 12.1553 3.08981C11.8682 2.35607 11.2608 1.77731 10.4908 1.50365C10.0118 1.33342 9.41215 1.33342 8.21277 1.33342C6.11386 1.33342 5.0644 1.33342 4.22622 1.63132C2.87874 2.11024 1.81586 3.12307 1.31327 4.4071C1.00065 5.2058 1.00065 6.20584 1.00065 8.20592L1.00065 9.92404C1.00065 11.9958 1.00065 13.0317 1.56578 13.7511C1.7277 13.9572 1.91973 14.1402 2.13603 14.2945C2.38076 14.469 2.66039 14.587 3.00065 14.6667" stroke="#EDE9D0" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M0.999349 8C0.999349 6.7727 1.99427 5.77778 3.22157 5.77778C3.66543 5.77778 4.18871 5.85555 4.62026 5.73992C5.00369 5.63718 5.30319 5.33768 5.40593 4.95424C5.52157 4.52269 5.44379 3.99941 5.44379 3.55556C5.44379 2.32826 6.43872 1.33333 7.66602 1.33333" stroke="#EDE9D0" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
-             </div>
-             <span class="">Urgent</span>
-          </div>
-          <h1 class="text-[#222222] lg:text-4xl md:text-2xl text-xl font-semibold mt-2 mb-2">Need To Fix Kitchen Pipe</h1>
-          <p class="text-[#ABABAB] text-xs">Published on: Feb 25, 2025</p>
-          <div class="mt-4 flex gap-4 items-center">
-             <h2 class="text-xs font-bold text-[#222222]">Skills</h2>
-             <span class="bg-[#ABABAB] text-white text-gray-700 px-4 pt-1 pb-1 leading[0] rounded-full text-xs hover:bg-secondary transition">Plumber</span>
-          </div>
-       </div>
-       <div class="flex md:items-end md:gap-12 gap-5 xl:justify-end md:flex-row flex-col items-left">
-          <a href="#" class="bg-secondary rounded-full px-4 py-2 text-sm text-white flex items-center justify-between w-40 hover:bg-primary transition">
-             <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 14.6667C5.23989 14.6667 6.12719 14.2618 7.0329 13.4519M7.0329 13.4519C7.8052 12.7613 8.59089 11.7763 9 10.4968C9.88889 7.71688 4.55556 10.4968 6.33333 12.8134C6.55207 13.0985 6.78763 13.3068 7.0329 13.4519ZM7.0329 13.4519C8.10138 14.084 9.35406 13.5161 10.2028 12.863C10.4621 12.6634 10.5918 12.5636 10.6692 12.5947C10.7466 12.6257 10.7919 12.8043 10.8824 13.1615C11.1721 14.3046 12.0277 15.2274 13 13.7404" stroke="#EDE9D0" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M12.334 8.66675L12.334 5.26056C12.334 4.11766 12.334 3.54621 12.1553 3.08981C11.8682 2.35607 11.2608 1.77731 10.4908 1.50365C10.0118 1.33342 9.41215 1.33342 8.21277 1.33342C6.11386 1.33342 5.0644 1.33342 4.22622 1.63132C2.87874 2.11024 1.81586 3.12307 1.31327 4.4071C1.00065 5.2058 1.00065 6.20584 1.00065 8.20592L1.00065 9.92404C1.00065 11.9958 1.00065 13.0317 1.56578 13.7511C1.7277 13.9572 1.91973 14.1402 2.13603 14.2945C2.38076 14.469 2.66039 14.587 3.00065 14.6667" stroke="#EDE9D0" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M0.999349 8C0.999349 6.7727 1.99427 5.77778 3.22157 5.77778C3.66543 5.77778 4.18871 5.85555 4.62026 5.73992C5.00369 5.63718 5.30319 5.33768 5.40593 4.95424C5.52157 4.52269 5.44379 3.99941 5.44379 3.55556C5.44379 2.32826 6.43872 1.33333 7.66602 1.33333" stroke="#EDE9D0" stroke-linecap="round" stroke-linejoin="round"></path>
-             </svg>
-             View Contract
-          </a>
-          <div class="bg-[#EDE9D0] p-4 rounded-2xl flex items-end gap-4 justify-center xl:w-[280px] w-fit">
-             <p class="text-[#072130] text-sm font-semibold">Task Budget</p>
-             <p class="lg:text-4xl md:text-2xl text-xl font-bold text-[#222222]">$2500</p>
-          </div>
-       </div>
+                View Contract
+            </a>
+            <div class="bg-[#EDE9D0] p-4 rounded-2xl flex items-end gap-4 justify-center xl:w-[280px] w-fit">
+                <p class="text-[#072130] text-sm font-semibold">Task Budget</p>
+                <p class="lg:text-4xl md:text-2xl text-xl font-bold text-[#222222]">$2500</p>
+            </div>
+        </div>
+        </div>
     </div>
-    <div class="grid grid-cols-1 xl:grid-cols-3 2xl:gap-9 gap-6 mt-5">
+    <div class="grid grid-cols-1 xl:grid-cols-3 2xl:gap-9 gap-6">
        <div class="rounded-xl p-5 bg-white border border-[#22222233] h-fit">
           <div class="border-b border-[#e5e7eb] md:mb-8 mb-5 md:pb-8 pb-5">
              <h2 class="text-sm font-semibold">Job Description</h2>
