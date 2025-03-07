@@ -11,7 +11,7 @@
 
     <div class="bg-white py-5 xl:px-8 px-5 rounded-xl flex justify-between border border-[#22222233]">
        <div>
-          <h3 class="md:text-3xl text-2xl font-bold text-[##222222] md:mb-12 mb-6">€ 2,00,000</h3>
+          <h3 class="md:text-3xl text-2xl font-bold text-[##222222] md:mb-12 mb-6">    {{ $totalBudget }}         </h3>
           <p class="text-[#222222] font-bold text-sm">Total Earnings</p>
        </div>
        <div>
@@ -37,7 +37,7 @@
     </div>
     <div class="bg-white py-5 xl:px-8 px-5 rounded-xl flex justify-between border border-[#22222233]">
        <div>
-          <h3 class="md:text-3xl text-2xl font-bold text-[##222222] md:mb-12 mb-6">800</h3>
+          <h3 class="md:text-3xl text-2xl font-bold text-[##222222] md:mb-12 mb-6">{{ $completedJobs }}</h3>
           <p class="text-[#222222] font-bold text-sm">Completed Jobs</p>
        </div>
        <div>
@@ -65,96 +65,38 @@
                  </tr>
               </thead>
               <tbody>
-                 <tr class="bg-white border-b border-[#e9e9e9]">
-                    <th class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">#0016</th>
-                    <td class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">Need to Fix Kitchen Pipe</td>
-                    <td class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">Urgent</td>
-                    <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#DB4A2B]">alexmorgan@gmail.com</td>
-                    <td class="px-6 py-5 whitespace-nowrap text-xs">
-                       <a href="#" class="text-[#222222] text-xs font-semibold hover:text-[#db4a2b] transition flex justify-end">
-                          <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                             <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                             <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                          </svg>
-                       </a>
-                    </td>
-                 </tr>
-                 <tr class="border-b border-[#e9e9e9]">
-                    <th class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">#0016</th>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-bold text-[#222222]">Need to Fix Kitchen Pipe</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs text-[#222222]">Urgent</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">alexmorgan@gmail.com</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs text-right">
-                       <a href="#" class="text-[#222222] text-xs font-semibold hover:text-[#db4a2b] transition flex justify-end">
-                          <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                             <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                             <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                          </svg>
-                       </a>
-                    </td>
-                 </tr>
-                 <tr class="border-b border-[#e9e9e9]">
-                    <th class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">#0016</th>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-bold text-[#222222]">Need to Fix Kitchen Pipe</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs text-[#222222]">Urgent</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">alexmorgan@gmail.com</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs text-right">
-                       <a href="#" class="text-[#222222] text-xs font-semibold hover:text-[#db4a2b] transition flex justify-end">
-                          <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                             <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                             <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                          </svg>
-                       </a>
-                    </td>
-                 </tr>
-                 <tr class="border-b border-[#e9e9e9]">
-                    <th class="px-6 py-4 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">#0016</th>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">Need to Fix Kitchen Pipe</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">Urgent</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">alexmorgan@gmail.com</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs text-right">
-                       <a href="#" class="text-[#222222] text-xs font-semibold hover:text-[#db4a2b] transition flex justify-end">
-                          <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                             <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                             <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                          </svg>
-                       </a>
-                    </td>
-                 </tr>
-                 <tr class="border-b border-[#e9e9e9]">
-                    <th class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">#0016</th>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-bold text-[#222222]">Need to Fix Kitchen Pipe</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs text-[#222222]">Urgent</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">alexmorgan@gmail.com</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs text-right">
-                       <a href="#" class="text-[#222222] text-xs font-semibold hover:text-[#db4a2b] transition flex justify-end">
-                          <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                             <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                             <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                          </svg>
-                       </a>
-                    </td>
-                 </tr>
-                 <tr class="">
-                    <th class="px-6 py-4 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">#0016</th>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">Need to Fix Kitchen Pipe</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">Urgent</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#222222]">alexmorgan@gmail.com</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xs text-right">
-                       <a href="#" class="text-[#222222] text-xs font-semibold hover:text-[#db4a2b] transition flex justify-end">
-                          <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                             <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                             <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                          </svg>
-                       </a>
-                    </td>
-                 </tr>
+               @if($orders->isEmpty())
+               <tr class="bg-white border-b border-[#e9e9e9]">
+                  <th class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]" colspan="6">
+                       No data available.
+                   </th>
+               </tr>
+               @else  
+               @foreach ($orders as $order) 
+                  <tr class="bg-white border-b border-[#e9e9e9]">
+                     <th class="px-6 py-5 whitespace-nowrap text-xs font-bold  {{ $loop->iteration % 2 == 0 ? 'text-[#222222]' : 'text-[#DB4A2B]' }}">{{ $order->id }}</th>
+                     <td class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $loop->iteration % 2 == 0 ? 'text-[#222222]' : 'text-[#DB4A2B]' }}">{{ optional($order->orderDetail)->title }}</td>
+                     <td class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $loop->iteration % 2 == 0 ? 'text-[#222222]' : 'text-[#DB4A2B]' }}">
+                        @if($order->orderDetail)
+                           {{ $order->orderDetail->urgent ? 'Urgent' : 'Flexible' }}
+                        @else
+                           No Details Available
+                        @endif
+                     </td>
+                     <td class="px-6 py-5 whitespace-nowrap text-xs font-normal {{ $loop->iteration % 2 == 0 ? 'text-[#222222]' : 'text-[#DB4A2B]' }}">{{ $order->tradeperson->user->email ?? 'N/A' }}</td>
+                     <td class="px-6 py-5 whitespace-nowrap text-xs">
+                        <a href="#" class="text-[#222222] text-xs font-semibold hover:text-[#db4a2b] transition flex justify-end">
+                           <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                              <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                              <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                           </svg>
+                        </a>
+                     </td>
+                  </tr>
+               
+               @endforeach
+               @endif
               </tbody>
            </table>
         </div>
@@ -183,108 +125,48 @@
             </div>
             <div id="default-styled-tab-content">
                 <div class="h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] pr-3" id="styled-profile" role="tabpanel" aria-labelledby="proposal-tab">
-                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
-                        <img src="http://127.0.0.1:8000/images/profile.png" alt="Job Image" class=" rounded-xl object-cover">
-                        <div class="lg:px-4 px-3 flex-1">
-                            <h3 class="text-xs font-bold mb-1 text-[#222222]">Nick Plumbing co. <span class="font-light"> create his profile</span></h3>
-                            <p class="text-xs text-[#9A9FA5] font-light">1h ago</p>
+                  @foreach($pendingOrders as $order)
+
+                  @php
+                        $initials = strtoupper(substr($order->title, 0, 1)) . (strpos($order->title, ' ') ? strtoupper(substr($order->title, strpos($order->title, ' ') + 1, 1)) : '');
+                  @endphp
+
+                     <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
+                           {{-- <img src="{{ $order->image }}" alt="Job Image" class=" rounded-xl object-cover"> --}}
+                           <div class="w-10 h-10 flex items-center justify-center rounded-full bg-green-500 text-white font-bold">
+                              {{ $initials }}
                         </div>
-                        <span class="bg-[#222222] text-white text-xs px-4 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Profile</span>
-                    </div>
-                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
-                        <img src="http://127.0.0.1:8000/images/profile.png" alt="Job Image" class=" rounded-xl object-cover">
-                        <div class="lg:px-4 px-3 flex-1">
-                            <h3 class="text-xs font-bold mb-1 text-[#222222]">Nick Plumbing co. <span class="font-light"> create his profile</span></h3>
-                            <p class="text-xs text-[#9A9FA5] font-light">1h ago</p>
-                        </div>
-                        <span class="bg-[#222222] text-white text-xs px-4 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Profile</span>
-                    </div>
-                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
-                        <img src="http://127.0.0.1:8000/images/profile.png" alt="Job Image" class=" rounded-xl object-cover">
-                        <div class="lg:px-4 px-3 flex-1">
-                            <h3 class="text-xs font-bold mb-1 text-[#222222]">Nick Plumbing co. <span class="font-light"> create his profile</span></h3>
-                            <p class="text-xs text-[#9A9FA5] font-light">1h ago</p>
-                        </div>
-                        <span class="bg-[#222222] text-white text-xs px-4 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Profile</span>
-                    </div>
-                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
-                        <img src="http://127.0.0.1:8000/images/profile.png" alt="Job Image" class=" rounded-xl object-cover">
-                        <div class="lg:px-4 px-3 flex-1">
-                            <h3 class="text-xs font-bold mb-1 text-[#222222]">Nick Plumbing co. <span class="font-light"> create his profile</span></h3>
-                            <p class="text-xs text-[#9A9FA5] font-light">1h ago</p>
-                        </div>
-                        <span class="bg-[#222222] text-white text-xs px-4 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Profile</span>
-                    </div>
-                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
-                        <img src="http://127.0.0.1:8000/images/profile.png" alt="Job Image" class=" rounded-xl object-cover">
-                        <div class="lg:px-4 px-3 flex-1">
-                            <h3 class="text-xs font-bold mb-1 text-[#222222]">Nick Plumbing co. <span class="font-light"> create his profile</span></h3>
-                            <p class="text-xs text-[#9A9FA5] font-light">1h ago</p>
-                        </div>
-                        <span class="bg-[#222222] text-white text-xs px-4 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Profile</span>
-                    </div>
+                           <div class="lg:px-4 px-3 flex-1">
+                              <h3 class="text-xs font-bold mb-1 text-[#222222]">{{ $order->title }}<span class="font-light"> create his profile</span></h3>
+                              <p class="text-xs text-[#9A9FA5] font-light">{{ $order->created_at->diffForHumans() }}</p>
+                           </div>
+                           <span class="bg-[#222222] text-white text-xs px-4 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Profile</span>
+                     </div>
+                  @endforeach
                 </div>
                 <div class="h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] hidden pr-3" id="styled-settings" role="tabpanel" aria-labelledby="reviews-tab">
-                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
-                        <img src="http://127.0.0.1:8000/images/profile.png" alt="Job Image" class=" rounded-xl object-cover">
-                        <div class="lg:px-4 px-3 flex-1">
-                        <h3 class="text-xs font-bold mb-1 text-[#222222]">Nick Plumbing co. </h3>
-                        <p class="text-xs text-[#9A9FA5] font-light">1h ago</p>
+                  @foreach($pendingOrders as $order)
+
+                  @php
+                        $initials = strtoupper(substr($order->title, 0, 1)) . (strpos($order->title, ' ') ? strtoupper(substr($order->title, strpos($order->title, ' ') + 1, 1)) : '');
+                  @endphp
+                  
+                       <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
+                              {{-- <img src="http://127.0.0.1:8000/images/profile.png" alt="Job Image" class=" rounded-xl object-cover"> --}}
+                              <div class="w-10 h-10 flex items-center justify-center rounded-full bg-green-500 text-white font-bold">
+                                 {{ $initials }}
+                           </div>
+                              <div class="lg:px-4 px-3 flex-1">
+                              <h3 class="text-xs font-bold mb-1 text-[#222222]">{{ $order->title }} </h3>
+                              <p class="text-xs text-[#9A9FA5] font-light">{{ $order->created_at->diffForHumans() }}</p>
+                              </div>
+                              <span class="bg-[#222222] text-white text-xs px-6 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Job</span>
                         </div>
-                        <span class="bg-[#222222] text-white text-xs px-6 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Job</span>
-                    </div>
-                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
-                        <img src="http://127.0.0.1:8000/images/profile.png" alt="Job Image" class=" rounded-xl object-cover">
-                        <div class="lg:px-4 px-3 flex-1">
-                        <h3 class="text-xs font-bold mb-1 text-[#222222]">Nick Plumbing co. </h3>
-                        <p class="text-xs text-[#9A9FA5] font-light">1h ago</p>
-                        </div>
-                        <span class="bg-[#222222] text-white text-xs px-6 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Job</span>
-                    </div>
-                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
-                        <img src="http://127.0.0.1:8000/images/profile.png" alt="Job Image" class=" rounded-xl object-cover">
-                        <div class="lg:px-4 px-3 flex-1">
-                        <h3 class="text-xs font-bold mb-1 text-[#222222]">Nick Plumbing co. </h3>
-                        <p class="text-xs text-[#9A9FA5] font-light">1h ago</p>
-                        </div>
-                        <span class="bg-[#222222] text-white text-xs px-6 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Job</span>
-                    </div>
-                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
-                        <img src="http://127.0.0.1:8000/images/profile.png" alt="Job Image" class=" rounded-xl object-cover">
-                        <div class="lg:px-4 px-3 flex-1">
-                        <h3 class="text-xs font-bold mb-1 text-[#222222]">Nick Plumbing co. </h3>
-                        <p class="text-xs text-[#9A9FA5] font-light">1h ago</p>
-                        </div>
-                        <span class="bg-[#222222] text-white text-xs px-6 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Job</span>
-                    </div>
-                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
-                        <img src="http://127.0.0.1:8000/images/profile.png" alt="Job Image" class=" rounded-xl object-cover">
-                        <div class="lg:px-4 px-3 flex-1">
-                        <h3 class="text-xs font-bold mb-1 text-[#222222]">Nick Plumbing co. </h3>
-                        <p class="text-xs text-[#9A9FA5] font-light">1h ago</p>
-                        </div>
-                        <span class="bg-[#222222] text-white text-xs px-6 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Job</span>
-                    </div>
-                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
-                        <img src="http://127.0.0.1:8000/images/profile.png" alt="Job Image" class=" rounded-xl object-cover">
-                        <div class="lg:px-4 px-3 flex-1">
-                        <h3 class="text-xs font-bold mb-1 text-[#222222]">Nick Plumbing co. </h3>
-                        <p class="text-xs text-[#9A9FA5] font-light">1h ago</p>
-                        </div>
-                        <span class="bg-[#222222] text-white text-xs px-6 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Job</span>
-                    </div>
-                    <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
-                        <img src="http://127.0.0.1:8000/images/profile.png" alt="Job Image" class=" rounded-xl object-cover">
-                        <div class="lg:px-4 px-3 flex-1">
-                        <h3 class="text-xs font-bold mb-1 text-[#222222]">Nick Plumbing co. </h3>
-                        <p class="text-xs text-[#9A9FA5] font-light">1h ago</p>
-                        </div>
-                        <span class="bg-[#222222] text-white text-xs px-6 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Job</span>
-                    </div>
+                  @endforeach
+                  </div>
                 </div>
             </div>
          </div>
       </div>
    </div>
-</div>
 @endsection
