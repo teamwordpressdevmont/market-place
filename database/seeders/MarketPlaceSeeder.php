@@ -25,15 +25,6 @@ class MarketPlaceSeeder extends Seeder
         $customerRole = Role::create(['name' => 'customer']);
         $tradepersonRole = Role::create(['name' => 'tradeperson']);
 
-        // Creating Permissions
-        $viewAdmin = Permission::create(['name' => 'view admin']);
-        $viewCustomer = Permission::create(['name' => 'view customer']);
-        $viewTradeperson = Permission::create(['name' => 'view tradeperson']);
-
-        // Assign Permissions to Roles
-        $adminRole->givePermissionTo($viewAdmin);
-        $customerRole->givePermissionTo($viewCustomer);
-        $tradepersonRole->givePermissionTo($viewTradeperson);
 
         // Creating Users and Assigning Roles
         $admin = User::create([
