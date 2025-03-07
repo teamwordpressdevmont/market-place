@@ -16,12 +16,12 @@
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/trumbowyg@2.27.3/dist/ui/trumbowyg.min.css">
 
-        <link rel="stylesheet" href="{{ asset('/public/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
         
-       <script src="{{ asset('/public/js/tailwind.js') }}"></script>
+       <script src="{{ asset('/js/tailwind.js') }}"></script>
 
 
-       <script src="{{ asset('/public/js/tailwindcss.js') }}"></script>
+       <script src="{{ asset('/js/tailwindcss.js') }}"></script>
 
        <script>
         tailwind.config = {
@@ -39,8 +39,9 @@
             }
         }
         </script>
-        <link rel="stylesheet" href="{{ asset('/public/css/flowbite.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('/public/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/flowbite.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/swiper-bundle.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 
     </head>
     <body class="bg-[#F4F4F4] font-sora">
@@ -65,12 +66,10 @@
         @include('partials.footer')
 
 
-        <script src="{{ asset('/public/js/jquery.min.js') }}"></script>
-
-        
+        <script src="{{ asset('/js/jquery.min.js') }}"></script>
 
     
-        <script src="{{ asset('/public/js/flowbite.min.js') }}"></script>
+        <script src="{{ asset('/js/flowbite.min.js') }}"></script>
 
 
         <!-- Trumbowyg JS -->
@@ -78,10 +77,13 @@
 
 
         <!-- validation -->
-        <script src="{{ asset('/public/js/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('/js/jquery.validate.min.js') }}"></script>
+
+        <!-- swiper -->
+        <script src="{{ asset('/js/swiper-bundle.min.js') }}"></script>
 
         
-        <script src="{{ asset('/public/js/custom-script.js') }}"></script>
+        <script src="{{ asset('/js/custom-script.js') }}"></script>
 
 
     
