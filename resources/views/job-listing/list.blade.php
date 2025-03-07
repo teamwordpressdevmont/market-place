@@ -13,9 +13,9 @@
          <form id="searchForm" method="GET" action="http://127.0.0.1:8000/categories" class="relative flex md:w-[450px] w-full">
             <input type="text" name="search" value="" id="table-search" class="rounded-tl-full rounded-bl-full bg-white text-[#222222] placeholder-[#222222] block flex-1 text-xs px-5" placeholder="Search for job">
             <button type="submit" class="bg-secondary cursor-pointer inset-y-0 right-0 px-4 py-3 text-white text-xs border border-secondary hover:bg-primary transition rounded-tr-full rounded-br-full w-[120px]">Search</button>
-            <div class="input-group-append absolute top-[13px] right-[100px]">
+            <div class="input-group-append absolute top-[10px] right-[130px]">
                <span class="input-group-text close-icon" style="cursor: pointer; display: none;">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="15px" height="20px">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="13px" height="20px">
                      <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"></path>
                   </svg>
                </span>
@@ -26,7 +26,7 @@
             <span class="text-sm font-bold mr-3">Sort by:</span>
             <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="font-light text-xs bg-white text-[#ABABAB] border border-[#d3d3d3] text-center inline-flex items-center rounded-full px-3 py-1.5 w-[163px] justify-between" data-popper-placement="top end" type="button">Urgent</button>
             <!-- Dropdown menu -->
-            <div id="dropdown" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom">
+            <div id="dropdown" class="-top-[10px]! left-[15px]! absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom">
                 <ul class="bg-white text-sm rounded-xl overflow-hidden" aria-labelledby="dropdownDefaultButton">
                     <li class="border-b border-[#d3d3d3]">
                         <a href="#" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Acive</a>
@@ -102,7 +102,7 @@
                         <li class="border-b border-[#d3d3d3]">
                            <a href="{{ route('joblisting.view', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">View</a>
                         </li>
-                        <li class="border-b border-[#d3d3d3]">
+                        <li class="">
                            <a href="{{ route('joblisting.delete', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Delete</a>
                         </li>
                      </ul>
@@ -140,7 +140,7 @@
                         <li class="border-b border-[#d3d3d3]">
                             <a href="{{ route('joblisting.view', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">View</a>
                         </li>
-                        <li class="border-b border-[#d3d3d3]">
+                        <li class="">
                             <a href="{{ route('joblisting.delete', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Delete</a>
                         </li>
                         </ul>
