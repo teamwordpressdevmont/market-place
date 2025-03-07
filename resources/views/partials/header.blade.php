@@ -10,7 +10,7 @@
             </svg>
          </button>
         <div class="flex ms-2 md:me-24">
-          <span class="self-center whitespace-nowrap ">Welcome, Brian Simmons!</span>
+          <span class="self-center whitespace-nowrap ">Welcome, {{ Auth::user()->name }}!</span>
         </div>
       </div>
 
@@ -87,8 +87,7 @@
 
           <div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
               <div class="px-4 py-3 text-sm text-gray-900">
-                {{--  <div>{{ Auth::user()->name }}</div>  --}}
-                <div class="font-medium truncate">name@flowbite.com</div>
+                <div class="font-medium truncate">{{ Auth::user()->email }}</div>
               </div>
               <div class="py-1">
                 <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">Sign out</a>
