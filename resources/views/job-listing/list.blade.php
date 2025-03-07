@@ -10,8 +10,8 @@
    </div>
    <div class="flex justify-between items-start">
       <div class="relative">
-         <form id="searchForm" method="GET" action="http://127.0.0.1:8000/categories" class="relative flex md:w-[450px] w-full">
-            <input type="text" name="search" value="" id="table-search" class="rounded-tl-full rounded-bl-full bg-white text-mat placeholder-[#222222] block flex-1 text-xs px-5" placeholder="Search for job">
+         <form id="searchForm" method="GET" action="{{ route('joblisting.list') }}" class="relative flex md:w-[450px] w-full">
+            <input type="text" name="search" value="{{ request('search') }}" id="table-search" class="rounded-tl-full rounded-bl-full bg-white text-[#222222] placeholder-[#222222] block flex-1 text-xs px-5" placeholder="Search for job">
             <button type="submit" class="bg-secondary cursor-pointer inset-y-0 right-0 px-4 py-3 text-white text-xs border border-secondary hover:bg-primary transition rounded-tr-full rounded-br-full w-[120px]">Search</button>
             <div class="input-group-append absolute top-[10px] right-[130px]">
                <span class="input-group-text close-icon" style="cursor: pointer; display: none;">
@@ -22,24 +22,24 @@
             </div>
          </form>
       </div>
-      <div>
+      <div class="relative">
          <span class="text-sm font-bold mr-3">Sort by:</span>
-         <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="font-light text-xs bg-white text-[#ABABAB] border border-[#d3d3d3] text-center inline-flex items-center rounded-full px-3 py-1.5 w-[163px] justify-between" data-popper-placement="top end" type="button">Urgent</button>
+         <button id="dropdownDefaultButton" class="font-light text-xs bg-white text-[#ABABAB] border border-[#d3d3d3] text-center inline-flex items-center rounded-full px-3 py-1.5 w-[163px] justify-between">
+             all
+         </button>
          <!-- Dropdown menu -->
-         <div id="dropdown" class="-top-[10px]! left-[15px]! absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom">
-            <ul class="bg-white text-sm rounded-xl overflow-hidden" aria-labelledby="dropdownDefaultButton">
-               <li class="border-b border-[#d3d3d3]">
-                  <a href="#" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Acive</a>
-               </li>
-               <li class="border-b border-[#d3d3d3]">
-                  <a href="#" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Pending</a>
-               </li>
-               <li class="">
-                  <a href="#" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Completed</a>
-               </li>
-            </ul>
+         <div id="dropdown" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden">
+             <ul class="bg-white text-sm rounded-xl overflow-hidden">
+                 @foreach ($OrderStatus as $status)
+                 <li class="{{ !$loop->last ? 'border-b border-[#d3d3d3]' : '' }}">
+                     <a href="javascript:void(0)" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222] order-status-filter" data-status="{{ $status->id }}">
+                         {{ $status->status }}
+                     </a>
+                 </li>
+                 @endforeach
+             </ul>
          </div>
-      </div>
+     </div>
    </div>
 </div>
 <div class="rounded-xl pt-5 bg-white border border-[#22222233] h-fit">
@@ -67,97 +67,60 @@
             @else
             @foreach($OrderDetails as $index => $order)
             <tr class="border-b border-[#e9e9e9]">
-               <th scope="row" class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">
-                  {{ $order->order_id }}
+               <th scope="row" class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $order && $order->urgent ? 'text-[#DB4A2B]' : 'text-[#222222]' }}">
+                  #{{ $order->order_id }}
                </th>
-               <td class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">
+               <td class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $order && $order->urgent ? 'text-[#DB4A2B]' : 'text-[#222222]' }}">
                   {{ $order->title }}
+                  @if($order->urgent)
+                     <span class="bg-secondary text-[#EDE9D0] text-xs font-normal px-2 py-1 rounded-full dark:bg-primary ml-2">
+                        High-priority
+                     </span>
+                  @endif
                </td>
-               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">
-                  {{ $order->order->customer->name ?? 'No Customer' }}
+               <td class="px-6 py-5 whitespace-nowrap text-xs {{ $order && $order->urgent ? 'font-bold text-[#DB4A2B]' : 'font-normal text-[#222222]' }}">
+                  @if($order)
+                     {{ $order->urgent ? 'Urgent' : 'Flexible' }}
+                  @endif
                </td>
-               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">
-                  Active
+               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222]">
+                  {{ $order->job_start_timeline }} -  {{ $order->job_end_timeline }}
                </td>
-               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">
-                  {{ $order->order->tradeperson->business_name ?? 'No Business' }}
+               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal 
+                  @if($order->order->OrderStatus->status == 'Pending') text-yellow-500 
+                  @elseif($order->order->OrderStatus->status == 'Active') text-orange-500 
+                  @elseif($order->order->OrderStatus->status == 'Completed') text-green-500 
+                  @elseif($order->order->orderStatus->status == 'Processing') text-[#FFA500] 
+                  @elseif($order->order->orderStatus->status == 'In Progress') text-[#007BFF] 
+                  @else text-[#222222] @endif">
+                  {{ $order->order->OrderStatus->status }} 
                </td>
-               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">
-                  {{ $order->budget }}
+               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal {{ $order && $order->urgent ? 'font-bold text-[#DB4A2B]' : 'text-[#222222]' }}">
+                  {{ $order->order->tradeperson->user->email }}
                </td>
-               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat text-center">
-                  <button id="dropdownMenuIconButton-1" data-dropdown-toggle="dropdownDots-1" data-popper-placement="bottom-end" class="inline-flex justify-end w-fit ml-auto"  type="button">
-                     <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                     </svg>
+               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222] text-center">
+                  <button data-dropdown-toggle="dropdownDots-{{ $order->id }}" class="inline-flex justify-end w-fit ml-auto" type="button">
+                      <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
                   </button>
-                  <!-- Dropdown menu -->
-                  <div id="dropdownDots-1" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
-                     <ul class="bg-white text-sm rounded-xl overflow-hidden" aria-labelledby="dropdownMenuIconButton-1">
-                        <li class="border-b border-[#d3d3d3]">
-                           <a href="{{ route('joblisting.edit', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Edit</a>
-                        </li>
-                        <li class="border-b border-[#d3d3d3]">
-                           <a href="{{ route('joblisting.view', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">View</a>
-                        </li>
-                        <li class="">
-                           <a href="{{ route('joblisting.delete', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Delete</a>
-                        </li>
-                     </ul>
+                  
+                  <div id="dropdownDots-{{ $order->id }}" class="dropdown-menu absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden">
+                      <ul class="bg-white text-sm rounded-xl overflow-hidden">
+                          <li class="border-b border-[#d3d3d3]">
+                              <a href="{{ route('joblisting.edit', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
+                          </li>
+                          <li class="border-b border-[#d3d3d3]">
+                              <a href="{{ route('joblisting.view', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">View</a>
+                          </li>
+                          <li class="">
+                              <a href="{{ route('joblisting.delete', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Delete</a>
+                          </li>
+                      </ul>
                   </div>
-               </td>
-            </tr>
-            <tr class="border-b border-[#e9e9e9]">
-               <th class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">#0016</th>
-               {{--
-               <th class="px-6 py-4 whitespace-nowrap text-xs font-normal text-mat">#0016</th>
-               --}}
-               <td class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">Need Urgent Insulation Specialist<span class="bg-secondary text-[#EDE9D0] text-xs font-normal px-2 py-1 rounded-full ml-2">High-priority</span>
-                  {{--
-               <td class="px-6 py-4 whitespace-nowrap text-xs font-bold text-mat">Need to Fix Kitchen Pipe</td>
-               --}}
-               </td>
-               <td class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">Urgent</td>
-               {{--
-               <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-mat">Flexible</td>
-               --}}
-               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">12-02-2025 - 18-03-2025</td>
-               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#DB4A2B]">Active</td>
-               {{--
-               <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#24C500]">Completed</td>
-               --}}
-               {{--
-               <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-[#FFC600]">Pending</td>
-               --}}
-               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#DB4A2B]">alexmorgan@gmail.com</td>
-               {{--
-               <td class="px-6 py-4 whitespace-nowrap text-xs font-normal text-mat">alexmorgan@gmail.com</td>
-               --}}
-               <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat text-center">
-                  <button id="dropdownMenuIconButton-2" data-dropdown-toggle="dropdownDots-2" data-popper-placement="bottom-end" class="inline-flex justify-end w-fit ml-auto"  type="button">
-                     <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                     </svg>
-                  </button>
-                  <!-- Dropdown menu -->
-                  <div id="dropdownDots-2" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
-                     <ul class="bg-white text-sm rounded-xl overflow-hidden" aria-labelledby="dropdownMenuIconButton-2">
-                        <li class="border-b border-[#d3d3d3]">
-                           <a href="{{ route('joblisting.edit', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Edit</a>
-                        </li>
-                        <li class="border-b border-[#d3d3d3]">
-                           <a href="{{ route('joblisting.view', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">View</a>
-                        </li>
-                        <li class="">
-                           <a href="{{ route('joblisting.delete', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Delete</a>
-                        </li>
-                     </ul>
-                  </div>
-               </td>
+              </td>
             </tr>
             @endforeach
             @endif

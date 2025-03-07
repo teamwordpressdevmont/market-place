@@ -74,16 +74,14 @@
                @else  
                @foreach ($orders as $order) 
                   <tr class="bg-white border-b border-[#e9e9e9]">
-                     <th class="px-6 py-5 whitespace-nowrap text-xs font-bold  {{ $loop->iteration % 2 == 0 ? 'text-[#222222]' : 'text-[#DB4A2B]' }}">{{ $order->id }}</th>
-                     <td class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $loop->iteration % 2 == 0 ? 'text-[#222222]' : 'text-[#DB4A2B]' }}">{{ optional($order->orderDetail)->title }}</td>
-                     <td class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $loop->iteration % 2 == 0 ? 'text-[#222222]' : 'text-[#DB4A2B]' }}">
+                     <th class="px-6 py-5 whitespace-nowrap text-xs font-bold  {{ $order->orderDetail && $order->orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-[#222222]' }}">#{{ $order->id }}</th>
+                     <td class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $order->orderDetail && $order->orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-[#222222]' }}">{{ optional($order->orderDetail)->title }}</td>
+                     <td class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $order->orderDetail && $order->orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-[#222222]' }}">
                         @if($order->orderDetail)
                            {{ $order->orderDetail->urgent ? 'Urgent' : 'Flexible' }}
-                        @else
-                           No Details Available
                         @endif
                      </td>
-                     <td class="px-6 py-5 whitespace-nowrap text-xs font-normal {{ $loop->iteration % 2 == 0 ? 'text-[#222222]' : 'text-[#DB4A2B]' }}">{{ $order->tradeperson->user->email ?? 'N/A' }}</td>
+                     <td class="px-6 py-5 whitespace-nowrap text-xs font-normal {{ $order->orderDetail && $order->orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-[#222222]' }}">{{ $order->tradeperson->user->email }}</td>
                      <td class="px-6 py-5 whitespace-nowrap text-xs">
                         <a href="#" class="text-[#222222] text-xs font-semibold hover:text-[#db4a2b] transition flex justify-end">
                            <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">

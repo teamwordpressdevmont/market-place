@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Customer;
 use App\Models\Tradeperson;
 use App\Models\TradepersonReview;
+use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -18,27 +19,36 @@ use Illuminate\Validation\ValidationException;
 class jobListingDataController extends Controller
 {
     public function list(Request $request)
-    {
-        $search = $request->input('search');
-        $sortBy = $request->input('sort_by', 'id');
-        $sortDirection = $request->input('sort_direction', 'asc');
+{
+    $search = $request->input('search');
+    $sortBy = $request->input('sort_by', 'id');
+    $sortDirection = $request->input('sort_direction', 'asc');
+    $selectedStatus = $request->input('status'); // Selected Order Status ID
 
-        $OrderDetails = OrderDetail::with(['order.customer', 'order.tradeperson'])
-            ->when($search, function ($query, $search) {
-                return $query->where('title', 'like', "%{$search}%");
-            })
-            ->orderBy($sortBy, $sortDirection)
-            ->paginate(10);
+    $OrderStatus = OrderStatus::all();
 
-        if ($request->ajax()) {
-            return response()->json([
-                'html' => view('job-listing.list', compact('OrderDetails'))->render(),
-                'pagination' => (string) $OrderDetails->appends($request->all())->links()
-            ]);
-        }
+    $OrderDetails = OrderDetail::with(['order.customer', 'order.tradeperson', 'order.tradeperson.user', 'order.OrderStatus'])
+        ->when($search, function ($query, $search) {
+            return $query->where('title', 'like', "%{$search}%");
+        })
+        ->when($selectedStatus, function ($query) use ($selectedStatus) {
+            return $query->whereHas('order.OrderStatus', function ($q) use ($selectedStatus) {
+                $q->where('id', $selectedStatus);
+            });
+        })
+        ->orderBy($sortBy, $sortDirection)
+        ->paginate(10);
 
-        return view('job-listing.list', compact('OrderDetails', 'search', 'sortBy', 'sortDirection'));
+    if ($request->ajax()) {
+        return response()->json([
+            'html' => view('job-listing.list', compact('OrderDetails', 'OrderStatus'))->render(),
+            'pagination' => (string) $OrderDetails->appends($request->all())->links()
+        ]);
     }
+
+    return view('job-listing.list', compact('OrderDetails', 'search', 'sortBy', 'sortDirection', 'OrderStatus'));
+}
+
 
     public function edit($id)
     {

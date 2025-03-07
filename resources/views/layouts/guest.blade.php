@@ -12,17 +12,17 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        <link rel="stylesheet" href="{{ asset('/public/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 
         
-          <script src="{{ asset('/public/js/jquery.min.js') }}"></script>
+          <script src="{{ asset('/js/jquery.min.js') }}"></script>
 
 
     
-        <script src="{{ asset('/public/js/tailwind.js') }}"></script>
+        <script src="{{ asset('/js/tailwind.js') }}"></script>
 
         
-        <script src="{{ asset('/public/js/custom-script.js') }}"></script>
+        <script src="{{ asset('/js/custom-script.js') }}"></script>
 
     </head>
     <body class="bg-[url('{{ asset('storage/aiguy-images/Login.jpg') }}')] bg-no-repeat bg-cover bg-center h-auto w-full">
