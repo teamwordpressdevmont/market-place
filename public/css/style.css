@@ -73,6 +73,15 @@ background-color:#fff;
 .genericTable tbody tr:last-child {
     border-bottom: none;
 }
+.sitePagination p {
+    color: #222222 !important;
+    font-size: 12px !important;
+}
+.sitePagination span, .sitePagination a {
+    background-color: #ffffff;
+}
+
+
 @media (max-width: 1536px) {
     br {
         display: none;
