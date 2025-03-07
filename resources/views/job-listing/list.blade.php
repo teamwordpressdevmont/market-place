@@ -26,20 +26,20 @@
             <span class="text-sm font-bold mr-3">Sort by:</span>
             <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="font-light text-xs bg-white text-[#ABABAB] border border-[#d3d3d3] text-center inline-flex items-center rounded-full px-3 py-1.5 w-[163px] justify-between" data-popper-placement="top end" type="button">Urgent</button>
             <!-- Dropdown menu -->
-            <div id="dropdown" class="absolute top-full right-0 z-10 bg-white rounded-xl shadow-md w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="top end">
-            <ul class="bg-white text-sm rounded-lg overflow-hidden" aria-labelledby="dropdownDefaultButton">
-                <li class="border-b border-[#d3d3d3]">
-                    <a href="#" class="block px-5 py-3 text-xs font-light transition bg-black text-white">Acive</a>
-                </li>
-                <li class="border-b border-[#d3d3d3]">
-                    <a href="#" class="block px-5 py-3 text-xs font-light transition">Pending</a>
-                </li>
-                <li class="">
-                    <a href="#" class="block px-5 py-3 text-xs font-light transition">Completed</a>
-                </li>
-            </ul>
+            <div id="dropdown" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] block" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1755px, 293px);" data-popper-placement="bottom">
+                <ul class="bg-white text-sm rounded-xl overflow-hidden" aria-labelledby="dropdownDefaultButton">
+                    <li class="border-b border-[#d3d3d3]">
+                        <a href="#" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Acive</a>
+                    </li>
+                    <li class="border-b border-[#d3d3d3]">
+                        <a href="#" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Pending</a>
+                    </li>
+                    <li class="">
+                        <a href="#" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Completed</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
    </div>
 </div>
 <div class="rounded-xl pt-5 bg-white border border-[#22222233] h-fit">
@@ -94,16 +94,16 @@
                      </svg>
                     </button>
                   <!-- Dropdown menu -->
-                  <div id="dropdownDots-1" class="z-10 bg-white divide-gray-100 rounded-lg shadow-sm w-34 hidden" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1777px, 414px);" data-popper-placement="bottom-end">
-                     <ul class="text-sm text-[072130] justify-between" aria-labelledby="dropdownMenuIconButton-1">
-                        <li>
-                           <a href="{{ route('joblisting.edit', $order->id) }}" class="block px-4 py-3 text-xs border-b border-[#22222233] hover:bg-[#222222] hover:text-white transition">Edit</a>
+                  <div id="dropdownDots-1" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1777px, 414px);" data-popper-placement="bottom-end">
+                     <ul class="bg-white text-sm rounded-xl overflow-hidden" aria-labelledby="dropdownMenuIconButton-1">
+                        <li class="border-b border-[#d3d3d3]">
+                           <a href="{{ route('joblisting.edit', $order->id) }}" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
                         </li>
-                        <li>
-                           <a href="{{ route('joblisting.view', $order->id) }}" class="block px-4 py-3 text-xs border-b border-[#22222233] hover:bg-[#222222] hover:text-white transition">View</a>
+                        <li class="border-b border-[#d3d3d3]">
+                           <a href="{{ route('joblisting.view', $order->id) }}" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">View</a>
                         </li>
-                        <li>
-                           <a href="{{ route('joblisting.delete', $order->id) }}" class="block px-4 py-3 text-xs hover:bg-[#222222] hover:text-white transition">Delete</a>
+                        <li class="border-b border-[#d3d3d3]">
+                           <a href="{{ route('joblisting.delete', $order->id) }}" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Delete</a>
                         </li>
                      </ul>
                   </div>
@@ -132,16 +132,16 @@
                         </svg>
                     </button>
                  <!-- Dropdown menu -->
-                    <div id="dropdownDots-2" class="z-10 bg-white divide-gray-100 rounded-lg shadow-sm w-34 hidden" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1777px, 414px);" data-popper-placement="bottom-end">
-                        <ul class="text-sm text-[072130] justify-between" aria-labelledby="dropdownMenuIconButton-2">
-                        <li>
-                            <a href="{{ route('joblisting.edit', $order->id) }}" class="block px-4 py-3 text-xs border-b border-[#22222233] hover:bg-[#222222] hover:text-white transition">Edit</a>
+                    <div id="dropdownDots-2" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1777px, 414px);" data-popper-placement="bottom-end">
+                        <ul class="bg-white text-sm rounded-xl overflow-hidden" aria-labelledby="dropdownMenuIconButton-2">
+                        <li class="border-b border-[#d3d3d3]">
+                            <a href="{{ route('joblisting.edit', $order->id) }}" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
                         </li>
-                        <li>
-                            <a href="{{ route('joblisting.view', $order->id) }}" class="block px-4 py-3 text-xs border-b border-[#22222233] hover:bg-[#222222] hover:text-white transition">View</a>
+                        <li class="border-b border-[#d3d3d3]">
+                            <a href="{{ route('joblisting.view', $order->id) }}" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">View</a>
                         </li>
-                        <li>
-                            <a href="{{ route('joblisting.delete', $order->id) }}" class="block px-4 py-3 text-xs hover:bg-[#222222] hover:text-white transition">Delete</a>
+                        <li class="border-b border-[#d3d3d3]">
+                            <a href="{{ route('joblisting.delete', $order->id) }}" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Delete</a>
                         </li>
                         </ul>
                     </div>
