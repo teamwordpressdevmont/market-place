@@ -23,63 +23,63 @@ class DatabaseSeeder extends Seeder
     {
         
         
-        $adminRole = Role::create(['name' => 'admin']);
-        $customerRole = Role::create(['name' => 'customer']);
-        $tradepersonRole = Role::create(['name' => 'tradeperson']);
+        // $adminRole = Role::create(['name' => 'admin']);
+        // $customerRole = Role::create(['name' => 'customer']);
+        // $tradepersonRole = Role::create(['name' => 'tradeperson']);
 
         
-        $viewAdmin = Permission::create(['name' => 'view admin']);
-        $viewCustomer = Permission::create(['name' => 'view customer']);
-        $viewTradeperson = Permission::create(['name' => 'view tradeperson']);
+        // $viewAdmin = Permission::create(['name' => 'view admin']);
+        // $viewCustomer = Permission::create(['name' => 'view customer']);
+        // $viewTradeperson = Permission::create(['name' => 'view tradeperson']);
 
         
-        $adminRole->givePermissionTo($viewAdmin);
-        $customerRole->givePermissionTo($viewCustomer);
-        $tradepersonRole->givePermissionTo($viewTradeperson);
+        // $adminRole->givePermissionTo($viewAdmin);
+        // $customerRole->givePermissionTo($viewCustomer);
+        // $tradepersonRole->givePermissionTo($viewTradeperson);
 
         
-        $admin = User::create([
-            'name' => 'Admin',
-            'email' => 'admin@mailinator.com',
-            'password' => Hash::make('password'),
-        ]);
-        $admin->assignRole($adminRole);
+        // $admin = User::create([
+        //     'name' => 'Admin',
+        //     'email' => 'admin@mailinator.com',
+        //     'password' => Hash::make('password'),
+        // ]);
+        // $admin->assignRole($adminRole);
 
-        $customer = User::create([
-            'name' => 'Customer',
-            'email' => 'customer@mailinator.com',
-            'password' => Hash::make('password'),
-        ]);
-        $customer->assignRole($customerRole);
+        // $customer = User::create([
+        //     'name' => 'Customer',
+        //     'email' => 'customer@mailinator.com',
+        //     'password' => Hash::make('password'),
+        // ]);
+        // $customer->assignRole($customerRole);
 
-        $tradeperson = User::create([
-            'name' => 'Tradeperson',
-            'email' => 'tradeperson@mailinator.com',
-            'password' => Hash::make('password'),
-        ]);
-        $tradeperson->assignRole($tradepersonRole);
+        // $tradeperson = User::create([
+        //     'name' => 'Tradeperson',
+        //     'email' => 'tradeperson@mailinator.com',
+        //     'password' => Hash::make('password'),
+        // ]);
+        // $tradeperson->assignRole($tradepersonRole);
         
-        //create order status
-        $statuses = ['Processing', 'In Progress', 'Pending', 'Completed', 'Cancelled'];
+        // //create order status
+        // $statuses = ['Processing', 'In Progress', 'Pending', 'Completed', 'Cancelled'];
 
-        foreach ($statuses as $status) {
-            OrderStatus::create(['status' => $status]);
-        }
+        // foreach ($statuses as $status) {
+        //     OrderStatus::create(['status' => $status]);
+        // }
         
         
-        //create payment status
-        $statuses = ['Accepted', 'Failed', 'Refund', 'Rejected', 'In-Compelete'];
+        // //create payment status
+        // $statuses = ['Accepted', 'Failed', 'Refund', 'Rejected', 'In-Compelete'];
 
-        foreach ($statuses as $status) {
-            PaymentStatus::create(['status' => $status]);
-        }
+        // foreach ($statuses as $status) {
+        //     PaymentStatus::create(['status' => $status]);
+        // }
         
-        //create proposal status
-        $statuses = ['Accepted', 'Rejected', 'Pending'];
+        // //create proposal status
+        // $statuses = ['Accepted', 'Rejected', 'Pending'];
 
-        foreach ($statuses as $status) {
-            ProposalStatus::create(['status' => $status]);
-        }
+        // foreach ($statuses as $status) {
+        //     ProposalStatus::create(['status' => $status]);
+        // }
         
     }
 }
