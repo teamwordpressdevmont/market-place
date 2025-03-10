@@ -37,7 +37,7 @@ class jobListingDataController extends Controller
             });
         })
         ->orderBy($sortBy, $sortDirection)
-        ->paginate(1);
+        ->paginate(10);
 
     if ($request->ajax()) {
         return response()->json([
