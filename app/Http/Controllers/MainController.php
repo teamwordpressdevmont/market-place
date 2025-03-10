@@ -628,7 +628,6 @@ class MainController extends Controller
     // update trade person api - patch
     public function updateTradePerson(Request $request)
     {
-        dd($request->toArray());
         try {
             DB::beginTransaction();
             $user = User::find($request->user()->id);

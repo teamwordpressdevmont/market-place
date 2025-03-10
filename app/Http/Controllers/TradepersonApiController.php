@@ -10,6 +10,8 @@ use App\Models\TradepersonReview;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
+
 
 class TradepersonApiController extends Controller
 {
@@ -34,7 +36,7 @@ class TradepersonApiController extends Controller
             // Filter by category
             if ($request->filled('categories')) {
                 $categoryIds = $request->input('categories');
-                
+
                 foreach ($categoryIds as $categoryId) {
                     $query->whereHas('categories', function ($q) use ($categoryId) {
                         $q->where('category_id', $categoryId);
@@ -181,9 +183,15 @@ class TradepersonApiController extends Controller
                 'milestones' => $milestones ? json_decode($milestones->milestone) : null,
             ], 201);
     
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $e->errors()
+            ], 422);
         } catch (\Exception $e) {
             DB::rollBack();
-    
+          
             // Log the error (to avoid exposing sensitive details)
             \Log::error('Proposal Submission Error: ' . $e->getMessage());
     
