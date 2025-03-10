@@ -1,4 +1,21 @@
 $(document).ready(function() {
+
+    var swiper = new Swiper(".thumbmySwiper", {
+        spaceBetween: 10,
+        slidesPerView: 6,
+        freeMode: true,
+        watchSlidesProgress: true,
+      });
+      var swiper2 = new Swiper(".mySwiper2", {
+        spaceBetween: 10,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        thumbs: {
+          swiper: swiper,
+        },
+      });
    
         
     // Editor page
@@ -64,12 +81,57 @@ $(document).ready(function() {
         loadTable(url);
     });
 
+    // Event delegation for dynamically added dropdown buttons
+    $(document).on("click", "[data-dropdown-toggle]", function (e) {
+        e.preventDefault();
+        let dropdownId = $(this).attr("data-dropdown-toggle");
+        let dropdown = $("#" + dropdownId);
+
+        // Toggle dropdown visibility
+        $(".dropdown-menu").not(dropdown).hide(); // Close other dropdowns
+        dropdown.toggle();
+    });
+
+    // Hide dropdown when clicking outside
+    $(document).on("click", function (e) {
+        if (!$(e.target).closest("[data-dropdown-toggle], .dropdown-menu").length) {
+            $(".dropdown-menu").hide();
+        }
+    })
+
+     // Toggle dropdown
+    $('#dropdownDefaultButton').click(function() {
+        $('#dropdown').toggleClass('hidden');
+    });
+
+    // Hide dropdown on clicking outside
+    $(document).click(function(e) {
+        if (!$(e.target).closest('#dropdown, #dropdownDefaultButton').length) {
+            $('#dropdown').addClass('hidden');
+        }
+    });
+
+    // Status filter click event
+    $(document).on('click', '.order-status-filter', function(e) {
+        e.preventDefault();
+        
+        let statusId = $(this).data('status'); // Get selected status ID
+        let url = $('#searchForm').attr('action'); // Get base URL from form action
+
+        // Change button text
+        $('#dropdownDefaultButton').text($(this).text());
+
+        loadTable(url + '?status=' + statusId); // Send AJAX request
+
+        $('#dropdown').addClass('hidden'); // Close dropdown after selection
+    });
+
     function loadTable(url) {
         $.ajax({
             url: url,
             type: 'GET',
-            dataType: 'json', // expecting JSON response with the full view HTML
-            beforeSend: function () {
+            dataType: 'json',
+            beforeSend: function() {
                 $('#table-container table tbody').html(`
                     <tr>
                         <td colspan="100%" class="text-center py-4">
@@ -83,23 +145,18 @@ $(document).ready(function() {
                         </td>
                     </tr>
                 `);
-                
             },
-            success: function (response) {
-                // Since the full view is returned, extract only the table container's HTML.
-                var newContent = $(response.html).find('#table-container').html();
-                $('#table-container').html(newContent);
-                
-                // Update pagination container dynamically
-                var newPagination = $(response.html).find('#pagination-container').html();
-                $('#pagination-container').html(newPagination);
+            success: function(response) {
+                $('#table-container').html($(response.html).find('#table-container').html());
+                $('#pagination-container').html($(response.html).find('#pagination-container').html());
             },
-            error: function (xhr, status, error) {
-                
+            error: function(xhr, status, error) {
                 console.error('Error loading table:', error);
             }
         });
     }
+
+   
 
     // Handle pagination click event dynamically
     $(document).on("click", "#pagination-container a", function (e) {

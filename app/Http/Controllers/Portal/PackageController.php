@@ -45,7 +45,7 @@ class PackageController extends Controller
                 $formattedJson = json_encode($formattedFeatures, JSON_UNESCAPED_UNICODE);
             
                 // Serialize the formatted features array before saving
-                $validatedData['features'] = "\"" . str_replace('"', '\\"', $formattedJson) . "\"";
+                $validatedData['features'] = $formattedJson;
 
             }
             
@@ -93,7 +93,7 @@ class PackageController extends Controller
         try {
             $package = Package::findOrFail($id);
 
-            $features = json_decode(json_decode($package->features, true), true);
+            $features = json_decode($package->features, true); 
             
             if (!$package) {
                 return redirect()->route('package.list')->with('error', 'Package not found.');
@@ -101,7 +101,7 @@ class PackageController extends Controller
 
             return view('package.add-edit', compact('package', 'features'));
         } catch (\Exception $e) {
-            return redirect()->route('package.list')->with('error', 'Something went wrong.');
+            return redirect()->route('package.list')->with('e rror', 'Something went wrong.');
         }
     }
 
@@ -132,8 +132,8 @@ class PackageController extends Controller
                 }
                 
                  $formattedJson = json_encode($formattedFeatures, JSON_UNESCAPED_UNICODE);
-    
-                $validatedData['features'] = "\"" . str_replace('"', '\\"', $formattedJson) . "\"";
+                 $validatedData['features'] = $formattedJson;
+
             }
 
             // Update record

@@ -121,7 +121,7 @@ class MarketPlaceSeeder extends Seeder
       DB::table('users')->insert($users);
      // User Close
 
-
+      
         // Categories Open
         $categories = [
             [
@@ -211,7 +211,7 @@ class MarketPlaceSeeder extends Seeder
                 ]);
             }
         }
-        // // Categories Close
+        // // Categories Close 
 
 
         // // Testimonials Open
@@ -384,6 +384,7 @@ class MarketPlaceSeeder extends Seeder
             ],
         ];
 
+        
         DB::table('packages')->insert($packages);
 
         // // Packages Close
@@ -396,7 +397,7 @@ class MarketPlaceSeeder extends Seeder
             [
                 'title' => 'Winter: Essential Home Care for the Season',
                 'slug' => Str::slug('Winter: Essential Home Care for the Season'),
-                'banner' => 'winter-home-care.jpg',
+                'banner' => 'winter-home-care.jpg', 
                 'description' => 'Managing your home’s upkeep can seem overwhelming, but breaking it down by season makes it easier and more efficient. As the seasons change from autumn to winter, your home requires different care and attention. Winter brings a need for draft-proofing, pipe insulation, and HVAC maintenance. Each season has its own unique maintenance needs, and when handled by trusted professionals, your home stays safe and beautiful all year round.',
                 'publish_by' => 'Dinbyggemarked',
                 'publish_date' => '2024-12-23',
@@ -440,7 +441,7 @@ class MarketPlaceSeeder extends Seeder
         ];
 
         DB::table('blogs')->insert($blogs);
-
+        
         // Blog Close
 
         // // Customer Open
@@ -526,7 +527,7 @@ class MarketPlaceSeeder extends Seeder
         DB::table('customers')->insert($customers);
         // // Customer Close
 
-
+        
         // Tradepersons Open
         $tradepersons = [
           [
@@ -670,6 +671,31 @@ class MarketPlaceSeeder extends Seeder
       // Tradepersons Close
 
 
+       // Tradepersons Details Open
+      $tradepersonsdetails = [
+        [
+            'tradeperson_id' => 3,  
+            'about'          => 'Certified plumbing expert offering emergency repair services.',
+            'services'       => 'Pipe fitting, leakage repair, water supply solutions.',
+            'portfolio'      => json_encode(['sophie-watersafe1.jpg', 'sophie-watersafe2.jpg']),
+            'certifications' => json_encode(['cert-sophie-watersafe.pdf']),
+            'created_at'     => Carbon::now(),
+            'updated_at'     => Carbon::now(),
+        ],
+        [
+            'tradeperson_id' => 4,  
+            'about'          => 'Specialist in commercial plumbing solutions and pipe fitting.',
+            'services'       => 'Industrial pipe installation, heating systems, and maintenance.',
+            'portfolio'      => json_encode(['david-pipes-pro1.jpg', 'david-pipes-pro2.jpg']),
+            'certifications' => json_encode(['cert-david-pipes-pro.pdf']),
+            'created_at'     => Carbon::now(),
+            'updated_at'     => Carbon::now(),
+        ],
+    ];
+
+    DB::table('tradeperson_details')->insert($tradepersonsdetails);
+    // Tradepersons Details close
+
       // Order Status open
       $statuses = [
           ['id' => 1, 'status' => 'Processing', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
@@ -694,7 +720,7 @@ class MarketPlaceSeeder extends Seeder
 
       DB::table('payment_statuses')->insert($paymentstatuses);
       // Payment Status Close
-
+       
 
         //  // Order Open
          $orders = [
@@ -704,6 +730,7 @@ class MarketPlaceSeeder extends Seeder
             ['customer_id' => 4, 'tradeperson_id' => 4, 'order_status' => 4, 'payment_status' => 4, 'created_at' => now(), 'updated_at' => now()],
             ['customer_id' => 5, 'tradeperson_id' => 5, 'order_status' => 5, 'payment_status' => 5, 'created_at' => now(), 'updated_at' => now()],
         ];
+        
         DB::table('orders')->insert($orders);
         // // Order Close
 
@@ -716,6 +743,7 @@ class MarketPlaceSeeder extends Seeder
 
         DB::table('proposal_statuses')->insert($proposalstatuses);
         //  Proposal Statuses Close
+        
 
         // // Order Details Open
         $orderDetails = [
@@ -771,6 +799,7 @@ class MarketPlaceSeeder extends Seeder
               'updated_at' => now(),
           ],
       ];
+                
                 DB::table('order_details')->insert($orderDetails);
         // // Order Details Close
 
@@ -798,7 +827,7 @@ class MarketPlaceSeeder extends Seeder
         DB::table('tradeperson_reviews')->insert($tradepersonReviews);
         //  trade Person Reviews Close
 
-
+        
         // Report Open
         $reports = [
             [
@@ -819,13 +848,13 @@ class MarketPlaceSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
-
+            
         ];
 
         DB::table('reports')->insert($reports);
          // Report Close
-
-
+         
+         
         // Order Category Open
         $order_categories = [
             [
@@ -858,12 +887,12 @@ class MarketPlaceSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
-
+            
         ];
 
         DB::table('order_categories')->insert($order_categories);
          // Order Category Close
-
+         
           // Order Proposals Open
           $orderProposals = [
             [
@@ -903,8 +932,8 @@ class MarketPlaceSeeder extends Seeder
 
         DB::table('order_proposals')->insert($orderProposals);
          // Order Proposals Close
-
-
+         
+         
           // Purchase Packages Open
         $purchase_packages = [
             [
@@ -925,7 +954,7 @@ class MarketPlaceSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
-
+            
         ];
 
         DB::table('purchase_packages')->insert($purchase_packages);
@@ -963,11 +992,11 @@ class MarketPlaceSeeder extends Seeder
               'updated_at' => Carbon::now(),
           ],
       ];
-
+      
       DB::table('order_milestones')->insert($order_milestones);
       // Order Milestones Close
+        
 
-
-
+        
     }
 }
