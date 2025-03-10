@@ -37,7 +37,7 @@ class jobListingDataController extends Controller
             });
         })
         ->orderBy($sortBy, $sortDirection)
-        ->paginate(10);
+        ->paginate(1);
 
     if ($request->ajax()) {
         return response()->json([
@@ -56,7 +56,7 @@ class jobListingDataController extends Controller
             $OrderDetails = OrderDetail::find($id);
 
             $imagesDetails = json_decode($OrderDetails->image, true) ?? [];
-            
+
             if (!$OrderDetails) {
                 return redirect()->route('joblisting.list')->with('error', 'Order Detail not found.');
             }
