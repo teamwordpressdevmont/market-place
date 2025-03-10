@@ -16,6 +16,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/penappview', function() {
+    return view('penappview');
+})->name('penappview');
+
 Route::get('/dashview', function() {
     return view('dashview');
 })->name('dashview');
@@ -115,6 +119,7 @@ Route::group(['prefix'  => 'joblisting', 'middleware' => 'auth'], function() {
     Route::get('/edit/{id}', [jobListingDataController::class, 'edit'])->name('joblisting.edit');
     Route::put('/update/{id}', [jobListingDataController::class, 'update'])->name('joblisting.update');
     Route::get('/view/{id}', [jobListingDataController::class, 'view'])->name('joblisting.view');
+    Route::get('/review-profile/{id}', [jobListingDataController::class, 'reviewProfile'])->name('joblisting.review-profile');
     Route::get('/delete/{id}', [jobListingDataController::class, 'destroy'])->name('joblisting.delete');
 });
 

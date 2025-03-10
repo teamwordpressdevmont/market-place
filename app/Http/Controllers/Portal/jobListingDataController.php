@@ -177,6 +177,17 @@ class jobListingDataController extends Controller
         }
     }
 
+    public function reviewProfile($id)
+    {
+        try {
+            $OrderDetail = OrderDetail::with('order.review.tradeperson' , 'order.tradeperson.categories')->findOrFail($id);
+            return view('job-listing.review-profile', compact('OrderDetail'));
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            return redirect()->back()->with('success', 'Something went wrong.');
+        }
+    }
+
     public function acceptReview($id)
     {
         try {
