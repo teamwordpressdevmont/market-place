@@ -180,7 +180,7 @@ class jobListingDataController extends Controller
     public function reviewProfile($id)
     {
         try {
-            $OrderDetail = OrderDetail::with('order.review.tradeperson' , 'order.tradeperson.categories')->findOrFail($id);
+            $OrderDetail = OrderDetail::with('order.review.tradeperson' , 'order.tradeperson.categories' , 'order.tradeperson.user')->findOrFail($id);
             return view('job-listing.review-profile', compact('OrderDetail'));
         } catch (\Throwable $th) {
             dd($th->getMessage());

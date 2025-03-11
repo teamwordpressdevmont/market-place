@@ -134,13 +134,17 @@
                      </defs>
                   </svg>
                </div>
-               <span class="">Urgent</span>
+               <span class="">
+                  @if($OrderDetail)
+                     {{ $OrderDetail->urgent ? 'Urgent' : 'Flexible' }}
+                  @endif
+               </span>
             </div>
-            <h1 class="text-mat lg:text-4xl md:text-2xl text-xl font-semibold mt-2 mb-2">Need To Fix Kitchen Pipe</h1>
-            <p class="text-[#ABABAB] text-xs">Published on: Feb 25, 2025</p>
+            <h1 class="text-mat lg:text-4xl md:text-2xl text-xl font-semibold mt-2 mb-2">{{ $OrderDetail->title }}</h1>
+            <p class="text-[#ABABAB] text-xs">Published on: {{ $OrderDetail->created_at->format('M d, Y') }}</p>
             <div class="mt-4 flex gap-4 items-center">
                <h2 class="text-xs font-bold text-mat">Skills</h2>
-               <span class="bg-[#ABABAB] text-white text-gray-700 px-4 py-1 leading[0] rounded-full text-xs hover:bg-secondary transition">Plumber</span>
+               <span class="bg-[#ABABAB] text-white text-gray-700 px-4 py-1 leading[0] rounded-full text-xs hover:bg-secondary transition">{{ $OrderDetail->order->categories->pluck('name')->join(', ') }}</span>
             </div>
          </div>
          <div class="flex md:items-end md:gap-12 gap-5 xl:justify-end md:flex-row flex-col items-left">
@@ -154,7 +158,7 @@
             </a>
             <div class="bg-[#EDE9D0] p-4 rounded-2xl flex items-end gap-4 justify-center xl:w-[280px] w-fit">
                <p class="text-[#072130] text-sm font-semibold">Task Budget</p>
-               <p class="lg:text-4xl md:text-2xl text-xl font-bold text-mat">$2500</p>
+               <p class="lg:text-4xl md:text-2xl text-xl font-bold text-mat">${{ $OrderDetail->budget }}</p>
             </div>
          </div>
       </div>
@@ -163,11 +167,11 @@
       <div class="rounded-xl p-5 bg-white border border-[#22222233] h-fit">
          <div class="border-b border-[#e5e7eb] md:mb-8 mb-5 md:pb-8 pb-5">
             <h2 class="text-sm font-semibold">Job Description</h2>
-            <p class="text-[#ABABAB] text-xs mt-2">John is seeking a skilled and reliable plumber for his kitchen pipes. The ideal candidate will be responsible for diagnosing and repairing issues with kitchen plumbing, including clogged drains, leaks, or damaged pipes...</p>
+            <p class="text-[#ABABAB] text-xs mt-2">{{ $OrderDetail->description }}</p>
          </div>
          <div class="border-b border-[#e5e7eb] md:pb-8 pb-5">
             <h2 class="text-sm font-semibold">Contract Timeline</h2>
-            <div class="flex md:flex-row flex-col md:gap-9 gap-4 border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit w-100 md:px-9 px-5 py-4 rounded-2xl items-center"><span>Start Date: <strong class="text-mat font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-mat font-light">  18 Mar 2025</strong></span></div>
+            <div class="flex md:flex-row flex-col md:gap-9 gap-4 border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit w-100 md:px-9 px-5 py-4 rounded-2xl items-center"><span>Start Date: <strong class="text-mat font-light">{{ $OrderDetail->job_start_timeline }}</strong></span><span>End Date: <strong class="text-mat font-light"> {{ $OrderDetail->job_end_timeline }}</strong></span></div>
          </div>
          <div class="grid grid-cols-2 gap-2 border-b border-[#e5e7eb] md:mb-8 mb-5">
 
@@ -178,13 +182,13 @@
                      <path d="M8.0785 14.2446C7.78937 14.5153 7.40293 14.6666 7.00075 14.6666C6.59856 14.6666 6.21212 14.5153 5.92299 14.2446C3.27535 11.7506 -0.272825 8.96459 1.45751 4.91976C2.39309 2.73275 4.6389 1.33331 7.00075 1.33331C9.36259 1.33331 11.6084 2.73275 12.544 4.91976C14.2721 8.95949 10.7327 11.7592 8.0785 14.2446Z" stroke="#ABABAB"></path>
                      <path d="M9.33268 7.33333C9.33268 8.622 8.28801 9.66667 6.99935 9.66667C5.71068 9.66667 4.66602 8.622 4.66602 7.33333C4.66602 6.04467 5.71068 5 6.99935 5C8.28801 5 9.33268 6.04467 9.33268 7.33333Z" stroke="#ABABAB"></path>
                   </svg>
-                  John’s Home | 21 Crescent St, York UK
+                  {{ $OrderDetail->location }}
                </p>
             </div>
             <div class="border-s border-[#e5e7eb] pt-5 pb-5 ps-5">
                <h2 class="text-sm font-semibold">Skills</h2>
                <p class="text-[#ABABAB] text-xs mt-2 flex leading-none gap-2">
-                  Plumber
+                  {{ $OrderDetail->order->categories->pluck('name')->join(', ') }}
                </p>
             </div>
 
@@ -210,8 +214,8 @@
                      <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                      <div class="flex flex-1 gap-4 justify-between md:items-center sm:flex-row flex-col">
                         <div>
-                           <h4 class="font-semibold text-[#072130] text-sm">Brian Simmons</h4>
-                           <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
+                           <h4 class="font-semibold text-[#072130] text-sm">{{ $OrderDetail->order->tradeperson->first_name }} {{ $OrderDetail->order->tradeperson->last_name }}</h4>
+                           <p class="text-xs text-[#ABABAB]">{{ $OrderDetail->order->tradeperson->categories->pluck('name')->join(', ') }}</p>
                         </div>
                         <div class="flex items-center">
                            <span class="flex items-center gap-2 text-xs font-bold text-[#2B2B2B] bg-[#F4F3F3] px-3 py-1 rounded-full">
