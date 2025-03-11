@@ -413,6 +413,8 @@ class PublicApiController extends Controller
         try {
             $request->validate([
                 'OrderByDesc' => 'sometimes|boolean',
+                'perPage'     => 'sometimes|integer|min:1|max:100',
+                'offset'      => 'sometimes|integer|min:0',
             ]);
 
             $query = Package::query();
@@ -420,11 +422,14 @@ class PublicApiController extends Controller
             if ($request->has('OrderByDesc') && $request->get('OrderByDesc') == true) {
                 $query->orderByDesc('id');
             }
+            
             $perPage = $request->get('perPage', 10);
             $offset = $request->get('offset', 0);
 
 
-            $packages = $query->offset($offset)->limit($offset)->get();
+            $packages = $query->offset($offset)->limit($perPage)->get();
+            
+            
             return response()->json([
                 'success' => true,
                 'message' => 'Packages Retrieved Successfully',

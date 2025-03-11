@@ -48,7 +48,15 @@ class VerifyAccessToken
         }
 
         $currentTime = Carbon::now();
-    
+        
+        if ( $decryptedHeaderToken === $decryptedStoredToken) 
+        {
+            return $next($request);
+        }
+        
+        return response()->json(['message' => 'Unauthorized: Token Expired'], 401);
+        
+        // previous code
         if ( ($decryptedHeaderToken !== $decryptedStoredToken || $currentTime->gt($expiresAt)) && 
         ($decryptedHeaderToken !== $decryptedStoredTokenPrev || !$previousExpiresAt || $currentTime->gt($previousExpiresAt)) )
         {
