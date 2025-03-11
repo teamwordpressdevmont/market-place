@@ -44,9 +44,13 @@ Route::get('/job-management', function() {
     return view('job-management');
 })->name('job-management');
 
-Route::get('/job-proposal', function() {
-    return view('job-proposal');
-})->name('job-proposal');
+Route::get('/violation-client', function() {
+    return view('violation-client');
+})->name('violation-client');
+
+// Route::get('/job-proposal', function() {
+//     return view('job-proposal');
+// })->name('job-proposal');
 
 
 Route::get('/dashboard', function () {
