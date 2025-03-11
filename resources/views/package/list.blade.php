@@ -19,7 +19,7 @@
     @endif
 
 
-
+    <div class="bgShadow pt-10">
         <div class="flex flex-col md:flex-row gap-4 mb-6">
             <h1 class="font-semibold text-4xl">Package List</h1>
             <a href="{{ route('package.addEdit') }}" class="md:ml-auto  bg-secondary rounded-full px-4 py-2 text-sm text-white flex items-center justify-between w-40 border border-primary hover:bg-primary transition">
@@ -27,7 +27,7 @@
                     <path d="M12 8V16M16 12L8 12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                     <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" stroke-width="1.5"></path>
                 </svg>
-            </a>   
+            </a>
 
         </div>
         <div class="relative overflow-x-auto">
@@ -40,49 +40,49 @@
                     </span>
                 </div>
             </form>
-            <div id="table-container" class="border rounded-lg overflow-x-auto ">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                    <thead class="text-xs text-gray-700 bg-gray-50">
+            <div id="table-container" class="overflow-x-auto rounded-xl bg-white border border-[#22222233]">
+                <table class="genericTable w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 bg-[#eee] border-b border-[#22222233]">
                         <tr>
-                            <th scope="col" class="px-6 py-3">S.No</th>
-                            <th scope="col" class="px-6 py-3">ID</th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">S.No</th>
+                            <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">ID</th>
+                            <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
                                 <a href="{{ route('package.list', array_merge(request()->all(), ['sort_by' => 'name', 'sort_direction' => request('sort_direction') == 'asc' ? 'desc' : 'asc'])) }}">
                                     Name
                                 </a>
                             </th>
-                            <th scope="col" class="px-6 py-3">Description</th>
-                            <th scope="col" class="px-6 py-3">Price</th>
-                            <th scope="col" class="px-6 py-3" width="150">Action</th>
+                            <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Description</th>
+                            <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Price</th>
+                            <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="150">Action</th>
                         </tr>
                     </thead>
-                    <tbody>     
+                    <tbody>
                     @if($packages->isEmpty())
                     <tr class="bg-white border-b border-gray-200">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" colspan="8">
                             No data available.
                         </th>
                     </tr>
-                    @else      
+                    @else
                     @foreach($packages as $index => $package)
                         <tr class="bg-white border-b border-gray-200">
-                             <th scope="row" class="px-6 py-4">
+                             <th scope="row" class="px-6 py-5 whitespace-nowrap text-xs text-mat font-bold">
                                 {{ ($packages->currentPage() - 1) * $packages->perPage() + $index + 1 }}
                             </th>
-                            <th scope="row" class="px-6 py-4">
+                            <th scope="row" class="px-6 py-5 whitespace-nowrap text-xs text-mat font-bold">
                                 {{ $package->id }}
                             </th>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $package->name }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{!! html_entity_decode($package->description) !!}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $package->price }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-bold">{{ $package->name }}</td>
+                            <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">{!! html_entity_decode($package->description) !!}</td>
+                            <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">{{ $package->price }}</td>
+                            <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
                                 <div class="flex gap-4">
                                         <a href="{{ route('package.edit', $package->id) }}" class="edit_package">
                                         <svg fill="#0D0D0D" width="20px" height="20px" viewBox="0 0 36 36" version="1.1"  preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                             <title>edit</title>
                                             <path class="clr-i-outline clr-i-outline-path-1" d="M33.87,8.32,28,2.42a2.07,2.07,0,0,0-2.92,0L4.27,23.2l-1.9,8.2a2.06,2.06,0,0,0,2,2.5,2.14,2.14,0,0,0,.43,0L13.09,32,33.87,11.24A2.07,2.07,0,0,0,33.87,8.32ZM12.09,30.2,4.32,31.83l1.77-7.62L21.66,8.7l6,6ZM29,13.25l-6-6,3.48-3.46,5.9,6Z"></path>
                                             <rect x="0" y="0" width="36" height="36" fill-opacity="0"/>
-                                        </svg>                            
+                                        </svg>
                                     </a>
                                     <a href="{{ route('package.delete', $package->id) }}" onclick="return confirm('Are you sure you want to delete this Package?');">
                                         <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +90,7 @@
                                         <path d="M7 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2h4a1 1 0 1 1 0 2h-1.069l-.867 12.142A2 2 0 0 1 17.069 22H6.93a2 2 0 0 1-1.995-1.858L4.07 8H3a1 1 0 0 1 0-2h4V4zm2 2h6V4H9v2zM6.074 8l.857 12H17.07l.857-12H6.074zM10 10a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1z" fill="red"/></svg>
                                     </a>
                                 </div>
-                            </td>                
+                            </td>
                         </tr>
                     @endforeach
                     @endif
@@ -101,5 +101,6 @@
                   {!! $packages->appends(request()->query())->links() !!}
             </div>
         </div>
+    </div>
 
 @endsection

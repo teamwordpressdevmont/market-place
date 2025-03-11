@@ -79,7 +79,7 @@
     .thumbmySwiper .swiper-slide {
       border-radius:10px
     }
-    
+
     .swiper-button-next:after
     {
 
@@ -95,7 +95,7 @@
       width: 20px;
       height: 20px;
       background-image:url({{ asset('/images/circle-arrow-left-round.svg') }});
-      
+
     }
 
     .swiper-button-next:after
@@ -115,7 +115,7 @@
 
    <div class="bgShadow pt-15 pb-15">
         <div class="grid grid-cols-2 items-start">
-            <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2">Pending Approval</h1>            
+            <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2">Pending Approval</h1>
             <div class="flex justify-end">
                <a href="#" class="text-white bg-mat hover:bg-primary focus:outline-none  rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">Reject</a>
                <a href="#" class="text-white bg-secondary hover:bg-primary focus:outline-none  rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">Accept</a>
@@ -127,7 +127,7 @@
    <div class="">
 
       <div class="">
-         <img src="{{ asset( '/images/job-listing.png' ) }}" class="h-[300px] rounded-lg w-full ">
+         <img src="{{ asset( '/public/images/job-listing.png' ) }}" class="h-[300px] rounded-lg w-full ">
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-5">
@@ -154,7 +154,7 @@
             <span class="bg-primary text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-full">Basic Package</span> --}}
 
             <h4 class="font-semibold lg:text-2xl mt-10 mb-4">Portfolio</h4>
-            <!-- <img src="{{ asset( '/images/slider-1.jfif' ) }}" class="rounded-[20px]"> -->
+            <!-- <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" class="rounded-[20px]"> -->
 
 
 
@@ -210,8 +210,8 @@
 
          </div>
          <div class="lg:col-span-2 p-4">
-         
-            <h4 class="font-semibold lg:text-2xl mt-4 mb-2">Location</h4>      
+
+            <h4 class="font-semibold lg:text-2xl mt-4 mb-2">Location</h4>
             <div class="mt-7 pb-5">
              <p class="text-[#ABABAB] text-xs mt-2 flex leading-none gap-2">
                <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -219,19 +219,19 @@
                    <path d="M9.33268 7.33333C9.33268 8.622 8.28801 9.66667 6.99935 9.66667C5.71068 9.66667 4.66602 8.622 4.66602 7.33333C4.66602 6.04467 5.71068 5 6.99935 5C8.28801 5 9.33268 6.04467 9.33268 7.33333Z" stroke="#DB4A2B"></path>
                 </svg>
                 {{ $OrderDetail->order->tradeperson->address }}
-             </p> 
-            </div>   
+             </p>
+            </div>
             <div class="w-full max-w-[600px] h-[220px] mx-auto border border-primary rounded-[20px] overflow-hidden p-3 mb-10">
-               <iframe 
+               <iframe
                   class="w-full h-full rounded-[10px]"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.95373631531692!3d-37.8162791797516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce7e33!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1646482392853!5m2!1sen!2s" 
-                  allowfullscreen="" 
-                  loading="lazy" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.95373631531692!3d-37.8162791797516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce7e33!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1646482392853!5m2!1sen!2s"
+                  allowfullscreen=""
+                  loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade">
                </iframe>
             </div>
 
-            <h4 class="font-semibold lg:text-2xl mt-4 mb-4">Certifications</h4>      
+            <h4 class="font-semibold lg:text-2xl mt-4 mb-4">Certifications</h4>
 
             <div class="flex gap-4">
                @if ($OrderDetail->order->tradeperson->certificate)

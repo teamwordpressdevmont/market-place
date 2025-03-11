@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
+<div class="bgShadow pt-10">
     <div class="flex flex-col md:flex-row gap-4 mb-6">
         <h4 class="font-semibold text-4xl">Trade Person</h4>
     </div>
@@ -13,32 +14,32 @@
             </span>
         </div>
     </form>
-    <div id="table-container" class="border rounded-lg overflow-x-auto ">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-            <thead class="text-xs text-gray-700 bg-gray-50">
+    <div id="table-container" class="overflow-x-auto rounded-xl bg-white border border-[#22222233]">
+        <table class="genericTable w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 bg-[#eee] border-b border-[#22222233]">
                 <tr>
-                    <th scope="col" class="px-6 py-3">S.No</th>
-                    <th scope="col" class="px-6 py-3">ID</th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">S.No</th>
+                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">ID</th>
+                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
                         Business Name
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
                         User Status
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
                         Phone
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
                         Address
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
                         Description
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
                         Action
                     </th>
                 </tr>
-            </thead>   
+            </thead>
             <tbody>
                 @if($tradeperson->isEmpty())
                     <tr class="bg-white border-b  border-gray-200">
@@ -49,31 +50,31 @@
                 @else
                 @foreach($tradeperson as $index => $trade)
                     <tr class="bg-white border-b  border-gray-200">
-                        <th scope="row" class="px-6 py-4">
+                        <th scope="row" class="px-6 py-5 whitespace-nowrap text-xs text-mat font-bold">
                             {{ ($tradeperson->currentPage() - 1) * $tradeperson->perPage() + $index + 1 }}
                         </th>
-                        <th scope="row" class="px-6 py-4">
+                        <th scope="row" class="px-6 py-5 whitespace-nowrap text-xs text-mat font-bold">
                             {{ $trade->id }}
                         </th>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-bold">
                             {{ $trade->business_name }}
                         </td>
-                        <td class="px-6 py-4">
-                            <button class="btn btn-sm {{ $trade->user->user_approved ? 'bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300' }} toggle-user-approval" 
+                        <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
+                            <button class="btn btn-sm {{ $trade->user->user_approved ? 'bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300' }} toggle-user-approval"
                                 data-id="{{ $trade->user->id }}">
                                 {{ $trade->user->user_approved ? 'Approved' : 'Disapproved' }}
                             </button>
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
                             {{ $trade->phone }}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
                             {!! html_entity_decode($trade->address) !!}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
                             {!! html_entity_decode($trade->description) !!}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
                             <div class="flex gap-4">
                                 <a href="{{ route('tradeperson.edit', $trade->id) }}">
                                     <svg fill="#0D0D0D" width="20px" height="20px" viewBox="0 0 36 36" version="1.1"  preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -93,7 +94,7 @@
                                     <path d="M7 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2h4a1 1 0 1 1 0 2h-1.069l-.867 12.142A2 2 0 0 1 17.069 22H6.93a2 2 0 0 1-1.995-1.858L4.07 8H3a1 1 0 0 1 0-2h4V4zm2 2h6V4H9v2zM6.074 8l.857 12H17.07l.857-12H6.074zM10 10a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1z" fill="red"/></svg>
                                 </a>
                             </div>
-                        </td>     
+                        </td>
                     </tr>
                 @endforeach
                 @endif
@@ -103,4 +104,5 @@
     <div class="mt-4" id="pagination-container">
         {{ $tradeperson->appends(request()->all())->links() }}
     </div>
+</div>
 @endsection

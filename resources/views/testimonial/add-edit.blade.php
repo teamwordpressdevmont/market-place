@@ -29,22 +29,22 @@
                         <div class="site_field_col">
                             <label for="name" class="block text-sm/6 font-medium text-gray-900">Name</label>
                             <div class="mt-2">
-                                <input type="text" name="name" id="name" class="rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5" placeholder="janesmith" value="{{ old('name', $testimonials->name ?? '') }}">
+                                <input type="text" name="name" id="name" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3" placeholder="janesmith" value="{{ old('name', $testimonials->name ?? '') }}">
                             </div>
                         </div>
 
                         <div class="site_field_col">
                             <label for="heading" class="block text-sm/6 font-medium text-gray-900">Heading</label>
-                            <div class="mt-2">                                
-                                    <input type="text" name="heading" id="title" class="rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5" placeholder="janesmith" value="{{ old('heading', $testimonials->heading ?? '') }}">                                
+                            <div class="mt-2">
+                                    <input type="text" name="heading" id="title" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3" placeholder="janesmith" value="{{ old('heading', $testimonials->heading ?? '') }}">
                             </div>
-                        </div>   
-                        
-        
+                        </div>
+
+
                         <div class="site_field_col">
                             <label for="category_id" class="block text-sm/6 font-medium text-gray-900">User</label>
                             <div class="mt-2 grid grid-cols-1">
-                                <select id="user_id" name="user_id" class="rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5">
+                                <select id="user_id" name="user_id" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3">
                                     <option value="" disabled selected>Select a User</option>
                                     @foreach($users as $user)
                                         <option value="{{ $user->id }}" {{ isset($testimonials) && $testimonials->user_id == $user->id ? 'selected' : '' }}>
@@ -53,9 +53,9 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>                            
-  
-                        
+                        </div>
+
+
                     </div>
 
 
@@ -73,15 +73,15 @@
 
                         <div class="site_field_col">
                             <label for="rating" class="block text-sm/6 font-medium text-gray-900">Rating</label>
-                            <div class="mt-2">                                
-                                <input type="number" name="rating" id="rating" class="rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5" placeholder="3" value="{{ old('rating', $testimonials->rating ?? '') }}"  min="1" max="5">
+                            <div class="mt-2">
+                                <input type="number" name="rating" id="rating" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3" placeholder="3" value="{{ old('rating', $testimonials->rating ?? '') }}"  min="1" max="5">
                             </div>
                         </div>
 
                         <div class="site_field_col">
                             <label for="verified" class="block text-sm/6 font-medium text-gray-900">Verified:</label>
                             <div class="mt-2 grid grid-cols-1">
-                                <select id="verified" name="verified" class="rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5">
+                                <select id="verified" name="verified" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3">
                                     <option value="1" {{ isset($testimonials) && $testimonials->verified == 1 ? 'selected' : '' }}>Yes</option>
                                     <option value="0" {{ isset($testimonials) && $testimonials->verified == 0 ? 'selected' : '' }}>No</option>
                                 </select>
@@ -98,7 +98,7 @@
                         </button>
                     </div>
                 </form>
-      
+
         </div>
 
 @endsection
