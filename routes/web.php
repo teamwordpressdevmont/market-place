@@ -48,6 +48,15 @@ Route::get('/violation-client', function() {
     return view('violation-client');
 })->name('violation-client');
 
+Route::get('/subscription-plans', function() {
+    return view('subscription-plans');
+})->name('subscription-plans');
+
+Route::get('/announcement', function() {
+    return view('announcement');
+})->name('announcement');
+
+
 // Route::get('/job-proposal', function() {
 //     return view('job-proposal');
 // })->name('job-proposal');

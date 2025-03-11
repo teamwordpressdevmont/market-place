@@ -32,13 +32,13 @@
         <div class="sm:col-span-4 mb-5">
             <label for="name" class="block text-sm/6 font-medium text-gray-900">Name</label>
             <div class="mt-2">
-                
+
                     <input type="text" name="name" id="name"
                             class="rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5"
                             placeholder="Package Name" value="{{ old('name', $package->name ?? '') }}"> <!-- Pre-fill if editing -->
             </div>
         </div>
-        
+
         <!-- Description Field -->
         <div class="sm:col-span-4 mb-5">
             <label for="description" class="block text-sm/6 font-medium text-gray-900">Description</label>
@@ -54,7 +54,7 @@
             <!-- Price Field -->
         <div class="sm:col-span-4 mb-5">
             <label for="name" class="block text-sm/6 font-medium text-gray-900">Price</label>
-            <div class="mt-2">                
+            <div class="mt-2">
                     <input type="number" name="price" id="price"
                             class="rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5"
                             placeholder="Price" value="{{ old('price', $package->price ?? '') }}"> <!-- Pre-fill if editing -->
@@ -69,7 +69,7 @@
                 <div class="flex items-center gap-4">
                     <input type="text" name="features[title][]" id="features_title_{{$index}}"
                         class="rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5"
-                        value="{{ $feature['heading'] ?? '' }}"> 
+                        value="{{ $feature['heading'] ?? '' }}">
                     <div class="col-1">
                         <a href="javascript:void(0)" class="add_sub_btn add_field" data-field_type="features">
                             <svg width="25" height="25" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,7 +111,7 @@
             </div>
         </div>
 
-        
+
 
         <!-- Submit Button -->
         <div class="flex items-center justify-end gap-x-6 pt-5">
