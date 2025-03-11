@@ -16,8 +16,8 @@ Route::get('/get-token', [MainController::class, 'getToken']);
 
 Route::middleware('verify_token')->group(function () {
 
-    Route::get('/get-blog', [PublicApiController::class, 'getBlogs']);
-    Route::get('/get-category', [PublicApiController::class, 'getCategories']);
+    Route::get('/get-blogs', [PublicApiController::class, 'getBlogs']);
+    Route::get('/get-categories', [PublicApiController::class, 'getCategories']);
 
 
     Route::get('/get-testimonial', [PublicApiController::class, 'getTestimonials']);
@@ -27,6 +27,8 @@ Route::middleware('verify_token')->group(function () {
     Route::post('/store-contact', [PublicApiController::class, "storeContact"]);
 
     Route::get('/get-order', [PublicApiController::class, "getOrder"]);
+    Route::get('/get-package', [PublicApiController::class, "getPackage"]);
+    
 
     Route::post('/store-tradeperson', [MainController::class, 'storeTradePerson']);
 });
