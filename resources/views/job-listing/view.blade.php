@@ -196,12 +196,17 @@
          <div class="mt-6">
             <h2 class="text-sm font-semibold">Images</h2>
             <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 mt-2">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
+               @php
+                  $images = json_decode($OrderDetail->image);
+               @endphp
+
+               @if ($images)
+                  @foreach ($images as $img)
+                     <img src="{{ asset('public/images/' . $img) }}" alt="image" class="w-full">
+                  @endforeach
+               @else
+                  <p>No images found.</p>
+               @endif
             </div>
          </div>
       </div>
@@ -211,7 +216,7 @@
             <div class="flex border-b border-[#e5e7eb]">
                <div class="flex-1 py-4">
                   <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
-                     <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
+                     <img src="{{ asset('public/images/proposal.png') }}" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                      <div class="flex flex-1 gap-4 justify-between md:items-center sm:flex-row flex-col">
                         <div>
                            <h4 class="font-semibold text-[#072130] text-sm">{{ $OrderDetail->order->tradeperson->first_name }} {{ $OrderDetail->order->tradeperson->last_name }}</h4>
@@ -219,12 +224,12 @@
                         </div>
                         <div class="flex items-center">
                            <span class="flex items-center gap-2 text-xs font-bold text-[#2B2B2B] bg-[#F4F3F3] px-3 py-1 rounded-full">
-                              4.5/5
+                              {{ number_format($OrderDetail->order->tradeperson->reviews->avg('rating'), 1) }}
                               <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                  <path d="M6.07057 1.62215L6.89578 3.28619C7.0083 3.51783 7.30838 3.74002 7.56156 3.78257L9.05724 4.03312C10.0137 4.19385 10.2388 4.8935 9.54955 5.5837L8.38677 6.7561C8.18984 6.95465 8.082 7.33757 8.14296 7.61175L8.47585 9.06307C8.73841 10.2118 8.13358 10.6562 7.12552 10.0558L5.72361 9.21907C5.47043 9.06779 5.05314 9.06779 4.79526 9.21907L3.39336 10.0558C2.38998 10.6562 1.78046 10.2071 2.04302 9.06307L2.37592 7.61175C2.43687 7.33757 2.32903 6.95465 2.13211 6.7561L0.969324 5.5837C0.284781 4.8935 0.505148 4.19385 1.46163 4.03312L2.95731 3.78257C3.20581 3.74002 3.50588 3.51783 3.61841 3.28619L4.44361 1.62215C4.89372 0.719213 5.62515 0.719213 6.07057 1.62215Z" fill="#EEDD2B"></path>
                               </svg>
                            </span>
-                           <span class="text-xs text-[#ABABAB] ml-2">(28 reviews)</span>
+                           {{-- <span class="text-xs text-[#ABABAB] ml-2">(28 reviews)</span> --}}
                         </div>
                      </div>
                   </div>
@@ -249,7 +254,7 @@
                <div id="default-styled-tab-content">
                   <div class="mt-6 rounded-lg text-xs text-[#ABABAB] hidden" id="styled-profile" role="tabpanel" aria-labelledby="proposal-tab">
                      <div>
-                        <p class="mb-6 flex gap-2">
+                        {{-- <p class="mb-6 flex gap-2">
                            <span>
                               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                  <circle cx="8.00065" cy="7.99998" r="6.66667" stroke="#222222"></circle>
@@ -267,17 +272,25 @@
                               </svg>
                            </span>
                            Verified by DINBYGGEMARKED
-                        </p>
-                        <h4 class="mb-3 font-semibold text-mat">Services</h4>
-                        <p class="mb-5">Bathroom Fitter, Electrician, Guttering Installer, Fencer, Plumber</p>
+                        </p> --}}
+                        {{-- <h4 class="mb-3 font-semibold text-mat">Services</h4>
+                        <p class="mb-5">Bathroom Fitter, Electrician, Guttering Installer, Fencer, Plumber</p> --}}
                         <h4 class="mb-3 font-semibold text-mat">About Brian Simmons</h4>
-                        <p class="mb-5">Company number&nbsp;- 08900980
-                           Established in 2014, we are a team of trustworthy, friendly, and fully trained tradesmen dedicated to handling all your maintenance needs—whether domestic or commercial. No job is too big or too small, and every project receives our full attention and commitment.
-                        </p>
+                        <p class="mb-5">{{ $OrderDetail->order->tradeperson->about_me }}</p>
                         <h4 class="mb-3 font-semibold text-mat">Portfolio</h4>
                         <div class="grid grid-cols-6 gap-1 mt-2">
-                           <img src="http://127.0.0.1:8000/images/portfolio.png" alt="image" class="w-full">
-                           <img src="http://127.0.0.1:8000/images/portfolio.png" alt="image" class="w-full"><img src="http://127.0.0.1:8000/images/portfolio.png" alt="image" class="w-full"><img src="http://127.0.0.1:8000/images/portfolio.png" alt="image" class="w-full"><img src="http://127.0.0.1:8000/images/portfolio.png" alt="image" class="w-full"><img src="http://127.0.0.1:8000/images/portfolio.png" alt="image" class="w-full">
+                           @php
+                              $portfolio = json_decode($OrderDetail->order->tradeperson->portfolio);
+                           @endphp
+
+                           @if ($portfolio)
+
+                           @foreach ( $portfolio as $portfolioImage )
+                           <img src="{{ asset('public/storage/portfolio-images/' . $portfolioImage) }}" alt="image" class="h-[60px] object-cover w-full">
+                           @endforeach
+                           
+                           @endif
+                         
                         </div>
                      </div>
                   </div>
@@ -305,13 +318,21 @@
                         <h4 class="mb-3 font-semibold text-mat">Services</h4>
                         <p class="mb-5">Bathroom Fitter, Electrician, Guttering Installer, Fencer, Plumber</p>
                         <h4 class="mb-3 font-semibold text-mat">About Brian Simmons</h4>
-                        <p class="mb-5">Company number&nbsp;- 08900980
-                           Established in 2014, we are a team of trustworthy, friendly, and fully trained tradesmen dedicated to handling all your maintenance needs—whether domestic or commercial. No job is too big or too small, and every project receives our full attention and commitment.
+                        <p class="mb-5">{{ $OrderDetail->order->tradeperson->about_me }}
                         </p>
                         <h4 class="mb-3 font-semibold text-mat">Portfolio</h4>
                         <div class="grid grid-cols-6 gap-1 mt-2">
-                           <img src="http://127.0.0.1:8000/images/portfolio.png" alt="image" class="w-full">
-                           <img src="http://127.0.0.1:8000/images/portfolio.png" alt="image" class="w-full"><img src="http://127.0.0.1:8000/images/portfolio.png" alt="image" class="w-full"><img src="http://127.0.0.1:8000/images/portfolio.png" alt="image" class="w-full"><img src="http://127.0.0.1:8000/images/portfolio.png" alt="image" class="w-full"><img src="http://127.0.0.1:8000/images/portfolio.png" alt="image" class="w-full">
+                           @php
+                           $portfolio = json_decode($OrderDetail->order->tradeperson->portfolio);
+                           @endphp
+
+                           @if ($portfolio)
+
+                           @foreach ( $portfolio as $portfolioImage )
+                           <img src="{{ asset('public/storage/portfolio-images/' . $portfolioImage) }}" alt="image" class="object-cover h-[60px] w-full">
+                           @endforeach
+                           
+                           @endif
                         </div>
                      </div>
                   </div>
@@ -322,7 +343,51 @@
       <div class="bg-white rounded-2xl border border-[#22222233] py-4 h-fit">
          <h3 class="text-[#2C2C2C] font-semibold mb-7 text-sm border-b border-[#e5e7eb] px-5 pb-2">Project Milestones</h3>
          <p class="text-[#ABABAB] mb-12 text-sm px-5">This project involves diagnosing and repairing kitchen plumbing issues, including clogged drains, leaks, and damaged pipes. The goal is to ensure a fully functional and leak-free kitchen plumbing system that operates safely and efficiently.</p>
+         @php
+            $milestonesData = $OrderDetail->order->orderMilestones ?? '[]';
+            $milestonesArray = json_decode($milestonesData, true);
+
+            $milestones = [];
+            if (!empty($milestonesArray)) {
+               $milestones = json_decode($milestonesArray[0]['milestone'] ?? '[]', true);
+            }
+         @endphp
+
          <div class="px-5 mb-12">
+            @if (!empty($milestones))
+               @foreach ($milestones as $milestone)
+                     @php
+                        $isApproved = $milestone['approved'] ?? false;
+                        $circleColor = $isApproved ? '#20AD00' : '#F5F5F5';
+                        $innerCircleColor = $isApproved ? '#24C500' : '#DEDEDE';
+                        $opacity = $isApproved ? '100' : '50';
+                        $statusText = $isApproved ? 'Approved' : 'Pending';
+                     @endphp
+                     <div class="flex items-start space-x-4  opacity-{{$opacity}}">
+                        <div class="flex flex-col items-center">
+                           <div class="w-6 h-6 rounded-full flex items-center justify-center" style="background-color: {{ $circleColor }}">
+                                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="14" cy="14" r="14" fill="{{ $circleColor }}"></circle>
+                                    <circle cx="14" cy="14" r="10" fill="{{ $innerCircleColor }}"></circle>
+                                    <path d="M17.073 10L13.1148 14.9829L10.3804 13.2L9 14.8801L13.6615 18L19 11.28L17.073 10Z" fill="white"></path>
+                                 </svg>
+                           </div>
+                           @if (!$loop->last)
+                              <div class="h-10 w-0.5 bg-gray-300"></div>
+                           @endif
+                        </div>
+                        <div>
+                           <h3 class="font-semibold text-xs text-black mb-1">{{ $milestone['title'] ?? 'No Title' }}</h3>
+                           <p class="text-black text-xs text-light">{{ $milestone['description'] ?? 'No Description' }} <span class="ml-4 text-gray-400 text-xs">{{ $milestone['days'] ?? 'No days' }} days left</span></p>
+                        </div>
+                     </div>
+               @endforeach
+            @else
+               <p>No milestones found.</p>
+            @endif
+         </div>
+        
+         {{-- <div class="px-5 mb-12">
             <div class="flex items-start space-x-4">
                <div class="flex flex-col items-center">
                   <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
@@ -386,7 +451,8 @@
                   <p class="text-[#ABABAB] text-xs font-light">Final Testing &amp; Cleanup</p>
                </div>
             </div>
-         </div>
+         </div> --}}
+         
          <div class="text-center px-5 mb-5">
             <a href="#" class="flex justify-center bg-mat text-white px-6 py-3 rounded-full text-sm inline-block w-full max-w-lg hover:bg-primary transition"> See Conversation</a>
          </div>

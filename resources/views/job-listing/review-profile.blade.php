@@ -106,7 +106,7 @@
       font-size: 0;
       width: 20px;
       height: 20px;
-      background-image:url({{ asset('/images/circle-arrow-right-round.svg') }})
+      background-image:url({{ asset('public/images/circle-arrow-right-round.svg') }})
     }
 
 </style>
@@ -132,7 +132,7 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-5">
          <div class="lg:col-span-1 p-">
-            <img src="{{ asset('images/' . $OrderDetail->order->tradeperson->user->avatar) }}" 
+            <img src="{{ asset('public/images/' . $OrderDetail->order->tradeperson->user->avatar) }}" 
                  class="rounded-full w-60 h-60 object-cover mx-auto -mt-25">
         </div>
          <div class="lg:col-span-2 p-4">
@@ -169,7 +169,7 @@
                      @if (!empty($portfolios))
                         @foreach ($portfolios as $portfolio)
                         <div class="swiper-slide">
-                              <img src="{{ asset('storage/portfolio-images/' . $portfolio) }}">
+                              <img src="{{ asset('public/storage/portfolio-images/' . $portfolio) }}">
                         </div>
                         @endforeach
                      @else
@@ -194,7 +194,7 @@
                      @if (!empty($portfolios))
                         @foreach ($portfolios as $portfolio)
                         <div class="swiper-slide">
-                              <img src="{{ asset('storage/portfolio-images/' . $portfolio) }}">
+                              <img src="{{ asset('public/storage/portfolio-images/' . $portfolio) }}">
                         </div>
                         @endforeach
                      @else
@@ -242,7 +242,7 @@
 
                   @if (!empty($certificates))
                      @foreach ($certificates as $certificate)
-                           <img src="{{ asset('storage/certificate-images/' . $certificate) }}" class="h-auto max-w-full">
+                           <img src="{{ asset('public/storage/certificate-images/' . $certificate) }}" class="h-auto max-w-full">
                      @endforeach
                   @else
                      <p class="text-gray-500 text-sm">No certifications available.</p>

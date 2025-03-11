@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Arr;
 
 
 class jobListingDataController extends Controller
@@ -187,6 +188,7 @@ class jobListingDataController extends Controller
             return redirect()->back()->with('success', 'Something went wrong.');
         }
     }
+    
 
     public function acceptReview($id)
     {
