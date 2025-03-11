@@ -34,7 +34,7 @@
         <div id="default-styled-tab-content">
             <div class="overflow-y-auto rounded-lg text-xs text-[#ABABAB] hidden" id="styled-profile" role="tabpanel" aria-labelledby="proposal-tab">
                 <div id="table-container" class="overflow-x-auto rounded-xl bg-white border border-[#22222233]">
-                <table class="w-full text-sm text-left text-gray-500">
+                <table class="genericTable w-full text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 bg-[#eee] border-b border-[#22222233]">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="90">S.No</th>

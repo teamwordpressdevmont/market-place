@@ -5,7 +5,7 @@
 
    <div class="pt-15 pb-15">
         <div class="grid grid-cols-2 items-start">
-            <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2">Violations by Client</h1>            
+            <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2">Violations by Client</h1>
             <div class="flex justify-end">
                <a href="#" class="text-white bg-mat hover:bg-primary focus:outline-none  rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">Suspend</a>
                <a href="#" class="text-white bg-secondary hover:bg-primary focus:outline-none  rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">Delete account</a>
@@ -18,21 +18,21 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-5">
          <div class="lg:col-span-1 p-">
-            <img src="http://127.0.0.1:8000/images/plumber.png" class="rounded-full w-60 h-60 object-cover mx-auto">
+            <img src="/public/images/plumber.png" class="rounded-full w-60 h-60 object-cover mx-auto">
          </div>
          <div class="lg:col-span-2 p-4">
             <h4 class="font-semibold lg:text-2xl mt-4 mb-2 flex gap-2"> Alex Blake </h4>
            <p class="text-[#2B2B2B] text-sm mt-2 flex leading-[1.1rem] mb-7">
            I’m a results-driven business professional with a focus on innovation, growth, and building successful ventures.</p>
 
-            
+
             <h4 class="font-semibold lg:text-2xl mb-2">Email</h4>
             <p class="text-[#ABABAB] text-xs mb-7 flex leading-none"> alexblake@gmail.com</p>
-         
-            <h4 class="font-semibold lg:text-2xl mb-2">Phone no.</h4>
-            <p class="text-[#ABABAB] text-xs mb-7 flex leading-none"> +62 847 1723 1123</p>            
 
-            <h4 class="font-semibold lg:text-2xl mt-4 mb-2">Location</h4>      
+            <h4 class="font-semibold lg:text-2xl mb-2">Phone no.</h4>
+            <p class="text-[#ABABAB] text-xs mb-7 flex leading-none"> +62 847 1723 1123</p>
+
+            <h4 class="font-semibold lg:text-2xl mt-4 mb-2">Location</h4>
             <div class="mt-7 pb-5">
              <p class="text-[#ABABAB] text-xs mt-2 flex leading-none gap-2">
                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -41,12 +41,12 @@
                   <path d="M18 20C18 21.1046 15.3137 22 12 22C8.68629 22 6 21.1046 6 20" stroke="#DB4A2B" stroke-width="1.5" stroke-linecap="round"/>
                </svg>
                 78 Foundry St, Wakefield, NOR 1880
-             </p> 
-            </div>   
+             </p>
+            </div>
             <div class="w-full max-w-[600px] h-[220px] border border-primary rounded-[20px] overflow-hidden p-3 mb-10">
                <iframe class="w-full h-full rounded-[10px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.95373631531692!3d-37.8162791797516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce7e33!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1646482392853!5m2!1sen!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                </iframe>
-            </div>        
+            </div>
 
          </div>
 

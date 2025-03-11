@@ -38,9 +38,9 @@
             </span>
         </div>
     </form>
-    <div id="table-container" class="border rounded-[15px] overflow-hidden overflow-x-auto">
-    <table class="w-full text-sm text-left text-gray-500 border border-[#e9e9e9]">
-        <thead class="text-xs text-gray-700 bg-[#eee] border-b border-[#e9e9e9]">
+    <div id="table-container" class="overflow-x-auto rounded-xl bg-white border border-[#22222233]">
+    <table class="genericTable w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 bg-[#eee] border-b border-[#22222233]">
             <tr>
                 <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="100">S.No</th>
                 <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">ID</th>
@@ -57,31 +57,31 @@
         </thead>
         <tbody>
             @if($testimonials->isEmpty())
-            <tr class="bg-white border-b border-[#e9e9e9]">
+            <tr class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" colspan="8">
                     No data available.
                 </th>
             </tr>
-            @else  
+            @else
             @foreach($testimonials as $index => $testimonial)
             <tr class="bg-white border-b border-[#e9e9e9]">
-                <th scope="row" class="px-6 py-4">
+                <th scope="row" class="px-6 py-5 whitespace-nowrap text-xs text-mat font-bold">
                     #{{ ($testimonials->currentPage() - 1) * $testimonials->perPage() + $index + 1 }}
                 </th>
-                <th scope="row" class="px-6 py-4">
+                <th scope="row" class="px-6 py-5 whitespace-nowrap text-xs text-mat font-bold">
                     {{ $testimonial->id }}
                 </th>
-                <td class="px-6 py-4 font-medium whitespace-nowrap">{{ $testimonial->name }}</td>
-                <td class="px-6 py-4 font-medium whitespace-nowrap">{{ $testimonial->heading }}</td>
-                <td class="px-6 py-4 font-medium whitespace-nowrap">{{ $testimonial->rating }}</td>
-                <td class="px-6 py-4 font-medium whitespace-nowrap">
-                    <button type="button" class="toggleApprovalBtn text-white hover:bg-primary focus:outline-none rounded-full text-xs px-10 py-2 text-center 
+                <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-bold">{{ $testimonial->name }}</td>
+                <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-bold">{{ $testimonial->heading }}</td>
+                <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">{{ $testimonial->rating }}</td>
+                <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
+                    <button type="button" class="toggleApprovalBtn text-white hover:bg-primary focus:outline-none rounded-full text-xs px-10 py-2 text-center
                         {{ $testimonial->approvedTestimonial ? 'bg-mat' : 'bg-secondary' }}"
                         data-id="{{ $testimonial->id }}">
                         {{ $testimonial->approvedTestimonial ? 'Remove from Website' : 'Add to Website' }}
                     </button>
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
 
                         <div class="site_user_dropdown">
                             <div class="flex items-center cursor-pointer px-5 justify-end" data-dropdown-toggle="userDropdown-action-{{ $testimonial->id }}" data-dropdown-placement="bottom-end">
@@ -104,7 +104,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>                
+                        </div>
 
                 </td>
             </tr>
@@ -124,7 +124,7 @@
     <div id="approvalModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
         <div class="bg-white p-6 rounded-lg shadow-lg w-1/3">
             <input type="hidden" id="testimonialId">
-            
+
             <!-- Order Number Input -->
             <label class="block text-sm font-medium text-gray-700">Order Number:</label>
             <input type="number" id="order_number" class="w-full p-2 border rounded-lg mt-2">
@@ -134,7 +134,7 @@
                 <button id="confirmAdd" class="bg-green-600 text-white px-4 py-2 rounded-lg toggle-user-approval">Confirm</button>
             </div>
         </div>
-    </div>  
+    </div>
     @endsection
 
 

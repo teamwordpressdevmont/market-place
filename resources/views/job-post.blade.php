@@ -60,12 +60,12 @@
          <div class="mt-6">
             <h2 class="text-sm font-semibold">Images</h2>
             <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 mt-2 xl:w-[58%]">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
+               <img src="/public/images/job-post.png" alt="image" class="w-full">
+               <img src="/public/images/job-post.png" alt="image" class="w-full">
+               <img src="/public/images/job-post.png" alt="image" class="w-full">
+               <img src="/public/images/job-post.png" alt="image" class="w-full">
+               <img src="/public/images/job-post.png" alt="image" class="w-full">
+               <img src="/public/images/job-post.png" alt="image" class="w-full">
             </div>
          </div>
       </div>

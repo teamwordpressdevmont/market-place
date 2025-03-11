@@ -54,7 +54,7 @@
     <div class="col-span-2 rounded-xl pt-5 bg-white border border-[#22222233] h-fit">
         <h2 class="text-lg font-bold mb-6 text-[#222222] px-5">Recent Jobs</h2>
         <div id="table-container" class="overflow-x-auto ">
-           <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+           <table class="genericTable w-full text-sm text-left rtl:text-right text-gray-500">
               <thead class="text-xs text-gray-700 bg-[#eee] border-t border-b border-[#22222233]">
                  <tr>
                     <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Job ID</th>
@@ -66,14 +66,14 @@
               </thead>
               <tbody>
                @if($orders->isEmpty())
-               <tr class="bg-white border-b border-[#e9e9e9]">
+               <tr class="border-b border-[#e9e9e9]">
                   <th class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]" colspan="6">
                        No data available.
                    </th>
                </tr>
                @else
                @foreach ($orders as $order)
-                  <tr class="bg-white border-b border-[#e9e9e9]">
+                  <tr class="border-b border-[#e9e9e9]">
                      <th class="px-6 py-5 whitespace-nowrap text-xs font-bold  {{ $order->orderDetail && $order->orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-[#222222]' }}">#{{ $order->id }}</th>
                      <td class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $order->orderDetail && $order->orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-[#222222]' }}">{{ optional($order->orderDetail)->title }}</td>
                      <td class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $order->orderDetail && $order->orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-[#222222]' }}">
@@ -190,7 +190,7 @@
                   @endphp
 
                        <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
-                              {{-- <img src="http://127.0.0.1:8000/images/profile.png" alt="Job Image" class=" rounded-xl object-cover"> --}}
+                              {{-- <img src="/public/images/profile.png" alt="Job Image" class=" rounded-xl object-cover"> --}}
                               <div class="w-10 h-10 flex items-center justify-center rounded-full bg-green-500 text-white font-bold">
                                  {{ $initials }}
                            </div>

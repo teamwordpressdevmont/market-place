@@ -60,12 +60,12 @@
          <div class="mt-6">
             <h2 class="text-sm font-semibold">Images</h2>
             <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 mt-2 xl:w-[58%]">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
-               <img src="http://127.0.0.1:8000/images/job-post.png" alt="image" class="w-full">
+               <img src="/public/images/job-post.png" alt="image" class="w-full">
+               <img src="/public/images/job-post.png" alt="image" class="w-full">
+               <img src="/public/images/job-post.png" alt="image" class="w-full">
+               <img src="/public/images/job-post.png" alt="image" class="w-full">
+               <img src="/public/images/job-post.png" alt="image" class="w-full">
+               <img src="/public/images/job-post.png" alt="image" class="w-full">
             </div>
          </div>
       </div>
@@ -74,13 +74,13 @@
             <h2 class="text-white md:text-2xl text-xl font-semibold">Invite Tradeperson</h2>
             <input type="text" placeholder="Plumber" class="w-full mt-4 py-3 px-4 bg-[#222222] text-white rounded-full text-xs">
          </div>
-         <div class="bg-white rounded-2xl border border-[#22222233] py-4">
+         <div class="bg-white rounded-xl border border-[#22222233] py-4">
             <h3 class="text-[#2C2C2C] font-semibold mb-4 text-sm border-b border-[#e5e7eb] px-5 pb-2">Recommended Tradepersons</h3>
             <div class="space-y-4 px-5">
                <div class="flex bg-[#FCFCFA] border border-[#e5e7eb] rounded-xl shadow-sm">
                   <div class="flex-1 py-4">
                      <div class="flex justify-between items-start lg:px-4 px-3 flex-col sm:flex-row">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
+                        <img src="/public/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                         <div class="flex-1">
                            <div>
                               <h4 class="font-semibold text-[#072130] text-xs mb-1">Brian Simmons</h4>
@@ -105,7 +105,7 @@
                <div class="flex bg-[#FCFCFA] border border-[#e5e7eb] rounded-xl shadow-sm">
                   <div class="flex-1 py-4">
                      <div class="flex justify-between items-start lg:px-4 px-3 flex-col sm:flex-row">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
+                        <img src="/public/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                         <div class="flex-1">
                            <div>
                               <h4 class="font-semibold text-[#072130] text-xs mb-1">Brian Simmons</h4>
@@ -130,7 +130,7 @@
                <div class="flex bg-[#FCFCFA] border border-[#e5e7eb] rounded-xl shadow-sm">
                   <div class="flex-1 py-4">
                      <div class="flex justify-between items-start lg:px-4 px-3 flex-col sm:flex-row">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
+                        <img src="/public/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                         <div class="flex-1">
                            <div>
                               <h4 class="font-semibold text-[#072130] text-xs mb-1">Brian Simmons</h4>
@@ -155,7 +155,7 @@
                <div class="flex bg-[#FCFCFA] border border-[#e5e7eb] rounded-xl shadow-sm">
                   <div class="flex-1 py-4">
                      <div class="flex justify-between items-start lg:px-4 px-3 flex-col sm:flex-row">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
+                        <img src="/public/images/proposal.png" alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                         <div class="flex-1">
                            <div>
                               <h4 class="font-semibold text-[#072130] text-xs mb-1">Brian Simmons</h4>

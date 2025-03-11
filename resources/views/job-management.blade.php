@@ -39,7 +39,7 @@
                </div>
                <div class="space-y-5">
                   <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                     <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
+                     <img src="/public/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
                      <div class="md:py-2 py-4 flex-1">
                         <div class="text-xs text-gray-500 flex items-center mb-1">
                            <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -71,7 +71,7 @@
                         <div class="text-xs text-gray-600 border-r border-[#22222233] px-8">
                            <span class="font-semibold text-[#072130] text-sm block mb-5">Assign Tradesperson:</span>
                            <div class="flex items-center gap-2">
-                              <img src="http://127.0.0.1:8000/images/proposal.png" alt="Tradesperson" class="w-[54px] rounded-full object-cover">
+                              <img src="/public/images/proposal.png" alt="Tradesperson" class="w-[54px] rounded-full object-cover">
                               <div>
                                  <p class="text-[#072130] text-sm mb-1">Brian Simmons</p>
                                  <p class="text-xs text-gray-500">Expert Plumber</p>
@@ -146,7 +146,7 @@
                      </div>
                   </div>
                   <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                     <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
+                     <img src="/public/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
                      <div class="md:py-2 py-4 flex-1">
                         <div class="text-xs text-gray-500 flex items-center mb-1">
                            <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -178,7 +178,7 @@
                         <div class="text-xs text-gray-600 border-r border-[#22222233] px-8">
                            <span class="font-semibold text-[#072130] text-sm block mb-5">Assign Tradesperson:</span>
                            <div class="flex items-center gap-2">
-                              <img src="http://127.0.0.1:8000/images/proposal.png" alt="Tradesperson" class="w-[54px] rounded-full object-cover">
+                              <img src="/public/images/proposal.png" alt="Tradesperson" class="w-[54px] rounded-full object-cover">
                               <div>
                                  <p class="text-[#072130] text-sm mb-1">Brian Simmons</p>
                                  <p class="text-xs text-gray-500">Expert Plumber</p>
@@ -244,7 +244,7 @@
                      </div>
                   </div>
                   <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                     <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
+                     <img src="/public/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
                      <div class="md:py-2 py-4 flex-1">
                         <div class="text-xs text-gray-500 flex items-center mb-1">
                            <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -276,7 +276,7 @@
                         <div class="text-xs text-gray-600 border-r border-[#22222233] px-8">
                            <span class="font-semibold text-[#072130] text-sm block mb-5">Assign Tradesperson:</span>
                            <div class="flex items-center gap-2">
-                              <img src="http://127.0.0.1:8000/images/proposal.png" alt="Tradesperson" class="w-[54px] rounded-full object-cover">
+                              <img src="/public/images/proposal.png" alt="Tradesperson" class="w-[54px] rounded-full object-cover">
                               <div>
                                  <p class="text-[#072130] text-sm mb-1">Brian Simmons</p>
                                  <p class="text-xs text-gray-500">Expert Plumber</p>
@@ -342,7 +342,7 @@
                      </div>
                   </div>
                   <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                     <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
+                     <img src="/public/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
                      <div class="md:py-2 py-4 flex-1">
                         <div class="text-xs text-gray-500 flex items-center mb-1">
                            <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -374,7 +374,7 @@
                         <div class="text-xs text-gray-600 border-r border-[#22222233] px-8">
                            <span class="font-semibold text-[#072130] text-sm block mb-5">Assign Tradesperson:</span>
                            <div class="flex items-center gap-2">
-                              <img src="http://127.0.0.1:8000/images/proposal.png" alt="Tradesperson" class="w-[54px] rounded-full object-cover">
+                              <img src="/public/images/proposal.png" alt="Tradesperson" class="w-[54px] rounded-full object-cover">
                               <div>
                                  <p class="text-[#072130] text-sm mb-1">Brian Simmons</p>
                                  <p class="text-xs text-gray-500">Expert Plumber</p>
@@ -449,7 +449,7 @@
                </div>
                <div class="space-y-5">
                   <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                     <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
+                     <img src="/public/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
                      <div class="md:py-2 py-4 flex-1">
                         <div class="text-xs text-gray-500 flex items-center mb-1">
                            <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -541,7 +541,7 @@
                      </div>
                   </div>
                   <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                     <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
+                     <img src="/public/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
                      <div class="md:py-2 py-4 flex-1">
                         <div class="text-xs text-gray-500 flex items-center mb-1">
                            <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -571,7 +571,7 @@
                      </div>
                      <div class="grid md:grid-cols-2 grid-cols-1 h-full border-r border-[#22222233] w-[450px]">
                         <div class="flex items-center justify-center text-xs text-gray-600 border-r border-[#22222233] pr-12">
-                            <img src="http://127.0.0.1:8000/images/proposals.png" alt="Job Image" >
+                            <img src="/public/images/proposals.png" alt="Job Image" >
                            <span class=" text-[#ABABAB] text-xs block ml-2 whitespace-nowrap">8 Proposals Submitted</span>
                         </div>
                         <div class="text-xs text-gray-600 px-7">
@@ -642,7 +642,7 @@
                </div>
                <div class="space-y-5">
                   <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                     <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
+                     <img src="/public/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
                      <div class="md:py-2 py-4 flex-1">
                         <div class="text-xs text-gray-500 flex items-center mb-1">
                            <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -732,7 +732,7 @@
                      </div>
                   </div>
                   <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col gap-5">
-                     <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
+                     <img src="/public/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
                      <div class="md:py-2 py-4 flex-1">
                         <div class="text-xs text-gray-500 flex items-center mb-1">
                            <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">

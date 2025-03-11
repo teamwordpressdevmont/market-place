@@ -7,8 +7,8 @@
          <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2">Pending Approvals</h1>
          <p class="font-semibold text-sm text-mat">Here is your listings statistic report from January 05 - Feburary 05.</p>
       </div>
-      
-   
+
+
 
    </div>
    <div class="flex justify-between items-start">
@@ -36,8 +36,8 @@
                   <button class="w-full transition text-xs text-[#ababab] font-semibold px-12 py-3 rounded-full dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" id="settings-styled-tab" data-tabs-target="#styled-settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Edited Jobs</button>
                </li>
             </ul>
-         </div>         
-      </div>      
+         </div>
+      </div>
    </div>
 </div>
 
@@ -47,9 +47,9 @@
    <div id="default-styled-tab-content">
       <div class="h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] pr-3" id="styled-profile" role="tabpanel" aria-labelledby="proposal-tab">
 
-      <div id="table-container" class="overflow-x-auto">
-         <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 bg-[#eee] border-t border-b border-[#22222233]">
+      <div id="table-container" class="overflow-x-auto rounded-xl bg-white border border-[#22222233]">
+         <table class="genericTable w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 bg-[#eee] border-b border-[#22222233]">
                <tr>
                   <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="90">Job ID</th>
                   <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="300">Job Title</th>
@@ -89,7 +89,7 @@
                               </li>
                            </ul>
                         </div>
-                        
+
                   </td>
 
                </tr>
@@ -126,7 +126,7 @@
                               </li>
                            </ul>
                         </div>
-                        
+
                   </td>
 
                </tr>
@@ -135,13 +135,15 @@
 
                                           </tbody>
          </table>
-      </div>      
+      </div>
 
       </div>
       <div class="h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] hidden pr-3" id="styled-settings" role="tabpanel" aria-labelledby="reviews-tab">
 
-      <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 bg-[#eee] border-t border-b border-[#22222233]">
+      <div id="table-container" class="overflow-x-auto rounded-xl bg-white border border-[#22222233]">
+
+        <table class="genericTable w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 bg-[#eee] border-b border-[#22222233]">
                <tr>
                   <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="90">ID</th>
                   <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="200">Tradeperson Name</th>
@@ -189,15 +191,16 @@
                               </li>
                            </ul>
                         </div>
-                        
+
                   </td>
 
 
 
                                           </tbody>
-         </table>      
+         </table>
 
       </div>
+    </div>
       </div>
    </div>
 </div>
