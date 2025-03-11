@@ -26,17 +26,22 @@
 
     </head>
     <body class="bg-[url('{{ asset('storage/aiguy-images/Login.jpg') }}')] bg-no-repeat bg-cover bg-center h-auto w-full">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
-            <div class="pt-[50px]">
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
+        <div class="min-h-screen flex items-center pt-6 sm:pt-0">
+            <div class="p-10">
+                <img src="{{ asset( '/images/admin-dash-thumb.png' ) }}" alt="">
             </div>
-            <div class="w-full max-w-md mt-6 px-10 py-10 overflow-hidden box-border border border-[#002715] border-gradient rounded-2xl ">
-                {{ $slot }}
+            <div>    
+            <div class="pt-[50px]">
+                    <img src="{{ asset( '/images/admin-dash-logo.png' ) }}" alt="">
+
+                    <h2> Login to <br>
+                    DINBYGGEMARKED</h2>
+
+                    {{ $slot }}
+            </div>
+
             </div>
         </div>
-        
       
     </body>
 </html>

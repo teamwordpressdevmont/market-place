@@ -1,206 +1,59 @@
 @extends('layouts.app')
 @section('content')
-<div class="mt-5">
-<div class="bgShadow pt-10 pb-8">
-   <div class="grid grid-cols-1 mb-6 items-start">
-      <div>
-         <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2">Violations by Client</h1>
-         <p class="font-semibold text-sm text-mat">Here is your listings statistic report from January 05 - Feburary 05.</p>
-      </div>
-      
-   
 
-   </div>
-   <div class="flex justify-between items-start">
-      <div class="relative">
-         <form id="searchForm" method="GET" action="{{ route('joblisting.list') }}" class="relative flex md:w-[450px] w-full">
-            <input type="text" name="search" value="{{ request('search') }}" id="table-search" class="rounded-tl-full rounded-bl-full bg-white text-[#222222] placeholder-[#222222] block flex-1 text-xs px-5" placeholder="Search for job">
-            <button type="submit" class="bg-secondary cursor-pointer inset-y-0 right-0 px-4 py-3 text-white text-xs border border-secondary hover:bg-primary transition rounded-tr-full rounded-br-full w-[120px]">Search</button>
-            <div class="input-group-append absolute top-[10px] right-[130px]">
-               <span class="input-group-text close-icon" style="cursor: pointer; display: none;">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="13px" height="20px">
-                     <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"></path>
-                  </svg>
-               </span>
+<div class="bgShadow">
+
+   <div class="pt-15 pb-15">
+        <div class="grid grid-cols-2 items-start">
+            <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2">Violations by Client</h1>            
+            <div class="flex justify-end">
+               <a href="#" class="text-white bg-mat hover:bg-primary focus:outline-none  rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">Suspend</a>
+               <a href="#" class="text-white bg-secondary hover:bg-primary focus:outline-none  rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2">Delete account</a>
             </div>
-         </form>
+
+        </div>
+    </div>
+
+   <div class="">
+
+      <div class="grid grid-cols-1 lg:grid-cols-5">
+         <div class="lg:col-span-1 p-">
+            <img src="http://127.0.0.1:8000/images/plumber.png" class="rounded-full w-60 h-60 object-cover mx-auto">
+         </div>
+         <div class="lg:col-span-2 p-4">
+            <h4 class="font-semibold lg:text-2xl mt-4 mb-2 flex gap-2"> Alex Blake </h4>
+           <p class="text-[#2B2B2B] text-sm mt-2 flex leading-[1.1rem] mb-7">
+           I’m a results-driven business professional with a focus on innovation, growth, and building successful ventures.</p>
+
+            
+            <h4 class="font-semibold lg:text-2xl mb-2">Email</h4>
+            <p class="text-[#ABABAB] text-xs mb-7 flex leading-none"> alexblake@gmail.com</p>
+         
+            <h4 class="font-semibold lg:text-2xl mb-2">Phone no.</h4>
+            <p class="text-[#ABABAB] text-xs mb-7 flex leading-none"> +62 847 1723 1123</p>            
+
+            <h4 class="font-semibold lg:text-2xl mt-4 mb-2">Location</h4>      
+            <div class="mt-7 pb-5">
+             <p class="text-[#ABABAB] text-xs mt-2 flex leading-none gap-2">
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M14.5 9C14.5 10.3807 13.3807 11.5 12 11.5C10.6193 11.5 9.5 10.3807 9.5 9C9.5 7.61929 10.6193 6.5 12 6.5C13.3807 6.5 14.5 7.61929 14.5 9Z" stroke="#DB4A2B" stroke-width="1.5"/>
+                  <path d="M13.2574 17.4936C12.9201 17.8184 12.4693 18 12.0002 18C11.531 18 11.0802 17.8184 10.7429 17.4936C7.6543 14.5008 3.51519 11.1575 5.53371 6.30373C6.6251 3.67932 9.24494 2 12.0002 2C14.7554 2 17.3752 3.67933 18.4666 6.30373C20.4826 11.1514 16.3536 14.5111 13.2574 17.4936Z" stroke="#DB4A2B" stroke-width="1.5"/>
+                  <path d="M18 20C18 21.1046 15.3137 22 12 22C8.68629 22 6 21.1046 6 20" stroke="#DB4A2B" stroke-width="1.5" stroke-linecap="round"/>
+               </svg>
+                78 Foundry St, Wakefield, NOR 1880
+             </p> 
+            </div>   
+            <div class="w-full max-w-[600px] h-[220px] border border-primary rounded-[20px] overflow-hidden p-3 mb-10">
+               <iframe class="w-full h-full rounded-[10px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.95373631531692!3d-37.8162791797516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce7e33!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1646482392853!5m2!1sen!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+               </iframe>
+            </div>        
+
+         </div>
+
       </div>
 
-      <div class="tabsWrapper w-[450px]">
-         <div class="tabsScroll  overflow-x-auto relative">
-            <ul class="flex flex-nowrap border-b bg-gray-200 rounded-full p-1 min-w-max justify-between" id="default-styled-tab" data-tabs-toggle="#default-styled-tab-content" data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" role="tablist">
-               <li role="presentation" class="w-full">
-                  <button class="w-full transition text-xs text-[#ababab] font-semibold px-12 py-3 rounded-full text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" data-tabs-target="#styled-profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Accounts</button>
-               </li>
-               <li role="presentation" class="w-full">
-                  <button class="w-full transition text-xs text-[#ababab] font-semibold px-12 py-3 rounded-full dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" id="settings-styled-tab" data-tabs-target="#styled-settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Edited Jobs</button>
-               </li>
-            </ul>
-         </div>         
-      </div>      
    </div>
+
 </div>
-
-
-<div class="tabsWrapper">
-
-   <div id="default-styled-tab-content">
-      <div class="h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] pr-3" id="styled-profile" role="tabpanel" aria-labelledby="proposal-tab">
-
-      <div id="table-container" class="overflow-x-auto">
-         <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 bg-[#eee] border-t border-b border-[#22222233]">
-               <tr>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="90">Job ID</th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="300">Job Title</th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="150">Type</th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Start & Delivery Date </th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]"> </th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500] text-right">Action</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr class="bg-white border-b border-[#e9e9e9]">
-                  <th class="px-6 py-5 whitespace-nowrap text-xs font-bold  text-[#DB4A2B]">#1</th>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">Need to Fix Kitchen Pipe</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#DB4A2B]">Urgent</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">12-02-2025 - 18-03-2025</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-end"><a href="#" class="bg-[#222222] text-white font-normal text-xs px-5 py-2 leading-[0] rounded-full hover:bg-[#24C500] transition">Review Profile</a></td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs text-right">
-
-                     <button id="dropdownMenuIconButton" data-dropdown-toggle="dd-1" data-popper-placement="bottom-start" class="inline-flex justify-end w-fit ml-auto  px-5" type="button">
-                           <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                              <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                              <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                           </svg>
-                     </button>
-                        <!-- Dropdown menu -->
-                        <div id="dd-1" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1307px, 616px);">
-                           <ul class="bg-white text-sm rounded-xl overflow-hidden" aria-labelledby="dropdownMenuIconButton">
-                              <li class="border-b border-[#d3d3d3]">
-                                 <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Edit</a>
-                              </li>
-                              <li class="border-b border-[#d3d3d3]">
-                                 <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">View</a>
-                              </li>
-                              <li class="">
-                                 <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Delete</a>
-                              </li>
-                           </ul>
-                        </div>
-                        
-                  </td>
-
-               </tr>
-
-                              <tr class="bg-white border-b border-[#e9e9e9]">
-                  <th class="px-6 py-5 whitespace-nowrap text-xs font-bold  text-[#222222]">#2</th>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#222222]">Electrical Wiring Repair</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs font-bold text-[#222222]">
-                                                Flexible
-                                          </td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">12-02-2025 - 18-03-2025</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-end"><a href="#" class="bg-[#222222] text-white font-normal text-xs px-5 py-2 leading-[0] rounded-full hover:bg-[#24C500] transition">Review Profile</a></td>
-
-                  <td class="px-6 py-5 whitespace-nowrap text-xs text-right">
-
-                     <button id="dropdownMenuIconButton" data-dropdown-toggle="dd-2" data-popper-placement="bottom-start" class="inline-flex justify-end w-fit ml-auto  px-5" type="button">
-                           <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                              <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                              <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                           </svg>
-                     </button>
-                        <!-- Dropdown menu -->
-                        <div id="dd-2" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1307px, 673px);">
-                           <ul class="bg-white text-sm rounded-xl overflow-hidden" aria-labelledby="dropdownMenuIconButton">
-                              <li class="border-b border-[#d3d3d3]">
-                                 <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Edit</a>
-                              </li>
-                              <li class="border-b border-[#d3d3d3]">
-                                 <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">View</a>
-                              </li>
-                              <li class="">
-                                 <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Delete</a>
-                              </li>
-                           </ul>
-                        </div>
-                        
-                  </td>
-
-               </tr>
-
-
-
-                                          </tbody>
-         </table>
-      </div>      
-
-      </div>
-      <div class="h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] hidden pr-3" id="styled-settings" role="tabpanel" aria-labelledby="reviews-tab">
-
-      <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 bg-[#eee] border-t border-b border-[#22222233]">
-               <tr>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="90">ID</th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="200">Tradeperson Name</th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="150">Skills</th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Join Date </th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]"> Email ID</th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Location</th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Phone No</th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Package</th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]"></th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Action</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr class="bg-white border-b border-[#e9e9e9]">
-                  <th class="px-6 py-5 whitespace-nowrap text-xs text-mat">#1</th>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs text-mat">Danny  Drywaller</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs text-mat">Drywaller</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs text-mat">18-03-2025</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs text-mat">dannydrywaller@gmail.com</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs text-mat">Fjordvik 12, 5004 Bergen, Norway</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs text-mat">+47 401 23 456</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">Basic</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-end"><a href="#" class="bg-[#222222] text-white font-normal text-xs px-5 py-2 leading-[0] rounded-full hover:bg-[#24C500] transition">Review Profile</a></td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs text-right">
-
-                     <button id="dropdownMenuIconButton" data-dropdown-toggle="dd-1" data-popper-placement="bottom-start" class="inline-flex justify-end w-fit ml-auto  px-5" type="button">
-                           <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                              <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                              <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                           </svg>
-                     </button>
-                        <!-- Dropdown menu -->
-                        <div id="dd-1" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1307px, 616px);">
-                           <ul class="bg-white text-sm rounded-xl overflow-hidden" aria-labelledby="dropdownMenuIconButton">
-                              <li class="border-b border-[#d3d3d3]">
-                                 <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Edit</a>
-                              </li>
-                              <li class="border-b border-[#d3d3d3]">
-                                 <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">View</a>
-                              </li>
-                              <li class="">
-                                 <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Delete</a>
-                              </li>
-                           </ul>
-                        </div>
-                        
-                  </td>
-
-
-
-                                          </tbody>
-         </table>      
-
-      </div>
-      </div>
-   </div>
-</div>
-
 
 @endsection
