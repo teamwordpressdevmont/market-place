@@ -92,7 +92,7 @@
                                     <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </div>
-                            <div id="userDropdown-action-1" class="-top-[5px]! z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
+                            <div id="userDropdown-action-1" class="z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
                                 <ul class="bg-white text-sm rounded-xl overflow-hidden">
                                     <li class="border-b border-[#d3d3d3]">
                                         <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
@@ -169,7 +169,7 @@
                                     <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </div>
-                            <div id="userDropdown-action-2" class="-top-[5px]! z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
+                            <div id="userDropdown-action-2" class="z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
                                 <ul class="bg-white text-sm rounded-xl overflow-hidden">
                                     <li class="border-b border-[#d3d3d3]">
                                         <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
@@ -246,7 +246,7 @@
                                     <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </div>
-                            <div id="userDropdown-action-3" class="-top-[5px]! z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
+                            <div id="userDropdown-action-3" class="z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
                                 <ul class="bg-white text-sm rounded-xl overflow-hidden">
                                     <li class="border-b border-[#d3d3d3]">
                                         <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
@@ -323,7 +323,7 @@
                                     <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </div>
-                            <div id="userDropdown-action-4" class="-top-[5px]! z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
+                            <div id="userDropdown-action-4" class="z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
                                 <ul class="bg-white text-sm rounded-xl overflow-hidden">
                                     <li class="border-b border-[#d3d3d3]">
                                         <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
@@ -403,7 +403,7 @@
                                     <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </div>
-                            <div id="userDropdown-action-5" class="-top-[5px]! z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
+                            <div id="userDropdown-action-5" class="z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
                                 <ul class="bg-white text-sm rounded-xl overflow-hidden">
                                     <li class="border-b border-[#d3d3d3]">
                                         <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
@@ -474,7 +474,7 @@
                                     <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </div>
-                            <div id="userDropdown-action-6" class="-top-[5px]! z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
+                            <div id="userDropdown-action-6" class="z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
                                 <ul class="bg-white text-sm rounded-xl overflow-hidden">
                                     <li class="border-b border-[#d3d3d3]">
                                         <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
@@ -552,7 +552,7 @@
                                     <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </div>
-                            <div id="userDropdown-action-7" class="-top-[5px]! z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
+                            <div id="userDropdown-action-7" class="z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
                                 <ul class="bg-white text-sm rounded-xl overflow-hidden">
                                     <li class="border-b border-[#d3d3d3]">
                                         <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
@@ -629,7 +629,7 @@
                                     <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </div>
-                            <div id="userDropdown-action-8" class="-top-[5px]! z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
+                            <div id="userDropdown-action-8" class="z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
                                 <ul class="bg-white text-sm rounded-xl overflow-hidden">
                                     <li class="border-b border-[#d3d3d3]">
                                         <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>

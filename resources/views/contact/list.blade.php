@@ -13,46 +13,46 @@
             </span>
         </div>
     </form>
-    <div id="table-container" class="border rounded-lg overflow-x-auto ">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-            <thead class="text-xs text-gray-700 bg-gray-50">
+    <div id="table-container" class="overflow-x-auto rounded-xl bg-white border border-[#22222233]">
+        <table class="genericTable w-full text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-gray-700 bg-[#eee] border-b border-[#22222233]">
                 <tr>
-                    <th scope="col" class="px-6 py-3">S.No</th>
-                    <th scope="col" class="px-6 py-3">ID</th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">S.No</th>
+                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">ID</th>
+                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
                         Name
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
                         Email
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
                         Message
                     </th>
                 </tr>
-            </thead>   
+            </thead>
             <tbody>
                 @if($contacts->isEmpty())
                     <tr class="bg-white border-b border-gray-200">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap " colspan="5">
+                        <th scope="row" class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat" colspan="5">
                             No contact data available.
                         </th>
                     </tr>
                 @else
                 @foreach($contacts as $index => $contact)
                     <tr class="bg-white border-b border-gray-200">
-                        <th scope="row" class="px-6 py-4">
+                        <th scope="row" class="px-6 py-5 whitespace-nowrap text-xs font-bold text-mat">
                             {{ ($contacts->currentPage() - 1) * $contacts->perPage() + $index + 1 }}
                         </th>
-                        <th scope="row" class="px-6 py-4">
+                        <th scope="row" class="px-6 py-5 whitespace-nowrap text-xs font-bold text-mat">
                             {{ $contact->id }}
                         </th>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">
                             {{ $contact->name }}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">
                             {{ $contact->email }}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">
                             {{ $contact->message }}
                         </td>
                     </tr>

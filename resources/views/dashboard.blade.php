@@ -91,7 +91,7 @@
                                     <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </div>
-                            <div id="userDropdown-action-{{ $order->id }}" class="-top-[5px]! z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
+                            <div id="userDropdown-action-{{ $order->id }}" class="z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
                                 <ul class="bg-white text-sm rounded-xl overflow-hidden">
                                     <li class="border-b border-[#d3d3d3]">
                                         <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
@@ -166,7 +166,7 @@
                   @endif
                 </div>
                 <div class="min-h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] hidden pr-3" id="styled-settings" role="tabpanel" aria-labelledby="reviews-tab">
-                @if($pendingOrders->isNotEmpty()) 
+                @if($pendingOrders->isNotEmpty())
                   @foreach($pendingOrders as $order)
 
                   @php
@@ -184,7 +184,7 @@
                               </div>
                               <a href="#" class="bg-[#222222] text-white text-xs px-6 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Job</a>
                         </div>
-                        
+
                   @endforeach
                   @else
                      <p class="text-center text-gray-500 p-5">No pending orders found.</p>
