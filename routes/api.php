@@ -28,7 +28,8 @@ Route::middleware('verify_token')->group(function () {
 
     Route::get('/get-order', [PublicApiController::class, "getOrder"]);
     Route::get('/get-package', [PublicApiController::class, "getPackage"]);
-    
+
+    Route::get('/search-tradeperson', [PublicApiController::class, 'searchTradePerson']);
 
     Route::post('/store-tradeperson', [MainController::class, 'storeTradePerson']);
 });

@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('city');
             $table->string('postal_code');
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->text('about_me')->nullable();
             $table->string('address');
             $table->json('portfolio')->nullable(); 
