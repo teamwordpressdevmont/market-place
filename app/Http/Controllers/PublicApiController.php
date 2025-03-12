@@ -34,7 +34,10 @@ class PublicApiController extends Controller
             $offset = (int) request()->get('offset', 0);
             $perPage = (int) request()->get('perPage', 10);
 
-            $blogs = $query->offset($offset)->limit($perPage)->get();
+            $blogs = $query->offset($offset)->limit($perPage)->get()->map(function ($blog) {
+                $blog->banner = $this->getFullImageUrl('blog-banner', $blog->banner);
+                return $blog;
+            });
 
             return response()->json([
                 'success' => true,
@@ -116,8 +119,12 @@ class PublicApiController extends Controller
             // Pagination
             $offset = (int) $request->get('offset', 0);
             $perPage = (int) $request->get('perPage', 10);
-            $categories = $query->offset($offset)->limit($perPage)->get();
-
+            $categories = $query->offset($offset)->limit($perPage)->get()->map(function ($category) {
+                $category->icon = $category->icon 
+                    ? $this->getFullImageUrl('category-images', $category->icon) 
+                    : null;
+                return $category;
+            });
             return response()->json([
                 'success' => true,
                 'data'    => $categories,
@@ -325,13 +332,13 @@ class PublicApiController extends Controller
             ]);
 
             // Create a base query for Tradeperson and eager load associated 'user' model
-            $query = Tradeperson::with('user','categories');
+            $query = Tradeperson::with('user', 'categories');
 
             // If category_id is provided, filter the tradepersons based on the category
             if ($request->filled('category_id')) {
                 // Use whereHas to filter tradepersons by category through the pivot table
 
-                $query->whereHas('categories', function($query) use ($request) {
+                $query->whereHas('categories', function ($query) use ($request) {
                     $query->where('categories.id', $request->category_id); // Make sure you're filtering based on 'categories.id'
                 });
             }
@@ -483,14 +490,14 @@ class PublicApiController extends Controller
             if ($request->has('OrderByDesc') && $request->get('OrderByDesc') == true) {
                 $query->orderByDesc('id');
             }
-            
+
             $perPage = $request->get('perPage', 10);
             $offset = $request->get('offset', 0);
 
 
             $packages = $query->offset($offset)->limit($perPage)->get();
-            
-            
+
+
             return response()->json([
                 'success' => true,
                 'message' => 'Packages Retrieved Successfully',
