@@ -14,7 +14,7 @@
             </ul>
         </div>
     @endif
-
+    <div class="bgShadow pt-10">
         <h1 class="font-semibold text-4xl mb-10">Add Testimonial</h1>
 
         <div class="">
@@ -26,24 +26,24 @@
                     @endif
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="site_field_col">
-                            <label for="name" class="block text-sm/6 font-medium text-gray-900">Name</label>
-                            <div class="mt-2">
+                        <div class="site_field_col mt-0! mb-7!">
+                            <label for="name" class="block text-sm font-bold text-mat">Name</label>
+                            <div class="mt-4">
                                 <input type="text" name="name" id="name" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3" placeholder="janesmith" value="{{ old('name', $testimonials->name ?? '') }}">
                             </div>
                         </div>
 
-                        <div class="site_field_col">
-                            <label for="heading" class="block text-sm/6 font-medium text-gray-900">Heading</label>
-                            <div class="mt-2">
+                        <div class="site_field_col mt-0! mb-7!">
+                            <label for="heading" class="block text-sm font-bold text-mat">Heading</label>
+                            <div class="mt-4">
                                     <input type="text" name="heading" id="title" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3" placeholder="janesmith" value="{{ old('heading', $testimonials->heading ?? '') }}">
                             </div>
                         </div>
 
 
-                        <div class="site_field_col">
-                            <label for="category_id" class="block text-sm/6 font-medium text-gray-900">User</label>
-                            <div class="mt-2 grid grid-cols-1">
+                        <div class="site_field_col mt-0! mb-7!">
+                            <label for="category_id" class="block text-sm font-bold text-mat">User</label>
+                            <div class="mt-4 grid grid-cols-1">
                                 <select id="user_id" name="user_id" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3">
                                     <option value="" disabled selected>Select a User</option>
                                     @foreach($users as $user)
@@ -54,33 +54,30 @@
                                 </select>
                             </div>
                         </div>
-
-
                     </div>
-
-
-
-                    <div class="site_field_col">
-                        <label for="description" class="block text-sm/6 font-medium text-gray-900">Description</label>
-                        <div class="mt-2 bg-white">
-                            <textarea name="description" id="content" rows="3" class="textarea_editor block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                    <div class="site_field_col mt-0! mb-7!">
+                        <label for="description" class="block text-sm font-bold text-mat">Description</label>
+                        <div class="mt-4 bg-white">
+                        <div class="flex items-center rounded-md bg-white  outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-gray-500">
+                            <textarea name="description" id="content" rows="3" class="textarea_editor block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"">
                               {{ old('description', $testimonials->description ?? '') }}
                             </textarea>
+                        </div>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                        <div class="site_field_col">
-                            <label for="rating" class="block text-sm/6 font-medium text-gray-900">Rating</label>
-                            <div class="mt-2">
+                        <div class="site_field_col mt-0! mb-7!">
+                            <label for="rating" class="block text-sm font-bold text-mat">Rating</label>
+                            <div class="mt-4">
                                 <input type="number" name="rating" id="rating" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3" placeholder="3" value="{{ old('rating', $testimonials->rating ?? '') }}"  min="1" max="5">
                             </div>
                         </div>
 
-                        <div class="site_field_col">
-                            <label for="verified" class="block text-sm/6 font-medium text-gray-900">Verified:</label>
-                            <div class="mt-2 grid grid-cols-1">
+                        <div class="site_field_col mt-0! mb-7!">
+                            <label for="verified" class="block text-sm font-bold text-mat">Verified:</label>
+                            <div class="mt-4 grid grid-cols-1">
                                 <select id="verified" name="verified" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3">
                                     <option value="1" {{ isset($testimonials) && $testimonials->verified == 1 ? 'selected' : '' }}>Yes</option>
                                     <option value="0" {{ isset($testimonials) && $testimonials->verified == 0 ? 'selected' : '' }}>No</option>
@@ -100,5 +97,6 @@
                 </form>
 
         </div>
+    </div>
 
 @endsection

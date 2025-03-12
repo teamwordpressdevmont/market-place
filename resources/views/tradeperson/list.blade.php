@@ -107,7 +107,7 @@
                                         <li class="border-b border-[#d3d3d3]">
                                             <a href="{{ route('tradeperson.edit', $trade->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
                                         </li>
-                                        <li class="">
+                                        <li class="border-b border-[#d3d3d3]">
                                             <a href="{{ route('tradeperson.view', $trade->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">View</a>
                                         </li>
                                         <li class="">
