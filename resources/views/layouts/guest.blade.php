@@ -12,18 +12,34 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
 
-        <!-- Scripts -->
-        <link rel="stylesheet" href="{{ asset('/public/css/style.css') }}">
 
-        <script src="{{ asset('/public/js/jquery.min.js') }}"></script>
+        <link rel="stylesheet" href="{{ asset('/public/css/trumbowyg.min.css') }}">
 
-        <link rel="stylesheet" href="{{ asset('/public/css/flowbite.min.css') }}">
-    
-        <script src="{{ asset('/public/js/tailwind.js') }}"></script>
+       <script src="{{ asset('/public/js/tailwind.js') }}"></script>
+       
+       <script src="{{ asset('/public/js/tailwindcss.js') }}"></script>
 
-        <script src="{{ asset('/public/js/flowbite.min.js') }}"></script>
-        
-        <script src="{{ asset('/public/js/custom-script.js') }}"></script>
+
+       <link rel="stylesheet" href="{{ asset('/public/css/flowbite.min.css') }}">
+       <link rel="stylesheet" href="{{ asset('/public/css/swiper-bundle.min.css') }}">
+       <link rel="stylesheet" href="{{ asset('/public/css/style.css') }}">        
+
+        <script>
+            tailwind.config = {
+                theme: {
+                extend: {
+                    colors: {
+                    primary: '#DB4A2B',
+                    secondary: '#FF904E',
+                    mat: '#222222'
+                    },
+                    fontFamily: {
+                        sora: ['Sora', 'sans-serif'],
+                    }
+                }
+                }
+            }
+        </script>        
 
         <style>
 
@@ -116,60 +132,11 @@
             </div>
             <div class="w-[50%]">    
                 <div class="px-20">
-                        <div class="max-w-[390px]">
-
-                        <button id="dropdownMenuIconButton0" data-dropdown-toggle="dropdownDots0" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600" type="button">
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
-                        <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
-                        </svg>
-                        </button>
-
-                        <!-- Dropdown menu -->
-                        <div id="dropdownDots0" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                            </li>
-                            </ul>
-                            <div class="py-2">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Separated link</a>
-                            </div>
-                        </div>   
+                        <div class="max-w-[390px]">                       
                         
-                        
-                        <button id="dropdownMenuIconButton1" data-dropdown-toggle="dropdownDots1" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600" type="button">
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
-                        <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
-                        </svg>
-                        </button>
-
-                        <!-- Dropdown menu -->
-                        <div id="dropdownDots1" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yahoo Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                            </li>
-                            </ul>
-                            <div class="py-2">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Separated link</a>
-                            </div>
-                        </div>                         
-
                             <img src="{{ asset( '/public/images/admin-dash-logo.png' ) }}" alt="" class="mb-20 w-35">
                             <h2 class="font-bold text-4xl mb-8"> Login To <br> DINBYGGEMARKED</h2>
-                            <button type="button" class="text-[#ABABAB] w-full bg-[#ffffff] hover:bg-[#222222] focus:ring-4 focus:outline-none focus:ring-[transparent]/50 font-medium rounded-4xl text-sm px-5 py-2.5 text-center inline-flex items-center border border-gray-300 justify-center hover:text-[#ffffff] mb-2">
+                            <!-- <button type="button" class="text-[#ABABAB] w-full bg-[#ffffff] hover:bg-[#222222] focus:ring-4 focus:outline-none focus:ring-[transparent]/50 font-medium rounded-4xl text-sm px-5 py-2.5 text-center inline-flex items-center border border-gray-300 justify-center hover:text-[#ffffff] mb-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="me-4">
                                     <path d="M18.1712 8.36794H17.5V8.33335H9.99996V11.6667H14.7095C14.0225 13.6071 12.1762 15 9.99996 15C7.23871 15 4.99996 12.7613 4.99996 10C4.99996 7.23877 7.23871 5.00002 9.99996 5.00002C11.2745 5.00002 12.4341 5.48085 13.317 6.26627L15.6741 3.90919C14.1858 2.5221 12.195 1.66669 9.99996 1.66669C5.39788 1.66669 1.66663 5.39794 1.66663 10C1.66663 14.6021 5.39788 18.3334 9.99996 18.3334C14.602 18.3334 18.3333 14.6021 18.3333 10C18.3333 9.44127 18.2758 8.89585 18.1712 8.36794Z" fill="#FBC02D"/>
                                     <path d="M2.62744 6.12127L5.36536 8.12919C6.10619 6.29502 7.90036 5.00002 9.99994 5.00002C11.2745 5.00002 12.4341 5.48085 13.317 6.26627L15.6741 3.90919C14.1858 2.5221 12.1949 1.66669 9.99994 1.66669C6.79911 1.66669 4.02327 3.47377 2.62744 6.12127Z" fill="#E53935"/>
@@ -179,14 +146,14 @@
                                 Sign in with Google
                             </button>
 
-                           <div class="site_oruseemail mt-5 mb-4"> or use email </div>
+                           <div class="site_oruseemail mt-5 mb-4"> or use email </div> -->
 
                         </div>
                         <div class="site_admin_login"> 
                             {{ $slot }} 
-                            <div class="mt-5 text-center">
+                            <!-- <div class="mt-5 text-center">
                                 <a href="#" class="text-[#ababab] hover:text-[#222222]">Forget Password ?</a>
-                            </div>
+                            </div> -->
                         </div>
 
 
@@ -194,6 +161,21 @@
 
             </div>
         </div>
+
+
+        <script src="{{ asset('/public/js/jquery.min.js') }}"></script>
+    
+        <script src="{{ asset('/public/js/flowbite.min.js') }}"></script>
+
+        <!-- Trumbowyg JS -->
+        <script src="{{ asset('/public/js/trumbowyg.min.js') }}"></script>
+
+        <!-- validation -->
+        <script src="{{ asset('/public/js/jquery.validate.min.js') }}"></script>
+
+        <script src="{{ asset('/public/js/swiper-bundle.min.js') }}"></script>
+
+        <script src="{{ asset('/public/js/custom-script.js') }}"></script>        
       
     </body>
 </html>

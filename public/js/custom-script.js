@@ -16,23 +16,23 @@ $(document).ready(function() {
           swiper: swiper,
         },
       });
-   
-        
+
+
     // Editor page
     $('.textarea_editor').trumbowyg({
         autogrow: true
     });
-    
+
     $('input[type="file"]').change(function(event) {
         let input = $(this); // Get current file input
         let file = event.target.files[0]; // Get selected file
-        
+
         if (file) {
             let reader = new FileReader();
             reader.onload = function(e) {
                 // Find closest PreviewContainer related to the current file input
                 let previewContainer = input.siblings('#PreviewContainer');
-                
+
                 if (previewContainer.length) {
                     previewContainer.removeClass('hidden'); // Show container if hidden
                     previewContainer.find('.Preview').attr('src', e.target.result); // Update preview image
@@ -49,16 +49,16 @@ $(document).ready(function() {
         previewContainer.addClass('hidden'); // Hide preview container
         previewContainer.siblings('input[type="file"]').val(''); // Reset file input
     });
-  
-  
+
+
     $('#searchForm').on('submit', function (e) {
         e.preventDefault();
         let url = $(this).attr('action');
         let search = $(this).find('input[name="search"]').val();
 
-     
+
         if (search !== '') {
-    
+
             $('.close-icon').show();
         }
 
@@ -82,22 +82,22 @@ $(document).ready(function() {
     });
 
     // Event delegation for dynamically added dropdown buttons
-    $(document).on("click", "[data-dropdown-toggle]", function (e) {
-        e.preventDefault();
-        let dropdownId = $(this).attr("data-dropdown-toggle");
-        let dropdown = $("#" + dropdownId);
+    // $(document).on("click", "[data-dropdown-toggle]", function (e) {
+    //     e.preventDefault();
+    //     let dropdownId = $(this).attr("data-dropdown-toggle");
+    //     let dropdown = $("#" + dropdownId);
 
-        // Toggle dropdown visibility
-        $(".dropdown-menu").not(dropdown).hide(); // Close other dropdowns
-        dropdown.toggle();
-    });
+    //     // Toggle dropdown visibility
+    //     $(".dropdown-menu").not(dropdown).hide(); // Close other dropdowns
+    //     dropdown.toggle();
+    // });
 
     // Hide dropdown when clicking outside
-    $(document).on("click", function (e) {
-        if (!$(e.target).closest("[data-dropdown-toggle], .dropdown-menu").length) {
-            $(".dropdown-menu").hide();
-        }
-    })
+    // $(document).on("click", function (e) {
+    //     if (!$(e.target).closest("[data-dropdown-toggle], .dropdown-menu").length) {
+    //         $(".dropdown-menu").hide();
+    //     }
+    // })
 
      // Toggle dropdown
     $('#dropdownDefaultButton').click(function() {
@@ -114,7 +114,7 @@ $(document).ready(function() {
     // Status filter click event
     $(document).on('click', '.order-status-filter', function(e) {
         e.preventDefault();
-        
+
         let statusId = $(this).data('status'); // Get selected status ID
         let url = $('#searchForm').attr('action'); // Get base URL from form action
 
@@ -156,7 +156,7 @@ $(document).ready(function() {
         });
     }
 
-   
+
 
     // Handle pagination click event dynamically
     $(document).on("click", "#pagination-container a", function (e) {
@@ -173,42 +173,39 @@ $(document).ready(function() {
         let url = $(this).attr("action") + "?" + $(this).serialize();
         loadTable(url); // Fetch filtered results using AJAX
     });
-  
-  
+
+
     $(document).on("click", ".add_sub_btn", function () {
         let element = $(this);
         let element_type = element.data("field_type");
-    
+
         if (element_type === "features") {
             if (element.hasClass("add_field")) {
                 let featuresContainer = element.closest(".setting_fields").find(".features_container").first();
                 let featuresCount = featuresContainer.find('input[name="features[title][]"]').length;
-    
+
                 let html = `
                 <div class="flex items-center gap-4 mt-2">
                     <input type="text" name="features[title][]" id="features_title_${featuresCount}"
-                        class="rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5"
+                        class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3"
                         value="">
                     <div class="col-1">
-                        <a href="javascript:void(0)" class="add_sub_btn add_field" data-field_type="features">
-                             <svg width="25" height="25" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20.5 0C31.775 0 41 9.225 41 20.5C41 31.775 31.775 41 20.5 41C9.225 41 0 31.775 0 20.5C0 9.225 9.225 0 20.5 0Z" fill="#ff904e"></path>
-                                <svg x="11" y="11" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.7809 18.4199H7.86689V10.6354H0.332115V8.01279H7.86689V0.35313H10.7809V8.01279H18.3157V10.6354H10.7809V18.4199Z" fill="white"></path>
-                                </svg>
+                        <a href="javascript:void(0)" class="add_sub_btn sub_field mt-0! bg-[#EDE9D0] border border-[#c5c1ad] px-4 py-2.5 rounded-2xl flex! items-center justify-center" data-field_type="features">
+                             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 7V15M15 11L7 11" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21C16.5228 21 21 16.5228 21 11Z" stroke="#222222" stroke-width="1.5"></path>
+                            </svg>
                             </svg>
                         </a>
-                        <a href="javascript:void(0)" class="add_sub_btn sub_field" data-field_type="features">
-                            <svg width="25" height="25" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20.5 0C31.775 0 41 9.225 41 20.5C41 31.775 31.775 41 20.5 41C9.225 41 0 31.775 0 20.5C0 9.225 9.225 0 20.5 0Z" fill="#ff904e"></path>
-                                <svg x="13.5" y="19" width="14" height="4" viewBox="0 0 14 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0.957458 3.29962V0.552137H13.6126V3.29962H0.957458Z" fill="white"></path>
-                                </svg>
+                        <a href="javascript:void(0)" class="add_sub_btn sub_field mt-0! bg-[#EDE9D0] border border-[#c5c1ad] px-4 py-2.5 rounded-2xl flex! items-center justify-center" data-field_type="features">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 11L7 11" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21C16.5228 21 21 16.5228 21 11Z" stroke="#222222" stroke-width="1.5"></path>
                             </svg>
                         </a>
                     </div>
                 </div>`;
-    
+
                 featuresContainer.append(html);
             } else if (element.hasClass("sub_field")) {
                 element.closest(".flex").remove();
@@ -269,8 +266,8 @@ $(document).ready(function() {
     $("#closeModal").click(function () {
         $("#approvalModal").addClass("hidden");
     });
-    
-    
+
+
 
     // Multi Image Select
     $(".image").on("change", function(event) {
@@ -302,5 +299,5 @@ $(document).ready(function() {
 
         $(this).closest(".image-container").remove();
     });
-  
+
 });
