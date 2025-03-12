@@ -2,7 +2,7 @@
   <div class="h-full px-3 py-4 overflow-y-auto flex flex-col">
 
     <a href="" class="flex mt-7 mb-10">
-      <span class="mx-auto"><img src="{{ asset( '/images/logo.svg' ) }}" alt=""></span>
+      <span class="mx-auto"><img src="{{ asset( 'public/images/logo.svg' ) }}" alt=""></span>
     </a>
 
     <ul class="space-y-2">
