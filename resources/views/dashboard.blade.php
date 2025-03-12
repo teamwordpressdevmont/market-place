@@ -140,12 +140,13 @@
                </ul>
             </div>
             <div id="default-styled-tab-content">
-                <div class="h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] pr-3" id="styled-profile" role="tabpanel" aria-labelledby="proposal-tab">
+                <div class="min-h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] pr-3" id="styled-profile" role="tabpanel" aria-labelledby="proposal-tab">
+                @if($pendingOrders->isNotEmpty())
                   @foreach($pendingOrders as $order)
 
-                  @php
-                        $initials = strtoupper(substr($order->title, 0, 1)) . (strpos($order->title, ' ') ? strtoupper(substr($order->title, strpos($order->title, ' ') + 1, 1)) : '');
-                  @endphp
+                     @php
+                           $initials = strtoupper(substr($order->title, 0, 1)) . (strpos($order->title, ' ') ? strtoupper(substr($order->title, strpos($order->title, ' ') + 1, 1)) : '');
+                     @endphp
 
                      <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col py-4 px-3 mb-3">
                            {{-- <img src="{{ $order->image }}" alt="Job Image" class=" rounded-xl object-cover"> --}}
@@ -158,9 +159,14 @@
                            </div>
                            <a href="#" class="bg-[#222222] text-white text-xs px-4 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Profile</a>
                      </div>
+
                   @endforeach
+                  @else
+                     <p class="text-center text-gray-500 p-5">No pending orders found.</p>
+                  @endif
                 </div>
-                <div class="h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] hidden pr-3" id="styled-settings" role="tabpanel" aria-labelledby="reviews-tab">
+                <div class="min-h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] hidden pr-3" id="styled-settings" role="tabpanel" aria-labelledby="reviews-tab">
+                @if($pendingOrders->isNotEmpty()) 
                   @foreach($pendingOrders as $order)
 
                   @php
@@ -178,7 +184,11 @@
                               </div>
                               <a href="#" class="bg-[#222222] text-white text-xs px-6 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500]">Review Job</a>
                         </div>
+                        
                   @endforeach
+                  @else
+                     <p class="text-center text-gray-500 p-5">No pending orders found.</p>
+                  @endif
                   </div>
                 </div>
             </div>
