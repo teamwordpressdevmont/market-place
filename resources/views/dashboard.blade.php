@@ -83,28 +83,6 @@
                      </td>
                      <td class="px-6 py-5 whitespace-nowrap text-xs font-normal {{ $order->orderDetail && $order->orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-[#222222]' }}">{{ $order->tradeperson->user->email }}</td>
                     <td class="px-6 py-5 whitespace-nowrap text-xs text-right">
-
-                        {{--  <button id="dropdownMenuIconButton" data-dropdown-toggle="dd-{{ $order->id }}" data-popper-placement="bottom-start" class="inline-flex justify-end w-fit ml-auto  px-5" type="button">
-                            <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                               <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                               <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                               <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </button>
-                         <!-- Dropdown menu -->
-                         <div id="dd-{{ $order->id }}" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-start">
-                            <ul class="bg-white text-sm rounded-xl overflow-hidden" aria-labelledby="dropdownMenuIconButton">
-                               <li class="border-b border-[#d3d3d3]">
-                                  <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Edit</a>
-                               </li>
-                               <li class="border-b border-[#d3d3d3]">
-                                  <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">View</a>
-                               </li>
-                               <li class="">
-                                  <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Delete</a>
-                               </li>
-                            </ul>
-                         </div>  --}}
                          <div class="site_user_dropdown">
                             <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-{{ $order->id }}" data-dropdown-placement="bottom-end">
                                 <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,7 +91,7 @@
                                     <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </div>
-                            <div id="userDropdown-action-{{ $order->id }}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44" data-popper-placement="bottom-end">
+                            <div id="userDropdown-action-{{ $order->id }}" class="-top-[5px]! z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
                                 <ul class="bg-white text-sm rounded-xl overflow-hidden">
                                     <li class="border-b border-[#d3d3d3]">
                                         <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
