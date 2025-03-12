@@ -57,7 +57,7 @@
             <div class="site_field_col mt-0! mb-7!">
                 <label class="block text-sm font-bold text-mat">Icon</label>
                 <div class="mt-4 grid grid-cols-1">
-                    <input type="file" name="icon" accept="image/*" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-0.5 focus:outline-none">
+                    <input type="file" name="icon" accept="image/*" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm focus:outline-none">
                         @if(isset($category) && $category->icon)
                         <div id="PreviewContainer" class="mt-2  relative">
                             <img  src="{{ asset('public/storage/category-images/' . $category->icon) }}" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">
