@@ -59,7 +59,7 @@
                                             <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                         </svg>
                                     </div>
-                                    <input id="datepicker-range-start" name="job_start_time" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl block w-full ps-10 p-3 dark:bg-gray-700 datepicker-input" value="{{ old('job_start_time', isset($OrderDetails->job_start_time) ? \Carbon\Carbon::parse($OrderDetails->job_start_time)->format('d-m-Y') : '') }}" placeholder="Select date start">
+                                    <input id="datepicker-range-start" name="job_start_time" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl block w-full ps-10 p-3 datepicker-input" value="{{ old('job_start_time', isset($OrderDetails->job_start_time) ? \Carbon\Carbon::parse($OrderDetails->job_start_time)->format('d-m-Y') : '') }}" placeholder="Select date start">
                                 </div>
                                 <span class="mx-4 text-gray-500">to</span>
                                 <div class="relative w-1/2">
@@ -68,7 +68,7 @@
                                             <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                         </svg>
                                     </div>
-                                    <input id="datepicker-range-end" name="job_end_time" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl block w-full ps-10 p-3 dark:bg-gray-700 datepicker-input" value="{{ old('job_end_time', isset($OrderDetails->job_end_time) ? \Carbon\Carbon::parse($OrderDetails->job_end_time)->format('d-m-Y') : '') }}" placeholder="Select date end">
+                                    <input id="datepicker-range-end" name="job_end_time" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl block w-full ps-10 p-3 datepicker-input" value="{{ old('job_end_time', isset($OrderDetails->job_end_time) ? \Carbon\Carbon::parse($OrderDetails->job_end_time)->format('d-m-Y') : '') }}" placeholder="Select date end">
                                 </div>
                             </div>
                         </div>
