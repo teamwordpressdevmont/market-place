@@ -17,8 +17,16 @@
     @endif
 
     <div class="bgShadow pt-10">
-        <h1 class="font-semibold text-4xl mb-10"> {{ isset($package) ? 'Update Package' : 'Add Package' }}</h1>
-
+        <div class="grid grid-cols-2 mb-8 items-start">
+            <h1 class="font-semibold text-4xl"> {{ isset($package) ? 'Update Package' : 'Add Package' }}</h1>
+            <div class="flex md:justify-end justify-start self-start">
+                <button type="submit" class="bg-secondary rounded-full px-4 py-2 text-sm text-white flex items-center justify-between w-40 border border-primary hover:bg-primary transition">Add New Plan<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="pl-1">
+                    <path d="M11 7V15M15 11L7 11" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21C16.5228 21 21 16.5228 21 11Z" stroke="white" stroke-width="1.5"></path>
+                </svg>
+                </button>
+            </div>
+        </div>
 
 
         <form  action="{{ isset($package) && $package ? route('package.update', $package) : route('package.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
@@ -29,9 +37,9 @@
             @endif
 
             <!-- Name Field -->
-            <div class="sm:col-span-4 mb-5">
-                <label for="name" class="block text-sm/6 font-medium text-gray-900">Name</label>
-                <div class="mt-2">
+            <div class="site_field_col mt-0! mb-7!">
+                <label for="name" class="block text-sm font-bold text-mat">Name</label>
+                <div class="mt-4">
 
                         <input type="text" name="name" id="name"
                                 class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3"
@@ -40,9 +48,9 @@
             </div>
 
             <!-- Description Field -->
-            <div class="sm:col-span-4 mb-5">
-                <label for="description" class="block text-sm/6 font-medium text-gray-900">Description</label>
-                <div class="mt-2">
+            <div class="site_field_col mt-0! mb-7!">
+                <label for="description" class="block text-sm font-bold text-mat">Description</label>
+                <div class="mt-4">
                     <div class="flex items-center rounded-md bg-white  outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
                         <textarea name="description" id="description"
                                     class="textarea_editor block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
@@ -52,40 +60,36 @@
             </div>
 
                 <!-- Price Field -->
-            <div class="sm:col-span-4 mb-5">
-                <label for="name" class="block text-sm/6 font-medium text-gray-900">Price</label>
-                <div class="mt-2">
+            <div class="site_field_col mt-0! mb-7!">
+                <label for="name" class="block text-sm font-bold text-mat">Price</label>
+                <div class="mt-4">
                         <input type="number" name="price" id="price"
                                 class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3"
                                 placeholder="Price" value="{{ old('price', $package->price ?? '') }}"> <!-- Pre-fill if editing -->
                 </div>
             </div>
 
-            <div class="sm:col-span-4 mb-5 setting_fields">
-                <label for="features" class="block text-sm/6 font-medium text-gray-900">Features</label>
-                <div class="features_container">
+            <div class="site_field_col mt-0! mb-7! setting_fields">
+                <label for="features" class="block text-sm font-bold text-mat">Features</label>
+                <div class="features_container mt-4">
                     @if(!empty($features))
                         @foreach($features as $index => $feature)
-                    <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-3">
                         <input type="text" name="features[title][]" id="features_title_{{$index}}"
                             class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3"
                             value="{{ $feature['heading'] ?? '' }}">
                         <div class="col-1">
-                            <a href="javascript:void(0)" class="add_sub_btn add_field" data-field_type="features">
-                                <svg width="25" height="25" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20.5 0C31.775 0 41 9.225 41 20.5C41 31.775 31.775 41 20.5 41C9.225 41 0 31.775 0 20.5C0 9.225 9.225 0 20.5 0Z" fill="#ff904e"></path>
-                                    <svg x="11" y="11" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10.7809 18.4199H7.86689V10.6354H0.332115V8.01279H7.86689V0.35313H10.7809V8.01279H18.3157V10.6354H10.7809V18.4199Z" fill="white"></path>
-                                    </svg>
+                            <a href="javascript:void(0)" class="add_sub_btn add_field mt-0! bg-[#EDE9D0] border border-[#c5c1ad] px-4 py-2.5 rounded-2xl flex! items-center justify-center" data-field_type="features">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 7V15M15 11L7 11" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21C16.5228 21 21 16.5228 21 11Z" stroke="#222222" stroke-width="1.5"></path>
                                 </svg>
                             </a>
                             @unless($loop->first)
-                                <a href="javascript:void(0)" class="add_sub_btn sub_field new" data-field_type="features">
-                                    <svg width="25" height="25" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20.5 0C31.775 0 41 9.225 41 20.5C41 31.775 31.775 41 20.5 41C9.225 41 0 31.775 0 20.5C0 9.225 9.225 0 20.5 0Z" fill="#ff904e"></path>
-                                        <svg x="13.5" y="19" width="14" height="4" viewBox="0 0 14 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0.957458 3.29962V0.552137H13.6126V3.29962H0.957458Z" fill="white"></path>
-                                        </svg>
+                                <a href="javascript:void(0)" class="add_sub_btn sub_field new mt-0! bg-[#EDE9D0] border border-[#c5c1ad] px-4 py-2.5 rounded-2xl flex! items-center justify-center" data-field_type="features">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11 7V15M15 11L7 11" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21C16.5228 21 21 16.5228 21 11Z" stroke="#222222" stroke-width="1.5"></path>
                                     </svg>
                                 </a>
                             @endunless
@@ -93,16 +97,14 @@
                     </div>
                     @endforeach
                     @else
-                        <div class="flex items-center gap-4 ">
+                        <div class="flex items-center gap-3">
                             <input type="text" name="features[title][]" id="features_title_0" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3"
                                 value="">
                             <div class="col-1">
-                                <a href="javascript:void(0)" class="add_sub_btn add_field" data-field_type="features">
-                                    <svg width="25" height="25" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20.5 0C31.775 0 41 9.225 41 20.5C41 31.775 31.775 41 20.5 41C9.225 41 0 31.775 0 20.5C0 9.225 9.225 0 20.5 0Z" fill="#ff904e"></path>
-                                        <svg x="11" y="11" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10.7809 18.4199H7.86689V10.6354H0.332115V8.01279H7.86689V0.35313H10.7809V8.01279H18.3157V10.6354H10.7809V18.4199Z" fill="white"></path>
-                                        </svg>
+                                <a href="javascript:void(0)" class="add_sub_btn add_field mt-0! bg-[#EDE9D0] border border-[#c5c1ad] px-4 py-2.5 rounded-2xl flex! items-center justify-center" data-field_type="features">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11 7V15M15 11L7 11" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21C16.5228 21 21 16.5228 21 11Z" stroke="#222222" stroke-width="1.5"></path>
                                     </svg>
                                 </a>
                             </div>
@@ -114,11 +116,8 @@
 
 
             <!-- Submit Button -->
-            <div class="flex items-center justify-end gap-x-6 pt-5">
-                <button type="submit"
-                        class="bg-secondary rounded-full px-4 py-2 text-white w-48 flex justify-center items-center border border-primary hover:bg-primary transition">
-                        {{ isset($package) ? 'Update' : 'Add New Package' }}
-                </button>
+            <div class="flex items-center">
+                <button type="submit" class="bg-secondary rounded-full px-12 py-2 text-sm text-white border border-primary hover:bg-primary transition">Save Plan</button>
             </div>
         </form>
     </div>

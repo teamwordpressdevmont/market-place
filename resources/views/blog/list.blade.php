@@ -84,7 +84,7 @@
                         <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222]">{{ $blogs->publish_by }}</td>
                         <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222]">{{ \Carbon\Carbon::parse($blogs->publish_date)->format('d-m-Y') }}</td>
                         <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222]">
-                            <div class="flex gap-4 whitespace-nowrap">
+                            {{--  <div class="flex gap-4 whitespace-nowrap">
                                     <a href="{{ route('blog.edit', $blogs->id) }}">
                                     <svg fill="#0D0D0D" width="20px" height="20px" viewBox="0 0 36 36" version="1.1"  preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <title>edit</title>
@@ -102,6 +102,28 @@
                                     <title>View</title>
                                     <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" fill="blue"/><path d="M21.894 11.553C19.736 7.236 15.904 5 12 5c-3.903 0-7.736 2.236-9.894 6.553a1 1 0 0 0 0 .894C4.264 16.764 8.096 19 12 19c3.903 0 7.736-2.236 9.894-6.553a1 1 0 0 0 0-.894zM12 17c-2.969 0-6.002-1.62-7.87-5C5.998 8.62 9.03 7 12 7c2.969 0 6.002 1.62 7.87 5-1.868 3.38-4.901 5-7.87 5z" fill="blue"/></svg>
                                 </a>
+                            </div>  --}}
+                            <div class="site_user_dropdown">
+                                <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-{{ $blogs->id }}" data-dropdown-placement="bottom-end">
+                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                </div>
+                                <div id="userDropdown-action-{{ $blogs->id }}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44" data-popper-placement="bottom-end">
+                                    <ul class="bg-white text-sm rounded-xl overflow-hidden">
+                                        <li class="border-b border-[#d3d3d3]">
+                                            <a href="{{ route('blog.edit', $blogs->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
+                                        </li>
+                                        <li class="border-b border-[#d3d3d3]">
+                                            <a href="{{ route('blog.view', $blogs->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">View</a>
+                                        </li>
+                                        <li class="">
+                                            <a href="{{ route('blog.delete', $blogs->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </td>
                     </tr>
