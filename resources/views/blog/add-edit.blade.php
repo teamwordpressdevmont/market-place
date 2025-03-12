@@ -98,8 +98,8 @@
                                     <span class="CloseIcon absolute top-0 right-0 bg-gray-600 text-white text-xs px-2 py-1 rounded-full cursor-pointer">X</span>
                                 </div>
                             @endif
-                        </div> 
-                        
+                        </div>
+
                         <div class="site_field_col">
                         <label for="publish_by" class="block text-sm/6 font-medium text-gray-900">Publish By</label>
                         <div class="mt-2">

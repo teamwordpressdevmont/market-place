@@ -12,18 +12,17 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
 
-<<<<<<< Updated upstream
 
         <link rel="stylesheet" href="{{ asset('/public/css/trumbowyg.min.css') }}">
 
        <script src="{{ asset('/public/js/tailwind.js') }}"></script>
-       
+
        <script src="{{ asset('/public/js/tailwindcss.js') }}"></script>
 
 
        <link rel="stylesheet" href="{{ asset('/public/css/flowbite.min.css') }}">
        <link rel="stylesheet" href="{{ asset('/public/css/swiper-bundle.min.css') }}">
-       <link rel="stylesheet" href="{{ asset('/public/css/style.css') }}">        
+       <link rel="stylesheet" href="{{ asset('/public/css/style.css') }}">
 
         <script>
             tailwind.config = {
@@ -40,21 +39,7 @@
                 }
                 }
             }
-        </script>        
-=======
-        <!-- Scripts -->
-        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
-
-        <script src="{{ asset('/js/jquery.min.js') }}"></script>
-
-        <link rel="stylesheet" href="{{ asset('/css/flowbite.min.css') }}">
-
-        <script src="{{ asset('/js/tailwind.js') }}"></script>
-
-        <script src="{{ asset('/js/flowbite.min.js') }}"></script>
-
-        <script src="{{ asset('/js/custom-script.js') }}"></script>
->>>>>>> Stashed changes
+        </script>
 
         <style>
 
@@ -147,62 +132,8 @@
             </div>
             <div class="w-[50%]">
                 <div class="px-20">
-<<<<<<< Updated upstream
-                        <div class="max-w-[390px]">                       
-                        
-=======
                         <div class="max-w-[390px]">
 
-                        <button id="dropdownMenuIconButton0" data-dropdown-toggle="dropdownDots0" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600" type="button">
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
-                        <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
-                        </svg>
-                        </button>
-
-                        <!-- Dropdown menu -->
-                        <div id="dropdownDots0" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                            </li>
-                            </ul>
-                            <div class="py-2">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Separated link</a>
-                            </div>
-                        </div>
-
-
-                        <button id="dropdownMenuIconButton1" data-dropdown-toggle="dropdownDots1" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600" type="button">
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
-                        <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
-                        </svg>
-                        </button>
-
-                        <!-- Dropdown menu -->
-                        <div id="dropdownDots1" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yahoo Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                            </li>
-                            </ul>
-                            <div class="py-2">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Separated link</a>
-                            </div>
-                        </div>
-
->>>>>>> Stashed changes
                             <img src="{{ asset( '/public/images/admin-dash-logo.png' ) }}" alt="" class="mb-20 w-35">
                             <h2 class="font-bold text-4xl mb-8"> Login To <br> DINBYGGEMARKED</h2>
                             <!-- <button type="button" class="text-[#ABABAB] w-full bg-[#ffffff] hover:bg-[#222222] focus:ring-4 focus:outline-none focus:ring-[transparent]/50 font-medium rounded-4xl text-sm px-5 py-2.5 text-center inline-flex items-center border border-gray-300 justify-center hover:text-[#ffffff] mb-2">
@@ -218,15 +149,9 @@
                            <div class="site_oruseemail mt-5 mb-4"> or use email </div> -->
 
                         </div>
-<<<<<<< Updated upstream
-                        <div class="site_admin_login"> 
-                            {{ $slot }} 
-                            <!-- <div class="mt-5 text-center">
-=======
                         <div class="site_admin_login">
                             {{ $slot }}
-                            <div class="mt-5 text-center">
->>>>>>> Stashed changes
+                            <!-- <div class="mt-5 text-center">
                                 <a href="#" class="text-[#ababab] hover:text-[#222222]">Forget Password ?</a>
                             </div> -->
                         </div>
@@ -237,10 +162,9 @@
             </div>
         </div>
 
-<<<<<<< Updated upstream
 
         <script src="{{ asset('/public/js/jquery.min.js') }}"></script>
-    
+
         <script src="{{ asset('/public/js/flowbite.min.js') }}"></script>
 
         <!-- Trumbowyg JS -->
@@ -251,9 +175,7 @@
 
         <script src="{{ asset('/public/js/swiper-bundle.min.js') }}"></script>
 
-        <script src="{{ asset('/public/js/custom-script.js') }}"></script>        
-      
-=======
->>>>>>> Stashed changes
+        <script src="{{ asset('/public/js/custom-script.js') }}"></script>
+
     </body>
 </html>
