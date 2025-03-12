@@ -311,6 +311,67 @@ class PublicApiController extends Controller
         }
     }
 
+    // contractor - search
+    public function searchTradePerson(Request $request)
+    {
+
+        try {
+            // Validate the incoming request
+            $request->validate([
+                'category_id' => 'sometimes|integer', // Make sure category_id is required and an integer
+                'postal_code' => 'sometimes|string', // Optional zip_code
+                'offset' => 'sometimes|integer|min:0', // Optional offset
+                'perPage' => 'sometimes|integer|min:1', // Optional perPage
+            ]);
+
+            // Create a base query for Tradeperson and eager load associated 'user' model
+            $query = Tradeperson::with('user','categories');
+
+            // If category_id is provided, filter the tradepersons based on the category
+            if ($request->filled('category_id')) {
+                // Use whereHas to filter tradepersons by category through the pivot table
+
+                $query->whereHas('categories', function($query) use ($request) {
+                    $query->where('categories.id', $request->category_id); // Make sure you're filtering based on 'categories.id'
+                });
+            }
+
+            // If zip_code is provided, filter by postal_code
+            if ($request->filled('postal_code')) {
+                $query->where('postal_code', $request->postal_code);
+            }
+
+            // Get the offset and perPage values from the request, with default values
+            $offset = $request->input('offset', 0);
+            $perPage = $request->input('perPage', 10);
+
+            // Fetch the filtered tradepersons with pagination
+            $tradePerson = $query->offset($offset)->limit($perPage)->get();
+
+            // Return the response with the tradeperson data
+            return response()->json([
+                'success' => true,
+                'data' => $tradePerson,
+                'offset' => $offset
+            ], 200);
+        } catch (ValidationException $e) {
+            // Return validation error response
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $th) {
+            // Return generic error response
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+
     // store contact
     public function storeContact(Request $request)
     {
