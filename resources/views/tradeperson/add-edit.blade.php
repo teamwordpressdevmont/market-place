@@ -105,7 +105,7 @@
                         </div>
                     </div>
                     --}}
-                    {{-- <div class="sm:col-span-4 mb-5">
+                    <div class="sm:col-span-4 mb-5">
                         <label for="image" class="block text-sm/6 font-medium text-gray-900">Portfolio</label>
                         <div class="mt-2">
                             <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
@@ -114,12 +114,44 @@
                             </div>
                         </div>
                     </div>
+                    @if(!empty($tradeperson->portfolio))
+                        @php
+                            $portfolioImages = json_decode($tradeperson->portfolio, true) ?? []; 
+                        @endphp
+                        
+                        @if(!empty($portfolioImages) && is_array($portfolioImages))
+                            @foreach($portfolioImages as $image)
+                                <div class="image-container relative inline-block">
+                                    <img src="{{ asset('storage/portfolio-images/' . $image) }}" class="h-20 w-20 object-cover rounded-md border">
+                                </div>
+                            @endforeach
+                        @endif
+                    @endif
                     
                     
-                    <div class="col-span-full mb-5">
-                        <label for="certifications" class="block text-sm/6 font-medium text-gray-900">Certifications</label>
-                        <input type="file" name="certifications[]" id="certifications" multiple class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50">
-                    </div>  --}}
+                    <div class="sm:col-span-4 mb-5">
+                        <label for="certificate" class="block text-sm/6 font-medium text-gray-900">Certificate</label>
+                        <div class="mt-2">
+                            <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+                                <input type="file" name="certificate[]" id="certificate" multiple accept="image/*" 
+                                    class="image block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6">
+                            </div>
+                        </div>
+                    </div> 
+                    
+                    @if(!empty($tradeperson->certificate))
+                        @php
+                            $certificateImages = json_decode($tradeperson->certificate, true) ?? []; 
+                        @endphp
+                        
+                        @if(!empty($certificateImages) && is_array($certificateImages))
+                            @foreach($certificateImages as $image)
+                                <div class="image-container relative inline-block">
+                                    <img src="{{ asset('storage/certificate-images/' . $image) }}" class="h-20 w-20 object-cover rounded-md border">
+                                </div>
+                            @endforeach
+                        @endif
+                    @endif
                 
                     <div class="flex items-center justify-end gap-x-6">
                         <button type="submit"

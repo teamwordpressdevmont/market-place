@@ -106,7 +106,7 @@
       font-size: 0;
       width: 20px;
       height: 20px;
-      background-image:url({{ asset('/images/circle-arrow-right-round.svg') }})
+      background-image:url({{ asset('public/images/circle-arrow-right-round.svg') }})
     }
 
 </style>
@@ -132,8 +132,9 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-5">
          <div class="lg:col-span-1 p-">
-            <img src="{{ asset( '/public/images/plumber.png' ) }}" class="rounded-full w-60 h-60 object-cover mx-auto -mt-25">
-         </div>
+            <img src="{{ asset('public/images/' . $OrderDetail->order->tradeperson->user->avatar) }}" 
+                 class="rounded-full w-60 h-60 object-cover mx-auto -mt-25">
+        </div>
          <div class="lg:col-span-2 p-4">
             <h4 class="font-semibold lg:text-2xl mt-4 mb-2 flex gap-2">
                {{ $OrderDetail->order->tradeperson->first_name }}
@@ -149,8 +150,8 @@
            <p class="text-[#ABABAB] text-xs mb-3 flex leading-none"> {{ $OrderDetail->order->tradeperson->categories->pluck('name')->join(', ') }}</p>
            <p class="text-[#2B2B2B] text-sm mt-2 flex leading-[1.1rem] mb-5">
                {{ $OrderDetail->order->tradeperson->about_me }}</p>
-            <h4 class="font-semibold lg:text-2xl mb-4">Package</h4>
-            <span class="bg-primary text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-full">Basic Package</span>
+            {{-- <h4 class="font-semibold lg:text-2xl mb-4">Package</h4>
+            <span class="bg-primary text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-full">Basic Package</span> --}}
 
             <h4 class="font-semibold lg:text-2xl mt-10 mb-4">Portfolio</h4>
             <!-- <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" class="rounded-[20px]"> -->
@@ -159,72 +160,50 @@
 
             <div  class="swiper mySwiper2">
                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
+                  @if ($OrderDetail->order->tradeperson->portfolio)
+                     @php
+                        // Decode the JSON certificate array
+                        $portfolios = json_decode($OrderDetail->order->tradeperson->portfolio, true);
+                     @endphp
+
+                     @if (!empty($portfolios))
+                        @foreach ($portfolios as $portfolio)
+                        <div class="swiper-slide">
+                              <img src="{{ asset('public/storage/portfolio-images/' . $portfolio) }}">
+                        </div>
+                        @endforeach
+                     @else
+                        <p class="text-gray-500 text-sm">No portfolio available.</p>
+                     @endif
+                  @else
+                     <p class="text-gray-500 text-sm">No portfolio available.</p>
+                  @endif
                </div>
                <div class="swiper-button-next"></div>
                <div class="swiper-button-prev"></div>
             </div>
             <div thumbsSlider="" class="swiper thumbmySwiper">
                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
-                  <div class="swiper-slide">
-                  <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" />
-                  </div>
+               
+                  @if ($OrderDetail->order->tradeperson->portfolio)
+                     @php
+                        // Decode the JSON certificate array
+                        $portfolios = json_decode($OrderDetail->order->tradeperson->portfolio, true);
+                     @endphp
+
+                     @if (!empty($portfolios))
+                        @foreach ($portfolios as $portfolio)
+                        <div class="swiper-slide">
+                              <img src="{{ asset('public/storage/portfolio-images/' . $portfolio) }}">
+                        </div>
+                        @endforeach
+                     @else
+                        <p class="text-gray-500 text-sm">No portfolio available.</p>
+                     @endif
+                  @else
+                     <p class="text-gray-500 text-sm">No portfolio available.</p>
+                  @endif
+
                </div>
             </div>
 
@@ -256,12 +235,20 @@
 
             <div class="flex gap-4">
                @if ($OrderDetail->order->tradeperson->certificate)
-                   @foreach (explode(',', $OrderDetail->order->tradeperson->certificate) as $certificate)
-                       <img src="{{ asset('/certificates/' . trim($certificate)) }}"
-                           class="h-auto max-w-full">
-                   @endforeach
+                  @php
+                     // Decode the JSON certificate array
+                     $certificates = json_decode($OrderDetail->order->tradeperson->certificate, true);
+                  @endphp
+
+                  @if (!empty($certificates))
+                     @foreach ($certificates as $certificate)
+                           <img src="{{ asset('public/storage/certificate-images/' . $certificate) }}" class="h-auto max-w-full">
+                     @endforeach
+                  @else
+                     <p class="text-gray-500 text-sm">No certifications available.</p>
+                  @endif
                @else
-                   <p class="text-gray-500 text-sm">No certifications available.</p>
+                  <p class="text-gray-500 text-sm">No certifications available.</p>
                @endif
            </div>
 
