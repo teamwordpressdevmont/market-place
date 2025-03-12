@@ -94,7 +94,7 @@
         <!-- Submit Button -->
         <div class="flex items-center justify-end gap-x-6 pt-5">
             <button type="submit"
-                    class="bg-secondary rounded-full px-4 py-2 text-white w-48 flex justify-center items-center border border-primary hover:bg-primary transition">
+                    class="bg-secondary rounded-full px-12 py-2 text-sm text-white border border-primary hover:bg-primary transition">
                 {{ isset($category) ? 'Update' : 'Add New Category' }}
             </button>
         </div>
