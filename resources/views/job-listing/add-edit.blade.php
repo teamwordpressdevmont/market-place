@@ -86,7 +86,7 @@
                         <label for="image" class="block text-sm font-bold text-mat">Upload Photos</label>
                             <div class="mt-4 grid grid-cols-1">
                                 <input type="file" name="image[]" id="image" multiple accept="image/*"
-                                    class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-0.5 focus:outline-none">
+                                    class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm focus:outline-none">
                             </div>
                         <!-- Existing Image Previews -->
                         {{-- <div id="preview" class="mt-3 flex flex-wrap gap-2">
