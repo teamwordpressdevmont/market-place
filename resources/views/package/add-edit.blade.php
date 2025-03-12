@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <div class="bgShadow pt-10">
+    <div class="bgShadow pt-10 pb-8">
         <div class="grid grid-cols-2 mb-8 items-start">
             <h1 class="font-semibold text-4xl"> {{ isset($package) ? 'Update Package' : 'Add Package' }}</h1>
             <div class="flex md:justify-end justify-start self-start">
