@@ -82,22 +82,22 @@ $(document).ready(function() {
     });
 
     // Event delegation for dynamically added dropdown buttons
-    $(document).on("click", "[data-dropdown-toggle]", function (e) {
-        e.preventDefault();
-        let dropdownId = $(this).attr("data-dropdown-toggle");
-        let dropdown = $("#" + dropdownId);
+    // $(document).on("click", "[data-dropdown-toggle]", function (e) {
+    //     e.preventDefault();
+    //     let dropdownId = $(this).attr("data-dropdown-toggle");
+    //     let dropdown = $("#" + dropdownId);
 
-        // Toggle dropdown visibility
-        $(".dropdown-menu").not(dropdown).hide(); // Close other dropdowns
-        dropdown.toggle();
-    });
+    //     // Toggle dropdown visibility
+    //     $(".dropdown-menu").not(dropdown).hide(); // Close other dropdowns
+    //     dropdown.toggle();
+    // });
 
     // Hide dropdown when clicking outside
-    $(document).on("click", function (e) {
-        if (!$(e.target).closest("[data-dropdown-toggle], .dropdown-menu").length) {
-            $(".dropdown-menu").hide();
-        }
-    })
+    // $(document).on("click", function (e) {
+    //     if (!$(e.target).closest("[data-dropdown-toggle], .dropdown-menu").length) {
+    //         $(".dropdown-menu").hide();
+    //     }
+    // })
 
      // Toggle dropdown
     $('#dropdownDefaultButton').click(function() {
