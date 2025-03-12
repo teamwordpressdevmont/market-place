@@ -52,7 +52,7 @@
                         <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Banner</th>
                         <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Publish By</th>
                         <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Publish Date</th>
-                        <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="140">Action</th>
+                        <th scope="col" class="px-6 py-3 text-[#ABABAB] text-right" width="115">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,42 +76,65 @@
                         <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222]">
                             @if($blogs->banner)
 
-                            <img src="{{ asset('public/storage/blog-banner/' . $blogs->banner) }}" alt="banner" width="100">
-                        @else
-                            No Image
-                        @endif
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $blogs->publish_by }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($blogs->publish_date)->format('d-m-Y') }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex gap-4 whitespace-nowrap">
-                                <a href="{{ route('blog.edit', $blogs->id) }}">
-                                <svg fill="#0D0D0D" width="20px" height="20px" viewBox="0 0 36 36" version="1.1"  preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <title>edit</title>
-                                    <path class="clr-i-outline clr-i-outline-path-1" d="M33.87,8.32,28,2.42a2.07,2.07,0,0,0-2.92,0L4.27,23.2l-1.9,8.2a2.06,2.06,0,0,0,2,2.5,2.14,2.14,0,0,0,.43,0L13.09,32,33.87,11.24A2.07,2.07,0,0,0,33.87,8.32ZM12.09,30.2,4.32,31.83l1.77-7.62L21.66,8.7l6,6ZM29,13.25l-6-6,3.48-3.46,5.9,6Z"></path>
-                                    <rect x="0" y="0" width="36" height="36" fill-opacity="0"/>
-                                </svg>
-                            </a>
-                            <a href="{{ route('blog.delete', $blogs->id) }}">
-                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <title>delete</title>
-                                <path d="M7 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2h4a1 1 0 1 1 0 2h-1.069l-.867 12.142A2 2 0 0 1 17.069 22H6.93a2 2 0 0 1-1.995-1.858L4.07 8H3a1 1 0 0 1 0-2h4V4zm2 2h6V4H9v2zM6.074 8l.857 12H17.07l.857-12H6.074zM10 10a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1z" fill="red"/></svg>
-                            </a>
-                            <a href="{{ route('blog.view', $blogs->id) }}">
-                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <title>View</title>
-                                <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" fill="blue"/><path d="M21.894 11.553C19.736 7.236 15.904 5 12 5c-3.903 0-7.736 2.236-9.894 6.553a1 1 0 0 0 0 .894C4.264 16.764 8.096 19 12 19c3.903 0 7.736-2.236 9.894-6.553a1 1 0 0 0 0-.894zM12 17c-2.969 0-6.002-1.62-7.87-5C5.998 8.62 9.03 7 12 7c2.969 0 6.002 1.62 7.87 5-1.868 3.38-4.901 5-7.87 5z" fill="blue"/></svg>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
-                @endif
-            </tbody>
-        </table>
-    </div>
-    <div class="mt-4" id="pagination-container">
-        {{ $blog->appends(request()->query())->links() }}
+                                <img src="{{ asset('storage/blog-banner/' . $blogs->banner) }}" alt="banner" width="100">
+                            @else
+                                No Image
+                            @endif
+                        </td>
+                        <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222]">{{ $blogs->publish_by }}</td>
+                        <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222]">{{ \Carbon\Carbon::parse($blogs->publish_date)->format('d-m-Y') }}</td>
+                        <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222]">
+                            {{--  <div class="flex gap-4 whitespace-nowrap">
+                                    <a href="{{ route('blog.edit', $blogs->id) }}">
+                                    <svg fill="#0D0D0D" width="20px" height="20px" viewBox="0 0 36 36" version="1.1"  preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <title>edit</title>
+                                        <path class="clr-i-outline clr-i-outline-path-1" d="M33.87,8.32,28,2.42a2.07,2.07,0,0,0-2.92,0L4.27,23.2l-1.9,8.2a2.06,2.06,0,0,0,2,2.5,2.14,2.14,0,0,0,.43,0L13.09,32,33.87,11.24A2.07,2.07,0,0,0,33.87,8.32ZM12.09,30.2,4.32,31.83l1.77-7.62L21.66,8.7l6,6ZM29,13.25l-6-6,3.48-3.46,5.9,6Z"></path>
+                                        <rect x="0" y="0" width="36" height="36" fill-opacity="0"/>
+                                    </svg>
+                                </a>
+                                <a href="{{ route('blog.delete', $blogs->id) }}">
+                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <title>delete</title>
+                                    <path d="M7 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2h4a1 1 0 1 1 0 2h-1.069l-.867 12.142A2 2 0 0 1 17.069 22H6.93a2 2 0 0 1-1.995-1.858L4.07 8H3a1 1 0 0 1 0-2h4V4zm2 2h6V4H9v2zM6.074 8l.857 12H17.07l.857-12H6.074zM10 10a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1z" fill="red"/></svg>
+                                </a>
+                                <a href="{{ route('blog.view', $blogs->id) }}">
+                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <title>View</title>
+                                    <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" fill="blue"/><path d="M21.894 11.553C19.736 7.236 15.904 5 12 5c-3.903 0-7.736 2.236-9.894 6.553a1 1 0 0 0 0 .894C4.264 16.764 8.096 19 12 19c3.903 0 7.736-2.236 9.894-6.553a1 1 0 0 0 0-.894zM12 17c-2.969 0-6.002-1.62-7.87-5C5.998 8.62 9.03 7 12 7c2.969 0 6.002 1.62 7.87 5-1.868 3.38-4.901 5-7.87 5z" fill="blue"/></svg>
+                                </a>
+                            </div>  --}}
+                            <div class="site_user_dropdown">
+                                <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-{{ $blogs->id }}" data-dropdown-placement="bottom-end">
+                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                </div>
+                                <div id="userDropdown-action-{{ $blogs->id }}" class="-top-[5px]! z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
+                                    <ul class="bg-white text-sm rounded-xl overflow-hidden">
+                                        <li class="border-b border-[#d3d3d3]">
+                                            <a href="{{ route('blog.edit', $blogs->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
+                                        </li>
+                                        <li class="border-b border-[#d3d3d3]">
+                                            <a href="{{ route('blog.view', $blogs->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">View</a>
+                                        </li>
+                                        <li class="">
+                                            <a href="{{ route('blog.delete', $blogs->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                    @endif
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-4" id="pagination-container">
+            {{ $blog->appends(request()->query())->links() }}
+        </div>
     </div>
 
 

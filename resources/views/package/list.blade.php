@@ -53,7 +53,7 @@
                             </th>
                             <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Description</th>
                             <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Price</th>
-                            <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="150">Action</th>
+                            <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500] text-right" width="115">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -148,7 +148,7 @@
                                         </th>
                                         <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Description</th>
                                         <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Price</th>
-                                        <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="150">Action</th>
+                                        <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500] text-right" width="115">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -186,14 +186,14 @@
                                                 </a>
                                             </div>  --}}
                                             <div class="site_user_dropdown">
-                                                <div class="flex items-center cursor-pointer justify-center" data-dropdown-toggle="userDropdown-action-{{ $package->id }}" data-dropdown-placement="bottom-end">
+                                                <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-{{ $package->id }}" data-dropdown-placement="bottom-end">
                                                     <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                                         <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                                         <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                                     </svg>
                                                 </div>
-                                                <div id="userDropdown-action-{{ $package->id }}" class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 hidden" style="display: none; position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(-57px, 422px);" aria-hidden="true" data-popper-placement="bottom-end">
+                                                <div id="userDropdown-action-{{ $package->id }}" class="z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" aria-hidden="true" data-popper-placement="bottom-end">
                                                     <ul class="bg-white text-sm rounded-xl overflow-hidden">
                                                         <li class="border-b border-[#d3d3d3]">
                                                             <a href="{{ route('package.edit', $package->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>

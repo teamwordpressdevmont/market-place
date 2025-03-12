@@ -35,7 +35,7 @@
                     <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
                         Description
                     </th>
-                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
+                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500] text-right" width="115">
                         Action
                     </th>
                 </tr>
@@ -75,7 +75,7 @@
                             {!! html_entity_decode($trade->description) !!}
                         </td>
                         <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
-                            <div class="flex gap-4">
+                            {{--  <div class="flex gap-4">
                                 <a href="{{ route('tradeperson.edit', $trade->id) }}">
                                     <svg fill="#0D0D0D" width="20px" height="20px" viewBox="0 0 36 36" version="1.1"  preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <title>edit</title>
@@ -93,6 +93,28 @@
                                     <title>delete</title>
                                     <path d="M7 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2h4a1 1 0 1 1 0 2h-1.069l-.867 12.142A2 2 0 0 1 17.069 22H6.93a2 2 0 0 1-1.995-1.858L4.07 8H3a1 1 0 0 1 0-2h4V4zm2 2h6V4H9v2zM6.074 8l.857 12H17.07l.857-12H6.074zM10 10a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1z" fill="red"/></svg>
                                 </a>
+                            </div>  --}}
+                            <div class="site_user_dropdown">
+                                <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-{{ $trade->id }}" data-dropdown-placement="bottom-end">
+                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                </div>
+                                <div id="userDropdown-action-{{ $trade->id }}" class="z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" aria-hidden="true" data-popper-placement="bottom-end">
+                                    <ul class="bg-white text-sm rounded-xl overflow-hidden">
+                                        <li class="border-b border-[#d3d3d3]">
+                                            <a href="{{ route('tradeperson.edit', $trade->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Edit</a>
+                                        </li>
+                                        <li class="border-b border-[#d3d3d3]">
+                                            <a href="{{ route('tradeperson.view', $trade->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">View</a>
+                                        </li>
+                                        <li class="">
+                                            <a href="{{ route('tradeperson.delete', $trade->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222]">Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </td>
                     </tr>
