@@ -52,9 +52,9 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-end">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-            <div class="site_field_col mt-0! mb-7!">
+            <div class="site_field_col">
                 <label class="block text-sm font-bold text-mat">Icon</label>
                 <div class="mt-4 grid grid-cols-1">
                     <input type="file" name="icon" accept="image/*" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm focus:outline-none">
@@ -74,7 +74,7 @@
             </div>
 
             <!-- Parent Category Dropdown -->
-            <div class="site_field_col mt-0! mb-7!">
+            <div class="site_field_col">
                 <label for="parent_id" class="block text-sm font-bold text-mat">Parent Category</label>
                 <div class="mt-4">
                     <select name="parent_id" id="parent_id"

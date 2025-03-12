@@ -52,7 +52,7 @@
                     <div class="site_field_col">
                         <label class="block text-sm font-bold text-mat">Banner</label>
                         <div class="mt-4">
-                            <input type="file" name="banner" id="banner" accept="image/*" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-0.5 focus:outline-none">
+                            <input type="file" name="banner" id="banner" accept="image/*" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm focus:outline-none">
                             @if(isset($blog) && $blog->banner)
                                 <div id="PreviewContainer" class="mt-2  relative">
                                     <img  src="{{ asset('public/storage/blog-banner/' . $blog->banner) }}" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">
