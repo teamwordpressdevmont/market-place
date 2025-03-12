@@ -53,7 +53,7 @@
                             </th>
                             <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Description</th>
                             <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Price</th>
-                            <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="150">Action</th>
+                            <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500] text-right" width="115">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -148,7 +148,7 @@
                                         </th>
                                         <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Description</th>
                                         <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Price</th>
-                                        <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="150">Action</th>
+                                        <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500] text-right" width="115">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -186,7 +186,7 @@
                                                 </a>
                                             </div>  --}}
                                             <div class="site_user_dropdown">
-                                                <div class="flex items-center cursor-pointer justify-center" data-dropdown-toggle="userDropdown-action-{{ $package->id }}" data-dropdown-placement="bottom-end">
+                                                <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-{{ $package->id }}" data-dropdown-placement="bottom-end">
                                                     <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                                         <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>

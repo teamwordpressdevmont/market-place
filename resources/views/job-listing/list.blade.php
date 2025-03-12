@@ -54,7 +54,7 @@
                <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Start & Delivery Date</th>
                <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Status</th>
                <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Tradeperson ID</th>
-               <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Action</th>
+               <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500] text-right" width="115">Action</th>
             </tr>
          </thead>
          <tbody>
