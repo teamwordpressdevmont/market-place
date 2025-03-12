@@ -23,7 +23,7 @@
     <div class="rounded-xl pt-5 bg-white border border-[#22222233] h-fit">
         <h2 class="text-lg font-bold mb-6 text-[#222222] px-5">Recent Jobs</h2>
         <div id="table-container" class="overflow-x-auto ">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <table class="genericTable w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 bg-[#eee] border-t border-b border-[#22222233]">
                 <tr>
                     <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Job ID</th>

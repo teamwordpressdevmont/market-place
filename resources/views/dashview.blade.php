@@ -75,7 +75,7 @@
          </div>
          <div class="space-y-5">
             <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col">
-               <img src="http://127.0.0.1:8000/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
+               <img src="/public/images/job-1.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
                <div class="md:py-2 py-4 lg:px-5 px-3 flex-1">
                   <div class="text-xs text-gray-500 flex items-center mb-1">
                      <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -115,7 +115,7 @@
                </div>
             </div>
             <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col">
-               <img src="http://127.0.0.1:8000/images/job-2.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
+               <img src="/public/images/job-2.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
                <div class="md:py-2 py-4 lg:px-5 px-3 flex-1">
                   <div class="text-xs text-gray-500 flex items-center mb-1">
                      <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -155,7 +155,7 @@
                </div>
             </div>
             <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col">
-               <img src="http://127.0.0.1:8000/images/job-3.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
+               <img src="/public/images/job-3.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
                <div class="md:py-2 py-4 lg:px-5 px-3 flex-1">
                   <div class="text-xs text-gray-500 flex items-center mb-1">
                      <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -195,7 +195,7 @@
                </div>
             </div>
             <div class="flex items-center rounded-2xl border border-[#EDE9D0] bg-[#F4F4F4] md:flex-row flex-col">
-               <img src="http://127.0.0.1:8000/images/job-3.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
+               <img src="/public/images/job-3.png" alt="Job Image" class="w-35 max-md:w-full h-32 rounded-xl object-cover">
                <div class="md:py-2 py-4 lg:px-5 px-3 flex-1">
                   <div class="text-xs text-gray-500 flex items-center mb-1">
                      <div class="bg-[#FFE9DC] px-2 py-1 rounded-lg">
@@ -246,7 +246,7 @@
                   </h3>
                   <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
                      <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
+                        <img src="/public/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                         <div>
                            <p class="text-xs font-medium text-gray-800">Brian Simmons</p>
                            <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
@@ -278,7 +278,7 @@
                   </h3>
                   <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
                      <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
+                        <img src="/public/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                         <div>
                            <p class="text-xs font-medium text-gray-800">Brian Simmons</p>
                            <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
@@ -310,7 +310,7 @@
                   </h3>
                   <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
                      <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
+                        <img src="/public/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                         <div>
                            <p class="text-xs font-medium text-gray-800">Brian Simmons</p>
                            <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
@@ -342,7 +342,7 @@
                   </h3>
                   <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
                      <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
+                        <img src="/public/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                         <div>
                            <p class="text-xs font-medium text-gray-800">Brian Simmons</p>
                            <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
@@ -374,7 +374,7 @@
                   </h3>
                   <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
                      <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
+                        <img src="/public/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                         <div>
                            <p class="text-xs font-medium text-gray-800">Brian Simmons</p>
                            <p class="text-xs text-[#ABABAB]">Expert Plumber</p>
@@ -406,7 +406,7 @@
                   </h3>
                   <div class="flex justify-between md:items-center items-start lg:px-4 px-3 flex-col md:flex-row">
                      <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
-                        <img src="http://127.0.0.1:8000/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
+                        <img src="/public/images/proposal.png" alt="image" class="w-12 h-12 rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
                         <div>
                            <p class="text-xs font-medium text-gray-800">Brian Simmons</p>
                            <p class="text-xs text-[#ABABAB]">Expert Plumber</p>

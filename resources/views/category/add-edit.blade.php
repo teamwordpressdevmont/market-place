@@ -17,28 +17,29 @@
         </div>
     @endif
 
-    <h1 class="font-semibold text-4xl mb-10"> {{ isset($category) ? 'Update Category' : 'Add Category' }}</h1>
+    <div class="bgShadow pt-10">
+        <h1 class="font-semibold text-4xl mb-10"> {{ isset($category) ? 'Update Category' : 'Add Category' }}</h1>
     <form id="Category" action="{{ isset($category) ? route('category.update', $category->id) : route('category.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
         @csrf
 
         @if(isset($category))
 
-        @method('PUT') 
+        @method('PUT')
 
-        @endif 
+        @endif
 
-            
+
 
         <div class="site_field_col">
             <label for="name" class="block text-sm/6 font-medium text-gray-900">Category Name</label>
-            <div class="mt-2">                
+            <div class="mt-2">
                     <input type="text" name="name" id="name"
-                            class="rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5"
+                            class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3"
                             placeholder="Category Name" value="{{ isset($category) ? $category->name : '' }}"> <!-- Pre-fill if editing -->
             </div>
         </div>
 
-        
+
         <!-- Description Field -->
         <div class="site_field_col">
             <label for="description" class="block text-sm/6 font-medium text-gray-900">Description</label>
@@ -51,15 +52,15 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">    
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
             <div class="site_field_col">
                 <label class="block text-sm/6 font-medium text-gray-900">Icon</label>
                 <div class="mt-2 grid grid-cols-1">
-                    <input type="file" name="icon" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-white focus:outline-none">
+                    <input type="file" name="icon" accept="image/*" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm">
                         @if(isset($category) && $category->icon)
                         <div id="PreviewContainer" class="mt-2  relative">
-                            <img  src="{{ asset('storage/category-images/' . $category->icon) }}" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">
+                            <img  src="{{ asset('public/storage/category-images/' . $category->icon) }}" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">
                             <span  class="CloseIcon  absolute top-0 right-0 bg-gray-600 text-white text-xs px-2 py-1 rounded-full cursor-pointer">X</span>
                         </div>
                         @else
@@ -68,16 +69,16 @@
                                 <span class="CloseIcon absolute top-0 right-0 bg-gray-600 text-white text-xs px-2 py-1 rounded-full cursor-pointer">X</span>
                             </div>
                         @endif
-                    
+
                 </div>
             </div>
-        
+
             <!-- Parent Category Dropdown -->
             <div class="site_field_col">
                 <label for="parent_id" class="block text-sm/6 font-medium text-gray-900">Parent Category</label>
                 <div class="mt-2">
                     <select name="parent_id" id="parent_id"
-                            class="rounded-lg bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-2.5">
+                            class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3">
                         <option value="">Select Parent Category</option>
                         @foreach($allCategories as $parentCategory)
                             <option value="{{ $parentCategory->id }}" {{ (isset($category) && $parentCategory->id == $category->parent_category_id) ? 'selected' : '' }}>
@@ -89,14 +90,15 @@
             </div>
 
         </div>
-        
+
         <!-- Submit Button -->
         <div class="flex items-center justify-end gap-x-6 pt-5">
             <button type="submit"
                     class="bg-secondary rounded-full px-4 py-2 text-white w-48 flex justify-center items-center border border-primary hover:bg-primary transition">
-                {{ isset($category) ? 'Update' : 'Add New Category' }} 
+                {{ isset($category) ? 'Update' : 'Add New Category' }}
             </button>
         </div>
 
     </form>
+    </div>
 @endsection
