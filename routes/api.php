@@ -40,6 +40,8 @@ Route::middleware('verify_token')->group(function () {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::post('/forget-password', [AuthController::class, 'forgetPasword']);
+Route::post('/forget-password/reset-password', [AuthController::class, 'resetPassword']);
 
 
 Route::middleware('auth:api')->group(function () {
