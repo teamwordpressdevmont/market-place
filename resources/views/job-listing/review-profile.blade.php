@@ -94,8 +94,8 @@
       font-size: 0;
       width: 20px;
       height: 20px;
-      background-image:url({{ asset('/images/circle-arrow-left-round.svg') }});
-
+      background-image:url({{ asset('public/images/circle-arrow-left-round.svg') }});
+      
     }
 
     .swiper-button-next:after
@@ -127,7 +127,7 @@
    <div class="">
 
       <div class="">
-         <img src="{{ asset( '/public/images/job-listing.png' ) }}" class="h-[300px] rounded-lg w-full ">
+         <img src="{{ asset( 'public/images/job-listing.png' ) }}" class="h-[300px] rounded-lg w-full ">
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-5">
@@ -154,7 +154,7 @@
             <span class="bg-primary text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-full">Basic Package</span> --}}
 
             <h4 class="font-semibold lg:text-2xl mt-10 mb-4">Portfolio</h4>
-            <!-- <img src="{{ asset( '/public/images/slider-1.jfif' ) }}" class="rounded-[20px]"> -->
+            <!-- <img src="{{ asset( 'public/images/slider-1.jfif' ) }}" class="rounded-[20px]"> -->
 
 
 

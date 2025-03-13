@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tradeperson;
+use App\Models\OrderDetail;
 use App\Models\TradepersonDetails;
 use App\Models\TradepersonCategory;
 use App\Models\User;
@@ -181,22 +182,30 @@ class TraderPersonDataController extends Controller
 
     public function view($id)
     {
-        $tradeperson = Tradeperson::findOrFail($id);
-        $tradepersonDetail = TradepersonDetails::where('tradeperson_id', $id)->first();
-        return view('tradeperson.view', compact('tradeperson', 'tradepersonDetail'));
+        // $tradeperson = Tradeperson::findOrFail($id);
+        // $tradepersonDetail = TradepersonDetails::where('tradeperson_id', $id)->first();
+        // return view('tradeperson.view', compact('tradeperson', 'tradepersonDetail'));
+        try {
+            $OrderDetail = OrderDetail::with('order.review.tradeperson' , 'order.tradeperson.categories' , 'order.tradeperson.user')->findOrFail($id);
+            return view('tradeperson.view', compact('OrderDetail'));
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            return redirect()->back()->with('success', 'Something went wrong.');
+        }
     }
 
-    public function toggleUserApproval($id)
+    public function tradepersonToggleApproval($id)
     {
-        $user = User::findOrFail($id);
-        $user->user_approved = !$user->user_approved;
-        $user->save();
+        \Log::info('Approval toggle route hit for user ID: ' . $id);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'User ' . ($user->user_approved ? 'approved' : 'disapproved') . ' successfully!',
-            'user_approved' => $user->user_approved
-        ]);
+        $user = User::find($id);
+        if ($user) {
+            $user->user_approved = !$user->user_approved;
+            $user->save();
+            return response()->json(['success' => true, 'user_approved' => $user->user_approved]);
+        }
+        return response()->json(['success' => false], 404);
     }
+
 
 }

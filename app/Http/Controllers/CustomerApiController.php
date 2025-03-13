@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+use App\Models\User; 
+use App\Models\Order; 
+use App\Models\OrderProposal; 
 use App\Models\OrderDetail;
 use App\Models\TradepersonReview;
 use Illuminate\Http\Request;
@@ -11,13 +13,13 @@ use Illuminate\Validation\ValidationException;
 
 class CustomerApiController extends Controller
 {
-    
+
     /**
      * Create Order for customer
      */
     public function createOrder(Request $request)
     {
-        
+
         try {
             // Validate request data
             $validated = $request->validate([
@@ -25,7 +27,7 @@ class CustomerApiController extends Controller
                 'tradeperson_id' => 'nullable|exists:tradepersons,id',
                 'order_status' => 'required|string|max:255',
                 'payment_status' => 'required|string|max:255',
-    
+
                 // Order Details
                 'title' => 'required|string|max:255',
                 'description' => 'required|string',
@@ -36,19 +38,19 @@ class CustomerApiController extends Controller
                 'job_end_timeline' => 'nullable|string',
                 'location' => 'nullable|string',
                 'address' => 'nullable|string',
-                'image' => 'nullable|array',  
-                'image.*' => 'nullable|string', 
+                'image' => 'nullable|array',
+                'image.*' => 'nullable|string',
                 'additional_notes' => 'nullable|string',
                 'featured' => 'nullable|string',
-    
+
                 // Categories
                 'categories' => 'required|array',
-                'categories.*' => 'exists:categories,id' 
+                'categories.*' => 'exists:categories,id'
             ]);
-    
+
             // Use DB Transaction to ensure atomicity
             DB::beginTransaction();
-    
+
             // Step 1: Create Order
             $order = Order::create([
                 'customer_id' => $validated['customer_id'],
@@ -56,7 +58,7 @@ class CustomerApiController extends Controller
                 'order_status' => $validated['order_status'],
                 'payment_status' => $validated['payment_status'],
             ]);
-    
+
             // Step 2: Create Order Details
             $orderDetails = OrderDetail::create([
                 'order_id' => $order->id,
@@ -73,18 +75,18 @@ class CustomerApiController extends Controller
                 'additional_notes' => $validated['additional_notes'] ?? null,
                 'featured' => $validated['featured'] ?? null,
             ]);
-    
+
             // Step 3: Assign Categories
             $categoriesWithTimestamps = collect($validated['categories'])->mapWithKeys(function ($categoryId) {
                 return [$categoryId => ['created_at' => now(), 'updated_at' => now()]];
             })->toArray();
-            
+
             $order->categories()->attach($categoriesWithTimestamps);
 
-    
+
             // Commit the transaction
             DB::commit();
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'Order created successfully',
@@ -94,18 +96,16 @@ class CustomerApiController extends Controller
                     'categories' => $validated['categories']
                 ]
             ], 201);
-    
         } catch (ValidationException $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Validation failed',
                 'errors' => $e->errors()
             ], 422);
-    
         } catch (\Exception $e) {
             // Rollback in case of failure
             DB::rollBack();
-    
+
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to create order',
@@ -144,11 +144,11 @@ class CustomerApiController extends Controller
             if ($request->filled('with_category')) {
                 $query->with('categories');
             }
-            
+
             if ($request->filled('with_proposals')) {
                 $query->with('proposals');
             }
-            
+
             if ($request->filled('with_review')) {
                 $query->with('review');
             }
@@ -217,7 +217,7 @@ class CustomerApiController extends Controller
             ], 500);
         }
     }
-    
+
     /**
      * Submit Review for Order by customer
      */
@@ -225,14 +225,14 @@ class CustomerApiController extends Controller
     {
         try {
             $customer_id = optional($request->user()->customer)->id;
-            
+
             if (!$customer_id) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Unauthorized: No associated customer found',
                 ], 403);
             }
-            
+
             // Validate request
             $validated = $request->validate([
                 'tradeperson_id' => 'required|exists:tradepersons,id',
@@ -240,17 +240,17 @@ class CustomerApiController extends Controller
                 'review' => 'nullable|string',
                 'rating' => 'required|numeric|min:1|max:5',
             ]);
-    
+
             // Check if the review already exists for this order and tradeperson
             $existingReview = TradepersonReview::where('order_id', $validated['order_id'])->first();
-    
+
             if ($existingReview) {
                 return response()->json([
                     'success' => false,
                     'message' => 'You have already reviewed this order.',
                 ], 400);
             }
-            
+
             $order = Order::find($validated['order_id']);
 
             // Ensure the order exists
@@ -260,7 +260,7 @@ class CustomerApiController extends Controller
                     'message' => 'Order not found.',
                 ], 404);
             }
-    
+
             // Check if the review is being submitted by the correct customer for the correct tradeperson
             if ($order->customer_id != $customer_id || $order->tradeperson_id != $validated['tradeperson_id']) {
                 return response()->json([
@@ -268,10 +268,10 @@ class CustomerApiController extends Controller
                     'message' => 'Invalid customer or tradeperson for this order.',
                 ], 403);
             }
-    
+
             // Use DB Transaction to ensure atomicity
             DB::beginTransaction();
-    
+
             // Create the review
             $review = TradepersonReview::create([
                 'customer_id' => $customer_id,
@@ -280,27 +280,25 @@ class CustomerApiController extends Controller
                 'review' => $validated['review'] ?? null,
                 'rating' => $validated['rating'],
             ]);
-    
+
             // Commit transaction
             DB::commit();
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'Review submitted successfully',
                 'data' => $review,
             ], 201);
-    
         } catch (ValidationException $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Validation failed',
                 'errors' => $e->errors(),
             ], 422);
-            
         } catch (\Exception $e) {
             // Rollback transaction in case of failure
             DB::rollBack();
-    
+
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to submit review',
@@ -308,8 +306,8 @@ class CustomerApiController extends Controller
             ], 500);
         }
     }
-    
-    
+
+
     /**
      * Get Reviews by customer
      */
@@ -317,44 +315,44 @@ class CustomerApiController extends Controller
     {
         try {
             $customer_id = optional($request->user()->customer)->id;
-            
+
             if (!$customer_id) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Unauthorized: No associated customer found',
                 ], 403);
             }
-            
+
             // Get filters from request
             $orderId = $request->query('order_id');
             $tradepersonId = $request->query('tradeperson_id');
             $rating = $request->query('rating');
-    
+
             // Query Builder
             $query = TradepersonReview::query();
-    
+
             if ($orderId) {
                 $query->where('order_id', $orderId);
             }
-    
+
             if ($customer_id) {
                 $query->where('customer_id', $customer_id);
             }
-    
+
             if ($tradepersonId) {
                 $query->where('tradeperson_id', $tradepersonId);
             }
-    
+
             if ($rating) {
                 $query->where('rating', $rating);
             }
-    
+
             // Offset & Limit for manual pagination
             $offset = $request->input('offset', 0);
             $perPage = $request->input('per_page', 10);
             $totalCount = $query->count();
             $reviews = $query->offset($offset)->limit($perPage)->get();
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'Reviews retrieved successfully',
@@ -363,7 +361,6 @@ class CustomerApiController extends Controller
                 'per_page' => $perPage,
                 'data' => $reviews,
             ], 200);
-            
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
@@ -372,5 +369,384 @@ class CustomerApiController extends Controller
             ], 500);
         }
     }
-    
+
+
+    // customer dashboard order API
+    public function getCustomerOrder(Request $request)
+    {
+        try {
+            $request->validate([
+                'id' => 'nullable|integer|exists:users,id',
+                'filter' => 'nullable|string|in:active_job,pending_job,completed_job,recent_jobs',
+                'offset' => 'nullable|integer|min:0',
+                'per_page' => 'nullable|integer|min:1|max:100',
+                'with_proposal' => 'nullable|boolean',
+                'with_reviews' => 'nullable|boolean'
+            ]);
+
+
+            $user =  User::find(auth()->user()->id);
+            if (!$user->hasRole('customer')) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error',
+                    'error' => "The provided ID does not belong to a customer."
+                ], 400);
+            }
+
+            $query = Order::with(['orderDetail', 'customer', 'tradeperson']);
+
+            if ($request->has('id')) {
+                $query->where('id', $request->id);
+            }
+
+            if ($request->has('filter') && $request->get('filter') == "active_job") {
+                $query->where('order_status', 1);
+            }
+
+            if ($request->has('filter') && $request->get('filter') == "pending_job") {
+                $query->where('order_status', 3);
+            }
+
+            if ($request->has('filter') && $request->get('filter') == "completed_job") {
+                $query->where('order_status', 4);
+            }
+
+            if ($request->has('filter') && $request->get('filter') == "recent_jobs") {
+                $query->orderByDesc('created_at');
+            }
+
+            if ($request->has('with_proposal') && $request->get('with_proposal') == true) {
+                $query->with('proposals');
+            }
+
+            if ($request->has('with_reviews') && $request->get('with_reviews') == true) {
+                $query->with('review');
+            }
+
+            $offset = $request->input('offset', 0);
+            $perPage = $request->input('per_page', 10);
+            $orders = $query->offset($offset)->limit($perPage)->get();
+
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Orders retrieved successfully',
+                'offset' => $offset,
+                'per_page' => $perPage,
+                'data' => $orders
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    // customer profile API
+    public function getCustomerProfile(Request $request)
+    {
+        try {
+            $user = User::with('customer')->find(auth()->user()->id);
+            return response()->json([
+                'success' => true,
+                'message' => 'User retrieved successfully',
+                'data' => $user
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    // update Customer profile Api
+    public function updateCustomerProfile(Request $request)
+    {
+        try {
+            $request->validate([
+                'first_name' => 'nullable',
+                'last_name' => 'nullable',
+                'email' => 'nullable|email',
+                'gender' => 'nullable',
+                'phone_number' => 'nullable',
+                'city' => 'nullable',
+                'postal_code' => 'nullable',
+                'address' => 'nullable',
+                'address2' => 'nullable',
+                'avatar' => 'nullable|image'
+            ]);
+
+            $user = User::findOrFail(auth()->user()->id);
+
+
+
+            if ($request->has('password')) {
+                $request->validate([
+                    'current_password' => 'required',
+                    'password' => 'required|confirmed',
+                ]);
+
+                if (!Hash::check($request->current_password, $user->password)) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Error',
+                        'error' => 'Current password is incorrect'
+                    ], 400);
+                }
+
+                $user->password = Hash::make($request->password);
+                $user->save();
+            }
+
+            if ($request->hasFile('avatar')) {
+                $path =  $request->avatar->storeAs('user_avatar', 'public');
+                $user->avatar = $path;
+                $user->save();
+            }
+
+            // Update email if provided
+            if ($request->filled('email')) {
+                $user->update(['email' => $request->email]);
+            }
+
+            // Fetch customer details
+            $customer = Customer::where('user_id', $user->id)->first();
+            if (!$customer) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error',
+                    'error' => "Customer details not found!"
+                ], 400);
+            }
+
+            $customer->update([
+                'first_name' => $request->first_name ?? $customer->first_name,
+                'last_name' => $request->last_name ?? $customer->last_name,
+                'phone' => $request->phone_number ?? $customer->phone,
+                'gender' => $request->gender ?? $customer->gender,
+                'city' => $request->city ?? $customer->city,
+                'country' => $request->country ?? $customer->country,
+                'post_code' => $request->postal_code ?? $customer->post_code,
+                'address' => $request->address ?? $customer->address,
+                'address2' => $request->address2 ?? $customer->address2,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Customer updated successfully!',
+            ], 200);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    // get accepted propsal api
+    public function getAcceptedProposal(Request $request)
+    {
+        try {
+            $request->validate([
+                'perPage' => 'nullable|integer',
+                'offset' => 'nullable|integer',
+                'proposal_id' => 'nullable|integer|exists:order_proposals,id',
+                'status' => 'nullable|string|in:pending,accepted,rejected'
+            ]);
+
+            $customer_id = optional($request->user()->customer)->id;
+
+            if (!$customer_id) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Unauthorized: No associated customer found',
+                ], 403);
+            }
+
+            $perPage = $request->get('perPage', 10);
+            $offset = $request->get('offset', 0);
+
+            $query = OrderProposal::where('customer_id', $customer_id)
+                ->with([
+                    'order.orderDetail',
+                    'tradeperson' => function ($q) {
+                        $q->withCount('reviews')->withAvg('reviews', 'rating');
+                    }
+                ]);
+            if ($request->has('proposal_id')) {
+                $query->where('id', $request->proposal_id);
+            }
+
+            if ($request->has('status') && $request->get('status') == "pending") {
+                $query->where('id', 3);
+            }
+
+            if ($request->has('status') && $request->get('status') == "accepted") {
+                $query->where('id', 1);
+            }
+
+            if ($request->has('status') && $request->get('status') == "rejected") {
+                $query->where('id', 2);
+            }
+
+            $orders = $query->offset($offset)
+                ->limit($perPage)
+                ->get();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Proposal Retrieved Successfully',
+                'offset' => $offset,
+                'per_page' => $perPage,
+                'data' => $orders
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+    // accept proposal api -- post
+    public function acceptProposal(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $request->validate([
+                'proposal_id' => 'required|integer|exists:order_proposals,id',
+            ]);
+
+            $orderProposal = OrderProposal::with('order')->find($request->proposal_id);
+
+            if ($orderProposal->order->order_status == 1) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "Order is already in progress"
+                ], 403);
+            }
+
+            if ($orderProposal->customer_id != auth()->user()->id) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "You can't accept this proposal"
+                ], 403);
+            }
+
+            $order = Order::find($orderProposal->order_id);
+            if (!$order) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "Order not found"
+                ], 404);
+            }
+
+            // Update proposal status
+            $orderProposal->update([
+                'proposal_status' => 1,
+            ]);
+
+            // Update order details
+            $order->update([
+                'tradeperson_id' => $orderProposal->tradeperson_id,
+                'order_status' => 2
+            ]);
+
+            DB::commit(); // Commit transaction
+
+            return response()->json([
+                'success' => true,
+                'message' => "Proposal accepted and order is now in progress!"
+            ]);
+        } catch (ValidationException $e) {
+            DB::rollback();
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    // reject proposal api -- post
+    public function rejectProposal(Request $request)
+    {
+        try {
+            $request->validate([
+                'proposal_id' => 'required|integer|exists:order_proposals,id',
+            ]);
+
+            $orderProposal = OrderProposal::find($request->proposal_id);
+
+            // Pehle check karein ke proposal exist karta hai ya nahi
+            if (!$orderProposal) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Proposal not found'
+                ], 404);
+            }
+
+            // Agar proposal accept ho chuka hai, to reject nahi karna chahiye
+            if ($orderProposal->proposal_status == 1) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'This Proposal is already accepted, order is in progress'
+                ], 403);
+            }
+
+            // Proposal reject karna
+            $orderProposal->update([
+                'proposal_status' => 2
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Proposal rejected successfully!'
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 }

@@ -1,7 +1,7 @@
 .bgShadow{
     background-image: url(../images/dash-shadow.svg);
     background-position: top center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
 }
 
@@ -44,6 +44,23 @@ a.add_sub_cons_btn, a.add_sub_btn {
 .textarea_editor
 {
 background-color:#fff;
+}
+#pagination-container span a:not(:last-child) {
+    border-left: none;
+}
+#pagination-container span span:first-child span{
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+}
+#pagination-container span a:last-child{
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+}
+input[type=file]::file-selector-button {
+    padding: 12px 15px 12px 30px !important;
+}
+.bg-blue-700 {
+    background-color: rgb(219 74 43);
 }
 /* MR CSS START */
 ::-webkit-scrollbar {

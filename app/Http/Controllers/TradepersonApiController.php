@@ -23,13 +23,13 @@ class TradepersonApiController extends Controller
                 ->leftJoin('order_details', 'orders.id', '=', 'order_details.order_id')
                 ->leftJoin('order_categories', 'orders.id', '=', 'order_categories.order_id');
 
-            
+
             // Search by title or description
             if ($request->filled('search')) {
                 $search = $request->input('search');
                 $query->where(function ($q) use ($search) {
                     $q->whereLike('order_details.title', "%$search%")
-                      ->orWhereLike('order_details.description', "%$search%");
+                        ->orWhereLike('order_details.description', "%$search%");
                 });
             }
 
@@ -62,14 +62,14 @@ class TradepersonApiController extends Controller
             if ($request->filled('urgent')) {
                 $query->where('order_details.urgent', $request->input('urgent'));
             }
-            
+
             $allowed_status = [1];
             $query->whereIn('order_status', $allowed_status);
-            
+
             $offset = $request->input('offset', 0);
             $perPage = $request->input('per_page', 10);
             $totalCount = $query->count(); // Get total count of orders
-            
+
             $orders = $query->select('orders.*')->distinct()->offset($offset)->limit($perPage)->get();
 
             return response()->json([
@@ -80,7 +80,6 @@ class TradepersonApiController extends Controller
                 'per_page' => $perPage,
                 'data' => $orders,
             ], 200);
-
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
@@ -89,17 +88,17 @@ class TradepersonApiController extends Controller
             ], 500);
         }
     }
-    
-    
+
+
     //Deactivate Account
-    public function deleteAccount(Request $request) 
+    public function deleteAccount(Request $request)
     {
         $tradeperson = $request->user();
 
         if (!$tradeperson) {
             return response()->json(['message' => 'Unauthorized: No associated tradeperson found'], 401);
         }
-        
+
         // already deactivated
         if ($tradeperson->user_approved == 0) {
             return response()->json(['message' => 'Account already deleted'], 400);
@@ -110,18 +109,18 @@ class TradepersonApiController extends Controller
 
         return response()->json(['message' => 'Account deleted successfully'], 200);
     }
-    
-    
+
+
     // submit proposal
-    public function submitProposal(Request $request) 
+    public function submitProposal(Request $request)
     {
         try {
             $tradeperson = $request->user()->tradeperson;
-            
+
             if (!$tradeperson) {
                 return response()->json(['success' => false, 'message' => 'Unauthorized: No associated tradeperson found'], 401);
             }
-            
+
             // Validate request
             $validated = $request->validate([
                 'order_id' => 'required|exists:orders,id',
@@ -133,19 +132,19 @@ class TradepersonApiController extends Controller
                 'milestones.*.days' => 'nullable|integer|min:1',
                 'milestones.*.approved' => 'nullable|boolean',
             ]);
-            
+
             $order = Order::find($request->order_id);
-            
+
             if (!$order) {
                 return response()->json(['success' => false, 'message' => 'Order not found'], 404);
             }
-    
+
             if (!$order->customer_id) {
                 return response()->json(['success' => false, 'message' => 'Order has no associated customer'], 400);
             }
-            
+
             DB::beginTransaction();
-    
+
             // Create Proposal
             $proposal = OrderProposal::create([
                 'customer_id' => $order->customer_id,
@@ -156,7 +155,7 @@ class TradepersonApiController extends Controller
                 'proposal_status' => 3, // Default: Pending
                 'featured' => $request->featured ?? 0,
             ]);
-            
+
             $milestones = null;
             if (!empty($request->milestones)) {
                 $milestoneData = array_map(function ($milestone) {
@@ -166,23 +165,22 @@ class TradepersonApiController extends Controller
                         'approved' => $milestone['approved'] ?? 0
                     ];
                 }, $request->milestones);
-        
+
                 $milestones = OrderMilestone::create([
                     'order_id' => $order->id,
                     'tradeperson_id' => $tradeperson->id,
                     'milestone' => json_encode($milestoneData),
                 ]);
             }
-            
+
             DB::commit();
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'Proposal submitted successfully',
                 'proposal' => $proposal,
                 'milestones' => $milestones ? json_decode($milestones->milestone) : null,
             ], 201);
-    
         } catch (ValidationException $e) {
             return response()->json([
                 'success' => false,
@@ -191,10 +189,10 @@ class TradepersonApiController extends Controller
             ], 422);
         } catch (\Exception $e) {
             DB::rollBack();
-          
+
             // Log the error (to avoid exposing sensitive details)
             \Log::error('Proposal Submission Error: ' . $e->getMessage());
-    
+
             return response()->json([
                 'success' => false,
                 'message' => 'Something went wrong. Please try again later.',
@@ -202,51 +200,51 @@ class TradepersonApiController extends Controller
             ], 500);
         }
     }
-    
+
     // get Reviews
     public function getTradepersonReviews(Request $request)
     {
         try {
             // Get the tradeperson ID from the authenticated user
             $tradeperson_id = optional($request->user()->tradeperson)->id;
-    
+
             if (!$tradeperson_id) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Unauthorized: No associated tradeperson found',
                 ], 403);
             }
-    
+
             // Get filters from request
             $orderId = $request->input('order_id');
             $customerId = $request->input('customer_id');
             $rating = $request->input('rating');
-    
+
             // Query Builder
             $query = TradepersonReview::query();
-            
+
             if ($tradeperson_id) {
                 $query->where('tradeperson_id', $tradeperson_id);
             }
-            
+
             if ($orderId) {
                 $query->where('order_id', $orderId);
             }
-    
+
             if ($customerId) {
                 $query->where('customer_id', $customerId);
             }
-    
+
             if ($rating) {
                 $query->where('rating', $rating);
             }
-    
+
             // Offset & Limit for manual pagination
             $offset = $request->input('offset', 0);
             $perPage = $request->input('per_page', 10);
             $totalCount = $query->count();
             $reviews = $query->offset($offset)->limit($perPage)->get();
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'Tradeperson reviews retrieved successfully',
@@ -255,7 +253,6 @@ class TradepersonApiController extends Controller
                 'per_page' => $perPage,
                 'data' => $reviews,
             ], 200);
-    
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
@@ -264,19 +261,19 @@ class TradepersonApiController extends Controller
             ], 500);
         }
     }
-    
+
     public function getTradepersonOrder(Request $request)
     {
         try {
             $tradeperson_id = optional($request->user()->tradeperson)->id;
-            
+
             if (!$tradeperson_id) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Unauthorized: No associated tradeperson found',
                 ], 403);
             }
-    
+
             // Validate request parameters
             $request->validate([
                 'customer_id' => 'nullable|integer|exists:orders,customer_id',
@@ -289,25 +286,25 @@ class TradepersonApiController extends Controller
                 'with_categories' => 'nullable|boolean',
                 'with_milestones' => 'nullable|boolean'
             ]);
-            
+
             $customer_id = $request->input('customer_id');
             $filter = $request->input('filter');
             $offset = (int) $request->input('offset', 0);
             $perPage = (int) $request->input('per_page', 10);
-        
+
             // Query Builder
             $query = Order::query();
-        
+
             // Apply tradeperson filter
             if ($tradeperson_id) {
                 $query->where('tradeperson_id', $tradeperson_id);
             }
-        
+
             // Apply customer filter
             if ($customer_id) {
                 $query->where('customer_id', $customer_id);
             }
-        
+
             // Apply status filter
             if ($filter) {
                 $statusMap = [
@@ -316,45 +313,45 @@ class TradepersonApiController extends Controller
                     'pending_job' => 3,
                     'completed_job' => 4
                 ];
-        
+
                 if ($filter === 'recent_jobs') {
                     $query->orderByDesc('created_at');
                 } elseif (isset($statusMap[$filter])) {
                     $query->where('order_status', $statusMap[$filter]);
                 }
             }
-        
+
             // Include relationships dynamically
             $relations = [];
-        
+
             if ($request->boolean('with_proposal')) {
                 $relations[] = 'orderProposals';
             }
-        
+
             if ($request->boolean('with_reviews')) {
                 $relations[] = 'review';
             }
-        
+
             if ($request->boolean('with_details')) {
                 $relations[] = 'orderDetail';
             }
-        
+
             if ($request->boolean('with_categories')) {
                 $relations[] = 'categories';
             }
-        
+
             if ($request->boolean('with_milestones')) {
                 $relations[] = 'orderMilestones';
             }
-        
+
             if (!empty($relations)) {
                 $query->with($relations);
             }
-        
+
             // Fetch results with pagination
             $totalCount = $query->count();
             $orders = $query->offset($offset)->limit($perPage)->get();
-            
+
             return response()->json([
                 'success' => true,
                 'message' => 'Tradeperson orders retrieved successfully',
@@ -363,7 +360,6 @@ class TradepersonApiController extends Controller
                 'per_page' => $perPage,
                 'data' => $orders,
             ], 200);
-            
         } catch (ValidationException $e) {
             return response()->json([
                 'success' => false,
@@ -379,4 +375,151 @@ class TradepersonApiController extends Controller
         }
     }
 
+    // get trade person profile api -- get
+    public function getTradePersonProfile(Request $request)
+    {
+        try {
+            $user = User::with('tradeperson.categories')->find(auth()->user()->id);
+            $categories = Category::where('parent_id', null)->get();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'User retrieved successfully',
+                'data' => [
+                    'user' => $user,
+                    'categories' => $categories
+                ],
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    // update trade person api - patch
+    public function updateTradePerson(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $user = User::find($request->user()->id);
+            if (!$user) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User not authenticated'
+                ], 401);
+            }
+
+            $validatedData = $request->validate([
+                'email' => 'sometimes|email|unique:users,email,' . $user->id,
+                'password' => 'sometimes|min:6',
+                'first_name' => 'sometimes|string|min:3|max:30',
+                'last_name' => 'sometimes|string|min:3|max:30',
+                'gender' => 'sometimes|string|in:Male,Female',
+                'phone_number' => 'sometimes|string|regex:/^\+?[0-9]{7,15}$/',
+                'city' => 'sometimes|string',
+                'postal_code' => 'sometimes|string|regex:/^\d{5,6}$/',
+                'about_me' => 'sometimes|string|min:10|max:1000',
+                'address' => 'sometimes|string',
+                'categories' => 'sometimes|array',
+                'categories.*' => 'integer|exists:categories,id',
+                'portfolio' => 'sometimes|array',
+                'portfolio.*' => 'image|mimes:jpg,png,jpeg|max:2048',
+                'certificate' => 'sometimes|file|mimes:pdf,doc,docx|max:5120',
+                'avatar' => 'sometimes|image|mimes:jpg,png,jpeg|max:2048',
+            ]);
+
+
+            $traderPerson = TradePerson::where('user_id', $user->id)->first();
+            if (!$traderPerson) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'TradePerson not found'
+                ], 404);
+            }
+
+            $userData = [
+                'email' => $request->email ?? $user->email,
+                'password' => $request->has('password') ? Hash::make($validatedData['password']) : $user->password,
+                'name' => trim(($validatedData['first_name'] ?? $traderPerson->first_name) . ' ' . ($validatedData['last_name'] ?? $traderPerson->last_name))
+            ];
+
+            $user->update($userData);
+
+            // Handle Avatar Upload
+            if ($request->hasFile('avatar')) {
+                if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+                    Storage::disk('public')->delete($user->avatar);
+                }
+                $path = $request->file('avatar')->store('avatar', 'public');
+                $user->update(['avatar' => $path]);
+            }
+
+            // Update TradePerson
+            $traderPerson->update([
+                'first_name' => $validatedData['first_name'] ?? $traderPerson->first_name,
+                'last_name' => $validatedData['last_name'] ?? $traderPerson->last_name,
+                'gender' => $validatedData['gender'] ?? $traderPerson->gender,
+                'phone' => $validatedData['phone_number'] ?? $traderPerson->phone,
+                'city' => $validatedData['city'] ?? $traderPerson->city,
+                'postal_code' => $validatedData['postal_code'] ?? $traderPerson->postal_code,
+                'about_me' => $validatedData['about_me'] ?? $traderPerson->about_me,
+                'address' => $validatedData['address'] ?? $traderPerson->address,
+            ]);
+
+            // Handle Portfolio
+            if ($request->hasFile('portfolio')) {
+                if ($traderPerson->portfolio) {
+                    foreach (json_decode($traderPerson->portfolio) as $oldFile) {
+                        if (Storage::disk('public')->exists($oldFile)) {
+                            Storage::disk('public')->delete($oldFile);
+                        }
+                    }
+                }
+                $portfolioArr = [];
+                foreach ($request->file('portfolio') as $portfolio) {
+                    $portfolioArr[] = $portfolio->store('tradeperson_portfolio', 'public');
+                }
+                $traderPerson->update(['portfolio' => json_encode($portfolioArr)]);
+            }
+
+            // Handle Certificate Upload
+            if ($request->hasFile('certificate')) {
+                if ($traderPerson->certificate && Storage::disk('public')->exists($traderPerson->certificate)) {
+                    Storage::disk('public')->delete($traderPerson->certificate);
+                }
+                $certificatePath = $request->file('certificate')->store('tradeperson_certificate', 'public');
+                $traderPerson->update(['certificate' => $certificatePath]);
+            }
+
+            // Update Categories
+            if ($request->has('categories')) {
+                $traderPerson->categories()->sync($validatedData['categories']);
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'TradePerson updated successfully!',
+                'data' => $user->load('tradeperson')
+            ], 200);
+        } catch (ValidationException $e) {
+            DB::rollback();
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 }

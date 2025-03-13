@@ -79,7 +79,7 @@
     .thumbmySwiper .swiper-slide {
       border-radius:10px
     }
-    
+
     .swiper-button-next:after
     {
 
@@ -95,7 +95,7 @@
       width: 20px;
       height: 20px;
       background-image:url({{ asset('/images/circle-arrow-left-round.svg') }});
-      
+
     }
 
     .swiper-button-next:after
@@ -112,8 +112,8 @@
 </style>
 
 
-<div class="mt-5">
-   <div class="bgShadow pt-10 pb-8">
+<div class="mt-5 bgShadow">
+   <div class=" pt-10 pb-8">
       <div class="grid grid-cols-1 xl:grid-cols-2 lg:gap-8 gap-5 items-end">
          <div class="">
             <div class="flex items-center gap-2 bg-white rounded-full text-sm w-fit pr-4">
@@ -144,7 +144,7 @@
             <p class="text-[#ABABAB] text-xs">Published on: {{ $OrderDetail->created_at->format('M d, Y') }}</p>
             <div class="mt-4 flex gap-4 items-center">
                <h2 class="text-xs font-bold text-mat">Skills</h2>
-               <span class="bg-[#ABABAB] text-white text-gray-700 px-4 py-1 leading[0] rounded-full text-xs hover:bg-secondary transition">{{ $OrderDetail->order->categories->pluck('name')->join(', ') }}</span>
+               <span class="bg-[#ABABAB] text-white text-gray-700 px-4 py-1 leading[0] rounded-full text-xs transition">{{ $OrderDetail->order->categories->pluck('name')->join(', ') }}</span>
             </div>
          </div>
          <div class="flex md:items-end md:gap-12 gap-5 xl:justify-end md:flex-row flex-col items-left">
@@ -171,7 +171,7 @@
          </div>
          <div class="border-b border-[#e5e7eb] md:pb-8 pb-5">
             <h2 class="text-sm font-semibold">Contract Timeline</h2>
-            <div class="flex md:flex-row flex-col md:gap-9 gap-4 border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit w-100 md:px-9 px-5 py-4 rounded-2xl items-center"><span>Start Date: <strong class="text-mat font-light">{{ $OrderDetail->job_start_timeline }}</strong></span><span>End Date: <strong class="text-mat font-light"> {{ $OrderDetail->job_end_timeline }}</strong></span></div>
+            <div class="flex md:flex-row flex-col md:gap-9 gap-4 border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit md:px-9 px-5 py-4 rounded-2xl items-center"><span>Start Date: <strong class="text-mat font-light">{{ $OrderDetail->job_start_timeline }}</strong></span><span>End Date: <strong class="text-mat font-light"> {{ $OrderDetail->job_end_timeline }}</strong></span></div>
          </div>
          <div class="grid grid-cols-2 gap-2 border-b border-[#e5e7eb] md:mb-8 mb-5">
 
@@ -288,9 +288,9 @@
                            @foreach ( $portfolio as $portfolioImage )
                            <img src="{{ asset('public/storage/portfolio-images/' . $portfolioImage) }}" alt="image" class="h-[60px] object-cover w-full">
                            @endforeach
-                           
+
                            @endif
-                         
+
                         </div>
                      </div>
                   </div>
@@ -331,7 +331,7 @@
                            @foreach ( $portfolio as $portfolioImage )
                            <img src="{{ asset('public/storage/portfolio-images/' . $portfolioImage) }}" alt="image" class="object-cover h-[60px] w-full">
                            @endforeach
-                           
+
                            @endif
                         </div>
                      </div>
@@ -386,7 +386,7 @@
                <p>No milestones found.</p>
             @endif
          </div>
-        
+
          {{-- <div class="px-5 mb-12">
             <div class="flex items-start space-x-4">
                <div class="flex flex-col items-center">
@@ -452,11 +452,11 @@
                </div>
             </div>
          </div> --}}
-         
+
          <div class="text-center px-5 mb-5">
             <a href="#" class="flex justify-center bg-mat text-white px-6 py-3 rounded-full text-sm inline-block w-full max-w-lg hover:bg-primary transition"> See Conversation</a>
          </div>
-         
+
       </div>
    </div>
 </div>
@@ -533,11 +533,11 @@
     <!--        </table>-->
     <!--    </div>-->
     <!--</div>-->
-    
-    
+
+
     @if(!empty($OrderDetail->order->review))
 
-    <h4 class="mb-3 text-xl text-left font-medium text-grey border-b pb-3 border-green-700 inline-block">Order Reviews</h4>    
+    <h4 class="mb-3 text-xl text-left font-medium text-grey border-b pb-3 border-green-700 inline-block">Order Reviews</h4>
     <div class="mt-5 mx-auto max-w-7xl bg-white border border-gray-200 shadow-sm mx-auto">
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

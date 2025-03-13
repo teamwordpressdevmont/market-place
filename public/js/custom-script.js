@@ -190,14 +190,14 @@ $(document).ready(function() {
                         class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3"
                         value="">
                     <div class="col-1">
-                        <a href="javascript:void(0)" class="add_sub_btn sub_field mt-0! bg-[#EDE9D0] border border-[#c5c1ad] px-4 py-2.5 rounded-2xl flex! items-center justify-center" data-field_type="features">
+                        <a href="javascript:void(0)" class="add_sub_btn add_field bg-[#EDE9D0] border border-[#c5c1ad] px-4 py-2.5 rounded-2xl flex! items-center justify-center" data-field_type="features">
                              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11 7V15M15 11L7 11" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 <path d="M21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21C16.5228 21 21 16.5228 21 11Z" stroke="#222222" stroke-width="1.5"></path>
                             </svg>
                             </svg>
                         </a>
-                        <a href="javascript:void(0)" class="add_sub_btn sub_field mt-0! bg-[#EDE9D0] border border-[#c5c1ad] px-4 py-2.5 rounded-2xl flex! items-center justify-center" data-field_type="features">
+                        <a href="javascript:void(0)" class="add_sub_btn sub_field bg-[#EDE9D0] border border-[#c5c1ad] px-4 py-2.5 rounded-2xl flex! items-center justify-center" data-field_type="features">
                             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15 11L7 11" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 <path d="M21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21C16.5228 21 21 16.5228 21 11Z" stroke="#222222" stroke-width="1.5"></path>
@@ -299,5 +299,68 @@ $(document).ready(function() {
 
         $(this).closest(".image-container").remove();
     });
+
+
+
+
+    function toggleIconField() {
+        const selectedValue = $('#parent_id').val();
+
+        if (selectedValue) {
+            $('#iconField').show(); // Show icon field for child categories
+        } else {
+            $('#iconField').hide(); // Hide for parent categories
+        }
+    }
+
+    // Initial check
+    // toggleIconField();
+
+    // On dropdown change
+    $(document).on('change', '#parent_id', function () {
+        toggleIconField();
+    });
+
+
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    // });
+    
+    $(document).on('click', '.tradeperson-user-approval', function () {
+        let button = $(this);
+        let userId = button.data('id');
+    
+        $.ajax({
+            url: '/tradeperson/tradeperson-toggle-approval/' + userId,
+            type: 'POST',
+            data: {
+                _token: $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                if (response.success) {
+                    // Toggle text and styles based on approval status
+                    if (response.user_approved) {
+                        button.removeClass('bg-red-100 text-red-800')
+                              .addClass('bg-green-100 text-green-800')
+                              .text('Approved');
+                    } else {
+                        button.removeClass('bg-green-100 text-green-800')
+                              .addClass('bg-red-100 text-red-800')
+                              .text('Disapproved');
+                    }
+                } else {
+                    alert('Failed to update status.');
+                }
+            },
+            error: function (xhr) {
+                alert('Error: ' + xhr.status + ' - ' + xhr.responseText);
+            }
+        });
+    });
+    
+
+    
 
 });

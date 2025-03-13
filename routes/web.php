@@ -11,14 +11,15 @@ use App\Http\Controllers\Portal\PackageController;
 use App\Http\Controllers\Portal\ReportController;
 use App\Http\Controllers\Portal\jobListingDataController;
 use App\Http\Controllers\Portal\AdminMainController;
+use App\Http\Controllers\Portal\PendingApprovalController;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/penappview', function() {
-    return view('penappview');
-})->name('penappview');
+Route::get('/pending-approval', [PendingApprovalController::class, 'list'])->name('pending-approval');
+
 
 Route::get('/dashview', function() {
     return view('dashview');
@@ -123,6 +124,9 @@ Route::group(['prefix'  => 'tradeperson', 'middleware' => 'auth'], function() {
     Route::put('/update/{id}', [TraderPersonDataController::class, 'update'])->name('tradeperson.update');
     Route::get('/view/{id}', [TraderPersonDataController::class, 'view'])->name('tradeperson.view');
     Route::get('/delete/{id}', [TraderPersonDataController::class, 'destroy'])->name('tradeperson.delete');
+    Route::post('/tradeperson-toggle-approval/{id}', [TraderPersonDataController::class, 'tradepersonToggleApproval'])
+    ->name('tradeperson.tradepersonToggleApproval');
+
 });
 
 // Admin Job Listing

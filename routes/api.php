@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerApiController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PublicApiController;
 use App\Http\Controllers\TradepersonApiController;
+use App\Models\Testimonial;
 
 
 
@@ -31,13 +32,14 @@ Route::middleware('verify_token')->group(function () {
 
     Route::get('/search-tradeperson', [PublicApiController::class, 'searchTradePerson']);
 
-    Route::post('/store-tradeperson', [MainController::class, 'storeTradePerson']);
 });
 
 
+// registration routes
+Route::post('/register-tradeperson', [AuthController::class, 'registerTradePerson']);
+Route::post('/register-customer', [AuthController::class, 'registerCustomer']);
 
 
-Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/forget-password', [AuthController::class, 'forgetPasword']);
@@ -60,20 +62,16 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/submit-review', [CustomerApiController::class, 'submitReview']);
         Route::get('/order-reviews', [CustomerApiController::class, 'getReviews']);
 
-        Route::get('/get-customer-order', [MainController::class, 'getCustomerOrder']);
-        Route::get('/get-customer-profile', [MainController::class, 'getCustomerProfile']);
-        Route::patch('/update-customer-profile', [MainController::class, 'updateCustomerProfile']);
+        Route::get('/get-customer-order', [CustomerApiController::class, 'getCustomerOrder']);
+        Route::get('/get-customer-profile', [CustomerApiController::class, 'getCustomerProfile']);
+        Route::patch('/update-customer-profile', [CustomerApiController::class, 'updateCustomerProfile']);
 
-        Route::get('/get-accepted-proposal', [MainController::class, 'getAcceptedProposal']);
+        Route::get('/get-accepted-proposal', [CustomerApiController::class, 'getAcceptedProposal']);
 
-        Route::post('/accept-proposal', [MainController::class, 'acceptProposal']);
-        Route::post('/reject-proposal', [MainController::class, 'rejectProposal']);
+        Route::post('/accept-proposal', [CustomerApiController::class, 'acceptProposal']);
+        Route::post('/reject-proposal', [CustomerApiController::class, 'rejectProposal']);
 
 
-
-        Route::get('/customer-dashboard', function () {
-            return response()->json(['message' => 'Welcome customer']);
-        });
     });
 
     Route::middleware('role:tradeperson')->group(function () {
@@ -93,12 +91,10 @@ Route::middleware('auth:api')->group(function () {
         // submit proposal
         Route::post('/submit-proposal', [TradepersonApiController::class, 'submitProposal']);
 
-        Route::get('/get-tradeperson-profile', [MainController::class, 'getTradePersonProfile']);
-        Route::patch('/update-tradeperson-profile', [MainController::class, 'updateTradePerson']);
+        Route::get('/get-tradeperson-profile', [TradepersonApiController::class, 'getTradePersonProfile']);
+        Route::patch('/update-tradeperson-profile', [TradepersonApiController::class, 'updateTradePerson']);
 
-        Route::get('/tradeperson-dashboard', function () {
-            return response()->json(['message' => 'Welcome tradeperson']);
-        });
+
     });
 
     Route::get('/user', function (Request $request) {
@@ -107,3 +103,6 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/logout', [AuthController::class, 'logout']);
 });
+
+
+
