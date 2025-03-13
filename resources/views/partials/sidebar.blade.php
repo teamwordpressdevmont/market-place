@@ -20,7 +20,10 @@
         </a>
       </li>
       <li>
-          <button type="button" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white w-full" aria-controls="dropdown-1" data-collapse-toggle="dropdown-1">
+      @php
+            $isCategoryActive = Request::is('categories') || Request::is('categories/add');
+        @endphp
+          <button type="button" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white w-full {{ $isCategoryActive ? 'bg-primary' : '' }}" aria-controls="dropdown-1" data-collapse-toggle="dropdown-1">
           <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="9" y="2" width="6" height="6" rx="1" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M4 18V14C4 13.4477 4.44772 13 5 13H19C19.5523 13 20 13.4477 20 14V18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

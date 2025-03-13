@@ -21,22 +21,28 @@
                 @if (isset($blog))
                     @method('PUT')  <!-- Use PUT for update -->
                 @endif
-                <div class="site_field_col  mt-0! mb-7!">
-                    <label for="title" class="block text-sm font-bold text-mat">Title</label>
-                    <div class="mt-4">
-                        <div class="">
-                            <input type="text" name="title" id="title" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3" placeholder="janesmith" value="{{ old('title', $blog->title ?? '') }}">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 site_field_col mt-0! mb-7!">
+
+                    <div class="site_field_col  mt-0! mb-7!">
+                        <label for="title" class="block text-sm font-bold text-mat">Title</label>
+                        <div class="mt-4">
+                            <div class="">
+                                <input type="text" name="title" id="title" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3" placeholder="janesmith" value="{{ old('title', $blog->title ?? '') }}">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="site_field_col mt-0! mb-7!">
-                    <label for="slug" class="block text-sm font-bold text-mat">Slug</label>
-                    <div class="mt-4">
-                        <div class="">
-                            <input type="text" name="slug" id="slug" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3" placeholder="jane-smith" value="{{ old('slug', $blog->slug ?? '') }}">
+                    <div class="site_field_col mt-0! mb-7!">
+                        <label for="slug" class="block text-sm font-bold text-mat">Slug</label>
+                        <div class="mt-4">
+                            <div class="">
+                                <input type="text" name="slug" id="slug" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3" placeholder="jane-smith" value="{{ old('slug', $blog->slug ?? '') }}">
+                            </div>
                         </div>
                     </div>
+
                 </div>
+
                 <div class="site_field_col mt-0! mb-7!">
                     <label for="description" class="block text-sm font-bold text-mat">Description</label>
                     <div class="mt-4">
@@ -48,7 +54,7 @@
                     </div>
 
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-end site_field_col mt-0! mb-7!">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 site_field_col mt-0! mb-7!">
                     <div class="site_field_col">
                         <label class="block text-sm font-bold text-mat">Banner</label>
                         <div class="mt-4">
