@@ -42,7 +42,6 @@
         <link rel="stylesheet" href="{{ asset('/public/css/flowbite.min.css') }}">
         <link rel="stylesheet" href="{{ asset('/public/css/swiper-bundle.min.css') }}">
         <link rel="stylesheet" href="{{ asset('/public/css/style.css') }}">
-
     </head>
     <body class="bg-[#F4F4F4] font-sora">
 
@@ -51,11 +50,11 @@
 
 
         <!-- @include('partials.header') -->
-        <div class="site_dasboard_content sm:ml-64">
+        <div class="site_dasboard_content md:ml-64">
             <div class="p-5">
                 @include('partials.sidebar')
 
-                <div class="sm:pl-7">
+                <div class="md:pl-7">
 
                     @include('partials.header')
                     @yield('content')
