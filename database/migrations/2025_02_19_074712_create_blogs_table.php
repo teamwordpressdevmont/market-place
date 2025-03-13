@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string( 'slug' )->unique();
             $table->string('banner')->nullable(); // Image URL
             $table->text('description')->nullable();
+            $table->text('excerpt')->nullable();
             $table->string('publish_by')->nullable();
             $table->date('publish_date')->nullable();
             $table->string('featured')->nullable();

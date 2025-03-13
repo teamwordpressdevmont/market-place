@@ -21,6 +21,19 @@ class Category extends Model
     {
         return $this->belongsToMany(Order::class, 'order_categories', 'category_id', 'order_id');
     }
+    
+       public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    // Relationship to get the parent category
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+
 
 
 }
