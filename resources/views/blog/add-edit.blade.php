@@ -38,6 +38,24 @@
                     </div>
                 </div>
                 <div class="site_field_col mt-0! mb-7!">
+                    <label for="short_description" class="block text-sm font-bold text-mat">Short Description</label>
+                    <div class="mt-4">
+                        <div class="flex items-center rounded-md bg-white  outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-gray-500">
+                            <textarea name="short_description" id="content" rows="3" class="textarea_editor block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6">
+                                {{ old('short_description', $blog->short_description ?? '') }}
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="site_field_col  mt-0! mb-7!">
+                    <label for="content_heading" class="block text-sm font-bold text-mat">Content Heading</label>
+                    <div class="mt-4">
+                        <div class="">
+                            <input type="text" name="content_heading" id="title" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3" placeholder="Content Heading" value="{{ old('content_heading', $blog->content_heading ?? '') }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="site_field_col mt-0! mb-7!">
                     <label for="description" class="block text-sm font-bold text-mat">Description</label>
                     <div class="mt-4">
                         <div class="flex items-center rounded-md bg-white  outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-gray-500">
@@ -46,9 +64,28 @@
                             </textarea>
                         </div>
                     </div>
-
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-end site_field_col mt-0! mb-7!">
+                <div class="site_field_col mt-0! mb-7!">
+                    <label for="summary" class="block text-sm font-bold text-mat">Summary</label>
+                    <div class="mt-4">
+                        <div class="flex items-center rounded-md bg-white  outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-gray-500">
+                            <textarea name="summary" id="content" rows="3" class="textarea_editor block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6">
+                                {{ old('summary', $blog->summary ?? '') }}
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="site_field_col mt-0! mb-7!">
+                    <label for="excerpt" class="block text-sm font-bold text-mat">Excerpt</label>
+                    <div class="mt-4">
+                        <div class="flex items-center rounded-md bg-white  outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-gray-500">
+                            <textarea name="excerpt" id="content" rows="3" class="textarea_editor block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6">
+                                {{ old('excerpt', $blog->excerpt ?? '') }}
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start site_field_col mt-0! mb-7!">
                     <div class="site_field_col">
                         <label class="block text-sm font-bold text-mat">Banner</label>
                         <div class="mt-4">
