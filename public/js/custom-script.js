@@ -306,7 +306,7 @@ $(document).ready(function() {
     function toggleIconField() {
         const selectedValue = $('#parent_id').val();
 
-        if (selectedValue && selectedValue.startsWith('child_id_')) {
+        if (selectedValue) {
             $('#iconField').show(); // Show icon field for child categories
         } else {
             $('#iconField').hide(); // Hide for parent categories
