@@ -16,6 +16,7 @@ class CategoryDataController extends Controller
     public function addEdit()
     {
         $allCategories = Category::whereNull('parent_id')->get(); // Only fetch parent categories
+        
         return view('category.add-edit', compact('allCategories'));
 
     }
@@ -29,6 +30,11 @@ class CategoryDataController extends Controller
             'icon'              => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'parent_id'=> 'nullable|exists:categories,id',
         ]);
+
+        // New check for parent category
+        if ($validatedData['parent_id'] && !Category::find($validatedData['parent_id'])->parent_id) {
+            $validatedData['icon'] = null; // Set icon to null if parent category is selected
+        }
 
         DB::beginTransaction();
         try {
@@ -118,6 +124,12 @@ class CategoryDataController extends Controller
                 $imageName = 'category-icon-' . $formattedDate . '.' . $extension;
                 $iconPath = $image->storeAs('category-images', $imageName, 'public');
                 $validatedData['icon'] = $imageName;
+            }
+
+
+            // New check for parent category
+            if ($validatedData['parent_id'] && !Category::find($validatedData['parent_id'])->parent_id) {
+                $validatedData['icon'] = null; // Set icon to null if parent category is selected
             }
             
 

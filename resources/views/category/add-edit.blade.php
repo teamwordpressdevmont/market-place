@@ -85,14 +85,13 @@
                                 // Determine if the category is a parent or child
                                 $isChild = !is_null($parentCategory->parent_id);
                                 $optionValue = $isChild ? 'child_id_' . $parentCategory->id : 'parent_id_' . $parentCategory->id;
-                                $selectedValue = (!is_null($category->parent_id) ? 'child_id_' : 'parent_id_') . $category->parent_id;
                             @endphp
                              @if(!isset($category) || $parentCategory->id != $category->id)
-                             <option value="{{ $optionValue }}"
-                                 {{ (isset($category) && $selectedValue == $optionValue) ? 'selected' : '' }}>
-                                 {{ $parentCategory->name }}
-                             </option>
-                         @endif
+                                <option value="{{ $optionValue }}"
+                                    {{ (isset($category) &&  $optionValue) ? 'selected' : '' }}>
+                                    {{ $parentCategory->name }}
+                                </option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
