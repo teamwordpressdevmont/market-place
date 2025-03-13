@@ -322,11 +322,11 @@ $(document).ready(function() {
     });
 
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    // });
     
     $(document).on('click', '.tradeperson-user-approval', function () {
         let button = $(this);
@@ -335,6 +335,9 @@ $(document).ready(function() {
         $.ajax({
             url: '/tradeperson/tradeperson-toggle-approval/' + userId,
             type: 'POST',
+            data: {
+                _token: $('meta[name="csrf-token"]').attr("content"),
+            },
             success: function (response) {
                 if (response.success) {
                     // Toggle text and styles based on approval status

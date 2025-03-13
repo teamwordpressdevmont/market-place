@@ -77,7 +77,7 @@
                         @endif
                   </td>
                   <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">{{ $orderDetail->job_start_timeline }} - {{ $orderDetail->job_end_timeline }}</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-end"><a href="{{ route('joblisting.review-profile', $orderDetail->id) }}" class="bg-[#222222] text-white font-normal text-xs px-5 py-2 leading-[0] rounded-full hover:bg-[#24C500] transition">Review Profile</a></td>
+                  <td class="px-6 py-5 whitespace-nowrap text-end"><a href="{{ route('tradeperson.view', $orderDetail->id) }}" class="bg-[#222222] text-white font-normal text-xs px-5 py-2 leading-[0] rounded-full hover:bg-[#24C500] transition">Review Profile</a></td>
                   <td class="px-6 py-5 whitespace-nowrap text-xs text-right">
                      <button id="dropdownMenuIconButton" data-dropdown-toggle="dd-1" data-popper-placement="bottom-start" class="inline-flex justify-end w-fit ml-auto  px-5" type="button">
                            <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -151,7 +151,7 @@
                         <td class="px-6 py-5 whitespace-nowrap text-xs text-mat">{{ $orderDetail->order->tradeperson->phone }}</td>
                         {{-- <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">{{ ucfirst($orderDetail->package) }}</td> --}}
                         <td class="px-6 py-5 whitespace-nowrap text-end">
-                            <a href="{{ route('joblisting.review-profile', $orderDetail->id) }}" 
+                            <a href="{{ route('tradeperson.view', $orderDetail->id) }}" 
                                class="bg-[#222222] text-white font-normal text-xs px-5 py-2 leading-[0] rounded-full hover:bg-[#24C500] transition">
                                Review Profile
                             </a>

@@ -113,7 +113,7 @@
 
 <div>
 
-   {{-- <div class="bgShadow pt-15 pb-15">
+   <div class="bgShadow pt-15 pb-15">
         <div class="grid grid-cols-2 items-start">
             <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2">Pending Approval</h1>
             <div class="flex justify-end">
@@ -122,7 +122,7 @@
             </div>
 
         </div>
-    </div> --}}
+    </div>
 
    <div class="">
 
