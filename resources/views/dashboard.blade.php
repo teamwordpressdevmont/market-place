@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<div class="mt-5">
-    <div class="bgShadow pt-10 pb-8">
+<div class="mt-5 bgShadow">
+    <div class="pt-10 pb-8">
         <div class="grid grid-cols-1 mb-10 items-start">
         <div>
             <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2 text-mat">Welcome, DM</h1>
