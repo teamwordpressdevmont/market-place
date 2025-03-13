@@ -95,13 +95,13 @@
                                     <div id="userDropdown-action-{{ $order->id }}" class="z-10 bg-white divide-y rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom-end">
                                         <ul class="bg-white text-sm rounded-xl overflow-hidden">
                                             <li class="border-b border-[#d3d3d3]">
-                                                <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-mat hover:text-white text-mat">Edit</a>
+                                                <a href="{{ route('joblisting.edit', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-mat hover:text-white text-mat">Edit</a>
                                             </li>
                                             <li class="border-b border-[#d3d3d3]">
-                                                <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-mat hover:text-white text-mat">View</a>
+                                                <a href="{{ route('joblisting.view', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-mat hover:text-white text-mat">View</a>
                                             </li>
                                             <li class="">
-                                                <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-mat hover:text-white text-mat">Delete</a>
+                                                <a href="{{ route('joblisting.delete', $order->id) }}" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-mat hover:text-white text-mat">Delete</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -121,7 +121,7 @@
             <div class="rounded-xl md:p-5 md:px-5 px-4 py-4 bg-white border border-[#22222233]">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="md:text-lg text-md font-bold">Pending Approvals</h2>
-                    <a href="#" class="group text-[#ABABAB] text-xs flex items-center font-semibold hover:text-[#db4a2b] transition">
+                    <a href="http://localhost:8000/pending-approval" class="group text-[#ABABAB] text-xs flex items-center font-semibold hover:text-[#db4a2b] transition">
                     View All
                     <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-2 group-hover:stroke-[#db4a2b]">
                         <path d="M13 4.99988L1 4.99988" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
