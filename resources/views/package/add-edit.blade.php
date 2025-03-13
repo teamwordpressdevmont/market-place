@@ -21,11 +21,17 @@
             <div class="grid lg:grid-cols-2 grid-cols-1 items-start md:mb-10 mb-5 lg:gap-0 gap-4">
                 <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl text-mat"> {{ isset($package) ? 'Update Package' : 'Add Package' }}</h1>
                 <div class="flex md:justify-end justify-start self-start">
-                    <button type="submit" class="bg-secondary rounded-full px-4 py-2 text-sm text-white flex items-center justify-between w-40 border border-primary hover:bg-primary transition">Add New Plan<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="pl-1">
+                    {{--  <button type="submit" class="bg-secondary rounded-full px-4 py-2 text-sm text-white flex items-center justify-between w-40 border border-primary hover:bg-primary transition">Add New Plan<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="pl-1">
                         <path d="M11 7V15M15 11L7 11" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21C16.5228 21 21 16.5228 21 11Z" stroke="white" stroke-width="1.5"></path>
                     </svg>
-                    </button>
+                    </button>  --}}
+                    <a href="{{ route('package.addEdit') }}" class="lg:ml-auto bg-secondary rounded-full px-4 py-2 text-sm text-white flex items-center justify-between w-fit border border-primary hover:bg-primary transition gap-8">Add New Plan
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-current group-hover:text-white">
+                            <path d="M12 8V16M16 12L8 12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" stroke-width="1.5"></path>
+                        </svg>
+                    </a>
                 </div>
             </div>
             <form  action="{{ isset($package) && $package ? route('package.update', $package) : route('package.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">

@@ -85,7 +85,7 @@
                      </div>
                      <div class="flex flex-col gap-12 pr-7">
                         <div class="site_user_dropdown">
-                            <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-1" data-dropdown-placement="bottom-end">
+                            <div class="cursor-pointer w-[30px] ml-auto bg-[#eee] px-1 py-2 rounded-md flex justify-center items-center hover:bg-gray-300 transition" data-dropdown-toggle="userDropdown-action-1" data-dropdown-placement="bottom-end">
                                 <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -162,7 +162,7 @@
                      </div>
                      <div class="flex flex-col gap-12 pr-7">
                         <div class="site_user_dropdown">
-                            <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-2" data-dropdown-placement="bottom-end">
+                            <div class="cursor-pointer w-[30px] ml-auto bg-[#eee] px-1 py-2 rounded-md flex justify-center items-center hover:bg-gray-300 transition" data-dropdown-toggle="userDropdown-action-2" data-dropdown-placement="bottom-end">
                                 <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -239,7 +239,7 @@
                      </div>
                      <div class="flex flex-col gap-12 pr-7">
                         <div class="site_user_dropdown">
-                            <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-3" data-dropdown-placement="bottom-end">
+                            <div class="cursor-pointer w-[30px] ml-auto bg-[#eee] px-1 py-2 rounded-md flex justify-center items-center hover:bg-gray-300 transition" data-dropdown-toggle="userDropdown-action-3" data-dropdown-placement="bottom-end">
                                 <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -316,7 +316,7 @@
                      </div>
                      <div class="flex flex-col gap-12 pr-7">
                         <div class="site_user_dropdown">
-                            <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-4" data-dropdown-placement="bottom-end">
+                            <div class="cursor-pointer w-[30px] ml-auto bg-[#eee] px-1 py-2 rounded-md flex justify-center items-center hover:bg-gray-300 transition" data-dropdown-toggle="userDropdown-action-4" data-dropdown-placement="bottom-end">
                                 <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -396,7 +396,7 @@
                      </div>
                      <div class="flex flex-col gap-12 pr-7">
                         <div class="site_user_dropdown">
-                            <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-5" data-dropdown-placement="bottom-end">
+                            <div class="cursor-pointer w-[30px] ml-auto bg-[#eee] px-1 py-2 rounded-md flex justify-center items-center hover:bg-gray-300 transition" data-dropdown-toggle="userDropdown-action-5" data-dropdown-placement="bottom-end">
                                 <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -467,7 +467,7 @@
                      </div>
                      <div class="flex flex-col gap-12 pr-7">
                         <div class="site_user_dropdown">
-                            <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-6" data-dropdown-placement="bottom-end">
+                            <div class="cursor-pointer w-[30px] ml-auto bg-[#eee] px-1 py-2 rounded-md flex justify-center items-center hover:bg-gray-300 transition" data-dropdown-toggle="userDropdown-action-6" data-dropdown-placement="bottom-end">
                                 <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -545,7 +545,7 @@
                      </div>
                      <div class="flex flex-col gap-12 pr-7">
                         <div class="site_user_dropdown">
-                            <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-7" data-dropdown-placement="bottom-end">
+                            <div class="cursor-pointer w-[30px] ml-auto bg-[#eee] px-1 py-2 rounded-md flex justify-center items-center hover:bg-gray-300 transition" data-dropdown-toggle="userDropdown-action-7" data-dropdown-placement="bottom-end">
                                 <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -622,7 +622,7 @@
                      <div class="flex flex-col gap-12 pr-7">
 
                         <div class="site_user_dropdown">
-                            <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-8" data-dropdown-placement="bottom-end">
+                            <div class="cursor-pointer w-[30px] ml-auto bg-[#eee] px-1 py-2 rounded-md flex justify-center items-center hover:bg-gray-300 transition" data-dropdown-toggle="userDropdown-action-8" data-dropdown-placement="bottom-end">
                                 <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>

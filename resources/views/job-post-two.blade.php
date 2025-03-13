@@ -45,7 +45,7 @@
          </div>
          <div class="border-b border-[#e5e7eb] md:mb-8 mb-5 md:pb-8 pb-5">
             <h2 class="text-sm font-semibold">Contract Timeline</h2>
-            <div class="flex md:flex-row flex-col md:gap-9 gap-4 border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit w-100 md:px-9 px-5 py-4 rounded-2xl items-center"><span>Start Date: <strong class="text-mat font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-mat font-light">  18 Mar 2025</strong></span></div>
+            <div class="flex md:flex-row flex-col md:gap-9 gap-4 border-2 border-dashed bg-[#F4F4F4] text-[#ABABAB] text-xs mt-2 md:w-fit md:px-9 px-5 py-4 rounded-2xl items-center"><span>Start Date: <strong class="text-mat font-light">12 Feb 2025</strong></span><span>End Date: <strong class="text-mat font-light">  18 Mar 2025</strong></span></div>
          </div>
          <div class="border-b border-[#e5e7eb] md:mb-8 mb-5 md:pb-8 pb-5">
             <h2 class="text-sm font-semibold">Location</h2>

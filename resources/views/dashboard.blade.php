@@ -141,7 +141,7 @@
                     </ul>
                     </div>
                     <div id="default-styled-tab-content">
-                        <div class="min-h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] pr-3" id="styled-profile" role="tabpanel" aria-labelledby="proposal-tab">
+                        <div class="overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] pr-3" id="styled-profile" role="tabpanel" aria-labelledby="proposal-tab">
                         @if($pendingOrders->isNotEmpty())
                         @foreach($pendingOrders as $order)
 
