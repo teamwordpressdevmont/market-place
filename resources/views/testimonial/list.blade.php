@@ -19,10 +19,10 @@
         <div class="pt-10 pb-8">
             <div class="grid lg:grid-cols-2 grid-cols-1 items-start mb-8 lg:gap-0 gap-4">
                 <div class="">
-                    <h4 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2 text-mat">Testimonial List</h4>
+                    <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2 text-mat">Testimonial List</h1>
                     <p class="font-semibold text-sm text-mat">Subscription plans designed for tradespeople, offering exclusive tools, resources, and benefits to enhance business operations.</p>
                 </div>
-                <a href="{{ route('testimonial.addEdit') }}" class="lg:ml-auto bg-secondary rounded-full px-4 py-2 text-sm text-white flex items-center justify-between w-40 border border-primary hover:bg-primary transition">
+                <a href="{{ route('testimonial.addEdit') }}" class="lg:ml-auto bg-secondary rounded-full px-4 py-2 text-sm text-white flex items-center justify-between w-fit border border-primary hover:bg-primary transition gap-8">
                     Add New
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-current group-hover:text-white">
                             <path d="M12 8V16M16 12L8 12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
