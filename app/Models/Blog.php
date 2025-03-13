@@ -14,7 +14,7 @@ class Blog extends Model
     //
     use HasFactory;
 
-    protected $fillable = ['title', 'slug' , 'banner', 'description', 'excerpt', 'publish_by', 'publish_date', 'featured'];
+    protected $fillable = ['title', 'slug' , 'banner', 'short_description', 'content_heading', 'description', 'excerpt', 'summary', 'publish_by', 'publish_date', 'featured'];
 
     
     public function user()
