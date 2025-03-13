@@ -1,45 +1,47 @@
 @extends('layouts.app')
 @section('content')
-<div class="mt-5">
-<div class="bgShadow pt-10 pb-8">
+<div class="mt-5 bgShadow">
+<div class=" pt-10 pb-8">
    <div class="grid grid-cols-1 mb-6 items-start">
       <div>
          <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2">Job Management</h1>
          <p class="font-semibold text-sm text-mat">Here is your listings statistic report from January 05 - Feburary 05.</p>
       </div>
    </div>
-   <div class="flex justify-between items-start">
+   <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
       <div class="relative">
-         <form id="searchForm" method="GET" action="{{ route('joblisting.list') }}" class="relative flex md:w-[450px] w-full">
+         <form id="searchForm" method="GET" action="{{ route('joblisting.list') }}" class="relative flex  mb-5 md:w-96 w-full">
             <input type="text" name="search" value="{{ request('search') }}" id="table-search" class="rounded-tl-full rounded-bl-full bg-white text-[#222222] placeholder-[#222222] block flex-1 text-xs px-5" placeholder="Search for job">
-            <button type="submit" class="bg-secondary cursor-pointer inset-y-0 right-0 px-4 py-3 text-white text-xs border border-secondary hover:bg-primary transition rounded-tr-full rounded-br-full w-[120px]">Search</button>
-            <div class="input-group-append absolute top-[10px] right-[130px]">
+            <button type="submit" class="bg-secondary cursor-pointer inset-y-0 right-0 px-4 py-2  text-white border border-primary hover:bg-primary transition rounded-tr-full rounded-br-full">Search</button>
+            <div class="input-group-append absolute top-[13px] right-[100px]">
                <span class="input-group-text close-icon" style="cursor: pointer; display: none;">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="13px" height="20px">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="15px" height="20px">
                      <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"></path>
                   </svg>
                </span>
             </div>
          </form>
       </div>
-      <div class="relative">
-         <span class="text-sm font-bold mr-3">Sort by:</span>
-         <button id="dropdownDefaultButton" class="font-light text-xs bg-white text-[#ABABAB] border border-[#d3d3d3] text-center inline-flex items-center rounded-full px-3 py-1.5 w-[163px] justify-between">
-             all
-         </button>
-         <!-- Dropdown menu -->
-         <div id="dropdown" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden">
-             <ul class="bg-white text-sm rounded-xl overflow-hidden">
-                 @foreach ($OrderStatus as $status)
-                 <li class="{{ !$loop->last ? 'border-b border-[#d3d3d3]' : '' }}">
-                     <a href="javascript:void(0)" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222] order-status-filter" data-status="{{ $status->id }}">
-                         {{ $status->status }}
-                     </a>
-                 </li>
-                 @endforeach
-             </ul>
+      <div class="flex lg:justify-end">
+         <div class="relative">
+            <span class="text-sm font-bold mr-3">Sort by:</span>
+            <button id="dropdownDefaultButton" class="font-light text-xs bg-white text-[#ABABAB] border border-[#d3d3d3] text-center inline-flex items-center rounded-full px-3 py-1.5 w-[163px] justify-between">
+               all
+            </button>
+            <!-- Dropdown menu -->
+            <div id="dropdown" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden">
+               <ul class="bg-white text-sm rounded-xl overflow-hidden">
+                  @foreach ($OrderStatus as $status)
+                  <li class="{{ !$loop->last ? 'border-b border-[#d3d3d3]' : '' }}">
+                        <a href="javascript:void(0)" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222] order-status-filter" data-status="{{ $status->id }}">
+                           {{ $status->status }}
+                        </a>
+                  </li>
+                  @endforeach
+               </ul>
+            </div>
          </div>
-     </div>
+      </div>
    </div>
 </div>
 <div class="rounded-xl pt-5 bg-white border border-[#22222233] h-fit">
@@ -121,7 +123,7 @@
                       </ul>
                   </div>  --}}
                     <div class="site_user_dropdown">
-                        <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-{{ $order->id }}" data-dropdown-placement="bottom-end">
+                        <div class="cursor-pointer w-[30px] ml-auto bg-[#eee] px-1 py-2 rounded-md flex justify-center items-center hover:bg-gray-300 transition" data-dropdown-toggle="userDropdown-action-{{ $order->id }}" data-dropdown-placement="bottom-end">
                             <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>

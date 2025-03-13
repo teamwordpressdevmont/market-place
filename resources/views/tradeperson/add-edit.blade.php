@@ -16,7 +16,7 @@
     @endif
 
         <div class="mb-6">
-            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Edit Tradeperson</h1>
+            <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2 text-mat">Edit Tradeperson</h1>
         </div>
         <div class="">
 
