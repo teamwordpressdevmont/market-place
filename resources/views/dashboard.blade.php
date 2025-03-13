@@ -166,7 +166,7 @@
                             <p class="text-center text-gray-500 p-5">No pending orders found.</p>
                         @endif
                         </div>
-                        <div class="min-h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] hidden pr-3" id="styled-settings" role="tabpanel" aria-labelledby="reviews-tab">
+                        <div class="overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] hidden pr-3" id="styled-settings" role="tabpanel" aria-labelledby="reviews-tab">
                         @if($pendingOrders->isNotEmpty())
                         @foreach($pendingOrders as $order)
 
