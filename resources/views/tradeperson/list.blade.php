@@ -3,7 +3,7 @@
 
 <div class="bgShadow pt-10">
     <div class="flex flex-col md:flex-row gap-4 mb-6">
-        <h4 class="font-semibold text-4xl">Trade Person</h4>
+        <h4 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2 text-mat">Trade Person</h4>
     </div>
     <form id="searchForm" method="GET" action="{{ route('tradeperson.list') }}" class="relative flex  mb-5 md:w-96 w-full">
         <input type="text" name="search" value="{{ request('search') }}" id="table-search" class="rounded-tl-full rounded-bl-full bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm px-5" placeholder="Search for items">
@@ -95,7 +95,7 @@
                                 </a>
                             </div>  --}}
                             <div class="site_user_dropdown">
-                                <div class="flex items-center cursor-pointer justify-end" data-dropdown-toggle="userDropdown-action-{{ $trade->id }}" data-dropdown-placement="bottom-end">
+                                <div class="cursor-pointer w-[30px] ml-auto bg-[#eee] px-1 py-2 rounded-md flex justify-center items-center hover:bg-gray-300 transition" data-dropdown-toggle="userDropdown-action-{{ $trade->id }}" data-dropdown-placement="bottom-end">
                                     <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                         <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
