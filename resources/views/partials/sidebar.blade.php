@@ -20,7 +20,7 @@
         </a>
       </li>
       <li>
-      @php
+        @php
             $isCategoryActive = Request::is('categories') || Request::is('categories/add');
         @endphp
           <button type="button" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white w-full {{ $isCategoryActive ? 'bg-primary' : '' }}" aria-controls="dropdown-1" data-collapse-toggle="dropdown-1">
@@ -47,14 +47,18 @@
           </ul>
       </li>               
       <li>
-            <button type="button" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white w-full" aria-controls="dropdown-2" data-collapse-toggle="dropdown-2">
+
+         @php
+            $isCategoryActive = Request::is('blog') || Request::is('blog/add');
+        @endphp
+            <button type="button" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white w-full {{ $isCategoryActive ? 'bg-primary' : '' }}" aria-controls="dropdown-2" data-collapse-toggle="dropdown-2">
             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6 22H18C19.1046 22 20 21.1046 20 20V9.82843C20 9.29799 19.7893 8.78929 19.4142 8.41421L13.5858 2.58579C13.2107 2.21071 12.702 2 12.1716 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M13 2.5V9H19" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8 17H15" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8 13H15" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8 9H9" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+                <path d="M6 22H18C19.1046 22 20 21.1046 20 20V9.82843C20 9.29799 19.7893 8.78929 19.4142 8.41421L13.5858 2.58579C13.2107 2.21071 12.702 2 12.1716 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M13 2.5V9H19" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 17H15" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 13H15" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 9H9" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
 
                   <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap ">Blogs</span>
                   <svg class="w-3 h-3 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -71,7 +75,11 @@
             </ul>
       </li>
       <li>
-        <button type="button" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white w-full" aria-controls="dropdown-3" data-collapse-toggle="dropdown-3">
+
+        @php
+            $isCategoryActive = Request::is('testimonial') || Request::is('testimonial/add');
+        @endphp      
+        <button type="button" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white w-full {{ $isCategoryActive ? 'bg-primary' : '' }}" aria-controls="dropdown-3" data-collapse-toggle="dropdown-3">
         <svg fill="#ffffff" width="20px" height="20px" viewBox="-2 -2.5 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-message"><path d='M9.378 12H17a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1 1 1 0 0 1 1 1v3.013L9.378 12zM3 0h14a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-6.958l-6.444 4.808A1 1 0 0 1 2 18.006V14a2 2 0 0 1-2-2V3a3 3 0 0 1 3-3z'/></svg>
 
               <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap ">Testimonials</span>
@@ -90,10 +98,13 @@
       </li>
 
       <li>
-        <button type="button" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white w-full" aria-controls="dropdown-4" data-collapse-toggle="dropdown-4">
-        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M5.5 8.80835C5.5 8.80835 5 10.6111 5 13.5C5 16.3889 5.38889 18.9167 5.77778 19.2778C6.16667 19.6389 8.88889 20 12 20C15.1111 20 17.8333 19.6389 18.2222 19.2778C18.6111 18.9167 19 16.3889 19 13.5C19 10.6111 18.5 8.80835 18.5 8.80835M5.5 8.80835C6.65798 8.91328 9.19021 9 12 9C14.8098 9 17.342 8.91328 18.5 8.80835M5.5 8.80835C5.19265 8.7805 4.98211 8.75135 4.88889 8.72222C4.44444 8.58333 4 7.61111 4 6.5C4 5.38889 4.44444 4.41667 4.88889 4.27778C5.33333 4.13889 8.44444 4 12 4C15.5556 4 18.6667 4.13889 19.1111 4.27778C19.5556 4.41667 20 5.38889 20 6.5C20 7.61111 19.5556 8.58333 19.1111 8.72222C19.0179 8.75135 18.8074 8.7805 18.5 8.80835M10 13C10 13 10.5 12.5 12 12.5C13.5 12.5 14 13 14 13" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+       @php
+            $isCategoryActive = Request::is('package') || Request::is('package/add');
+        @endphp 
+        <button type="button" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white w-full {{ $isCategoryActive ? 'bg-primary' : '' }}" aria-controls="dropdown-4" data-collapse-toggle="dropdown-4">
+          <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.5 8.80835C5.5 8.80835 5 10.6111 5 13.5C5 16.3889 5.38889 18.9167 5.77778 19.2778C6.16667 19.6389 8.88889 20 12 20C15.1111 20 17.8333 19.6389 18.2222 19.2778C18.6111 18.9167 19 16.3889 19 13.5C19 10.6111 18.5 8.80835 18.5 8.80835M5.5 8.80835C6.65798 8.91328 9.19021 9 12 9C14.8098 9 17.342 8.91328 18.5 8.80835M5.5 8.80835C5.19265 8.7805 4.98211 8.75135 4.88889 8.72222C4.44444 8.58333 4 7.61111 4 6.5C4 5.38889 4.44444 4.41667 4.88889 4.27778C5.33333 4.13889 8.44444 4 12 4C15.5556 4 18.6667 4.13889 19.1111 4.27778C19.5556 4.41667 20 5.38889 20 6.5C20 7.61111 19.5556 8.58333 19.1111 8.72222C19.0179 8.75135 18.8074 8.7805 18.5 8.80835M10 13C10 13 10.5 12.5 12 12.5C13.5 12.5 14 13 14 13" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
 
               <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap ">Package</span>
               <svg class="w-3 h-3 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -144,7 +155,7 @@
 
     </ul>
 
-    <a href="{{ route('logout') }}" class="text-primary bg-white hover:bg-primary hover:text-white font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none flex items-center group mt-auto">
+    <a href="{{ route('logout') }}" class="text-primary bg-white hover:bg-primary hover:text-white font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none flex items-center group mt-auto">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" class="stroke-current group-hover:text-white">
         <path d="M9.33333 2.06334C9.02866 2.02161 8.71702 2 8.4 2C4.86538 2 2 4.68629 2 8C2 11.3137 4.86538 14 8.4 14C8.71702 14 9.02866 13.9784 9.33333 13.9367" />
         <path d="M14.0002 7.99998L7.3335 7.99998M14.0002 7.99998C14.0002 7.53316 12.6706 6.661 12.3335 6.33331M14.0002 7.99998C14.0002 8.4668 12.6706 9.33896 12.3335 9.66665" stroke-linecap="round" stroke-linejoin="round"/>
