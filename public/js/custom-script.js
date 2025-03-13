@@ -300,4 +300,26 @@ $(document).ready(function() {
         $(this).closest(".image-container").remove();
     });
 
+
+
+
+    function toggleIconField() {
+        const selectedValue = $('#parent_id').val();
+
+        if (selectedValue && selectedValue.startsWith('child_id_')) {
+            $('#iconField').show(); // Show icon field for child categories
+        } else {
+            $('#iconField').hide(); // Hide for parent categories
+        }
+    }
+
+    // Initial check
+    // toggleIconField();
+
+    // On dropdown change
+    $(document).on('change', '#parent_id', function () {
+        toggleIconField();
+    });
+    
+
 });

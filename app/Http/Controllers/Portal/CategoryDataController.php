@@ -80,6 +80,7 @@ class CategoryDataController extends Controller
         try {
             $category = Category::findOrFail($id); 
             $allCategories = Category::all();
+        
             
             if (!$category) {
                 return redirect()->route('category.list')->with('error', 'Category not found.');
