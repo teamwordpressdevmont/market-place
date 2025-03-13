@@ -112,8 +112,8 @@
 </style>
 
 
-<div class="mt-5">
-   <div class="bgShadow pt-10 pb-8">
+<div class="mt-5 bgShadow">
+   <div class=" pt-10 pb-8">
       <div class="grid grid-cols-1 xl:grid-cols-2 lg:gap-8 gap-5 items-end">
          <div class="">
             <div class="flex items-center gap-2 bg-white rounded-full text-sm w-fit pr-4">
@@ -144,7 +144,7 @@
             <p class="text-[#ABABAB] text-xs">Published on: {{ $OrderDetail->created_at->format('M d, Y') }}</p>
             <div class="mt-4 flex gap-4 items-center">
                <h2 class="text-xs font-bold text-mat">Skills</h2>
-               <span class="bg-[#ABABAB] text-white text-gray-700 px-4 py-1 leading[0] rounded-full text-xs hover:bg-secondary transition">{{ $OrderDetail->order->categories->pluck('name')->join(', ') }}</span>
+               <span class="bg-[#ABABAB] text-white text-gray-700 px-4 py-1 leading[0] rounded-full text-xs transition">{{ $OrderDetail->order->categories->pluck('name')->join(', ') }}</span>
             </div>
          </div>
          <div class="flex md:items-end md:gap-12 gap-5 xl:justify-end md:flex-row flex-col items-left">
