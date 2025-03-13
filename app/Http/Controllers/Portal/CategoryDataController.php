@@ -15,8 +15,9 @@ class CategoryDataController extends Controller
 {
     public function addEdit()
     {
-        $allCategories = Category::whereNull('parent_id')->get(); // Only fetch parent categories
-        return view('category.add-edit', compact('allCategories'));
+        $allCategories = Category::whereNull('parent_id')->get();
+        $selectedCategories = '';
+        return view('category.add-edit', compact('allCategories', 'selectedCategories'));
 
     }
 
@@ -29,6 +30,10 @@ class CategoryDataController extends Controller
             'icon'              => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'parent_id'=> 'nullable|exists:categories,id',
         ]);
+
+        if ($validatedData['parent_id'] === null) { 
+            $validatedData['icon'] = null;
+        }
 
         DB::beginTransaction();
         try {
@@ -79,13 +84,14 @@ class CategoryDataController extends Controller
     {
         try {
             $category = Category::findOrFail($id); 
-            $allCategories = Category::all();
+            $allCategories = Category::whereNull('parent_id')->orWhere('parent_id', 0)->get();
+            $selectedCategories = $category->parent_id;
             
             if (!$category) {
                 return redirect()->route('category.list')->with('error', 'Category not found.');
             }
 
-            return view('category.add-edit', compact('category', 'allCategories'));
+            return view('category.add-edit', compact('category', 'allCategories', 'selectedCategories'));
         } catch (\Exception $e) {
             return redirect()->route('category.list')->with('error', 'Something went wrong.');
         }
@@ -118,6 +124,15 @@ class CategoryDataController extends Controller
                 $iconPath = $image->storeAs('category-images', $imageName, 'public');
                 $validatedData['icon'] = $imageName;
             }
+
+
+            //dd($validatedData['parent_id']);
+
+            if ($validatedData['parent_id'] === null) { 
+                $validatedData['icon'] = null;
+            }
+            
+            
             
 
             $category->update($validatedData);

@@ -300,4 +300,67 @@ $(document).ready(function() {
         $(this).closest(".image-container").remove();
     });
 
+
+
+
+    function toggleIconField() {
+        const selectedValue = $('#parent_id').val();
+
+        if (selectedValue) {
+            $('#iconField').show(); // Show icon field for child categories
+        } else {
+            $('#iconField').hide(); // Hide for parent categories
+        }
+    }
+
+    // Initial check
+    // toggleIconField();
+
+    // On dropdown change
+    $(document).on('change', '#parent_id', function () {
+        toggleIconField();
+    });
+
+
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    // });
+    
+    $(document).on('click', '.tradeperson-user-approval', function () {
+        let button = $(this);
+        let userId = button.data('id');
+    
+        $.ajax({
+            url: '/tradeperson/tradeperson-toggle-approval/' + userId,
+            type: 'POST',
+            data: {
+                _token: $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                if (response.success) {
+                    // Toggle text and styles based on approval status
+                    if (response.user_approved) {
+                        button.removeClass('bg-red-100 text-red-800')
+                              .addClass('bg-green-100 text-green-800')
+                              .text('Approved');
+                    } else {
+                        button.removeClass('bg-green-100 text-green-800')
+                              .addClass('bg-red-100 text-red-800')
+                              .text('Disapproved');
+                    }
+                } else {
+                    alert('Failed to update status.');
+                }
+            },
+            error: function (xhr) {
+                alert('Error: ' + xhr.status + ' - ' + xhr.responseText);
+            }
+        });
+    });
+    
+
+    
+
 });

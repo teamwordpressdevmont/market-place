@@ -54,7 +54,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-            <div class="site_field_col">
+            <div class="site_field_col" id="iconField" style="{{ isset($category) && $category->parent_id ? 'display: block;' : 'display: none;' }}">
                 <label class="block text-sm font-bold text-mat">Icon</label>
                 <div class="mt-4 grid grid-cols-1">
                     <input type="file" name="icon" accept="image/*" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm focus:outline-none">
@@ -81,10 +81,12 @@
                             class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3">
                         <option value="">Select Parent Category</option>
                         @foreach($allCategories as $parentCategory)
-                            <option value="{{ $parentCategory->id }}" {{ (isset($category) && $parentCategory->id == $category->parent_category_id) ? 'selected' : '' }}>
+                            <option value="{{ $parentCategory->id }}"
+                                {{ $parentCategory->id == $selectedCategories ? 'selected' : '' }}>
                                 {{ $parentCategory->name }}
-                            </option> <!-- Pre-select if editing -->
+                            </option>
                         @endforeach
+                    
                     </select>
                 </div>
             </div>

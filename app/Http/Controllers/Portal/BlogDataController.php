@@ -22,7 +22,11 @@ class BlogDataController extends Controller
             'title'         => 'required|string|max:255',
             'slug'          => 'required|string|max:255',
             'banner'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'short_description'   => 'nullable|string',
+            'content_heading'         => 'nullable|string',
             'description'   => 'nullable|string',
+            'summary'   => 'nullable|string',
+            'excerpt'   => 'nullable|string',
             'featured'      => 'nullable|string',
             'publish_by'    => 'nullable|string|max:255',
             'publish_date'  => 'nullable|date',
@@ -30,7 +34,7 @@ class BlogDataController extends Controller
 
         DB::beginTransaction();
         try {
-            $validatedData = $request->only(['title', 'slug' , 'banner', 'description', 'featured', 'publish_by', 'publish_date']);
+            $validatedData = $request->only(['title', 'slug' , 'banner', 'short_description', 'content_heading', 'description', 'summary', 'excerpt', 'featured', 'publish_by', 'publish_date']);
 
             if ($request->filled('publish_date')) {
                 $validatedData['publish_date'] = Carbon::parse($request->publish_date)->format('Y-m-d');
@@ -99,20 +103,24 @@ class BlogDataController extends Controller
     {
 
         $request->validate([
-            'title'        => 'required|string|max:255',
+            'title'         => 'required|string|max:255',
             'slug'          => 'required|string|max:255',
-            'banner'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'description'      => 'nullable|string',
+            'banner'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'short_description'   => 'nullable|string',
+            'content_heading'         => 'nullable|string',
+            'description'   => 'nullable|string',
+            'summary'   => 'nullable|string',
+            'excerpt'   => 'nullable|string',
             'featured'      => 'nullable|string',
-            'publish_by'   => 'nullable|string|max:255',
-            'publish_date' => 'nullable|date',
+            'publish_by'    => 'nullable|string|max:255',
+            'publish_date'  => 'nullable|date',
         ]);
 
         DB::beginTransaction();
         try {
 
             $blog = Blog::findOrFail($id);
-            $validatedData = $request->only(['title', 'slug' , 'banner', 'description', 'featured', 'publish_by', 'publish_date']);
+            $validatedData = $request->only(['title', 'slug' , 'banner', 'short_description', 'content_heading', 'description', 'summary', 'excerpt', 'featured', 'publish_by', 'publish_date']);
 
             if ($request->filled('publish_date')) {
                 $validatedData['publish_date'] = Carbon::parse($request->publish_date)->format('Y-m-d');
