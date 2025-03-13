@@ -21,11 +21,11 @@ class Blog extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    
+    // December 23rd, 2024
     protected function publishDate(): Attribute
     {
-        return Attribute::make(
-            get: fn ($value) => Carbon::parse($value)->translatedFormat('d. F Y'),
-        );
+         return Attribute::make(
+                get: fn ($value) => Carbon::parse($value)->translatedFormat('F jS, Y'),
+            );  
     }
 }

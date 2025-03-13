@@ -16,8 +16,11 @@ return new class extends Migration
             $table->string('title');
             $table->string( 'slug' )->unique();
             $table->string('banner')->nullable(); // Image URL
+            $table->text('short_description')->nullable(); 
+            $table->string('content_description')->nullable(); 
             $table->text('description')->nullable();
             $table->text('excerpt')->nullable();
+            $table->text('summary')->nullable();
             $table->string('publish_by')->nullable();
             $table->date('publish_date')->nullable();
             $table->string('featured')->nullable();

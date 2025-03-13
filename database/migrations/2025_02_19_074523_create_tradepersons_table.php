@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('address');
             $table->json('portfolio')->nullable(); 
             $table->string('certificate')->nullable();
+            $table->string('banner')->nullable();
+            $table->integer('featured')->nullable();
             $table->timestamps();
         });
     }
