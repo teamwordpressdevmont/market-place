@@ -1,4 +1,4 @@
-<aside id="dashboard-sidedebar" class="site_dashboard_sidebar fixed sm:top-5! sm:left-5! max-sm:h-full bottom-5 z-40 w-64 transition-transform -translate-x-full bg-[#222222]  sm:translate-x-0 sm:rounded-xl" aria-label="Sidebar">
+<aside id="dashboard-sidedebar" class="site_dashboard_sidebar fixed sm:top-5! sm:left-5! max-sm:h-full bottom-5 z-40 w-64 transition-transform -translate-x-full bg-[#222222]  md:translate-x-0 sm:rounded-xl" aria-label="Sidebar">
   <div class="h-full px-3 py-4 overflow-y-auto flex flex-col">
 
     <a href="" class="flex mt-7 mb-10">
