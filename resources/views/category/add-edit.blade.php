@@ -81,18 +81,12 @@
                             class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3">
                         <option value="">Select Parent Category</option>
                         @foreach($allCategories as $parentCategory)
-                            @php
-                                // Determine if the category is a parent or child
-                                $isChild = !is_null($parentCategory->parent_id);
-                                $optionValue = $isChild ? 'child_id_' . $parentCategory->id : 'parent_id_' . $parentCategory->id;
-                            @endphp
-                             @if(!isset($category) || $parentCategory->id != $category->id)
-                                <option value="{{ $optionValue }}"
-                                    {{ (isset($category) &&  $optionValue) ? 'selected' : '' }}>
-                                    {{ $parentCategory->name }}
-                                </option>
-                            @endif
+                            <option value="{{ $parentCategory->id }}"
+                                {{ $parentCategory->id == $selectedCategories ? 'selected' : '' }}>
+                                {{ $parentCategory->name }}
+                            </option>
                         @endforeach
+                    
                     </select>
                 </div>
             </div>
