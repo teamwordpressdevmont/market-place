@@ -8,7 +8,7 @@
          <p class="font-semibold text-sm text-mat">Here is your listings statistic report from January 05 - Feburary 05.</p>
       </div>
    </div>
-   <div class="flex justify-between items-start">
+   <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
       <div class="relative">
          <form id="searchForm" method="GET" action="{{ route('joblisting.list') }}" class="relative flex  mb-5 md:w-96 w-full">
             <input type="text" name="search" value="{{ request('search') }}" id="table-search" class="rounded-tl-full rounded-bl-full bg-white text-[#222222] placeholder-[#222222] block flex-1 text-xs px-5" placeholder="Search for job">
@@ -22,24 +22,26 @@
             </div>
          </form>
       </div>
-      <div class="relative">
-         <span class="text-sm font-bold mr-3">Sort by:</span>
-         <button id="dropdownDefaultButton" class="font-light text-xs bg-white text-[#ABABAB] border border-[#d3d3d3] text-center inline-flex items-center rounded-full px-3 py-1.5 w-[163px] justify-between">
-             all
-         </button>
-         <!-- Dropdown menu -->
-         <div id="dropdown" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden">
-             <ul class="bg-white text-sm rounded-xl overflow-hidden">
-                 @foreach ($OrderStatus as $status)
-                 <li class="{{ !$loop->last ? 'border-b border-[#d3d3d3]' : '' }}">
-                     <a href="javascript:void(0)" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222] order-status-filter" data-status="{{ $status->id }}">
-                         {{ $status->status }}
-                     </a>
-                 </li>
-                 @endforeach
-             </ul>
+      <div class="flex lg:justify-end">
+         <div class="relative">
+            <span class="text-sm font-bold mr-3">Sort by:</span>
+            <button id="dropdownDefaultButton" class="font-light text-xs bg-white text-[#ABABAB] border border-[#d3d3d3] text-center inline-flex items-center rounded-full px-3 py-1.5 w-[163px] justify-between">
+               all
+            </button>
+            <!-- Dropdown menu -->
+            <div id="dropdown" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden">
+               <ul class="bg-white text-sm rounded-xl overflow-hidden">
+                  @foreach ($OrderStatus as $status)
+                  <li class="{{ !$loop->last ? 'border-b border-[#d3d3d3]' : '' }}">
+                        <a href="javascript:void(0)" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222] order-status-filter" data-status="{{ $status->id }}">
+                           {{ $status->status }}
+                        </a>
+                  </li>
+                  @endforeach
+               </ul>
+            </div>
          </div>
-     </div>
+      </div>
    </div>
 </div>
 <div class="rounded-xl pt-5 bg-white border border-[#22222233] h-fit">
