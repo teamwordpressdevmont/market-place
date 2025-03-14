@@ -29,32 +29,45 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                         <div class="">
-                            <label for="business_name" class="block text-sm/6 font-medium text-gray-900">Business Name</label>
+                            <label for="first_name" class="block text-sm/6 font-medium text-gray-900">First Name</label>
                             <div class="mt-2">
-                                    <input type="text" name="business_name" id="business_name" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3" placeholder="janesmith" value="{{ old('business_name', $tradeperson->business_name ?? '') }}">
+                                <input type="text" name="first_name" id="first_name" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3" placeholder="first name" value="{{ old('first_name', $tradeperson->first_name ?? '') }}">
                             </div>
                         </div>
                         <div class="">
-                            <label for="user_id" class="block text-sm/6 font-medium text-gray-900">User</label>
-                            <div class="mt-2 grid grid-cols-1">
-                                <select id="user_id" name="user_id" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3">
-                                    <option value="" disabled selected>Select a User</option>
-                                    @foreach($users as $user)
-                                        <option value="{{ $user->id }}" {{ isset($tradeperson) && $tradeperson->user_id == $user->id ? 'selected' : '' }}>
-                                            {{ $user->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                            <label for="last_name" class="block text-sm/6 font-medium text-gray-900">Last Name</label>
+                            <div class="mt-2">
+                                <input type="text" name="last_name" id="last_name" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3" placeholder="first name" value="{{ old('last_name', $tradeperson->last_name ?? '') }}">
                             </div>
                         </div>
 
                     </div>
-
                     <div class="col-span-full mb-5">
-                        <label for="description" class="block text-sm/6 font-medium text-gray-900">Description</label>
+                        <label for="user_id" class="block text-sm/6 font-medium text-gray-900">User</label>
                         <div class="mt-2 rou bg-white">
-                            <textarea name="description" id="content" rows="3" class="textarea_editor block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                              {{ old('description', $tradeperson->description ?? '') }}
+                            <select id="user_id" name="user_id" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3">
+                                <option value="" disabled selected>Select a User</option>
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id }}" {{ isset($tradeperson) && $tradeperson->user_id == $user->id ? 'selected' : '' }}>
+                                        {{ $user->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-span-full mb-5">
+                        <label for="about_me" class="block text-sm/6 font-medium text-gray-900">About me</label>
+                        <div class="mt-2 rou bg-white">
+                            <textarea name="about_me" id="content" rows="3" class="textarea_editor block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                              {{ old('about_me', $tradeperson->about_me ?? '') }}
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-span-full mb-5">
+                        <label for="service" class="block text-sm/6 font-medium text-gray-900">Service</label>
+                        <div class="mt-2 rou bg-white">
+                            <textarea name="service" id="content" rows="3" class="textarea_editor block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                              {{ old('service', $tradeperson->service ?? '') }}
                             </textarea>
                         </div>
                     </div>

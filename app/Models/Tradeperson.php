@@ -12,7 +12,7 @@ class Tradeperson extends Model
 
     protected $table = "tradepersons";
 
-    protected $fillable = ['user_id', 'first_name', 'last_name', 'nick_name', 'gender', 'phone', 'city', 'postal_code', 'latitude', 'longitude','about_me', 'address', 'portfolio', 'certificate' ,'banner', 'featured'];
+    protected $fillable = ['user_id', 'first_name', 'last_name', 'nick_name', 'gender', 'phone', 'city', 'postal_code', 'latitude', 'longitude','about_me', 'service', 'address', 'portfolio', 'certificate' ,'banner', 'featured'];
 
 
     public function user()

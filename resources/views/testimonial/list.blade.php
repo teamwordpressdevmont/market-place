@@ -30,7 +30,7 @@
                         </svg>
                 </a>
             </div>
-            <form id="searchForm" method="GET" action="{{ route('testimonial.list') }}" class="relative flex  mb-5 md:w-96 w-full mb-8">
+            <form id="searchForm" method="GET" action="{{ route('testimonial.list') }}" class="relative flex md:w-96 w-full mb-8">
                 <input type="text" name="search" value="{{ request('search') }}" id="table-search" class="rounded-tl-full rounded-bl-full bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm px-5" placeholder="Search for items">
                 <button type="submit" class="bg-secondary cursor-pointer inset-y-0 right-0 px-4 py-2  text-white border border-primary hover:bg-primary transition rounded-tr-full rounded-br-full">Search</button>
                 <div class="input-group-append absolute top-[13px] right-[100px]">

@@ -296,7 +296,7 @@
                   </div>
                   <div class="mt-6 rounded-lg text-xs text-[#ABABAB]" id="styled-settings" role="tabpanel" aria-labelledby="reviews-tab">
                      <div>
-                        <p class="mb-6 flex gap-2">
+                        {{-- <p class="mb-6 flex gap-2">
                            <span>
                               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                  <circle cx="8.00065" cy="7.99998" r="6.66667" stroke="#222222"></circle>
@@ -316,7 +316,7 @@
                            Verified by DINBYGGEMARKED
                         </p>
                         <h4 class="mb-3 font-semibold text-mat">Services</h4>
-                        <p class="mb-5">Bathroom Fitter, Electrician, Guttering Installer, Fencer, Plumber</p>
+                        <p class="mb-5">Bathroom Fitter, Electrician, Guttering Installer, Fencer, Plumber</p> --}}
                         <h4 class="mb-3 font-semibold text-mat">About Brian Simmons</h4>
                         <p class="mb-5">{{ $OrderDetail->order->tradeperson->about_me }}
                         </p>
