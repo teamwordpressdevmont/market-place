@@ -6,18 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-<<<<<<< HEAD
 use Laravel\Passport\RefreshToken;
 use Illuminate\Support\Facades\Password;
 use Laravel\Passport\Token;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Support\Facades\Crypt;
-=======
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Customer;
 use App\Models\Tradeperson;
->>>>>>> 5706b76c6c9227d5a9ecff31d21da677eab730d1
+use Illuminate\Validation\Rules;
 
 
 class AuthController extends Controller
@@ -303,10 +301,8 @@ class AuthController extends Controller
     
             // Encrypt the user's email before including it in the reset URL
             $encryptedEmail = Crypt::encryptString($user->email);
-
             // Encode the encrypted email to URL-safe Base64
             $encodedEmail = base64_encode($encryptedEmail);
-
             // Replace '+' and '/' with URL-safe characters
             $encodedEmail = strtr($encodedEmail, '+/', '-_');
 
@@ -330,38 +326,35 @@ class AuthController extends Controller
 
     }
 
-
     public function resetPassword(Request $request)
     {
-        // Validate email, token, password, and password confirmation
         $request->validate([
-            'email' => 'required|string',
-            'token' => 'required|string',
-            'password' => 'required|string|min:8',
-            'password_confirmation' => 'required|string|min:8',
+            'token' => 'required',
+            'email' => 'required',
+            'password' => 'required',
         ]);
 
-        // Check if passwords match
-        if ($request->password !== $request->password_confirmation) {
+        // Manually check if password and password_confirmation match
+        if ($request->input('password') !== $request->input('password_confirmation')) {
             return response()->json([
-                'message' => 'The password and confirmation password do not match.'
-            ], 400); // Return error if passwords don't match
+                'message' => 'Password confirmation does not match.',
+            ], 400);
         }
 
         // Decrypt the email from the request (the email is encrypted in the URL)
 
-        // $g = Crypt::decryptString($request->input('email'));
-        // dd($g);
-        
+        // Step 1: Replace URL-safe characters with the original Base64 characters
+        $encodedEmail = strtr($request->email, '-_', '+/');
+        // Step 2: Decode the Base64 string
+        $encryptedEmail = base64_decode($encodedEmail);
+
         try {
-            $email = Crypt::decryptString($request->input('email'));
+            $email = Crypt::decryptString($encryptedEmail);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Invalid reset link or email.'
             ], 400);
         }
-
-        dd($request);
 
         // Get the token and password from the request
         $token = $request->input('token');
@@ -376,14 +369,16 @@ class AuthController extends Controller
             ],
             function ($user) use ($password) {
                 // Hash the new password and save it
-                $user->password = bcrypt($password);
+                $user->password = Hash::make($request->password);
                 $user->save();
             }
         );
 
         // Check response and return appropriate message
         if ($response == Password::PASSWORD_RESET) {
-            return response()->json(['message' => 'Password has been successfully updated.'], 200);
+            return response()->json([
+                'message' => 'Password reset successfully.',
+            ]);
         }
 
         // Handle invalid or expired token
@@ -392,8 +387,10 @@ class AuthController extends Controller
         }
 
         // Handle other potential errors
-        return response()->json(['message' => 'Failed to update password.'], 400);
+        return response()->json(['message' => 'Failed to update password.'], 200);
     }
+
+
 
 
 
