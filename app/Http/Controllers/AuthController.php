@@ -359,6 +359,8 @@ class AuthController extends Controller
         // Get the token and password from the request
         $token = $request->input('token');
         $password = $request->input('password');
+        $hashedPassword = Hash::make($request->password);
+
 
         // Attempt to reset the password using the token
         $response = Password::reset(
@@ -367,12 +369,13 @@ class AuthController extends Controller
                 'password' => $password,
                 'token' => $token,
             ],
-            function ($user) use ($password) {
+            function ($user) use ($hashedPassword) {
                 // Hash the new password and save it
-                $user->password = Hash::make($request->password);
+                $user->password = $hashedPassword;
                 $user->save();
             }
         );
+
 
         // Check response and return appropriate message
         if ($response == Password::PASSWORD_RESET) {

@@ -40,7 +40,6 @@ class CustomResetPasswordNotification extends ResetPasswordNotification
 
         $resetLink = url(config('app.url') . '?email=' . urlencode($this->encodedEmail) . '&token=' . $this->token);
 
-
         return (new MailMessage)
             ->subject('Reset Password Notification')
             ->line('You are receiving this email because we received a password reset request for your account.')
