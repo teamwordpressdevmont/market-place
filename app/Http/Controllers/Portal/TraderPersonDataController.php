@@ -182,22 +182,23 @@ class TraderPersonDataController extends Controller
 
     public function view($id)
     {
-        // $tradeperson = Tradeperson::findOrFail($id);
-        // $tradepersonDetail = TradepersonDetails::where('tradeperson_id', $id)->first();
-        // return view('tradeperson.view', compact('tradeperson', 'tradepersonDetail'));
         try {
-            $OrderDetail = OrderDetail::with('order.review.tradeperson' , 'order.tradeperson.categories' , 'order.tradeperson.user')->findOrFail($id);
-            return view('tradeperson.view', compact('OrderDetail'));
-        } catch (\Throwable $th) {
+
+            $tradeperson = Tradeperson::with('categories' , 'user')->findOrFail($id);
+            return view('tradeperson.view', compact('tradeperson'));
+
+        } 
+        catch (\Throwable $th) {
+
             dd($th->getMessage());
             return redirect()->back()->with('success', 'Something went wrong.');
+            
         }
+       
     }
 
     public function tradepersonToggleApproval($id)
     {
-        \Log::info('Approval toggle route hit for user ID: ' . $id);
-
         $user = User::find($id);
         if ($user) {
             $user->user_approved = !$user->user_approved;
