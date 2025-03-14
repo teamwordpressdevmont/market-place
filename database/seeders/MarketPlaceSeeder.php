@@ -672,28 +672,28 @@ class MarketPlaceSeeder extends Seeder
 
 
        // Tradepersons Details Open
-      $tradepersonsdetails = [
-        [
-            'tradeperson_id' => 3,  
-            'about'          => 'Certified plumbing expert offering emergency repair services.',
-            'services'       => 'Pipe fitting, leakage repair, water supply solutions.',
-            'portfolio'      => json_encode(['sophie-watersafe1.jpg', 'sophie-watersafe2.jpg']),
-            'certifications' => json_encode(['cert-sophie-watersafe.pdf']),
-            'created_at'     => Carbon::now(),
-            'updated_at'     => Carbon::now(),
-        ],
-        [
-            'tradeperson_id' => 4,  
-            'about'          => 'Specialist in commercial plumbing solutions and pipe fitting.',
-            'services'       => 'Industrial pipe installation, heating systems, and maintenance.',
-            'portfolio'      => json_encode(['david-pipes-pro1.jpg', 'david-pipes-pro2.jpg']),
-            'certifications' => json_encode(['cert-david-pipes-pro.pdf']),
-            'created_at'     => Carbon::now(),
-            'updated_at'     => Carbon::now(),
-        ],
-    ];
+    //   $tradepersonsdetails = [
+    //     [
+    //         'tradeperson_id' => 3,  
+    //         'about'          => 'Certified plumbing expert offering emergency repair services.',
+    //         'services'       => 'Pipe fitting, leakage repair, water supply solutions.',
+    //         'portfolio'      => json_encode(['sophie-watersafe1.jpg', 'sophie-watersafe2.jpg']),
+    //         'certifications' => json_encode(['cert-sophie-watersafe.pdf']),
+    //         'created_at'     => Carbon::now(),
+    //         'updated_at'     => Carbon::now(),
+    //     ],
+    //     [
+    //         'tradeperson_id' => 4,  
+    //         'about'          => 'Specialist in commercial plumbing solutions and pipe fitting.',
+    //         'services'       => 'Industrial pipe installation, heating systems, and maintenance.',
+    //         'portfolio'      => json_encode(['david-pipes-pro1.jpg', 'david-pipes-pro2.jpg']),
+    //         'certifications' => json_encode(['cert-david-pipes-pro.pdf']),
+    //         'created_at'     => Carbon::now(),
+    //         'updated_at'     => Carbon::now(),
+    //     ],
+    // ];
 
-    DB::table('tradeperson_details')->insert($tradepersonsdetails);
+    // DB::table('tradeperson_details')->insert($tradepersonsdetails);
     // Tradepersons Details close
 
       // Order Status open
@@ -962,38 +962,59 @@ class MarketPlaceSeeder extends Seeder
 
 
          // Order Milestones Open
-         $order_milestones = [
-          [
-              'order_id' => 1,
-              'tradeperson_id' => 1,
-              'milestone' => 1, // Ensure proper string formatting
-              'created_at' => Carbon::now(),
-              'updated_at' => Carbon::now(),
-          ],
-          [
-              'order_id' => 2,
-              'tradeperson_id' => 2,
-              'milestone' => 2,
-              'created_at' => Carbon::now(),
-              'updated_at' => Carbon::now(),
-          ],
-          [
-              'order_id' => 3,
-              'tradeperson_id' => 3,
-              'milestone' => 3,
-              'created_at' => Carbon::now(),
-              'updated_at' => Carbon::now(),
-          ],
-          [
-              'order_id' => 4,
-              'tradeperson_id' => 4,
-              'milestone' => 4,
-              'created_at' => Carbon::now(),
-              'updated_at' => Carbon::now(),
-          ],
-      ];
-      
-      DB::table('order_milestones')->insert($order_milestones);
+        $order_milestones = [
+            [
+                'order_id' => 1,
+                'tradeperson_id' => 1,
+                'milestone' => json_encode([
+                    'title' => '1st Milestone',
+                    'days' => 5,
+                    'approved' => true,
+                    'description' => 'Diagnosis & Inspection',
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'order_id' => 2,
+                'tradeperson_id' => 2,
+                'milestone' => json_encode([
+                    'title' => '2nd Milestone',
+                    'days' => 10,
+                    'approved' => true,
+                    'description' => 'Material Procurement',
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'order_id' => 3,
+                'tradeperson_id' => 3,
+                'milestone' => json_encode([
+                    'title' => '3rd Milestone',
+                    'days' => 20,
+                    'approved' => false,
+                    'description' => 'Material Procurement',
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'order_id' => 4,
+                'tradeperson_id' => 4,
+                'milestone' => json_encode([
+                    'title' => '4th Milestone',
+                    'days' => 30,
+                    'approved' => false,
+                    'description' => 'Final Testing & Cleanup',
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+        ];
+
+        DB::table('order_milestones')->insert($order_milestones);
+
       // Order Milestones Close
         
 
