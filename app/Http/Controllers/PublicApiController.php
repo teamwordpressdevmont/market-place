@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Package;
 use App\Models\Testimonial;
 use App\Models\Tradeperson;
+use App\Models\TradepersonReview;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -156,7 +157,11 @@ class PublicApiController extends Controller
 
                         // Convert certificate to full path
                         $tradeperson->certificate = $tradeperson->certificate
-                            ? $this->getFullImageUrl('tradeperson_certificates', $tradeperson->certificate)
+                            ? $this->getFullImageUrl('tradeperson_certificate', $tradeperson->certificate)
+                            : null;
+
+                        $tradeperson->banner = $tradeperson->banner
+                            ? $this->getFullImageUrl('tradeperson_banners', $tradeperson->banner)
                             : null;
 
                         return $tradeperson;
@@ -197,7 +202,6 @@ class PublicApiController extends Controller
             ], 500);
         }
     }
-
 
     // testimonial - get
     public function getTestimonials(Request $request)
@@ -300,125 +304,158 @@ class PublicApiController extends Controller
 
     // contractor - get
     public function getTradePerson(Request $request)
-{
-    try {
-        $request->validate([
-            'tradeperson_id' => 'sometimes|integer|exists:tradepersons,id',
-            'business_name' => 'sometimes|string',
-            'description' => 'sometimes|string',
-            'phone' => 'sometimes|string',
-            'address' => 'sometimes|string',
-            'featured' => 'sometimes|integer|in:0,1',
-            'offset' => 'sometimes|integer|min:0',
-            'perPage' => 'sometimes|integer|min:1',
-            'category' => 'sometimes|boolean',
-            'name' => 'sometimes|string',
-            'email' => 'sometimes|email'
-        ]);
+    {
+        try {
+            $request->validate([
+                'tradeperson_id' => 'sometimes|integer|exists:tradepersons,id',
+                'business_name' => 'sometimes|string',
+                'description' => 'sometimes|string',
+                'phone' => 'sometimes|string',
+                'address' => 'sometimes|string',
+                'featured' => 'sometimes|integer|in:0,1',
+                'offset' => 'sometimes|integer|min:0',
+                'perPage' => 'sometimes|integer|min:1',
+                'category' => 'sometimes|boolean',
+                'name' => 'sometimes|string',
+                'email' => 'sometimes|email',
+                'min_rating' => 'sometimes|numeric|min:0|max:5',
+                'with_reviews' => 'sometimes|boolean'
+            ]);
 
-        $query = Tradeperson::with('user');
+            $query = Tradeperson::with(['user', 'orders']);
 
-        if ($request->filled('tradeperson_id')) {
-            $query->where('id', $request->tradeperson_id);
-        }
-
-        if ($request->filled('business_name')) {
-            $query->where('business_name', 'like', '%' . $request->business_name . '%');
-        }
-
-        if ($request->filled('description')) {
-            $query->where('description', 'like', '%' . $request->description . '%');
-        }
-
-        if ($request->filled('phone')) {
-            $query->where('phone', 'like', '%' . $request->phone . '%');
-        }
-
-        if ($request->filled('address')) {
-            $query->where('address', 'like', '%' . $request->address . '%');
-        }
-
-        if ($request->has('featured')) {
-            $query->where('featured', $request->featured);
-        }
-
-        if ($request->boolean('category')) {
-            $query->with('categories');
-        }
-
-        if ($request->filled('name')) {
-            $query->whereHas('user', function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->name . '%');
-            });
-        }
-
-        if ($request->filled('email')) {
-            $query->whereHas('user', function ($q) use ($request) {
-                $q->where('email', 'like', '%' . $request->email . '%');
-            });
-        }
-
-        $totalCount = $query->count();
-
-        $offset = $request->input('offset', 0);
-        $perPage = $request->input('perPage', 10);
-
-        if ($perPage == -1) {
-            $tradePersons = $query->get();
-        } else {
-            $tradePersons = $query->offset($offset)->limit($perPage)->get();
-        }
-
-        // Convert images to full paths
-        $tradePersons->transform(function ($tradeperson) {
-            $tradeperson->user['avatar'] = $tradeperson->user['avatar']
-                ? $this->getFullImageUrl('avatars', $tradeperson->user['avatar'])
-                : null;
-
-            // Convert portfolio images to full path
-            $tradeperson->portfolio = json_decode($tradeperson->portfolio, true);
-            if (is_array($tradeperson->portfolio)) {
-                $tradeperson->portfolio = array_map(function ($image) {
-                    return $this->getFullImageUrl('tradeperson_portfolio', $image);
-                }, $tradeperson->portfolio);
-            } else {
-                $tradeperson->portfolio = [];
+            if ($request->filled('tradeperson_id')) {
+                $query->where('id', $request->tradeperson_id);
             }
 
-            // Convert certificate to full path
-            $tradeperson->certificate = $tradeperson->certificate
-                ? $this->getFullImageUrl('tradeperson_certificates', $tradeperson->certificate)
-                : null;
+            if ($request->filled('business_name')) {
+                $query->where('business_name', 'like', '%' . $request->business_name . '%');
+            }
 
-            return $tradeperson;
-        });
+            if ($request->filled('description')) {
+                $query->where('description', 'like', '%' . $request->description . '%');
+            }
 
-        return response()->json([
-            'success' => true,
-            'data' => $tradePersons,
-            'offset' => $offset,
-            'total_count' => $totalCount
-        ], 200);
-    } catch (ValidationException $e) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Validation error',
-            'errors' => $e->errors()
-        ], 422);
-    } catch (\Exception $th) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Something went wrong',
-            'error' => $th->getMessage()
-        ], 500);
+            if ($request->filled('phone')) {
+                $query->where('phone', 'like', '%' . $request->phone . '%');
+            }
+
+            if ($request->filled('address')) {
+                $query->where('address', 'like', '%' . $request->address . '%');
+            }
+
+            if ($request->has('featured')) {
+                $query->where('featured', $request->featured);
+            }
+
+            if ($request->boolean('category')) {
+                $query->with('categories');
+            }
+
+            if ($request->filled('category_id')) {
+                $categoryId = $request->category_id;
+                $query->whereHas('categories', function ($q) use ($categoryId) {
+                    $q->where('category_id', $categoryId);
+                });
+            }
+
+            if ($request->filled('name')) {
+                $query->whereHas('user', function ($q) use ($request) {
+                    $q->where('name', 'like', '%' . $request->name . '%');
+                });
+            }
+
+            if ($request->filled('email')) {
+                $query->whereHas('user', function ($q) use ($request) {
+                    $q->where('email', 'like', '%' . $request->email . '%');
+                });
+            }
+
+            if ($request->filled('min_rating')) {
+                $minRating = $request->min_rating;
+                $query->whereHas('reviews', function ($q) use ($minRating) {
+                    $q->selectRaw('AVG(rating) as avg_rating')
+                        ->havingRaw('AVG(rating) >= ?', [$minRating]);
+                });
+            }
+
+            if ($request->has('with_reviews')) {
+                $query->with('reviews.tradeperson.user' , 'reviews.tradeperson.orders');
+            }
+
+            $totalCount = $query->count();
+
+            $offset = $request->input('offset', 0);
+            $perPage = $request->input('perPage', 10);
+
+            if ($perPage == -1) {
+                $tradePersons = $query->get();
+            } else {
+                $tradePersons = $query->offset($offset)->limit($perPage)->get();
+            }
+
+            $tradePersons->transform(function ($tradeperson) {
+                // Format the tradeperson's user avatar
+                $tradeperson->user['avatar'] = $this->formatAvatarUrl($tradeperson->user['avatar']);
+            
+                // Convert portfolio images to full paths
+                $tradeperson->portfolio = json_decode($tradeperson->portfolio, true);
+                if (is_array($tradeperson->portfolio)) {
+                    $tradeperson->portfolio = array_map(fn($image) => $this->getFullImageUrl('tradeperson_portfolio', $image), $tradeperson->portfolio);
+                } else {
+                    $tradeperson->portfolio = [];
+                }
+            
+                // Convert certificate & banner to full paths
+                $tradeperson->certificate = $this->formatAvatarUrl($tradeperson->certificate, 'tradeperson_certificate');
+                $tradeperson->banner = $this->formatAvatarUrl($tradeperson->banner, 'tradeperson_banner');
+            
+                // Additional fields
+                $tradeperson->verified = $tradeperson->featured;
+                $tradeperson->available  = "Available";
+                $tradeperson->review_count = $tradeperson->reviews()->count();
+                $tradeperson->average_rating = $tradeperson->reviews()->avg('rating');
+                $tradeperson->completed_jobs = $tradeperson->orders()->where('order_status', 4)->count();
+                $tradeperson->active_jobs = $tradeperson->orders()->where('order_status', 2)->count();
+            
+                // Format avatar URLs inside reviews
+                if ($tradeperson->reviews) {
+                    $tradeperson->reviews->transform(function ($review) {
+                        if ($review->tradeperson && $review->tradeperson->user) {
+                            $review->tradeperson->user->avatar = $this->formatAvatarUrl($review->tradeperson->user->avatar);
+                        }
+                        return $review;
+                    });
+                }
+            
+                return $tradeperson->makeHidden(['orders']);
+            });
+
+            return response()->json([
+                'success' => true,
+                'data' => $tradePersons,
+                'offset' => $offset,
+                'total_count' => $totalCount
+            ], 200);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ], 500);
+        }
     }
-}
 
 
     // contractor - search
     public function searchTradePerson(Request $request)
     {
-
         try {
             // Validate the incoming request
             $request->validate([
@@ -512,50 +549,108 @@ class PublicApiController extends Controller
     public function getOrder(Request $request)
     {
         try {
-
             $validated = $request->validate([
                 'with_customer'    => 'sometimes|boolean',
                 'with_tradeperson' => 'sometimes|boolean',
                 'status'           => 'sometimes|string',
                 'payment_status'   => 'sometimes|string|in:0,1',
-                'id'            => 'integer|exists:orders,id',
-                'perPage'          => 'sometimes|integer|min:1|max:100',
+                'id'               => 'sometimes|integer|exists:orders,id',
+                'perPage'          => 'sometimes|integer|min:-1|max:100',
                 'offset'           => 'sometimes|integer|min:0',
+                'featured'         => 'sometimes|integer|in:0,1,2'
             ]);
 
-            $query = Order::OrderByDesc('id');
+            $query = Order::with('orderDetail')->orderByDesc('id');
 
-            if ($request->has('with_customer') && $request->has('with_customer') == true) {
+            if ($request->boolean('with_customer')) {
                 $query->with('customer');
             }
 
-            if ($request->has('with_tradeperson') && $request->get('with_tradeperson') == true) {
+            if ($request->boolean('with_tradeperson')) {
                 $query->with('tradeperson');
             }
 
-            if ($request->has('status') && $request->get('status') == true && in_array($request->get('status'), ['Processing'])) {
+            if ($request->filled('status')) {
                 $query->where('status', $request->status);
             }
 
-            if ($request->has('payment_status') && $request->get('payment_status') == true) {
+            if ($request->has('payment_status')) {
                 $query->where('payment_status', $request->payment_status);
             }
 
-            if ($request->has('id')) {
+            if ($request->filled('id')) {
                 $query->where('id', $request->id);
             }
 
+            if ($request->filled('featured')) {
+                $query->where('featured', $request->featured);
+            }
 
+            $total_count = $query->count();
+
+            $perPage = $request->input('perPage', 10);
+            $offset = $request->input('offset', 0);
+
+            if ($perPage == -1) {
+                $orders = $query->get();
+            } else {
+                $orders = $query->offset($offset)->limit($perPage)->get();
+            }
+
+            return response()->json([
+                'success'     => true,
+                'message'     => 'Orders Retrieved Successfully',
+                'data'        => $orders,
+                'offset'      => $offset,
+                'total_count' => $total_count
+            ], 200);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors'  => $e->errors()
+            ], 422);
+        } catch (\Exception $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong',
+                'error'   => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    // get package
+    public function getPackage(Request $request)
+    {
+        try {
+            $request->validate([
+                'OrderByDesc' => 'sometimes|boolean',
+                'perPage'     => 'sometimes|integer|min:-1|max:100',
+                'offset'      => 'sometimes|integer|min:0',
+            ]);
+
+            $query = Package::query();
+
+            if ($request->has('OrderByDesc') && $request->get('OrderByDesc') == true) {
+                $query->orderByDesc('id');
+            }
+
+            $total_count = $query->count();
             $perPage = $request->get('perPage', 10);
             $offset = $request->get('offset', 0);
 
-            $orders = $query->offset($offset)->limit($perPage)->get();
+            if ($perPage == -1) {
+                $packages = $query->get();
+            } else {
+                $packages = $query->offset($offset)->limit($perPage)->get();
+            }
 
             return response()->json([
                 'success' => true,
-                'message' => 'Order Retrieved Successfully',
-                'data' => $orders,
-                'offset' => $offset
+                'message' => 'Packages Retrieved Successfully',
+                'data' => $packages,
+                'offset' => $offset,
+                'total_count' => $total_count
             ], 200);
         } catch (ValidationException $e) {
             return response()->json([
@@ -572,47 +667,11 @@ class PublicApiController extends Controller
         }
     }
 
-    // get package
-    public function getPackage(Request $request)
+    private function formatAvatarUrl($image, $folder = 'avatars')
     {
-        try {
-            $request->validate([
-                'OrderByDesc' => 'sometimes|boolean',
-                'perPage'     => 'sometimes|integer|min:1|max:100',
-                'offset'      => 'sometimes|integer|min:0',
-            ]);
-
-            $query = Package::query();
-
-            if ($request->has('OrderByDesc') && $request->get('OrderByDesc') == true) {
-                $query->orderByDesc('id');
-            }
-
-            $perPage = $request->get('perPage', 10);
-            $offset = $request->get('offset', 0);
-
-
-            $packages = $query->offset($offset)->limit($perPage)->get();
-
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Packages Retrieved Successfully',
-                'data' => $packages,
-                'offset' => $offset
-            ], 200);
-        } catch (ValidationException $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Validation error',
-                'errors' => $e->errors()
-            ], 422);
-        } catch (\Exception $th) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Something went wrong',
-                'error' => $th->getMessage()
-            ], 500);
+        if ($image && !filter_var($image, FILTER_VALIDATE_URL)) {
+            return $this->getFullImageUrl($folder, $image);
         }
+        return $image;
     }
 }

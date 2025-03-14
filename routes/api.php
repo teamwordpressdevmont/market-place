@@ -31,6 +31,7 @@ Route::middleware('verify_token')->group(function () {
     Route::get('/get-package', [PublicApiController::class, "getPackage"]);
 
     Route::get('/search-tradeperson', [PublicApiController::class, 'searchTradePerson']);
+    Route::get('/get-report', [MainController::class, 'getReports']);
 
 });
 
@@ -38,6 +39,7 @@ Route::middleware('verify_token')->group(function () {
 // registration routes
 Route::post('/register-tradeperson', [AuthController::class, 'registerTradePerson']);
 Route::post('/register-customer', [AuthController::class, 'registerCustomer']);
+Route::post('/google-register', [AuthController::class, 'registerGoogle']);
 
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -47,7 +49,6 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:api')->group(function () {
 
     Route::middleware('role:admin')->group(function () {
-        Route::get('/get-report', [MainController::class, 'getReports']);
         Route::post('/add-report', [MainController::class, 'storeReport']);
     });
 

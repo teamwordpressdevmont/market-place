@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('first_name');
             $table->string('last_name')->nullable();
+            $table->string( 'nick_name' )->nullable();
             $table->string('gender')->nullable();
             $table->string('phone')->nullable();
             $table->string('city');
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->decimal('latitude', 10, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();
             $table->text('about_me')->nullable();
+            $table->text('service')->nullable();
             $table->string('address');
             $table->json('portfolio')->nullable(); 
             $table->string('certificate')->nullable();

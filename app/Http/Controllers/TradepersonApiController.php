@@ -456,11 +456,14 @@ class TradepersonApiController extends Controller
                 $path = $request->file('avatar')->store('avatar', 'public');
                 $user->update(['avatar' => $path]);
             }
+            
+            $nick_name = strtoupper(substr($validatedData['first_name'] ?? $traderPerson->first_name, 0, 1)) . ' ' . strtoupper(substr($validatedData['last_name'] ?? $traderPerson->last_name, 0, 1));
 
             // Update TradePerson
             $traderPerson->update([
                 'first_name' => $validatedData['first_name'] ?? $traderPerson->first_name,
                 'last_name' => $validatedData['last_name'] ?? $traderPerson->last_name,
+                'nick_name' => $nick_name,
                 'gender' => $validatedData['gender'] ?? $traderPerson->gender,
                 'phone' => $validatedData['phone_number'] ?? $traderPerson->phone,
                 'city' => $validatedData['city'] ?? $traderPerson->city,

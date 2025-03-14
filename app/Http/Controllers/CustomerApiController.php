@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User; 
-use App\Models\Order; 
-use App\Models\OrderProposal; 
+use App\Models\User;
+use App\Models\Order;
+use App\Models\OrderProposal;
 use App\Models\OrderDetail;
 use App\Models\TradepersonReview;
 use Illuminate\Http\Request;
@@ -379,13 +379,15 @@ class CustomerApiController extends Controller
                 'id' => 'nullable|integer|exists:users,id',
                 'filter' => 'nullable|string|in:active_job,pending_job,completed_job,recent_jobs',
                 'offset' => 'nullable|integer|min:0',
-                'per_page' => 'nullable|integer|min:1|max:100',
+                'per_page' => 'nullable|integer|min:-1|max:100',
                 'with_proposal' => 'nullable|boolean',
-                'with_reviews' => 'nullable|boolean'
+                'with_reviews' => 'nullable|boolean',
+                'featured' => 'nullable|integer|in:0,1,2'
             ]);
 
 
             $user =  User::find(auth()->user()->id);
+
             if (!$user->hasRole('customer')) {
                 return response()->json([
                     'success' => false,
@@ -424,16 +426,26 @@ class CustomerApiController extends Controller
                 $query->with('review');
             }
 
+            if ($request->filled('featured')) {
+                $query->where('featured', $request->featured);
+            }
+
+            $total_count = $query->count();
             $offset = $request->input('offset', 0);
             $perPage = $request->input('per_page', 10);
-            $orders = $query->offset($offset)->limit($perPage)->get();
 
+            if ($perPage == -1) {
+                $orders = $query->get();
+            } else {
+                $orders = $query->offset($offset)->limit($perPage)->get();
+            }
 
             return response()->json([
                 'success' => true,
                 'message' => 'Orders retrieved successfully',
                 'offset' => $offset,
                 'per_page' => $perPage,
+                'total_count' => $total_count,
                 'data' => $orders
             ]);
         } catch (ValidationException $e) {
@@ -632,6 +644,7 @@ class CustomerApiController extends Controller
             ], 500);
         }
     }
+
     // accept proposal api -- post
     public function acceptProposal(Request $request)
     {
@@ -651,6 +664,7 @@ class CustomerApiController extends Controller
                 ], 403);
             }
 
+
             if ($orderProposal->customer_id != auth()->user()->id) {
                 return response()->json([
                     'success' => false,
@@ -659,6 +673,7 @@ class CustomerApiController extends Controller
             }
 
             $order = Order::find($orderProposal->order_id);
+
             if (!$order) {
                 return response()->json([
                     'success' => false,
@@ -670,6 +685,11 @@ class CustomerApiController extends Controller
             $orderProposal->update([
                 'proposal_status' => 1,
             ]);
+
+            //reject other propsal
+            OrderProposal::where('order_id', $order->id)
+                ->where('id', '!=', $orderProposal->id)
+                ->update(['proposal_status' => 2]);
 
             // Update order details
             $order->update([

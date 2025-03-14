@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('user_approved')->default(0);
             $table->string('avatar')->default('avatar.png');
+            $table->string('google_id')->nullable()->unique();
+            $table->string('google_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
