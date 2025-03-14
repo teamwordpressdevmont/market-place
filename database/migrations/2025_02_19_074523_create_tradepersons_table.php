@@ -20,11 +20,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('city');
             $table->string('postal_code');
-<<<<<<< HEAD
-            $table->decimal('latitude', 10, 8)->nullable();  // Adjust precision (10) and scale (6) as needed
-=======
             $table->decimal('latitude', 10, 8)->nullable();
->>>>>>> 5706b76c6c9227d5a9ecff31d21da677eab730d1
             $table->decimal('longitude', 11, 8)->nullable();
             $table->text('about_me')->nullable();
             $table->string('address');

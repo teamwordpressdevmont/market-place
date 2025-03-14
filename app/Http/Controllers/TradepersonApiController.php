@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use App\Models\UserNotification;
 
 
 class TradepersonApiController extends Controller
@@ -172,6 +173,18 @@ class TradepersonApiController extends Controller
                     'milestone' => json_encode($milestoneData),
                 ]);
             }
+
+            $notification = Notification::where("id", 7)->first();
+            $user_notification = UserNotification::create([
+                'notification_id' => $notification->id,
+                'user_id' => $order->customer_id,
+            ]);
+
+            $notification = Notification::where("id", 6)->first();
+            $user_notification = UserNotification::create([
+                'notification_id' => $notification->id,
+                'user_id' => $order->customer_id,
+            ]);
 
             DB::commit();
 

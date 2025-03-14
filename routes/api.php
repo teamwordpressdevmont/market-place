@@ -10,6 +10,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\PublicApiController;
 use App\Http\Controllers\TradepersonApiController;
 use App\Models\Testimonial;
+use App\Http\Controllers\NotificationApiController;
 
 
 
@@ -52,6 +53,9 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/get-report', [MainController::class, 'getReports']);
         Route::post('/add-report', [MainController::class, 'storeReport']);
     });
+
+    Route::get('/get-notifications', [NotificationApiController::class, 'getNotifications']);
+    Route::post('/read-notification', [NotificationApiController::class, 'readNotifications']);
 
     Route::middleware('role:customer')->group(function () {
         //orders

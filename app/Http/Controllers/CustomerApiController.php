@@ -10,6 +10,7 @@ use App\Models\TradepersonReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use App\Models\UserNotification;
 
 class CustomerApiController extends Controller
 {
@@ -677,6 +678,20 @@ class CustomerApiController extends Controller
                 'order_status' => 2
             ]);
 
+            // Create Proposal Accepted notification
+            $notification = Notification::where("id", 4)->first();
+            $user_notification = UserNotification::create([
+                'notification_id' => $notification->id,
+                'user_id' => $orderProposal->tradeperson_id,
+            ]);
+
+            // Create Job Started notification
+            $notification = Notification::where("id", 1)->first();
+            $user_notification = UserNotification::create([
+                'notification_id' => $notification->id,
+                'user_id' => $orderProposal->tradeperson_id,
+            ]);
+
             DB::commit(); // Commit transaction
 
             return response()->json([
@@ -729,6 +744,13 @@ class CustomerApiController extends Controller
             // Proposal reject karna
             $orderProposal->update([
                 'proposal_status' => 2
+            ]);
+
+            // Create Proposal Rejected notification
+            $notification = Notification::where("id", 5)->first();
+            $user_notification = UserNotification::create([
+                'notification_id' => $notification->id,
+                'user_id' => $orderProposal->tradeperson_id,
             ]);
 
             return response()->json([
