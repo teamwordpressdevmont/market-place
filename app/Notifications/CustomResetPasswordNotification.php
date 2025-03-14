@@ -38,9 +38,8 @@ class CustomResetPasswordNotification extends ResetPasswordNotification
         // Decrypt the email
         $email = Crypt::decryptString($decodedEmail);
 
+        $resetLink = url(config('app.url') . '?email=' . urlencode($this->encodedEmail) . '&token=' . $this->token);
 
-        // Customize the URL here
-        $resetLink = url(config('app.url').route('password.reset', ['token' => $this->token, 'email' => urlencode($this->encodedEmail)], false));
 
         return (new MailMessage)
             ->subject('Reset Password Notification')
