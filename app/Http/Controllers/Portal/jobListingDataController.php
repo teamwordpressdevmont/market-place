@@ -75,8 +75,8 @@ class jobListingDataController extends Controller
             'title'           => 'required|string|max:255',
             'description'     => 'nullable|string',
             'budget'          => 'nullable|numeric',
-            'job_start_time'        => 'nullable|string',
-            'job_end_time'        => 'nullable|string',
+            'job_start_timeline'        => 'nullable|string',
+            'job_end_timeline'        => 'nullable|string',
             'location'        => 'nullable|string',
             'image' => 'nullable|array',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -93,20 +93,20 @@ class jobListingDataController extends Controller
                 'title',
                 'description',
                 'budget',
-                'job_start_time',
-                'job_end_time',
+                'job_start_timeline',
+                'job_end_timeline',
                 'location',
                 'additional_notes',
                 'featured'
             ]);
 
 
-            if ($request->filled('job_start_time')) {
-                $validatedData['job_start_time'] = Carbon::parse($request->job_start_time)->format('Y-m-d');
+            if ($request->filled('job_start_timeline')) {
+                $validatedData['job_start_timeline'] = Carbon::parse($request->job_start_time)->format('d-M-Y');
             }
 
-            if ($request->filled('job_end_time')) {
-                $validatedData['job_end_time'] = Carbon::parse($request->job_end_time)->format('Y-m-d');
+            if ($request->filled('job_end_timeline')) {
+                $validatedData['job_end_timeline'] = Carbon::parse($request->job_end_time)->format('d-M-Y');
             }
 
             // Handle image uploads
