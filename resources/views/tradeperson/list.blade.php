@@ -21,10 +21,7 @@
                     <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">S.No</th>
                     <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">ID</th>
                     <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
-                        Business Name
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
-                        User Status
+                        Name
                     </th>
                     <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
                         Phone
@@ -33,7 +30,7 @@
                         Address
                     </th>
                     <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
-                        Description
+                        About me
                     </th>
                     <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500] text-right" width="115">
                         Action
@@ -60,45 +57,15 @@
                             {{ $trade->first_name }} {{ $trade->last_name }}
                         </td>
                         <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
-                            {{-- {{ $trade->user->id }} --}}
-                            @if ($trade->user)
-                                <button class="btn btn-sm {{ $trade->user->user_approved ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }} tradeperson-user-approval"
-                                    data-id="{{ $trade->user->id }}">
-                                    {{ $trade->user->user_approved ? 'Approved' : 'Disapproved' }}
-                                </button>
-                            @else
-                                <span>No User</span>
-                            @endif
-                        </td>
-                        <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
                             {{ $trade->phone }}
                         </td>
                         <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
                             {!! html_entity_decode($trade->address) !!}
                         </td>
                         <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
-                            {!! html_entity_decode($trade->description) !!}
+                            {!! html_entity_decode($trade->about_me) !!}
                         </td>
                         <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
-                            {{--  <div class="flex gap-4">
-                                <a href="{{ route('tradeperson.edit', $trade->id) }}">
-                                    <svg fill="#0D0D0D" width="20px" height="20px" viewBox="0 0 36 36" version="1.1"  preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                        <title>edit</title>
-                                        <path class="clr-i-outline clr-i-outline-path-1" d="M33.87,8.32,28,2.42a2.07,2.07,0,0,0-2.92,0L4.27,23.2l-1.9,8.2a2.06,2.06,0,0,0,2,2.5,2.14,2.14,0,0,0,.43,0L13.09,32,33.87,11.24A2.07,2.07,0,0,0,33.87,8.32ZM12.09,30.2,4.32,31.83l1.77-7.62L21.66,8.7l6,6ZM29,13.25l-6-6,3.48-3.46,5.9,6Z"></path>
-                                        <rect x="0" y="0" width="36" height="36" fill-opacity="0"/>
-                                    </svg>
-                                </a>
-                                <a href="{{ route('tradeperson.view', $trade->id) }}">
-                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <title>View</title>
-                                    <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" fill="blue"/><path d="M21.894 11.553C19.736 7.236 15.904 5 12 5c-3.903 0-7.736 2.236-9.894 6.553a1 1 0 0 0 0 .894C4.264 16.764 8.096 19 12 19c3.903 0 7.736-2.236 9.894-6.553a1 1 0 0 0 0-.894zM12 17c-2.969 0-6.002-1.62-7.87-5C5.998 8.62 9.03 7 12 7c2.969 0 6.002 1.62 7.87 5-1.868 3.38-4.901 5-7.87 5z" fill="blue"/></svg>
-                                </a>
-                                <a href="{{ route('tradeperson.delete', $trade->id) }}" onclick="return confirm('Are you sure you want to delete this Contractor?');">
-                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <title>delete</title>
-                                    <path d="M7 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2h4a1 1 0 1 1 0 2h-1.069l-.867 12.142A2 2 0 0 1 17.069 22H6.93a2 2 0 0 1-1.995-1.858L4.07 8H3a1 1 0 0 1 0-2h4V4zm2 2h6V4H9v2zM6.074 8l.857 12H17.07l.857-12H6.074zM10 10a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1z" fill="red"/></svg>
-                                </a>
-                            </div>  --}}
                             <div class="site_user_dropdown">
                                 <div class="cursor-pointer w-[30px] ml-auto bg-[#eee] px-1 py-2 rounded-md flex justify-center items-center hover:bg-gray-300 transition" data-dropdown-toggle="userDropdown-action-{{ $trade->id }}" data-dropdown-placement="bottom-end">
                                     <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -66,13 +66,13 @@ class TraderPersonDataController extends Controller
 
         $request->validate([
             'user_id'        => 'nullable|exists:users,id',
-            'business_name'       => 'nullable|string',
-            'description'      => 'nullable|string',
+            'first_name'       => 'nullable|string',
+            'last_name'       => 'nullable|string',
+            'about_me'          => 'nullable|string',
+            'service'       => 'nullable|string',
             'phone'      => 'nullable|string',
             'address'      => 'nullable|string',
             'featured'      => 'nullable|string',
-            'about'          => 'nullable|string',
-            'services'       => 'nullable|string',
             'portfolio'      => 'nullable|array',
             'portfolio.*'    => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'certifications' => 'nullable|array',
@@ -130,22 +130,12 @@ class TraderPersonDataController extends Controller
                 $portfolioFiles = json_decode($tradeperson->portfolio, true) ?? [];
             }
 
-            $validatedData = $request->only(['user_id', 'business_name', 'description', 'phone', 'address', 'featured']);
+            $validatedData = $request->only(['user_id', 'first_name', 'last_name', 'about_me', 'service', 'phone', 'address', 'featured']);
 
             $validatedData['portfolio'] = json_encode($portfolioFiles);
             $validatedData['certificate'] = json_encode($certificateFiles);
             $tradeperson->update($validatedData);
-    
-
-            // TradepersonDetails::updateOrCreate(
-            //     ['tradeperson_id' => $id],
-            //     [
-            //         'about'          => $request->input('about'),
-            //         'services'       => $request->input('services'),
-            //         'portfolio'      => $request->input('portfolio'),
-            //         'certificate' => $request->input('certificate'),
-            //     ]
-            // );
+            
 
              // Update Tradeperson Category
             TradepersonCategory::updateOrCreate(
