@@ -380,7 +380,7 @@ class PublicApiController extends Controller
             }
 
             if ($request->has('with_reviews')) {
-                $query->with('reviews.tradeperson.user' , 'reviews.tradeperson.orders');
+                $query->with('reviews.tradeperson.user' , 'reviews.order');
             }
 
             $totalCount = $query->count();
