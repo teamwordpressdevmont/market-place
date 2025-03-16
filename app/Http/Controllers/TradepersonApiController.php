@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use App\Models\Notification;
 use App\Models\UserNotification;
+use App\Models\Customer;
 
 
 class TradepersonApiController extends Controller
@@ -174,16 +176,18 @@ class TradepersonApiController extends Controller
                 ]);
             }
 
+            $customer_user_id = Customer::where('id',$order->customer_id)->value('user_id');
+
             $notification = Notification::where("id", 7)->first();
             $user_notification = UserNotification::create([
                 'notification_id' => $notification->id,
-                'user_id' => $order->customer_id,
+                'user_id' => $customer_user_id,
             ]);
 
             $notification = Notification::where("id", 6)->first();
             $user_notification = UserNotification::create([
                 'notification_id' => $notification->id,
-                'user_id' => $order->customer_id,
+                'user_id' => $customer_user_id,
             ]);
 
             DB::commit();

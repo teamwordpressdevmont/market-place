@@ -54,14 +54,20 @@ class NotificationApiController extends Controller
                 'notification_id' => 'required',
             ]);
 
-            $notification = UserNotification::findOrFail($request->notification_id);
-            $notification->read = 1;
-            $notification->save();
+            $notificationIds = $request->input('notification_id'); // Can be single ID or array
+
+            // Convert to array if it's a single ID
+            if (!is_array($notificationIds)) {
+                $notificationIds = [$notificationIds];
+            }
+
+            // Mark notifications as read
+            $user_notification = UserNotification::whereIn('id', $notificationIds)->where('user_id',auth()->user()->id)->update(['read' => 1]);
 
             return response()->json([
                 'success' => true,
                 'message' => 'Notification Marked successfully',
-                'data' => $review,
+                'data' => $user_notification,
             ], 201);
         } catch (ValidationException $e) {
             return response()->json([
