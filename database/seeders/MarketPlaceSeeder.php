@@ -89,7 +89,7 @@ class MarketPlaceSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ],
         [
-            'id' => 35,
+            'id' => 36,
             'name' => 'Louisa Marin',
             'email' => 'louisa-marin@mailinator.com',
             'password' => Hash::make('password'),
