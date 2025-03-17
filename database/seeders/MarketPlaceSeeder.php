@@ -79,7 +79,7 @@ class MarketPlaceSeeder extends Seeder
         ],
         [
             'id' => 35,
-            'name' => 'Selena ray',
+            'name' => 'Selena Ray',
             'email' => 'selena-ray@mailinator.com',
             'password' => Hash::make('password'),
             'user_approved' => 1,
@@ -89,7 +89,7 @@ class MarketPlaceSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ],
         [
-            'id' => 36,
+            'id' => 35,
             'name' => 'Louisa Marin',
             'email' => 'louisa-marin@mailinator.com',
             'password' => Hash::make('password'),
@@ -105,7 +105,7 @@ class MarketPlaceSeeder extends Seeder
         $user = User::create($user);
         $user->assignRole('customer');
     }
-    // TradePersons users End
+    // Customer  End
 
 
         
