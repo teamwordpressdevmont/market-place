@@ -114,15 +114,15 @@ class OrderSeeder extends Seeder
 
         // Order Status open
 
-          $statuses = [
-              ['id' => 1, 'status' => 'Processing', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-              ['id' => 2, 'status' => 'In Progress', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-              ['id' => 3, 'status' => 'Pending', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-              ['id' => 4, 'status' => 'Completed', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-              ['id' => 5, 'status' => 'Cancelled', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-          ];
+        //   $statuses = [
+        //       ['id' => 1, 'status' => 'Processing', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        //       ['id' => 2, 'status' => 'In Progress', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        //       ['id' => 3, 'status' => 'Pending', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        //       ['id' => 4, 'status' => 'Completed', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        //       ['id' => 5, 'status' => 'Cancelled', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        //   ];
 
-          DB::table('order_statuses')->insert($statuses);
+        //   DB::table('order_statuses')->insert($statuses);
 
         // Order Status close
 
@@ -131,15 +131,15 @@ class OrderSeeder extends Seeder
 
          // Payment Status Open
 
-          $paymentstatuses = [
-              ['id' => 1, 'status' => 'Accepted', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-              ['id' => 2, 'status' => 'Failed', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-              ['id' => 3, 'status' => 'Refund', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-              ['id' => 4, 'status' => 'Rejected', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-              ['id' => 5, 'status' => 'In-Complete', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-          ];
+        //   $paymentstatuses = [
+        //       ['id' => 1, 'status' => 'Accepted', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        //       ['id' => 2, 'status' => 'Failed', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        //       ['id' => 3, 'status' => 'Refund', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        //       ['id' => 4, 'status' => 'Rejected', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        //       ['id' => 5, 'status' => 'In-Complete', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        //   ];
 
-          DB::table('payment_statuses')->insert($paymentstatuses);
+        //   DB::table('payment_statuses')->insert($paymentstatuses);
 
         // Payment Status Close
        
@@ -148,13 +148,13 @@ class OrderSeeder extends Seeder
 
         //  Proposal Statuses Open
 
-        $proposalstatuses = [
-            ['id' => 1, 'status' => 'Accepted', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['id' => 2, 'status' => 'Rejected', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['id' => 3, 'status' => 'Pending', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-        ];
+        // $proposalstatuses = [
+        //     ['id' => 1, 'status' => 'Accepted', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        //     ['id' => 2, 'status' => 'Rejected', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        //     ['id' => 3, 'status' => 'Pending', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        // ];
 
-        DB::table('proposal_statuses')->insert($proposalstatuses);
+        // DB::table('proposal_statuses')->insert($proposalstatuses);
         //  Proposal Statuses Close
         
 
