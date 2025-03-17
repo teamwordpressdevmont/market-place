@@ -182,12 +182,14 @@ class TradepersonApiController extends Controller
             $user_notification = UserNotification::create([
                 'notification_id' => $notification->id,
                 'user_id' => $customer_user_id,
+                'reference_link' => url('/api/orders'),
             ]);
 
             $notification = Notification::where("id", 6)->first();
             $user_notification = UserNotification::create([
                 'notification_id' => $notification->id,
                 'user_id' => $customer_user_id,
+                'reference_link' => url('/api/orders'),
             ]);
 
             DB::commit();

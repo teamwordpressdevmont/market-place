@@ -717,6 +717,8 @@ class CustomerApiController extends Controller
             $user_notification = UserNotification::create([
                 'notification_id' => $notification->id,
                 'user_id' => $tradeperson_user_id,
+                'reference_link' => url('/api/tradeperson-order'),
+                
             ]);
 
             // Create Job Started notification
@@ -724,6 +726,8 @@ class CustomerApiController extends Controller
             $user_notification = UserNotification::create([
                 'notification_id' => $notification->id,
                 'user_id' => $tradeperson_user_id,
+                'reference_link' => url('/api/tradeperson-order'),
+                
             ]);
 
             DB::commit(); // Commit transaction
@@ -785,6 +789,7 @@ class CustomerApiController extends Controller
             $user_notification = UserNotification::create([
                 'notification_id' => $notification->id,
                 'user_id' => $orderProposal->tradeperson_id,
+                'reference_link' => url('/api/tradeperson-order'),
             ]);
 
             return response()->json([
