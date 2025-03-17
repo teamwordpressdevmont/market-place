@@ -24,9 +24,9 @@ class OrderSeeder extends Seeder
 
          $orders = [
             ['customer_id' => 1, 'tradeperson_id' => 1, 'order_status' => 1, 'payment_status' => 5, 'created_at' => now(), 'updated_at' => now()],
-            ['customer_id' => 1, 'tradeperson_id' => 1, 'order_status' => 4, 'payment_status' => 1, 'created_at' => now(), 'updated_at' => now()],
-            ['customer_id' => 1, 'tradeperson_id' => 1, 'order_status' => 3, 'payment_status' => 5, 'created_at' => now(), 'updated_at' => now()],
-            ['customer_id' => 1, 'tradeperson_id' => 1, 'order_status' => 5, 'payment_status' => 4, 'created_at' => now(), 'updated_at' => now()],
+            ['customer_id' => 2, 'tradeperson_id' => 1, 'order_status' => 4, 'payment_status' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['customer_id' => 3, 'tradeperson_id' => 1, 'order_status' => 3, 'payment_status' => 5, 'created_at' => now(), 'updated_at' => now()],
+            ['customer_id' => 4, 'tradeperson_id' => 1, 'order_status' => 5, 'payment_status' => 4, 'created_at' => now(), 'updated_at' => now()],
         ];
         
         DB::table('orders')->insert($orders);
@@ -38,8 +38,8 @@ class OrderSeeder extends Seeder
          $orderDetails = [
             [
                 'order_id' => 1,
-                'title' => 'Need to Fix Kitchen Pipe',
-                'description' => 'Suitable local tradespeople have been alerted about your job. As soon as one is interested we will let you know.',
+                'title' => 'Need to Fix my door',
+                'description' => 'I need to repair my door as it’s not closing properly. Looking for a quick and reliable fix.',
                 'budget' => 2500,
                 'urgent' => 1,
                 'urgent_price' => 20,
@@ -47,7 +47,7 @@ class OrderSeeder extends Seeder
                 'job_end_timeline' => '13-Mar-2025',
                 'location' => 'Juterudåsen 11, Slependen, NOR 1341, Norway.',
                 'address' => 'Juterudåsen 11, Slependen, NOR 1341, Norway.',
-                'image' => json_encode(['order-image-1.jpg']),
+                'image' => json_encode(['order-image-1.jpg' , 'order-imag-2.jpg' , 'order-image-3.jpg']),
                 'additional_notes' => 'Ensure all fittings are leak-proof.',
                 'featured' => 1,
                 'created_at' => now(),
@@ -55,16 +55,16 @@ class OrderSeeder extends Seeder
             ],
             [
                 'order_id' => 2,
-                'title' => 'Need to Fix my door',
-                'description' => 'I need to repair my door as it’s not closing properly. Looking for a quick and reliable fix.',
+                'title' => 'Need a quick fix for my leaking kitchen pipe',
+                'description' => 'I need a quick and reliable repair for my leaking kitchen pipe to prevent further damage.',
                 'budget' => 3500,
-                'urgent' => 1,
-                'urgent_price' => 0,
+                'urgent' => 0,
+                'urgent_price' => 40,
                 'job_start_timeline' => '15-Feb-2025',
                 'job_end_timeline' => '20-Mar-2025',
                 'location' => 'Bjørnstadveien 22, Oslo, NOR 0561, Norway.',
                 'address' => 'Bjørnstadveien 22, Oslo, NOR 0561, Norway.',
-                'image' => json_encode(['order-image-2.jpg']),
+                'image' => json_encode(['order-image-1.jpg' , 'order-imag-2.jpg' , 'order-image-3.jpg']),
                 'additional_notes' => 'Ensure all wiring follows safety standards.',
                 'featured' => 1,
                 'created_at' => now(),
@@ -73,7 +73,7 @@ class OrderSeeder extends Seeder
             [
                 'order_id' => 3,
                 'title' => 'I need to renovate my house.',
-                'description' => 'I’m looking to renovate my house, including upgrades to the interiors, fixtures, and overall design.....',
+                'description' => 'I’m looking to renovate my house, including upgrades to the interiors, fixtures, and overall design. Seeking professional help for a quality transformation.',
                 'budget' => 4200,
                 'urgent' => 1,
                 'urgent_price' => 30,
@@ -81,7 +81,7 @@ class OrderSeeder extends Seeder
                 'job_end_timeline' => '25-Mar-2025',
                 'location' => 'Grensen 5, Bergen, NOR 5017, Norway.',
                 'address' => 'Grensen 5, Bergen, NOR 5017, Norway.',
-                'image' => json_encode(['order-image-3.jpg']),
+                'image' => json_encode(['order-image-1.jpg' , 'order-imag-2.jpg' , 'order-image-3.jpg']),
                 'additional_notes' => 'Use high-quality waterproof adhesive.',
                 'featured' => 1,
                 'created_at' => now(),
@@ -98,7 +98,7 @@ class OrderSeeder extends Seeder
                 'job_end_timeline' => '13-Mar-2025',
                 'location' => 'Juterudåsen 11, Slependen, NOR 1341, Norway.',
                 'address' => 'Juterudåsen 11, Slependen, NOR 1341, Norway.',
-                'image' => json_encode(['order-image-1.jpg']),
+                'image' => json_encode(['order-image-1.jpg' , 'order-imag-2.jpg' , 'order-image-3.jpg']),
                 'additional_notes' => 'Ensure all fittings are leak-proof.',
                 'featured' => 1,
                 'created_at' => now(),
