@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use App\Models\Notification;
+use App\Models\UserNotification;
+use App\Models\Customer;
 
 
 class TradepersonApiController extends Controller
@@ -172,6 +175,20 @@ class TradepersonApiController extends Controller
                     'milestone' => json_encode($milestoneData),
                 ]);
             }
+
+            $customer_user_id = Customer::where('id',$order->customer_id)->value('user_id');
+
+            $notification = Notification::where("id", 7)->first();
+            $user_notification = UserNotification::create([
+                'notification_id' => $notification->id,
+                'user_id' => $customer_user_id,
+            ]);
+
+            $notification = Notification::where("id", 6)->first();
+            $user_notification = UserNotification::create([
+                'notification_id' => $notification->id,
+                'user_id' => $customer_user_id,
+            ]);
 
             DB::commit();
 
@@ -456,11 +473,14 @@ class TradepersonApiController extends Controller
                 $path = $request->file('avatar')->store('avatar', 'public');
                 $user->update(['avatar' => $path]);
             }
+            
+            $nick_name = strtoupper(substr($validatedData['first_name'] ?? $traderPerson->first_name, 0, 1)) . ' ' . strtoupper(substr($validatedData['last_name'] ?? $traderPerson->last_name, 0, 1));
 
             // Update TradePerson
             $traderPerson->update([
                 'first_name' => $validatedData['first_name'] ?? $traderPerson->first_name,
                 'last_name' => $validatedData['last_name'] ?? $traderPerson->last_name,
+                'nick_name' => $nick_name,
                 'gender' => $validatedData['gender'] ?? $traderPerson->gender,
                 'phone' => $validatedData['phone_number'] ?? $traderPerson->phone,
                 'city' => $validatedData['city'] ?? $traderPerson->city,

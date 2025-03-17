@@ -65,47 +65,48 @@ class MarketPlaceSeeder extends Seeder
   
     //  Customer  
 
-    $users = [
-        [
-            'id' => 34,
-            'name' => 'Michael Jordan',
-            'email' => 'micheal-jordan@mailinator.com',
-            'password' => Hash::make('password'), // Securely hash password
-            'user_approved' => 1,
-            'avatar' => 'avatar-1.png',
-            'remember_token' => str()->random(60),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ],
-        [
-            'id' => 35,
-            'name' => 'Selena Ray',
-            'email' => 'selena-ray@mailinator.com',
-            'password' => Hash::make('password'),
-            'user_approved' => 1,
-            'avatar' => 'avatar-2.png',
-            'remember_token' => null,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ],
-        [
-            'id' => 36,
-            'name' => 'Louisa Marin',
-            'email' => 'louisa-marin@mailinator.com',
-            'password' => Hash::make('password'),
-            'user_approved' => 1,
-            'avatar' => 'avatar-3.png',
-            'remember_token' => null,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ],
-    ];
+    // $users = [
+    //     [
+    //         'id' => 34,
+    //         'name' => 'Michael Jordan',
+    //         'email' => 'micheal-jordan@mailinator.com',
+    //         'password' => Hash::make('password'), // Securely hash password
+    //         'user_approved' => 1,
+    //         'avatar' => 'avatar-1.png',
+    //         'remember_token' => str()->random(60),
+    //         'created_at' => Carbon::now(),
+    //         'updated_at' => Carbon::now(),
+    //     ],
+    //     [
+    //         'id' => 35,
+    //         'name' => 'Selena Ray',
+    //         'email' => 'selena-ray@mailinator.com',
+    //         'password' => Hash::make('password'),
+    //         'user_approved' => 1,
+    //         'avatar' => 'avatar-2.png',
+    //         'remember_token' => null,
+    //         'created_at' => Carbon::now(),
+    //         'updated_at' => Carbon::now(),
+    //     ],
+    //     [
+    //         'id' => 36,
+    //         'name' => 'Louisa Marin',
+    //         'email' => 'louisa-marin@mailinator.com',
+    //         'password' => Hash::make('password'),
+    //         'user_approved' => 1,
+    //         'avatar' => 'avatar-3.png',
+    //         'remember_token' => null,
+    //         'created_at' => Carbon::now(),
+    //         'updated_at' => Carbon::now(),
+    //     ],
+    // ];
 
-    foreach( $users as $user ) {
-        $user = User::create($user);
-        $user->assignRole('customer');
-    }
+    // foreach( $users as $user ) {
+    //     $user = User::create($user);
+    //     $user->assignRole('customer');
+    // }
     // Customer  End
+
 
 
         

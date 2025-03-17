@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User; 
-use App\Models\Order; 
-use App\Models\OrderProposal; 
+use App\Models\User;
+use App\Models\Order;
+use App\Models\OrderProposal;
 use App\Models\OrderDetail;
 use App\Models\TradepersonReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use App\Models\Notification;
+use App\Models\UserNotification;
+use App\Models\Tradeperson;
 
 class CustomerApiController extends Controller
 {
@@ -23,11 +26,9 @@ class CustomerApiController extends Controller
         try {
             // Validate request data
             $validated = $request->validate([
-                'customer_id' => 'required|exists:customers,id',
                 'tradeperson_id' => 'nullable|exists:tradepersons,id',
                 'order_status' => 'required|string|max:255',
                 'payment_status' => 'required|string|max:255',
-
                 // Order Details
                 'title' => 'required|string|max:255',
                 'description' => 'required|string',
@@ -42,7 +43,6 @@ class CustomerApiController extends Controller
                 'image.*' => 'nullable|string',
                 'additional_notes' => 'nullable|string',
                 'featured' => 'nullable|string',
-
                 // Categories
                 'categories' => 'required|array',
                 'categories.*' => 'exists:categories,id'
@@ -50,10 +50,10 @@ class CustomerApiController extends Controller
 
             // Use DB Transaction to ensure atomicity
             DB::beginTransaction();
-
+            $customer_id = auth()->user()->id;
             // Step 1: Create Order
             $order = Order::create([
-                'customer_id' => $validated['customer_id'],
+                'customer_id' => $customer_id,
                 'tradeperson_id' => $validated['tradeperson_id'] ?? null,
                 'order_status' => $validated['order_status'],
                 'payment_status' => $validated['payment_status'],
@@ -379,13 +379,15 @@ class CustomerApiController extends Controller
                 'id' => 'nullable|integer|exists:users,id',
                 'filter' => 'nullable|string|in:active_job,pending_job,completed_job,recent_jobs',
                 'offset' => 'nullable|integer|min:0',
-                'per_page' => 'nullable|integer|min:1|max:100',
+                'per_page' => 'nullable|integer|min:-1|max:100',
                 'with_proposal' => 'nullable|boolean',
-                'with_reviews' => 'nullable|boolean'
+                'with_reviews' => 'nullable|boolean',
+                'featured' => 'nullable|integer|in:0,1,2'
             ]);
 
 
             $user =  User::find(auth()->user()->id);
+
             if (!$user->hasRole('customer')) {
                 return response()->json([
                     'success' => false,
@@ -424,16 +426,26 @@ class CustomerApiController extends Controller
                 $query->with('review');
             }
 
+            if ($request->filled('featured')) {
+                $query->where('featured', $request->featured);
+            }
+
+            $total_count = $query->count();
             $offset = $request->input('offset', 0);
             $perPage = $request->input('per_page', 10);
-            $orders = $query->offset($offset)->limit($perPage)->get();
 
+            if ($perPage == -1) {
+                $orders = $query->get();
+            } else {
+                $orders = $query->offset($offset)->limit($perPage)->get();
+            }
 
             return response()->json([
                 'success' => true,
                 'message' => 'Orders retrieved successfully',
                 'offset' => $offset,
                 'per_page' => $perPage,
+                'total_count' => $total_count,
                 'data' => $orders
             ]);
         } catch (ValidationException $e) {
@@ -632,6 +644,7 @@ class CustomerApiController extends Controller
             ], 500);
         }
     }
+
     // accept proposal api -- post
     public function acceptProposal(Request $request)
     {
@@ -651,6 +664,7 @@ class CustomerApiController extends Controller
                 ], 403);
             }
 
+
             if ($orderProposal->customer_id != auth()->user()->id) {
                 return response()->json([
                     'success' => false,
@@ -658,7 +672,9 @@ class CustomerApiController extends Controller
                 ], 403);
             }
 
+
             $order = Order::find($orderProposal->order_id);
+
             if (!$order) {
                 return response()->json([
                     'success' => false,
@@ -671,10 +687,31 @@ class CustomerApiController extends Controller
                 'proposal_status' => 1,
             ]);
 
+            //reject other propsal
+            OrderProposal::where('order_id', $order->id)
+                ->where('id', '!=', $orderProposal->id)
+                ->update(['proposal_status' => 2]);
+
             // Update order details
             $order->update([
                 'tradeperson_id' => $orderProposal->tradeperson_id,
                 'order_status' => 2
+            ]);
+
+            $tradeperson_user_id = Tradeperson::where('id',$orderProposal->tradeperson_id)->value('user_id');
+
+            // Create Proposal Accepted notification
+            $notification = Notification::where("id", 4)->first();
+            $user_notification = UserNotification::create([
+                'notification_id' => $notification->id,
+                'user_id' => $tradeperson_user_id,
+            ]);
+
+            // Create Job Started notification
+            $notification = Notification::where("id", 1)->first();
+            $user_notification = UserNotification::create([
+                'notification_id' => $notification->id,
+                'user_id' => $tradeperson_user_id,
             ]);
 
             DB::commit(); // Commit transaction
@@ -729,6 +766,13 @@ class CustomerApiController extends Controller
             // Proposal reject karna
             $orderProposal->update([
                 'proposal_status' => 2
+            ]);
+
+            // Create Proposal Rejected notification
+            $notification = Notification::where("id", 5)->first();
+            $user_notification = UserNotification::create([
+                'notification_id' => $notification->id,
+                'user_id' => $orderProposal->tradeperson_id,
             ]);
 
             return response()->json([

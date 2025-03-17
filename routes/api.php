@@ -10,6 +10,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\PublicApiController;
 use App\Http\Controllers\TradepersonApiController;
 use App\Models\Testimonial;
+use App\Http\Controllers\NotificationApiController;
 
 
 
@@ -31,6 +32,7 @@ Route::middleware('verify_token')->group(function () {
     Route::get('/get-package', [PublicApiController::class, "getPackage"]);
 
     Route::get('/search-tradeperson', [PublicApiController::class, 'searchTradePerson']);
+    Route::get('/get-report', [MainController::class, 'getReports']);
 
 });
 
@@ -38,18 +40,23 @@ Route::middleware('verify_token')->group(function () {
 // registration routes
 Route::post('/register-tradeperson', [AuthController::class, 'registerTradePerson']);
 Route::post('/register-customer', [AuthController::class, 'registerCustomer']);
+Route::post('/google-register', [AuthController::class, 'registerGoogle']);
 
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::post('/forget-password', [AuthController::class, 'forgetPasword']);
+Route::post('/forget-password/reset-password', [AuthController::class, 'resetPassword']);
 
 
 Route::middleware('auth:api')->group(function () {
 
     Route::middleware('role:admin')->group(function () {
-        Route::get('/get-report', [MainController::class, 'getReports']);
         Route::post('/add-report', [MainController::class, 'storeReport']);
     });
+
+    Route::get('/get-notifications', [NotificationApiController::class, 'getNotifications']);
+    Route::post('/read-notification', [NotificationApiController::class, 'readNotifications']);
 
     Route::middleware('role:customer')->group(function () {
         //orders
