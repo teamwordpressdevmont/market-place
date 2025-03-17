@@ -669,18 +669,20 @@ class CustomerApiController extends Controller
 
             $orderProposal = OrderProposal::with('order')->find($request->proposal_id);
 
-            if ($orderProposal->order->order_status == 1) {
+            if ($orderProposal->order->order_status != 1) {
                 return response()->json([
                     'success' => false,
                     'message' => "Order is already in progress"
                 ], 403);
             }
 
-
-            if ($orderProposal->customer_id != auth()->user()->id) {
+          $user = auth()->user();
+            dd( $user);
+            
+            if ($orderProposal->customer_id != $user->customer->id) {
                 return response()->json([
                     'success' => false,
-                    'message' => "You can't accept this proposal"
+                    'message' => "You are not authorized to access this order proposal"
                 ], 403);
             }
 

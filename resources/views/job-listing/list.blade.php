@@ -98,7 +98,8 @@
                   {{ $order->order->OrderStatus->status }}
                </td>
                <td class="px-6 py-5 whitespace-nowrap text-xs font-normal {{ $order && $order->urgent ? 'font-bold text-[#DB4A2B]' : 'text-[#222222]' }}">
-                  {{ $order->order->tradeperson->user->email }}
+                  
+                  {{ $order->order?->tradeperson?->user?->email ?? '-'; }}
                </td>
                  <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222] text-center">
                   {{--  <button data-dropdown-toggle="dropdownDots-{{ $order->id }}" class="inline-flex justify-end w-fit ml-auto" type="button">
