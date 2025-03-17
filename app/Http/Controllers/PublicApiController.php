@@ -461,8 +461,8 @@ class PublicApiController extends Controller
             $request->validate([
                 'category_id' => 'sometimes|integer',
                 'postal_code' => 'sometimes|string',
-                'offset' => 'sometimes|integer|min:0',
-                'perPage' => 'sometimes|integer|min:-1|max:300',
+                'offset' => 'nullable|integer|min:0',
+                'perPage' => 'nullable|integer|min:-1|max:100'
             ]);
 
             // Create a base query for Tradeperson and eager load associated 'user' model
@@ -486,13 +486,21 @@ class PublicApiController extends Controller
             $offset = $request->input('offset', 0);
             $perPage = $request->input('perPage', 10);
 
-            // Fetch the filtered tradepersons with pagination
-            $tradePerson = $query->offset($offset)->limit($perPage)->get();
+            $offset = $request->input('offset', 0);
+            $perPage = $request->input('perPage', 10);
+
+            if ($perPage == -1) {
+                $tradePersons = $query->get();
+            } else {
+                $tradePersons = $query->offset($offset)->limit($perPage)->get();
+            }
+
 
             // Return the response with the tradeperson data
             return response()->json([
                 'success' => true,
-                'data' => $tradePerson,
+                'message' => 'Tradepersons Retrieved Successfully',
+                'data' => $tradePersons,
                 'offset' => $offset
             ], 200);
         } catch (ValidationException $e) {
