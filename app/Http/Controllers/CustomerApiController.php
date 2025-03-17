@@ -10,6 +10,9 @@ use App\Models\TradepersonReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use App\Models\Notification;
+use App\Models\UserNotification;
+use App\Models\Tradeperson;
 
 class CustomerApiController extends Controller
 {
@@ -672,6 +675,7 @@ class CustomerApiController extends Controller
                 ], 403);
             }
 
+
             $order = Order::find($orderProposal->order_id);
 
             if (!$order) {
@@ -695,6 +699,22 @@ class CustomerApiController extends Controller
             $order->update([
                 'tradeperson_id' => $orderProposal->tradeperson_id,
                 'order_status' => 2
+            ]);
+
+            $tradeperson_user_id = Tradeperson::where('id',$orderProposal->tradeperson_id)->value('user_id');
+
+            // Create Proposal Accepted notification
+            $notification = Notification::where("id", 4)->first();
+            $user_notification = UserNotification::create([
+                'notification_id' => $notification->id,
+                'user_id' => $tradeperson_user_id,
+            ]);
+
+            // Create Job Started notification
+            $notification = Notification::where("id", 1)->first();
+            $user_notification = UserNotification::create([
+                'notification_id' => $notification->id,
+                'user_id' => $tradeperson_user_id,
             ]);
 
             DB::commit(); // Commit transaction
@@ -749,6 +769,13 @@ class CustomerApiController extends Controller
             // Proposal reject karna
             $orderProposal->update([
                 'proposal_status' => 2
+            ]);
+
+            // Create Proposal Rejected notification
+            $notification = Notification::where("id", 5)->first();
+            $user_notification = UserNotification::create([
+                'notification_id' => $notification->id,
+                'user_id' => $orderProposal->tradeperson_id,
             ]);
 
             return response()->json([

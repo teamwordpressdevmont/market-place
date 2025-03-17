@@ -10,6 +10,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\PublicApiController;
 use App\Http\Controllers\TradepersonApiController;
 use App\Models\Testimonial;
+use App\Http\Controllers\NotificationApiController;
 
 
 
@@ -44,6 +45,8 @@ Route::post('/google-register', [AuthController::class, 'registerGoogle']);
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::post('/forget-password', [AuthController::class, 'forgetPasword']);
+Route::post('/forget-password/reset-password', [AuthController::class, 'resetPassword']);
 
 
 Route::middleware('auth:api')->group(function () {
@@ -51,6 +54,9 @@ Route::middleware('auth:api')->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::post('/add-report', [MainController::class, 'storeReport']);
     });
+
+    Route::get('/get-notifications', [NotificationApiController::class, 'getNotifications']);
+    Route::post('/read-notification', [NotificationApiController::class, 'readNotifications']);
 
     Route::middleware('role:customer')->group(function () {
         //orders
