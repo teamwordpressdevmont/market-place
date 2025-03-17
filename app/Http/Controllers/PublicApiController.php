@@ -673,6 +673,19 @@ class PublicApiController extends Controller
             } else {
                 $packages = $query->offset($offset)->limit($perPage)->get();
             }
+             
+            $packages->transform(function ($package) {
+                $features = json_decode($package->features, true);
+                
+                if (is_array($features)) {
+                    $featureList = array_map(fn($item) => $item['heading'], $features);
+                    $package->features = $featureList; // Return as an array
+                } else {
+                    $package->features = [];
+                }
+    
+                return $package;
+            });
 
             return response()->json([
                 'success' => true,

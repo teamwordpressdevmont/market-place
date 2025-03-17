@@ -26,11 +26,9 @@ class CustomerApiController extends Controller
         try {
             // Validate request data
             $validated = $request->validate([
-                'customer_id' => 'required|exists:customers,id',
                 'tradeperson_id' => 'nullable|exists:tradepersons,id',
                 'order_status' => 'required|string|max:255',
                 'payment_status' => 'required|string|max:255',
-
                 // Order Details
                 'title' => 'required|string|max:255',
                 'description' => 'required|string',
@@ -45,7 +43,6 @@ class CustomerApiController extends Controller
                 'image.*' => 'nullable|string',
                 'additional_notes' => 'nullable|string',
                 'featured' => 'nullable|string',
-
                 // Categories
                 'categories' => 'required|array',
                 'categories.*' => 'exists:categories,id'
@@ -53,10 +50,10 @@ class CustomerApiController extends Controller
 
             // Use DB Transaction to ensure atomicity
             DB::beginTransaction();
-
+            $customer_id = auth()->user()->id;
             // Step 1: Create Order
             $order = Order::create([
-                'customer_id' => $validated['customer_id'],
+                'customer_id' => $customer_id,
                 'tradeperson_id' => $validated['tradeperson_id'] ?? null,
                 'order_status' => $validated['order_status'],
                 'payment_status' => $validated['payment_status'],
