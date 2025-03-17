@@ -12,6 +12,8 @@ use App\Http\Controllers\Portal\ReportController;
 use App\Http\Controllers\Portal\jobListingDataController;
 use App\Http\Controllers\Portal\AdminMainController;
 use App\Http\Controllers\Portal\PendingApprovalController;
+use App\Http\Controllers\Portal\AnnouncementController;
+
 
 
 Route::get('/', function () {
@@ -53,9 +55,6 @@ Route::get('/subscription-plans', function() {
     return view('subscription-plans');
 })->name('subscription-plans');
 
-Route::get('/announcement', function() {
-    return view('announcement');
-})->name('announcement');
 
 
 // Route::get('/job-proposal', function() {
@@ -80,6 +79,17 @@ Route::get('/logout', function () {
     Auth::logout();
     return redirect('/login'); // Redirect to homepage or login
 })->name('logout');
+
+
+// Announcement
+Route::group(['prefix' => 'announcement', 'middleware' => 'auth'], function () {
+    Route::get('/', [AnnouncementController::class, 'list'])->name('announcement.list');
+    Route::get('/add', [AnnouncementController::class, 'addEdit'])->name('announcement.addEdit');
+    Route::post('/store', [AnnouncementController::class, 'store'])->name('announcement.store');
+    Route::get('/edit/{id}', [AnnouncementController::class, 'edit'])->name('announcement.edit');
+    Route::put('/update/{id}', [AnnouncementController::class, 'update'])->name('announcement.update');
+    Route::get('/delete/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.delete');
+});
 
 // Admin Category
 Route::group(['prefix' => 'categories', 'middleware' => 'auth'], function () {
