@@ -380,7 +380,7 @@ class PublicApiController extends Controller
             }
 
             if ($request->has('with_reviews')) {
-                $query->with('reviews.tradeperson.user' , 'reviews.order');
+                $query->with('reviews.customer.user', 'reviews.order.orderDetail');
             }
 
             $totalCount = $query->count();
@@ -397,7 +397,7 @@ class PublicApiController extends Controller
             $tradePersons->transform(function ($tradeperson) {
                 // Format the tradeperson's user avatar
                 $tradeperson->user['avatar'] = $this->formatAvatarUrl($tradeperson->user['avatar']);
-            
+
                 // Convert portfolio images to full paths
                 $tradeperson->portfolio = json_decode($tradeperson->portfolio, true);
                 if (is_array($tradeperson->portfolio)) {
@@ -405,11 +405,11 @@ class PublicApiController extends Controller
                 } else {
                     $tradeperson->portfolio = [];
                 }
-            
+
                 // Convert certificate & banner to full paths
                 $tradeperson->certificate = $this->formatAvatarUrl($tradeperson->certificate, 'tradeperson_certificate');
                 $tradeperson->banner = $this->formatAvatarUrl($tradeperson->banner, 'tradeperson_banner');
-            
+
                 // Additional fields
                 $tradeperson->verified = $tradeperson->featured;
                 $tradeperson->available  = "Available";
@@ -417,17 +417,17 @@ class PublicApiController extends Controller
                 $tradeperson->average_rating = $tradeperson->reviews()->avg('rating');
                 $tradeperson->completed_jobs = $tradeperson->orders()->where('order_status', 4)->count();
                 $tradeperson->active_jobs = $tradeperson->orders()->where('order_status', 2)->count();
-            
+
                 // Format avatar URLs inside reviews
                 if ($tradeperson->reviews) {
                     $tradeperson->reviews->transform(function ($review) {
-                        if ($review->tradeperson && $review->tradeperson->user) {
-                            $review->tradeperson->user->avatar = $this->formatAvatarUrl($review->tradeperson->user->avatar);
+                        if ($review->tradeperson && $review->customer->user) {
+                            $review->customer->user->avatar = $this->formatAvatarUrl($review->customer->user->avatar);
                         }
                         return $review;
                     });
                 }
-            
+
                 return $tradeperson->makeHidden(['orders']);
             });
 
@@ -559,44 +559,64 @@ class PublicApiController extends Controller
                 'offset'           => 'sometimes|integer|min:0',
                 'featured'         => 'sometimes|integer|in:0,1,2'
             ]);
-
+    
             $query = Order::with('orderDetail')->orderByDesc('id');
-
+    
             if ($request->boolean('with_customer')) {
-                $query->with('customer');
+                $query->with('customer.user');
             }
-
+    
             if ($request->boolean('with_tradeperson')) {
                 $query->with('tradeperson');
             }
-
+    
             if ($request->filled('status')) {
                 $query->where('status', $request->status);
             }
-
+    
             if ($request->has('payment_status')) {
                 $query->where('payment_status', $request->payment_status);
             }
-
+    
             if ($request->filled('id')) {
                 $query->where('id', $request->id);
             }
-
+    
             if ($request->filled('featured')) {
                 $query->where('featured', $request->featured);
             }
-
+    
             $total_count = $query->count();
-
+    
             $perPage = $request->input('perPage', 10);
             $offset = $request->input('offset', 0);
-
+    
             if ($perPage == -1) {
                 $orders = $query->get();
             } else {
                 $orders = $query->offset($offset)->limit($perPage)->get();
             }
-
+    
+            // Format avatar URLs and orderDetail images
+            $orders->transform(function ($order) {
+                if ($order->customer) {
+                    $order->customer->user->avatar = $this->formatAvatarUrl($order->customer->user->avatar);
+                }
+    
+                if ($order->tradeperson) {
+                    $order->tradeperson->avatar = $this->formatAvatarUrl($order->tradeperson->avatar);
+                }
+    
+                if ($order->orderDetail) {
+                    $order->orderDetail->image = array_map(
+                        fn($img) => $this->formatImageUrl($img),
+                        json_decode($order->orderDetail->image, true) ?? []
+                    );
+                }
+    
+                return $order;
+            });
+    
             return response()->json([
                 'success'     => true,
                 'message'     => 'Orders Retrieved Successfully',
@@ -618,6 +638,15 @@ class PublicApiController extends Controller
             ], 500);
         }
     }
+    
+    // Helper function to format image URL
+    private function formatImageUrl($image)
+    {
+        return url('storage/order_images/' . $image);
+    }
+    
+
+
 
     // get package
     public function getPackage(Request $request)
