@@ -16,9 +16,18 @@ class OrderDetail extends Model
         'image', 'additional_notes', 'featured'
     ];
     
+    protected $appends = ['status'];
+    
     public function order()
     {
         return $this->belongsTo(Order::class, 'order_id', 'id');
     }
+    
+    
+     public function getStatusAttribute()
+    {
+        return $this->urgent == 1 ? "Urgent" : "flexible";
+    }    
+    
 
 }

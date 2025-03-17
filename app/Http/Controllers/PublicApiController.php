@@ -642,7 +642,7 @@ class PublicApiController extends Controller
     // Helper function to format image URL
     private function formatImageUrl($image)
     {
-        return url('storage/order_images/' . $image);
+        return url('public/storage/order_images/' . $image);
     }
     
 

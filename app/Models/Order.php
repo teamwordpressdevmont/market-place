@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
+
 
 class Order extends Model
 {
@@ -56,5 +58,14 @@ class Order extends Model
     {
         return $this->hasMany(OrderMilestone::class, 'order_id', 'id');
     }
+    
+    protected $appends = ['created_at_formated'];
+
+    public function getCreatedAtFormatedAttribute()
+    {
+        return Carbon::parse($this->created_at)->diffForHumans();
+    }
+    
+    
     
 }
