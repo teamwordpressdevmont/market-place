@@ -14,6 +14,7 @@ use Illuminate\Validation\ValidationException;
 use App\Models\Notification;
 use App\Models\UserNotification;
 use App\Models\Customer;
+use App\Events\SubmitProposal;
 
 
 class TradepersonApiController extends Controller
@@ -182,15 +183,19 @@ class TradepersonApiController extends Controller
             $user_notification = UserNotification::create([
                 'notification_id' => $notification->id,
                 'user_id' => $customer_user_id,
+                'reference_link' => url('/api/orders'),
             ]);
 
             $notification = Notification::where("id", 6)->first();
             $user_notification = UserNotification::create([
                 'notification_id' => $notification->id,
                 'user_id' => $customer_user_id,
+                'reference_link' => url('/api/orders'),
             ]);
 
             DB::commit();
+
+            event( new SubmitProposal( $proposal ) );
 
             return response()->json([
                 'success' => true,

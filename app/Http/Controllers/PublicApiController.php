@@ -42,10 +42,6 @@ class PublicApiController extends Controller
                 $blogs = $query->offset($offset)->limit($perPage)->get();
             }
 
-            $blogs->transform(function ($blog) {
-                $blog->banner = $this->getFullImageUrl('blog-banner', $blog->banner);
-                return $blog;
-            });
 
             return response()->json([
                 'success' => true,
@@ -85,6 +81,7 @@ class PublicApiController extends Controller
                 'with_children'     => 'nullable|boolean',
                 'with_tradepersons' => 'nullable|boolean',
                 'search'            => 'nullable|string|max:255',
+                'featured_traderperson' => 'nullable|boolean'
             ]);
 
             // Start query
@@ -116,8 +113,18 @@ class PublicApiController extends Controller
 
             if ($request->boolean('with_tradepersons')) {
                 $query->with(['tradepersons' => function ($q) {
-                    $q->orderByDesc('id')->where('featured', 1)->limit(6);
+                    $q->orderByDesc('id')->where('featured', 1)->limit(6)
+                        ->with('user');
                 }]);
+            }
+            $traderPerson = collect([]);
+            if ($request->featured_traderperson) {
+                $traderPerson = TradePerson::with('user')->where('featured' , 1)->get();
+            }
+
+            $traderPerson = collect([]);
+            if ($request->featured_traderperson) {
+                $traderPerson = TradePerson::with('user')->where('featured', 1)->get();
             }
 
             // Pagination
@@ -132,58 +139,13 @@ class PublicApiController extends Controller
                 $categories = $query->offset($offset)->limit($perPage)->get();
             }
 
-            $categories->transform(function ($category) {
-                // Convert category icon to full path
-                $category->icon = $category->icon
-                    ? $this->getFullImageUrl('category-images', $category->icon)
-                    : null;
-
-                // Convert tradepersons avatar, portfolio & certificate to full path
-                if ($category->relationLoaded('tradepersons')) {
-                    $category->tradepersons->transform(function ($tradeperson) {
-                        $tradeperson->user['avatar'] = $tradeperson->user['avatar']
-                            ? $this->getFullImageUrl('avatars', $tradeperson->user['avatar'])
-                            : null;
-
-                        // Convert portfolio images to full path
-                        $tradeperson->portfolio = json_decode($tradeperson->portfolio, true);
-                        if (is_array($tradeperson->portfolio)) {
-                            $tradeperson->portfolio = array_map(function ($image) {
-                                return $this->getFullImageUrl('tradeperson_portfolio', $image);
-                            }, $tradeperson->portfolio);
-                        } else {
-                            $tradeperson->portfolio = [];
-                        }
-
-                        // Convert certificate to full path
-                        $tradeperson->certificate = $tradeperson->certificate
-                            ? $this->getFullImageUrl('tradeperson_certificate', $tradeperson->certificate)
-                            : null;
-
-                        $tradeperson->banner = $tradeperson->banner
-                            ? $this->getFullImageUrl('tradeperson_banners', $tradeperson->banner)
-                            : null;
-
-                        return $tradeperson;
-                    });
-                }
-
-                // Children categories icons
-                if ($category->relationLoaded('children')) {
-                    $category->children->transform(function ($child) {
-                        $child->icon = $child->icon
-                            ? $this->getFullImageUrl('category-images', $child->icon)
-                            : null;
-                        return $child;
-                    });
-                }
-
-                return $category;
-            });
 
             return response()->json([
                 'success'     => true,
-                'data'        => $categories,
+                'data'        => [
+                    'categories' => $categories,
+                    'traderPerson' => $traderPerson
+                ],
                 'offset'      => $offset,
                 'perPage'     => $perPage,
                 'total_count' => $totalCount,
@@ -239,11 +201,6 @@ class PublicApiController extends Controller
             } else {
                 $testimonials = $query->offset($offset)->limit($perPage)->get();
             }
-
-            $testimonials->transform(function ($testimonial) {
-                $testimonial->type = $testimonial->user ? $testimonial->user->getRoleNames()->first() : null;
-                return $testimonial->makeHidden(['user']);
-            });
 
             return response()->json([
                 'success' => true,
@@ -341,7 +298,15 @@ class PublicApiController extends Controller
             }
 
             if ($request->filled('address')) {
-                $query->where('address', 'like', '%' . $request->address . '%');
+                $query->where(function ($q) use ($request) {
+                    $q->where('address', 'LIKE', '%' . $request->address . '%')
+                        ->orWhere('latitude', 'LIKE', '%' . $request->address . '%')
+                        ->orWhere('longitude', 'LIKE', '%' . $request->address . '%');
+                });
+            }
+
+            if ($request->filled('zip_code')) {
+                $query->where('zip_code', 'LIKE', '%' . $request->get('zip_code') . '%');
             }
 
             if ($request->has('featured')) {
@@ -372,11 +337,8 @@ class PublicApiController extends Controller
             }
 
             if ($request->filled('min_rating')) {
-                $minRating = $request->min_rating;
-                $query->whereHas('reviews', function ($q) use ($minRating) {
-                    $q->selectRaw('AVG(rating) as avg_rating')
-                        ->havingRaw('AVG(rating) >= ?', [$minRating]);
-                });
+                $query->withAvg('reviews', 'rating')
+                      ->having('reviews_avg_rating', '>=', $request->min_rating);
             }
 
             if ($request->has('with_reviews')) {
@@ -395,21 +357,6 @@ class PublicApiController extends Controller
             }
 
             $tradePersons->transform(function ($tradeperson) {
-                // Format the tradeperson's user avatar
-                $tradeperson->user['avatar'] = $this->formatAvatarUrl($tradeperson->user['avatar']);
-
-                // Convert portfolio images to full paths
-                $tradeperson->portfolio = json_decode($tradeperson->portfolio, true);
-                if (is_array($tradeperson->portfolio)) {
-                    $tradeperson->portfolio = array_map(fn($image) => $this->getFullImageUrl('tradeperson_portfolio', $image), $tradeperson->portfolio);
-                } else {
-                    $tradeperson->portfolio = [];
-                }
-
-                // Convert certificate & banner to full paths
-                $tradeperson->certificate = $this->formatAvatarUrl($tradeperson->certificate, 'tradeperson_certificate');
-                $tradeperson->banner = $this->formatAvatarUrl($tradeperson->banner, 'tradeperson_banner');
-
                 // Additional fields
                 $tradeperson->verified = $tradeperson->featured;
                 $tradeperson->available  = "Available";
@@ -418,15 +365,6 @@ class PublicApiController extends Controller
                 $tradeperson->completed_jobs = $tradeperson->orders()->where('order_status', 4)->count();
                 $tradeperson->active_jobs = $tradeperson->orders()->where('order_status', 2)->count();
 
-                // Format avatar URLs inside reviews
-                if ($tradeperson->reviews) {
-                    $tradeperson->reviews->transform(function ($review) {
-                        if ($review->tradeperson && $review->customer->user) {
-                            $review->customer->user->avatar = $this->formatAvatarUrl($review->customer->user->avatar);
-                        }
-                        return $review;
-                    });
-                }
 
                 return $tradeperson->makeHidden(['orders']);
             });
@@ -461,8 +399,8 @@ class PublicApiController extends Controller
             $request->validate([
                 'category_id' => 'sometimes|integer',
                 'postal_code' => 'sometimes|string',
-                'offset' => 'sometimes|integer|min:0',
-                'perPage' => 'sometimes|integer|min:-1|max:300',
+                'offset' => 'nullable|integer|min:0',
+                'perPage' => 'nullable|integer|min:-1|max:100'
             ]);
 
             // Create a base query for Tradeperson and eager load associated 'user' model
@@ -486,13 +424,21 @@ class PublicApiController extends Controller
             $offset = $request->input('offset', 0);
             $perPage = $request->input('perPage', 10);
 
-            // Fetch the filtered tradepersons with pagination
-            $tradePerson = $query->offset($offset)->limit($perPage)->get();
+            $offset = $request->input('offset', 0);
+            $perPage = $request->input('perPage', 10);
+
+            if ($perPage == -1) {
+                $tradePersons = $query->get();
+            } else {
+                $tradePersons = $query->offset($offset)->limit($perPage)->get();
+            }
+
 
             // Return the response with the tradeperson data
             return response()->json([
                 'success' => true,
-                'data' => $tradePerson,
+                'message' => 'Tradepersons Retrieved Successfully',
+                'data' => $tradePersons,
                 'offset' => $offset
             ], 200);
         } catch (ValidationException $e) {
@@ -552,6 +498,7 @@ class PublicApiController extends Controller
             $validated = $request->validate([
                 'with_customer'    => 'sometimes|boolean',
                 'with_tradeperson' => 'sometimes|boolean',
+                'with_review' => 'sometimes|boolean',
                 'status'           => 'sometimes|string',
                 'payment_status'   => 'sometimes|string|in:0,1',
                 'id'               => 'sometimes|integer|exists:orders,id',
@@ -559,64 +506,54 @@ class PublicApiController extends Controller
                 'offset'           => 'sometimes|integer|min:0',
                 'featured'         => 'sometimes|integer|in:0,1,2'
             ]);
-    
-            $query = Order::with('orderDetail')->orderByDesc('id');
-    
+
+            $query = Order::with('orderDetail');
+
+
             if ($request->boolean('with_customer')) {
                 $query->with('customer.user');
             }
-    
+
             if ($request->boolean('with_tradeperson')) {
                 $query->with('tradeperson');
             }
-    
+
             if ($request->filled('status')) {
                 $query->where('status', $request->status);
             }
-    
+
             if ($request->has('payment_status')) {
                 $query->where('payment_status', $request->payment_status);
             }
-    
+
             if ($request->filled('id')) {
                 $query->where('id', $request->id);
             }
-    
+
             if ($request->filled('featured')) {
-                $query->where('featured', $request->featured);
+                if (in_array($request->get('featured'), [0, 1])) {
+                    $query->where('featured', $request->featured);
+                } 
             }
-    
+
+            if($request->filled('with_review')){
+                $query->with('review');
+            }
+
+
             $total_count = $query->count();
-    
+
             $perPage = $request->input('perPage', 10);
             $offset = $request->input('offset', 0);
-    
+
             if ($perPage == -1) {
                 $orders = $query->get();
             } else {
                 $orders = $query->offset($offset)->limit($perPage)->get();
             }
-    
-            // Format avatar URLs and orderDetail images
-            $orders->transform(function ($order) {
-                if ($order->customer) {
-                    $order->customer->user->avatar = $this->formatAvatarUrl($order->customer->user->avatar);
-                }
-    
-                if ($order->tradeperson) {
-                    $order->tradeperson->avatar = $this->formatAvatarUrl($order->tradeperson->avatar);
-                }
-    
-                if ($order->orderDetail) {
-                    $order->orderDetail->image = array_map(
-                        fn($img) => $this->formatImageUrl($img),
-                        json_decode($order->orderDetail->image, true) ?? []
-                    );
-                }
-    
-                return $order;
-            });
-    
+
+
+
             return response()->json([
                 'success'     => true,
                 'message'     => 'Orders Retrieved Successfully',
@@ -638,13 +575,6 @@ class PublicApiController extends Controller
             ], 500);
         }
     }
-    
-    // Helper function to format image URL
-    private function formatImageUrl($image)
-    {
-        return url('public/storage/order_images/' . $image);
-    }
-    
 
 
 
@@ -673,19 +603,8 @@ class PublicApiController extends Controller
             } else {
                 $packages = $query->offset($offset)->limit($perPage)->get();
             }
-             
-            $packages->transform(function ($package) {
-                $features = json_decode($package->features, true);
-                
-                if (is_array($features)) {
-                    $featureList = array_map(fn($item) => $item['heading'], $features);
-                    $package->features = $featureList; // Return as an array
-                } else {
-                    $package->features = [];
-                }
-    
-                return $package;
-            });
+
+
 
             return response()->json([
                 'success' => true,
@@ -707,13 +626,5 @@ class PublicApiController extends Controller
                 'error' => $th->getMessage()
             ], 500);
         }
-    }
-
-    private function formatAvatarUrl($image, $folder = 'avatars')
-    {
-        if ($image && !filter_var($image, FILTER_VALIDATE_URL)) {
-            return $this->getFullImageUrl($folder, $image);
-        }
-        return $image;
     }
 }

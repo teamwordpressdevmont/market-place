@@ -32,8 +32,10 @@ Route::middleware('verify_token')->group(function () {
     Route::get('/get-package', [PublicApiController::class, "getPackage"]);
 
     Route::get('/search-tradeperson', [PublicApiController::class, 'searchTradePerson']);
+
     Route::get('/get-report', [MainController::class, 'getReports']);
 
+    Route::get('/search-tradeperson', [PublicApiController::class, 'searchTradePerson']);
 });
 
 
@@ -57,6 +59,9 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/get-notifications', [NotificationApiController::class, 'getNotifications']);
     Route::post('/read-notification', [NotificationApiController::class, 'readNotifications']);
+
+    Route::get('/get-announcements', [MainController::class, 'getAnnouncements']);
+    Route::post('/read-announcement', [MainController::class, 'readAnnouncements']);
 
     Route::middleware('role:customer')->group(function () {
         //orders
