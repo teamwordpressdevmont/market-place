@@ -12,8 +12,6 @@ use App\Http\Controllers\TradepersonApiController;
 use App\Models\Testimonial;
 use App\Http\Controllers\NotificationApiController;
 
-Route::get('/search-tradeperson', [PublicApiController::class, 'searchTradePerson']);
-
 
 
 Route::get('/get-token', [MainController::class, 'getToken']);
@@ -32,6 +30,8 @@ Route::middleware('verify_token')->group(function () {
 
     Route::get('/get-order', [PublicApiController::class, "getOrder"]);
     Route::get('/get-package', [PublicApiController::class, "getPackage"]);
+
+    Route::get('/search-tradeperson', [PublicApiController::class, 'searchTradePerson']);
 
     Route::get('/get-report', [MainController::class, 'getReports']);
 
@@ -59,8 +59,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/get-notifications', [NotificationApiController::class, 'getNotifications']);
     Route::post('/read-notification', [NotificationApiController::class, 'readNotifications']);
 
-    Route::get('/get-announcements', [NotificationApiController::class, 'getAnnouncements']);
-    Route::post('/read-announcements', [NotificationApiController::class, 'readAnnouncements']);
+    Route::get('/get-announcements', [MainController::class, 'getAnnouncements']);
+    Route::post('/read-announcement', [MainController::class, 'readAnnouncements']);
 
     Route::middleware('role:customer')->group(function () {
         //orders

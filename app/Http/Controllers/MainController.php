@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Report;
 use App\Models\Token;
+use App\Models\Announcement;
+use App\Models\UserAnnouncement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -112,4 +114,83 @@ class MainController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * Get Notifications
+     */
+    public function getAnnouncements(Request $request)
+    {
+        try {
+
+            $query = UserAnnouncement::with('announcements')->where('user_id', auth()->user()->id)->orderByDesc('created_at');
+
+            // Offset & Limit for manual pagination
+            $offset = $request->input('offset', 0);
+            $perPage = $request->input('per_page', 10);
+            $totalCount = $query->count();
+            $orders = $query->offset($offset)->limit($perPage)->get();
+            return response()->json([
+                'success' => true,
+                'message' => 'All notifications successfully retrieved',
+                'total_notifications' => $totalCount,
+                'offset' => $offset,
+                'per_page' => $perPage,
+                'data' => $orders
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+
+    public function readAnnouncements(Request $request)
+    {
+        try {
+
+            $validated = $request->validate([
+                'announcement_id' => 'required',
+            ]);
+
+            $announcementIds = $request->input('announcement_id'); // Can be single ID or array
+
+            // Convert to array if it's a single ID
+            if (!is_array($announcementIds)) {
+                $announcementIds = [$announcementIds];
+            }
+
+        // Mark announcement as read
+        $user_announcement = UserAnnouncement::whereIn('id', $announcementIds)
+            ->where('user_id', auth()->user()->id)
+            ->delete();  // Use delete() here instead of destroy()
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Announcement read successfully',
+                'data' => $user_announcement,
+            ], 201);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'errors' => $e->errors(),
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to mark announcement read',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
 }
