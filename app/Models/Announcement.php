@@ -11,8 +11,7 @@ class Announcement extends Model
 
     protected $fillable = ['title', 'message'];
 
-
-    public function users(){
-        return $this->hasMany(User::class , "user_id");
+    public function users() {
+        return $this->hasMany(User::class, 'id', 'user_id');
     }
 }

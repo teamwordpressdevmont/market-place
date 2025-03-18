@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Announcement;
 use App\Models\User;
+use App\Models\UserAnnouncement;
 use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -22,27 +23,28 @@ class AnnouncementController extends Controller
     public function list(Request $request)
     {
         $search = $request->input('search');
-        $sortBy = $request->input('sort_by', 'id');
-        $sortDirection = $request->input('sort_direction', 'asc');
+        $sortBy = in_array($request->input('sort_by'), ['id', 'title', 'created_at']) ? $request->input('sort_by') : 'id';
+        $sortDirection = in_array($request->input('sort_direction'), ['asc', 'desc']) ? $request->input('sort_direction') : 'asc';
     
-        $announcements = Announcement::when($search, function ($query) use ($search) {
+        $announcements = Announcement::with('users')
+            ->when($search, function ($query) use ($search) {
                 return $query->where('title', 'like', "%{$search}%")
                              ->orWhere('message', 'like', "%{$search}%");
             })
-            ->with('users') // Role nahi, ab users ka relation fetch hoga
             ->orderBy($sortBy, $sortDirection)
-            ->paginate(10);
+            ->paginate(10)
+            ->appends($request->query());
     
-        // If the request is AJAX, return only the HTML content
         if ($request->ajax()) {
             return response()->json([
                 'html' => view('announcement.list', compact('announcements'))->render(),
-                'pagination' => (string) $announcements->appends($request->query())->links()
+                'pagination' => (string) $announcements->links()
             ]);
         }
     
         return view('announcement.list', compact('announcements', 'search', 'sortBy', 'sortDirection'));
-    }    
+    }
+       
 
     public function store(Request $request) {
         $request->validate([
@@ -60,20 +62,23 @@ class AnnouncementController extends Controller
                 'message' => $request->message
             ]);
                 
-            $users = User::whereHas('roles', function ($query) use ($request) {
-                $query->where('name', $request->role);
-            })->pluck('id');
-            
+            $users = User::role($request->role)->pluck('id');
             // dd($users);
     
             if ($users->isNotEmpty()) {
-                $announcement->users()->attach($users);
+                foreach ($users as $userId) {
+                    UserAnnouncement::create([
+                        'user_id'         => $userId,
+                        'announcement_id' => $announcement->id,
+                    ]);
+                }
             }
     
             DB::commit();
             return redirect()->route('announcement.list')->with('success', 'Announcement submitted successfully!');
         } catch (\Throwable $e) {  // Throwable used for better error catching
             DB::rollBack();
+            dd($e);
             return redirect()->back()->with('error', 'Failed to submit Announcement: ' . $e->getMessage());
         }
     }    

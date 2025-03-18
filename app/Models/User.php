@@ -79,10 +79,10 @@ class User extends Authenticatable
         return $this->hasMany(ApprovedTestimonial::class, 'user_id', 'id');
     }
 
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
+    // public function role()
+    // {
+    //     return $this->belongsTo(Role::class);
+    // }
 
     public function announcements()
     {
