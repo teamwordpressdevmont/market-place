@@ -11,4 +11,9 @@ class UserAnnouncement extends Model
 
     protected $table = 'user_announcements';
     protected $fillable = ['announcement_id', 'user_id'];
+
+    public function announcements()
+    {
+        return $this->belongsTo(Announcement::class, 'announcement_id', 'id');
+    }
 }
