@@ -54,7 +54,7 @@ class OrderSeeder extends Seeder
         //         'updated_at' => now(),
         //     ],
         //     [
-        //         'order_id' => 2,
+        //         'order_id' => 2 ,
         //         'title' => 'Need a quick fix for my leaking kitchen pipe',
         //         'description' => 'I need a quick and reliable repair for my leaking kitchen pipe to prevent further damage.',
         //         'budget' => 3500,
@@ -104,6 +104,24 @@ class OrderSeeder extends Seeder
         //         'created_at' => now(),
         //         'updated_at' => now(),
         //     ],
+        //     [
+        //         'order_id' => 5,
+        //         'title' => 'Need to Fix Kitchen Pipe',
+        //         'description' => 'I am seeking a skilled and reliable plumber to fix kitchen pipes. The ideal candidate will be responsible for diagnosing and repairing issues with kitchen plumbing, including clogged drains, leaks, or damaged pipes. The role involves ensuring the kitchen plumbing system is functioning properly and safely.',
+        //         'budget' => 2500,
+        //         'urgent' => 0,
+        //         'urgent_price' => 60,
+        //         'job_start_timeline' => '12-Feb-2025',
+        //         'job_end_timeline' => '13-Mar-2025',
+        //         'location' => 'Juterudåsen 11, Slependen, NOR 1341, Norway.',
+        //         'address' => 'Juterudåsen 11, Slependen, NOR 1341, Norway.',
+        //         'image' => json_encode(['order-image-1.jpg' , 'order-imag-1.jpg' , 'order-image-1.jpg' , 'order-image-1.jpg']),
+        //         'additional_notes' => 'Ensure all fittings are leak-proof.',
+        //         'featured' => 1,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        
         // ];
                   
         // DB::table('order_details')->insert($orderDetails);

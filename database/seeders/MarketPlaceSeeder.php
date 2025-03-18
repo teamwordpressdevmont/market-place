@@ -109,6 +109,74 @@ class MarketPlaceSeeder extends Seeder
 
 
 
+    // Traderperson User
+
+    $users = [
+        [
+            'id' => 37,
+            'name' => 'Brian Simmons',
+            'email' => 'brian-simmons@mailinator.com',
+            'password' => Hash::make('password'), // Securely hash password
+            'user_approved' => 1,
+            'avatar' => 'avatar-1.png',
+            'remember_token' => str()->random(60),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+        [
+            'id' => 38,
+            'name' => 'Danny Drywaller',
+            'email' => 'danny-drywaller@mailinator.com',
+            'password' => Hash::make('password'),
+            'user_approved' => 1,
+            'avatar' => 'avatar-1.png',
+            'remember_token' => null,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+        [
+            'id' => 39,
+            'name' => 'Lars Eriksen',
+            'email' => 'lars-eriksen@mailinator.com',
+            'password' => Hash::make('password'),
+            'user_approved' => 1,
+            'avatar' => 'avatar-1.png',
+            'remember_token' => null,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+        [
+            'id' => 40,
+            'name' => 'Tobias Andersen',
+            'email' => 'tobias-andersen@mailinator.com',
+            'password' => Hash::make('password'),
+            'user_approved' => 1,
+            'avatar' => 'avatar-1.png',
+            'remember_token' => null,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+        [
+            'id' => 41,
+            'name' => 'Øyvind Karlsen',
+            'email' => 'Øyvind-karlsen@mailinator.com',
+            'password' => Hash::make('password'),
+            'user_approved' => 1,
+            'avatar' => 'avatar-1.png',
+            'remember_token' => null,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+    ];
+
+    foreach( $users as $user ) {
+        $user = User::create($user);
+        $user->assignRole('tradeperson');
+    }
+    // tradeperson user End
+
+
+
         
     }
 }

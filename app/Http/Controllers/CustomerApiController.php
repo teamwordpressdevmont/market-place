@@ -27,7 +27,6 @@ class CustomerApiController extends Controller
             // Validate request data
             $validated = $request->validate([
                 'tradeperson_id' => 'nullable|exists:tradepersons,id',
-                'order_status' => 'required|string|max:255',
                 'payment_status' => 'required|string|max:255',
                 // Order Details
                 'title' => 'required|string|max:255',
@@ -40,25 +39,39 @@ class CustomerApiController extends Controller
                 'location' => 'nullable|string',
                 'address' => 'nullable|string',
                 'image' => 'nullable|array',
-                'image.*' => 'nullable|string',
+                'image.*' => 'image',
                 'additional_notes' => 'nullable|string',
                 'featured' => 'nullable|string',
                 // Categories
                 'categories' => 'required|array',
-                'categories.*' => 'exists:categories,id'
+                'categories.*' => 'required|exists:categories,id'
             ]);
 
             // Use DB Transaction to ensure atomicity
             DB::beginTransaction();
-            $customer_id = auth()->user()->id;
-            // Step 1: Create Order
+            $customer_id = auth()->user()?->customer?->id;
+
+            if (!$customer_id) {
+                return response()->json([
+                    'success' => false,
+                    "message" => "Customer Detail Not Found",
+                ], 404);
+            }
+
+
             $order = Order::create([
                 'customer_id' => $customer_id,
                 'tradeperson_id' => $validated['tradeperson_id'] ?? null,
-                'order_status' => $validated['order_status'],
+                'order_status' => 1,
                 'payment_status' => $validated['payment_status'],
             ]);
-
+            $imagePaths = [];
+            if ($request->hasFile("image")) {
+                foreach ($request->file("image") as $image) {
+                    $path = $image->store("order_images", "public"); // Store image in storage/app/public/order_images
+                    $imagePaths[] = basename($path); // Store only the image name
+                }
+            }
             // Step 2: Create Order Details
             $orderDetails = OrderDetail::create([
                 'order_id' => $order->id,
@@ -71,7 +84,7 @@ class CustomerApiController extends Controller
                 'job_end_timeline' => $validated['job_end_timeline'] ?? null,
                 'location' => $validated['location'] ?? null,
                 'address' => $validated['address'] ?? null,
-                'image' => json_encode($validated['image'] ?? []), // Store as JSON
+                'image' => json_encode($imagePaths), // Store as JSON
                 'additional_notes' => $validated['additional_notes'] ?? null,
                 'featured' => $validated['featured'] ?? null,
             ]);
@@ -82,7 +95,6 @@ class CustomerApiController extends Controller
             })->toArray();
 
             $order->categories()->attach($categoriesWithTimestamps);
-
 
             // Commit the transaction
             DB::commit();
@@ -657,7 +669,7 @@ class CustomerApiController extends Controller
 
             $orderProposal = OrderProposal::with('order')->find($request->proposal_id);
 
-            if ($orderProposal->order->order_status == 1) {
+            if ($orderProposal->order->order_status !== 1) {
                 return response()->json([
                     'success' => false,
                     'message' => "Order is already in progress"
@@ -698,7 +710,7 @@ class CustomerApiController extends Controller
                 'order_status' => 2
             ]);
 
-            $tradeperson_user_id = Tradeperson::where('id',$orderProposal->tradeperson_id)->value('user_id');
+            $tradeperson_user_id = Tradeperson::where('id', $orderProposal->tradeperson_id)->value('user_id');
 
             // Create Proposal Accepted notification
             $notification = Notification::where("id", 4)->first();
