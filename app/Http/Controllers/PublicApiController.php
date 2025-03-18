@@ -42,7 +42,7 @@ class PublicApiController extends Controller
                 $blogs = $query->offset($offset)->limit($perPage)->get();
             }
 
-    
+
             return response()->json([
                 'success' => true,
                 'data' => $blogs,
@@ -81,6 +81,7 @@ class PublicApiController extends Controller
                 'with_children'     => 'nullable|boolean',
                 'with_tradepersons' => 'nullable|boolean',
                 'search'            => 'nullable|string|max:255',
+                'featured_traderperson' => 'nullable|boolean'
             ]);
 
             // Start query
@@ -112,8 +113,14 @@ class PublicApiController extends Controller
 
             if ($request->boolean('with_tradepersons')) {
                 $query->with(['tradepersons' => function ($q) {
-                    $q->orderByDesc('id')->where('featured', 1)->limit(6);
+                    $q->orderByDesc('id')->where('featured', 1)->limit(6)
+                        ->with('user');
                 }]);
+            }
+
+            $traderPerson = collect([]);
+            if ($request->featured_traderperson) {
+                $traderPerson = TradePerson::with('user')->where('featured', 1)->get();
             }
 
             // Pagination
@@ -128,11 +135,13 @@ class PublicApiController extends Controller
                 $categories = $query->offset($offset)->limit($perPage)->get();
             }
 
-            
 
             return response()->json([
                 'success'     => true,
-                'data'        => $categories,
+                'data'        => [
+                    'categories' => $categories,
+                    'traderPerson' => $traderPerson
+                ],
                 'offset'      => $offset,
                 'perPage'     => $perPage,
                 'total_count' => $totalCount,
@@ -285,7 +294,15 @@ class PublicApiController extends Controller
             }
 
             if ($request->filled('address')) {
-                $query->where('address', 'like', '%' . $request->address . '%');
+                $query->where(function ($q) use ($request) {
+                    $q->where('address', 'LIKE', '%' . $request->address . '%')
+                        ->orWhere('latitude', 'LIKE', '%' . $request->address . '%')
+                        ->orWhere('longitude', 'LIKE', '%' . $request->address . '%');
+                });
+            }
+
+            if ($request->filled('zip_code')) {
+                $query->where('zip_code', 'LIKE', '%' . $request->get('zip_code') . '%');
             }
 
             if ($request->has('featured')) {
@@ -316,11 +333,8 @@ class PublicApiController extends Controller
             }
 
             if ($request->filled('min_rating')) {
-                $minRating = $request->min_rating;
-                $query->whereHas('reviews', function ($q) use ($minRating) {
-                    $q->selectRaw('AVG(rating) as avg_rating')
-                        ->havingRaw('AVG(rating) >= ?', [$minRating]);
-                });
+                $query->withAvg('reviews', 'rating')
+                      ->having('reviews_avg_rating', '>=', $request->min_rating);
             }
 
             if ($request->has('with_reviews')) {
@@ -346,7 +360,7 @@ class PublicApiController extends Controller
                 $tradeperson->average_rating = $tradeperson->reviews()->avg('rating');
                 $tradeperson->completed_jobs = $tradeperson->orders()->where('order_status', 4)->count();
                 $tradeperson->active_jobs = $tradeperson->orders()->where('order_status', 2)->count();
-             
+
 
                 return $tradeperson->makeHidden(['orders']);
             });
@@ -487,44 +501,46 @@ class PublicApiController extends Controller
                 'offset'           => 'sometimes|integer|min:0',
                 'featured'         => 'sometimes|integer|in:0,1,2'
             ]);
-    
+
             $query = Order::with('orderDetail')->orderByDesc('id');
-    
+
             if ($request->boolean('with_customer')) {
                 $query->with('customer.user');
             }
-    
+
             if ($request->boolean('with_tradeperson')) {
                 $query->with('tradeperson');
             }
-    
+
             if ($request->filled('status')) {
                 $query->where('status', $request->status);
             }
-    
+
             if ($request->has('payment_status')) {
                 $query->where('payment_status', $request->payment_status);
             }
-    
+
             if ($request->filled('id')) {
                 $query->where('id', $request->id);
             }
-    
+
             if ($request->filled('featured')) {
-                $query->where('featured', $request->featured);
+                if (in_array($request->get('featured'), [0, 1])) {
+                    $query->where('featured', $request->featured);
+                } 
             }
-    
+
             $total_count = $query->count();
-    
+
             $perPage = $request->input('perPage', 10);
             $offset = $request->input('offset', 0);
-    
+
             if ($perPage == -1) {
                 $orders = $query->get();
             } else {
                 $orders = $query->offset($offset)->limit($perPage)->get();
             }
-            
+
 
             return response()->json([
                 'success'     => true,
@@ -574,7 +590,7 @@ class PublicApiController extends Controller
             } else {
                 $packages = $query->offset($offset)->limit($perPage)->get();
             }
-            
+
 
             return response()->json([
                 'success' => true,
@@ -597,6 +613,4 @@ class PublicApiController extends Controller
             ], 500);
         }
     }
-
-    
 }

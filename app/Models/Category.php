@@ -39,7 +39,7 @@ class Category extends Model
     protected function icon(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $this->getFullImageUrl('category-images', $category->icon)
+            get: fn($value) => $value ? $this->getFullImageUrl('category-images', $value) : null
         );
     }
 }
