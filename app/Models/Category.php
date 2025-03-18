@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use App\Helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 
 class Category extends Model
 {
     //
-    use HasFactory;
+    use HasFactory, Helper;
 
     protected $fillable = ['name', 'description', 'parent_id', 'icon'];
 
@@ -16,13 +19,13 @@ class Category extends Model
     {
         return $this->belongsToMany(Tradeperson::class, 'tradeperson_categories', 'category_id', 'tradeperson_id');
     }
-    
+
     public function orders()
     {
         return $this->belongsToMany(Order::class, 'order_categories', 'category_id', 'order_id');
     }
-    
-       public function children()
+
+    public function children()
     {
         return $this->hasMany(Category::class, 'parent_id');
     }
@@ -33,7 +36,10 @@ class Category extends Model
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
-
-
-
+    protected function icon(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $this->getFullImageUrl('category-images', $category->icon)
+        );
+    }
 }

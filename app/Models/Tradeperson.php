@@ -2,17 +2,20 @@
 
 namespace App\Models;
 
+use App\Helper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 
 class Tradeperson extends Model
 {
     //
-    use HasFactory;
+    use HasFactory, Helper;
 
     protected $table = "tradepersons";
 
-    protected $fillable = ['user_id', 'first_name', 'last_name', 'nick_name', 'gender', 'phone', 'city', 'postal_code', 'latitude', 'longitude','about_me', 'service', 'address', 'portfolio', 'certificate' ,'banner', 'featured'];
+    protected $fillable = ['user_id', 'first_name', 'last_name', 'nick_name', 'gender', 'phone', 'city', 'postal_code', 'latitude', 'longitude', 'about_me', 'service', 'address', 'portfolio', 'certificate', 'banner', 'featured'];
 
 
     public function user()
@@ -38,5 +41,32 @@ class Tradeperson extends Model
     public function proposals()
     {
         return $this->hasOne(Proposal::class, 'tradeperson_id', 'id');
+    }
+
+
+    // Accessor for Portfolio (Convert JSON to full URLs)
+    protected function portfolio(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => collect(json_decode($value, true))
+                ->map(fn($image) => $this->getFullImageUrl('tradeperson_portfolio', $image))
+                ->toArray()
+        );
+    }
+
+    // Accessor for Certificate
+    protected function certificate(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $this->getFullImageUrl('tradeperson_certificate', $value)
+        );
+    }
+
+    // Accessor for Banner
+    protected function banner(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $this->getFullImageUrl('tradeperson_banner', $value)
+        );
     }
 }
