@@ -14,6 +14,7 @@ use Illuminate\Validation\ValidationException;
 use App\Models\Notification;
 use App\Models\UserNotification;
 use App\Models\Customer;
+use App\Events\SubmitProposal;
 
 
 class TradepersonApiController extends Controller
@@ -193,6 +194,8 @@ class TradepersonApiController extends Controller
             ]);
 
             DB::commit();
+
+            event( new SubmitProposal( $proposal ) );
 
             return response()->json([
                 'success' => true,

@@ -13,6 +13,7 @@ use Illuminate\Validation\ValidationException;
 use App\Models\Notification;
 use App\Models\UserNotification;
 use App\Models\Tradeperson;
+use App\Models\Customer;
 
 class CustomerApiController extends Controller
 {
@@ -668,22 +669,22 @@ class CustomerApiController extends Controller
             ]);
 
             $orderProposal = OrderProposal::with('order')->find($request->proposal_id);
-
-            if ($orderProposal->order->order_status !== 1) {
+            if ($orderProposal->order->order_status != 1) {  
                 return response()->json([
                     'success' => false,
                     'message' => "Order is already in progress"
                 ], 403);
             }
 
-
-            if ($orderProposal->customer_id != auth()->user()->id) {
+            $customer_id = Customer::find($request->user()->id);
+            dd($request->user()->id);
+            dd($orderProposal->customer_id != (int) $customer_id , $customer_id);
+            if ($orderProposal->customer_id != (int) $customer_id) {
                 return response()->json([
                     'success' => false,
                     'message' => "You can't accept this proposal"
                 ], 403);
             }
-
 
             $order = Order::find($orderProposal->order_id);
 
@@ -718,7 +719,7 @@ class CustomerApiController extends Controller
                 'notification_id' => $notification->id,
                 'user_id' => $tradeperson_user_id,
                 'reference_link' => url('/api/tradeperson-order'),
-                
+
             ]);
 
             // Create Job Started notification
@@ -727,7 +728,7 @@ class CustomerApiController extends Controller
                 'notification_id' => $notification->id,
                 'user_id' => $tradeperson_user_id,
                 'reference_link' => url('/api/tradeperson-order'),
-                
+
             ]);
 
             DB::commit(); // Commit transaction

@@ -12,8 +12,6 @@ use App\Http\Controllers\TradepersonApiController;
 use App\Models\Testimonial;
 use App\Http\Controllers\NotificationApiController;
 
-Route::get('/search-tradeperson', [PublicApiController::class, 'searchTradePerson']);
-
 
 
 Route::get('/get-token', [MainController::class, 'getToken']);
@@ -35,6 +33,7 @@ Route::middleware('verify_token')->group(function () {
 
     Route::get('/get-report', [MainController::class, 'getReports']);
 
+    Route::get('/search-tradeperson', [PublicApiController::class, 'searchTradePerson']);
 });
 
 

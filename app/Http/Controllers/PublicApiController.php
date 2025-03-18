@@ -85,6 +85,7 @@ class PublicApiController extends Controller
                 'with_children'     => 'nullable|boolean',
                 'with_tradepersons' => 'nullable|boolean',
                 'search'            => 'nullable|string|max:255',
+                'featured_traderperson' => 'nullable|boolean'
             ]);
 
             // Start query
@@ -118,6 +119,10 @@ class PublicApiController extends Controller
                 $query->with(['tradepersons' => function ($q) {
                     $q->orderByDesc('id')->where('featured', 1)->limit(6);
                 }]);
+            }
+            $traderPerson = collect([]);
+            if ($request->featured_traderperson) {
+                $traderPerson = TradePerson::with('user')->where('featured' , 1)->get();
             }
 
             // Pagination
@@ -183,7 +188,10 @@ class PublicApiController extends Controller
 
             return response()->json([
                 'success'     => true,
-                'data'        => $categories,
+                'data'        => [
+                    'categories' => $categories,
+                    'traderPerson' => $traderPerson
+                ],
                 'offset'      => $offset,
                 'perPage'     => $perPage,
                 'total_count' => $totalCount,
@@ -560,6 +568,7 @@ class PublicApiController extends Controller
             $validated = $request->validate([
                 'with_customer'    => 'sometimes|boolean',
                 'with_tradeperson' => 'sometimes|boolean',
+                'with_review' => 'sometimes|boolean',
                 'status'           => 'sometimes|string',
                 'payment_status'   => 'sometimes|string|in:0,1',
                 'id'               => 'sometimes|integer|exists:orders,id',
@@ -567,64 +576,68 @@ class PublicApiController extends Controller
                 'offset'           => 'sometimes|integer|min:0',
                 'featured'         => 'sometimes|integer|in:0,1,2'
             ]);
-    
-            $query = Order::with('orderDetail')->orderByDesc('id');
-    
+
+            $query = Order::with('orderDetail');
+
             if ($request->boolean('with_customer')) {
                 $query->with('customer.user');
             }
-    
+
             if ($request->boolean('with_tradeperson')) {
                 $query->with('tradeperson');
             }
-    
+
             if ($request->filled('status')) {
                 $query->where('status', $request->status);
             }
-    
+
             if ($request->has('payment_status')) {
                 $query->where('payment_status', $request->payment_status);
             }
-    
+
             if ($request->filled('id')) {
                 $query->where('id', $request->id);
             }
-    
+
             if ($request->filled('featured')) {
                 $query->where('featured', $request->featured);
             }
-    
+
+            if($request->filled('with_review')){
+                $query->with('review');
+            }
+
             $total_count = $query->count();
-    
+
             $perPage = $request->input('perPage', 10);
             $offset = $request->input('offset', 0);
-    
+
             if ($perPage == -1) {
                 $orders = $query->get();
             } else {
                 $orders = $query->offset($offset)->limit($perPage)->get();
             }
-    
+
             // Format avatar URLs and orderDetail images
             $orders->transform(function ($order) {
                 if ($order->customer) {
                     $order->customer->user->avatar = $this->formatAvatarUrl($order->customer->user->avatar);
                 }
-    
+
                 if ($order->tradeperson) {
                     $order->tradeperson->avatar = $this->formatAvatarUrl($order->tradeperson->avatar);
                 }
-    
+
                 if ($order->orderDetail) {
                     $order->orderDetail->image = array_map(
                         fn($img) => $this->formatImageUrl($img),
                         json_decode($order->orderDetail->image, true) ?? []
                     );
                 }
-    
+
                 return $order;
             });
-    
+
             return response()->json([
                 'success'     => true,
                 'message'     => 'Orders Retrieved Successfully',
@@ -646,13 +659,13 @@ class PublicApiController extends Controller
             ], 500);
         }
     }
-    
+
     // Helper function to format image URL
     private function formatImageUrl($image)
     {
         return url('public/storage/order_images/' . $image);
     }
-    
+
 
 
 
@@ -681,20 +694,20 @@ class PublicApiController extends Controller
             } else {
                 $packages = $query->offset($offset)->limit($perPage)->get();
             }
-             
-        //   $packages->transform(function ($package) {
-        //     $features = (array)$package->features;
-            
-        //     if (is_array($features)) {
-        //         // Extract only the values from the features object
-        //         $featureList = array_values($features);
-        //         $package->features = $featureList; // Return as an array
-        //     } else {
-        //         $package->features = [];
-        //     }
-        
-        //     return $package;
-        // });
+
+            //   $packages->transform(function ($package) {
+            //     $features = (array)$package->features;
+
+            //     if (is_array($features)) {
+            //         // Extract only the values from the features object
+            //         $featureList = array_values($features);
+            //         $package->features = $featureList; // Return as an array
+            //     } else {
+            //         $package->features = [];
+            //     }
+
+            //     return $package;
+            // });
 
             return response()->json([
                 'success' => true,
