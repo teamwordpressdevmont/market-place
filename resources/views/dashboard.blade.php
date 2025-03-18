@@ -75,7 +75,8 @@
                     @else
                     @foreach ($orders as $order)
                         <tr class="border-b border-[#e9e9e9]">
-                            <th class="px-6 py-5 whitespace-nowrap text-xs font-bold  {{ $order->orderDetail && $order->orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-mat' }}">#{{ $order->id }}</th>
+                            <th class="px-6 py-5 whitespace-nowrap text-xs font-bold  {{ $order->orderDetail && $order->orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-mat' }}">#{{ str_pad($order->id, 4, '0', STR_PAD_LEFT) }}
+                            </th>
                             <td class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $order->orderDetail && $order->orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-mat' }}">{{ optional($order->orderDetail)->title }}</td>
                             <td class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $order->orderDetail && $order->orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-mat' }}">
                                 @if($order->orderDetail)
