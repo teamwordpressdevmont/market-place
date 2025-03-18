@@ -121,7 +121,11 @@ $(document).ready(function() {
         // Change button text
         $('#dropdownDefaultButton').text($(this).text());
 
-        loadTable(url + '?status=' + statusId); // Send AJAX request
+           // If "All" is selected, remove the status filter from URL
+        let finalUrl = statusId === "all" ? url : url + '?status=' + statusId;
+
+        loadTable(finalUrl); // Send AJAX request
+
 
         $('#dropdown').addClass('hidden'); // Close dropdown after selection
     });
@@ -149,10 +153,20 @@ $(document).ready(function() {
             success: function(response) {
                 $('#table-container').html($(response.html).find('#table-container').html());
                 $('#pagination-container').html($(response.html).find('#pagination-container').html());
+                   // Dropdown Reinitialize
+            initializeDropdowns();
             },
             error: function(xhr, status, error) {
                 console.error('Error loading table:', error);
             }
+        });
+    }
+
+    // Function to reinitialize dropdowns
+    function initializeDropdowns() {
+        $('[data-dropdown-toggle]').off('click').on('click', function() {
+            let dropdownId = $(this).data('dropdown-toggle');
+            $('#' + dropdownId).toggleClass('hidden');
         });
     }
 

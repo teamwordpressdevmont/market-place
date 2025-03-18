@@ -23,7 +23,7 @@ class jobListingDataController extends Controller
 {
     $search = $request->input('search');
     $sortBy = $request->input('sort_by', 'id');
-    $sortDirection = $request->input('sort_direction', 'asc');
+    $sortDirection = $request->input('sort_direction', 'desc');
     $selectedStatus = $request->input('status'); // Selected Order Status ID
 
     $OrderStatus = OrderStatus::all();
@@ -54,7 +54,9 @@ class jobListingDataController extends Controller
     public function edit($id)
     {
         try {
-            $OrderDetails = OrderDetail::find($id);
+            $OrderDetails = OrderDetail::with('order')->findOrFail($id);
+            $OrderStatus = OrderStatus::all(); // Get all order statuses
+
 
             $imagesDetails = json_decode($OrderDetails->image, true) ?? [];
 
@@ -62,7 +64,7 @@ class jobListingDataController extends Controller
                 return redirect()->route('joblisting.list')->with('error', 'Order Detail not found.');
             }
 
-            return view('job-listing.add-edit', compact('OrderDetails'));
+            return view('job-listing.add-edit', compact('OrderDetails' , 'OrderStatus'));
         } catch (\Exception $e) {
             return redirect()->route('joblisting.list')->with('error', 'Something went wrong.');
         }
@@ -81,13 +83,32 @@ class jobListingDataController extends Controller
             'image' => 'nullable|array',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'additional_notes' => 'nullable|string',
-            'featured'        => 'nullable|boolean',
+            'featured' => 'nullable|boolean',
+            'urgent' => 'nullable|boolean',
+            'order_status'       => 'required|exists:order_statuses,id'
+
+
+            
+
         ]);
 
         DB::beginTransaction();
         try {
 
             $OrderDetail = OrderDetail::findOrFail($id);
+
+            // Find Related Order Record
+            $order = $OrderDetail->order;
+
+            if (!$order) {
+                return redirect()->back()->with('error', 'Order record not found.');
+            }
+
+            // Update Order Status in `orders` Table
+            $order->update([
+                'order_status' => $request->order_status
+            ]);
+
 
             $validatedData = $request->only([
                 'title',
@@ -97,7 +118,9 @@ class jobListingDataController extends Controller
                 'job_end_timeline',
                 'location',
                 'additional_notes',
-                'featured'
+                'featured',
+                'urgent'
+
             ]);
 
 
@@ -107,6 +130,12 @@ class jobListingDataController extends Controller
 
             if ($request->filled('job_end_timeline')) {
                 $validatedData['job_end_timeline'] = Carbon::parse($request->job_end_time)->format('d-M-Y');
+            }
+
+            if ($OrderDetail->order) {
+                $OrderDetail->order->update([
+                    'order_status' => $request->order_status
+                ]);
             }
 
             // Handle image uploads
