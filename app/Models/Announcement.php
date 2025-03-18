@@ -9,12 +9,9 @@ class Announcement extends Model
 {
     use HasFactory;
 
-    protected $table = 'notifications';
+    protected $fillable = ['title', 'message'];
 
-    protected $fillable = ['title', 'message', 'role_id'];
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class, 'role_id');
+    public function users() {
+        return $this->hasMany(User::class, 'id', 'user_id');
     }
 }

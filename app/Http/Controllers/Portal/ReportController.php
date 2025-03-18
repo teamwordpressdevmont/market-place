@@ -19,21 +19,25 @@ class ReportController extends Controller
 {
     public function dashboard()
     {
-        $totalBudget = OrderDetail::sum('budget'); // Calculate total budget
+        $totalBudget = OrderDetail::sum('budget'); 
 
-        $completedJobs = TradepersonReview::count('order_id'); // Count total order_id (completed jobs)
+        $completedJobs = TradepersonReview::count('order_id'); 
         
-        // Latest 3 Orders with Tradeperson and Order Details
-        $orders = Order::with('orderDetail', 'tradeperson.user')->limit(3)->get();
-    
-        // Orders with Pending Proposals
+        $orders = Order::with('orderDetail', 'tradeperson.user')
+            ->orderBy('created_at', 'asc')
+            ->limit(3)
+            ->get();
+
         $pendingOrders = OrderDetail::whereHas('order', function ($query) {
             $query->whereHas('orderStatus', function ($statusQuery) {
                 $statusQuery->where('status', 'Pending');
             });
-        })->get();
-    
+        })
+        ->orderBy('created_at', 'asc')
+        ->get();
+
         return view('dashboard', compact('totalBudget', 'completedJobs', 'orders', 'pendingOrders'));
     }
+
     
 }

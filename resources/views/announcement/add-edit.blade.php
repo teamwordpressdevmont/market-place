@@ -27,16 +27,18 @@
 
                 {{-- Role Selection --}}
                 <div class="site_field_col">
-                    <label for="role_id" class="block text-sm font-bold text-mat">Send To</label>
+                    <label for="role" class="block text-sm font-bold text-mat">Send To</label>
                     <div class="mt-2 grid grid-cols-1">
-                        <select id="role_id" name="role_id"
+                        <select id="role" name="role"
                                 class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block w-full text-sm p-3">
                             <option value="" disabled selected>Select Role</option>
-                            <option value="1" {{ old('role_id') == 1 ? 'selected' : '' }}>Admin</option>
-                            <option value="2" {{ old('role_id') == 2 ? 'selected' : '' }}>Customer</option>
-                            <option value="3" {{ old('role_id') == 3 ? 'selected' : '' }}>Tradeperson</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->name }}" {{ old('role') == $role->name ? 'selected' : '' }}>
+                                    {{ ucfirst($role->name) }}
+                                </option>
+                            @endforeach
                         </select>
-                        @error('role_id')
+                        @error('role')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>

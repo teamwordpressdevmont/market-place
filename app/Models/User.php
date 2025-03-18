@@ -82,10 +82,16 @@ class User extends Authenticatable
         return $this->hasMany(ApprovedTestimonial::class, 'user_id', 'id');
     }
 
-    protected function avatar(): Attribute
+     protected function avatar(): Attribute
     {
         return Attribute::make(
             get: fn($value) => $this->getFullImageUrl('avatars', $value)
         );
     }
+
+   public function announcements()
+{
+    return $this->hasMany(Announcement::class, 'user_id', 'id');
+}
+
 }

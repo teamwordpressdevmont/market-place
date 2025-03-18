@@ -26,7 +26,6 @@
                     <th class="px-6 py-3 text-[#ABABAB] font-[500]">S.No</th>
                     <th class="px-6 py-3 text-[#ABABAB] font-[500]">Title</th>
                     <th class="px-6 py-3 text-[#ABABAB] font-[500]">Message</th>
-                    <th class="px-6 py-3 text-[#ABABAB] font-[500]">Role</th>
                     <th class="px-6 py-3 text-[#ABABAB] font-[500]">Created At</th>
                 </tr>
             </thead>
@@ -48,9 +47,6 @@
                             </td>
                             <td class="px-6 py-5 text-xs font-normal text-mat">
                                 {{ $announcement->message }}
-                            </td>
-                            <td class="px-6 py-5 text-xs font-normal text-mat">
-                                {{ optional($announcement->role)->name ?? 'N/A' }}
                             </td>
                             <td class="px-6 py-5 text-xs font-normal text-mat">
                                 {{ $announcement->created_at->format('Y-m-d') }}
