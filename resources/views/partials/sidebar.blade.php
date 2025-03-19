@@ -147,6 +147,17 @@
       </li>
 
       <li>
+        <a href="{{ route( 'announcement.list' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('announcement') ? 'bg-primary' : '' }}">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.95083 2.94036L5.51568 5.06935C5.17434 5.2332 4.80962 5.27425 4.43783 5.19096C4.19451 5.13646 4.07284 5.1092 3.97487 5.09801C2.75829 4.95908 2 5.92196 2 7.02919V7.63683C2 8.74406 2.75829 9.70693 3.97487 9.568C4.07284 9.55682 4.19452 9.52956 4.43783 9.47505C4.80962 9.39177 5.17434 9.43281 5.51568 9.59666L9.95083 11.7257C10.969 12.2144 11.478 12.4587 12.0456 12.2683C12.6132 12.0778 12.808 11.6691 13.1976 10.8517C14.2675 8.60711 14.2675 6.05891 13.1976 3.81432C12.808 2.99691 12.6132 2.58821 12.0456 2.39774C11.478 2.20727 10.969 2.45164 9.95083 2.94036Z" stroke="#EDE9D0" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.6665 11.3327V11.666C8.6665 12.5221 8.6665 12.9501 8.51715 13.1917C8.31802 13.5139 7.95394 13.696 7.5767 13.662C7.29377 13.6365 6.95135 13.3796 6.2665 12.866L5.4665 12.266C4.81486 11.7773 4.6665 11.4806 4.6665 10.666V9.66602" stroke="#EDE9D0" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 9.33301V5.33301" stroke="#EDE9D0" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+           <span class="flex-1 ms-3 whitespace-nowrap ">Announcements</span>
+        </a>
+      </li>
+
+      <li>
         <a href="{{ route( 'contact' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('contact') ? 'bg-primary' : '' }}">
            <svg class="shrink-0 w-5 h-5 text-white transition duration-75  group-hover:text-green-900" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18"><path d="M19,4H5A3,3,0,0,0,2,7V17a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4ZM5,6H19a1,1,0,0,1,1,1l-8,4.88L4,7A1,1,0,0,1,5,6ZM20,17a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V9.28l7.48,4.57a1,1,0,0,0,1,0L20,9.28Z"/></svg>               
            <span class="flex-1 ms-3 whitespace-nowrap ">Contact</span>

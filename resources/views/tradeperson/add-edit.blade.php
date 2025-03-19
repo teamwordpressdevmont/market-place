@@ -132,13 +132,13 @@
 
                                 @if(!empty($tradeperson->portfolio))
                                 @php
-                                    $portfolioImages = json_decode($tradeperson->portfolio, true) ?? []; 
+                                    $portfolioImages = is_array($tradeperson->portfolio) ? $tradeperson->portfolio : json_decode($tradeperson->portfolio, true) ?? []; 
                                 @endphp
                                 
                                 @if(!empty($portfolioImages) && is_array($portfolioImages))
                                     @foreach($portfolioImages as $image)
                                         <div class="image-container relative inline-block">
-                                            <img src="{{ asset('storage/portfolio-images/' . $image) }}" class="h-20 w-20 object-cover rounded-md border">
+                                            <img src="{{ asset('storage/tradeperson_portfolio/' . $image) }}" class="h-20 w-20 object-cover rounded-md border">
                                         </div>
                                     @endforeach
                                 @endif
@@ -156,13 +156,13 @@
                                 </div>
                                 @if(!empty($tradeperson->certificate))
                                 @php
-                                    $certificateImages = json_decode($tradeperson->certificate, true) ?? []; 
+                                    $certificateImages = is_array($tradeperson->certificate) ? $tradeperson->certificate : json_decode($tradeperson->certificate, true) ?? []; 
                                 @endphp
                                 
                                 @if(!empty($certificateImages) && is_array($certificateImages))
                                     @foreach($certificateImages as $image)
                                         <div class="image-container relative inline-block">
-                                            <img src="{{ asset('storage/certificate-images/' . $image) }}" class="h-20 w-20 object-cover rounded-md border">
+                                            <img src="{{ asset('storage/tradeperson_certificate/' . $image) }}" class="h-20 w-20 object-cover rounded-md border">
                                         </div>
                                     @endforeach
                                 @endif

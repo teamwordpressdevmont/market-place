@@ -63,7 +63,8 @@
                             {!! html_entity_decode($trade->address) !!}
                         </td>
                         <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
-                            {!! html_entity_decode($trade->about_me) !!}
+                            {!! html_entity_decode(Str::words($trade->about_me, 10, '...')) !!}
+
                         </td>
                         <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">
                             <div class="site_user_dropdown">

@@ -31,6 +31,12 @@
             <!-- Dropdown menu -->
             <div id="dropdown" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden">
                <ul class="bg-white text-sm rounded-xl overflow-hidden">
+                     <!-- All Option -->
+                  <li class="border-b border-[#d3d3d3]">
+                        <a href="javascript:void(0)" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222] order-status-filter" data-status="all">
+                           All
+                        </a>
+                  </li>
                   @foreach ($OrderStatus as $status)
                   <li class="{{ !$loop->last ? 'border-b border-[#d3d3d3]' : '' }}">
                         <a href="javascript:void(0)" class="block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-[#222222] order-status-filter" data-status="{{ $status->id }}">
@@ -70,7 +76,8 @@
             @foreach($OrderDetails as $index => $order)
             <tr class="border-b border-[#e9e9e9]">
                <th scope="row" class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $order && $order->urgent ? 'text-[#DB4A2B]' : 'text-[#222222]' }}">
-                  #{{ $order->order_id }}
+                  {{-- #{{ $order->order_id }} --}}
+                  #{{ str_pad($order->id, 4, '0', STR_PAD_LEFT) }}
                </th>
                <td class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $order && $order->urgent ? 'text-[#DB4A2B]' : 'text-[#222222]' }}">
                   {{ $order->title }}
