@@ -132,7 +132,7 @@
 
                                 @if(!empty($tradeperson->portfolio))
                                 @php
-                                    $portfolioImages = json_decode($tradeperson->portfolio, true) ?? []; 
+                                    $portfolioImages = is_array($tradeperson->portfolio) ? $tradeperson->portfolio : json_decode($tradeperson->portfolio, true) ?? []; 
                                 @endphp
                                 
                                 @if(!empty($portfolioImages) && is_array($portfolioImages))
@@ -156,7 +156,7 @@
                                 </div>
                                 @if(!empty($tradeperson->certificate))
                                 @php
-                                    $certificateImages = json_decode($tradeperson->certificate, true) ?? []; 
+                                    $certificateImages = is_array($tradeperson->certificate) ? $tradeperson->certificate : json_decode($tradeperson->certificate, true) ?? []; 
                                 @endphp
                                 
                                 @if(!empty($certificateImages) && is_array($certificateImages))
