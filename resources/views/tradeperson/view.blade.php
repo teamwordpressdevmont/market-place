@@ -153,7 +153,8 @@
                         @if ($tradeperson->portfolio)
                             @php
                                 // Decode the JSON certificate array
-                                $portfolios = json_decode($tradeperson->portfolio, true);
+                               $portfolios = is_array($tradeperson->portfolio) ? $tradeperson->portfolio : json_decode($tradeperson->portfolio, true);
+
                             @endphp
 
                             @if (!empty($portfolios))
@@ -178,7 +179,7 @@
                         @if ($tradeperson->portfolio)
                             @php
                                 // Decode the JSON certificate array
-                                $portfolios = json_decode($tradeperson->portfolio, true);
+                                $certificates = is_array($tradeperson->certificate) ? $tradeperson->certificate : json_decode($tradeperson->certificate, true);
                             @endphp
 
                             @if (!empty($portfolios))

@@ -74,6 +74,32 @@
   
                         </div>
                     </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 md:gap-4">
+                        <div class="site_field_col mt-0! md:mb-7! mb-5">
+                            <label for="urgent" class="block md:text-sm text-xs font-bold text-mat">Job Type:</label>
+                            <div class="md:mt-4 mt-2 grid grid-cols-1">
+                                <select id="urgent" name="urgent" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3">
+                                    <option value="1" {{ old('urgent', $OrderDetails->urgent ?? '') == 1 ? 'selected' : '' }}>Urgent</option>
+                                    <option value="0" {{ old('urgent', $OrderDetails->urgent ?? '') == 0 ? 'selected' : '' }}>Flexible</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                        <div class="site_field_col mt-0! md:mb-7! mb-5">
+                            <label for="order_status" class="block md:text-sm text-xs font-bold text-mat">Order Status:</label>
+                            <div class="md:mt-4 mt-2 grid grid-cols-1">
+                                <select id="order_status" name="order_status" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3">
+                                    @foreach($OrderStatus as $status)
+                                        <option value="{{ $status->id }}" 
+                                            {{ isset($OrderDetails->order) && $OrderDetails->order->order_status == $status->id ? 'selected' : '' }}>
+                                            {{ $status->status }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="site_field_col mt-0! mb-7!">
                         <label for="phone" class="block text-sm font-bold text-mat">Location</label>
                         <div class="mt-4">
@@ -119,9 +145,10 @@
                         </div>
                     </div>
                     <div class="site_field_col mt-0! mb-7! flex items-center mb-4 gap-3!">
+                        <input type="hidden" name="featured" value="0">
                         <input id="featured" type="checkbox" name="featured" value="1"
-                        class="w-4 h-4 text-primary bg-white border-white rounded-sm focus:ring-gray-500"
-                        {{ isset($OrderDetails) && $OrderDetails->featured == '1' ? 'checked' : '' }}>
+                            class="w-4 h-4 text-primary bg-white border-white rounded-sm focus:ring-gray-500"
+                            {{ isset($OrderDetails) && $OrderDetails->featured == '1' ? 'checked' : '' }}>
                         <label for="featured-checkbox" class="block text-sm font-bold text-mat">Featured</label>
                     </div>
                     <div class="site_field_col mt-0! mb-7! flex items-center justify-end gap-x-6">
