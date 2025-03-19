@@ -7,6 +7,8 @@ use App\Models\Order;
 use App\Models\OrderProposal;
 use App\Models\OrderDetail;
 use App\Models\TradepersonReview;
+use App\Models\TradepersonCategory;
+use App\Models\InviteTradeperson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -811,4 +813,131 @@ class CustomerApiController extends Controller
             ], 500);
         }
     }
+
+    // get invites tradepersons api
+    public function getTradepersonForInvite(Request $request)
+    {
+        try {
+            // Validate the incoming request
+            $request->validate([
+                'order_id' => 'required|integer',
+                'category_name' => 'sometimes|string',
+                'offset' => 'nullable|integer|min:0',
+                'perPage' => 'nullable|integer|min:-1|max:100'
+            ]);
+
+            // If category_name is provided, filter the tradepersons based on the category
+            if ($request->filled('category_name')) {
+                $searchTerm = $request->input('category_name');
+
+                $categories = DB::table('categories')
+                    ->where('name', 'like', $searchTerm . '%')  // This matches names starting with the search term
+                    ->get();
+
+                //Order can have multiple categories
+                $category_ids = DB::table('order_categories')->select('category_id')
+                    ->whereIn('category_id', $categories->pluck('id')->toArray())
+                    ->where('order_id', $request->order_id)
+                    ->get();
+            } else {
+                // Order can have multiple categories 
+                $category_ids = DB::table('order_categories')->select('category_id')
+                    ->where('order_id', $request->order_id)
+                    ->get();
+            }
+
+            // Each Category can have multiple tradepersons
+            $tradeperson_ids = TradepersonCategory::select('tradeperson_id')
+                ->whereIn('category_id', $category_ids->pluck('category_id')->toArray())
+                ->get();
+
+            // Get All tradepersons with distinct IDs
+            $query = Tradeperson::whereIn('id', $tradeperson_ids->pluck('tradeperson_id')->toArray())->distinct();
+
+            // Get the offset and perPage values from the request, with default values
+            $offset = $request->input('offset', 0);
+            $perPage = $request->input('perPage', 10);
+
+            // Handle pagination
+            if ($perPage == -1) {
+                $tradePersons = $query->get();
+            } else {
+                $tradePersons = $query->offset($offset)->limit($perPage)->get();
+            }
+
+            // Ensure unique tradepersons by ID (in case duplicates were present in the query results)
+            $tradePersons = $tradePersons->unique('id');
+
+            // Return the response with the tradeperson data
+            return response()->json([
+                'success' => true,
+                'message' => 'Tradepersons Retrieved Successfully',
+                'data' => $tradePersons,
+                'offset' => $offset
+            ], 200);
+        } catch (\Exception $th) {
+            // Return generic error response
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function storeInvite(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'order_id' => 'required',
+                'tradeperson_id' => 'required',
+            ]);
+
+            $orderId = $request->input('order_id'); // Can be single ID or array
+            $tradepersonIds = $request->input('tradeperson_id'); // Can be single ID or array
+
+            // Convert to array if it's a single ID
+            if (!is_array($tradepersonIds)) {
+                $tradepersonIds = [$tradepersonIds];
+            }
+
+            $customer_id = Order::where('id', $orderId)->value('customer_id');
+
+            $invite_tradeperson = [];  // Initialize as an array
+
+            foreach ($tradepersonIds as $tradepersonId) {
+                
+                $invite_tradepersonObj = new InviteTradeperson();  // Create a new User instance
+
+                $invite_tradepersonObj->order_id = $orderId;
+                $invite_tradepersonObj->customer_id = $customer_id;  // Set customer_id
+                $invite_tradepersonObj->tradeperson_id = $tradepersonId;  // Set tradeperson_id
+                $invite_tradepersonObj->save();
+
+                // Store the created User object in the invite_tradeperson array
+                array_push($invite_tradeperson, $invite_tradepersonObj);
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Invite Stored successfully',
+                'data' => $invite_tradeperson,  // Return the array of invite tradepersons
+            ], 201);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'errors' => $e->errors(),
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to mark notification read',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
+
 }

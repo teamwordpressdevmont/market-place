@@ -35,7 +35,6 @@ Route::middleware('verify_token')->group(function () {
 
     Route::get('/get-report', [MainController::class, 'getReports']);
 
-    Route::get('/search-tradeperson', [PublicApiController::class, 'searchTradePerson']);
 });
 
 
@@ -81,6 +80,8 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/accept-proposal', [CustomerApiController::class, 'acceptProposal']);
         Route::post('/reject-proposal', [CustomerApiController::class, 'rejectProposal']);
 
+        Route::post('/invite-tradeperson', [CustomerApiController::class, 'storeInvite']);
+        Route::get('/get-tradeperson-for-invite', [CustomerApiController::class, 'getTradepersonForInvite']);
 
     });
 
@@ -103,6 +104,8 @@ Route::middleware('auth:api')->group(function () {
 
         Route::get('/get-tradeperson-profile', [TradepersonApiController::class, 'getTradePersonProfile']);
         Route::patch('/update-tradeperson-profile', [TradepersonApiController::class, 'updateTradePerson']);
+
+        Route::get('/get-invites', [TradepersonApiController::class, 'getMyInvites']);
 
 
     });

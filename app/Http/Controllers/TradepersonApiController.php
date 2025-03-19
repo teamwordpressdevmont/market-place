@@ -15,6 +15,7 @@ use App\Models\Notification;
 use App\Models\UserNotification;
 use App\Models\Customer;
 use App\Events\SubmitProposal;
+use App\Models\InviteTradeperson;
 
 
 class TradepersonApiController extends Controller
@@ -547,4 +548,48 @@ class TradepersonApiController extends Controller
             ], 500);
         }
     }
+
+    // get My invites as Tradeperson api
+    public function getMyInvites(Request $request)
+    {
+        try {
+            // Validate the incoming request
+            $request->validate([
+                'offset' => 'nullable|integer|min:0',
+                'perPage' => 'nullable|integer|min:-1|max:100'
+            ]);
+
+            $my_tradeperson_id = auth()->user()?->tradeperson?->id;
+
+            // Get All Invites
+            $query = InviteTradeperson::with(['orders.orderDetail'])->where('tradeperson_id', $my_tradeperson_id);
+
+            // Get the offset and perPage values from the request, with default values
+            $offset = $request->input('offset', 0);
+            $perPage = $request->input('perPage', 10);
+
+            // Handle pagination
+            if ($perPage == -1) {
+                $invites = $query->get();
+            } else {
+                $invites = $query->offset($offset)->limit($perPage)->get();
+            }
+
+            // Return the response with the tradeperson data
+            return response()->json([
+                'success' => true,
+                'message' => 'Tradepersons Retrieved Successfully',
+                'data' => $invites,
+                'offset' => $offset
+            ], 200);
+        } catch (\Exception $th) {
+            // Return generic error response
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
+
 }
