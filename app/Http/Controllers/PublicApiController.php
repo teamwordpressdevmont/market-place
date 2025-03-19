@@ -20,7 +20,7 @@ class PublicApiController extends Controller
     {
         try {
             request()->validate([
-                'blog_id' => 'nullable|integer|exists:blogs,id',
+                'blog_id' => 'nullable|string|exists:blogs,slug',
                 'offset' => 'nullable|integer|min:0',
                 'perPage' => 'nullable|integer|min:-1|max:100'
             ]);
@@ -28,7 +28,7 @@ class PublicApiController extends Controller
             $query = Blog::orderByDesc('id');
 
             if (request()->has('blog_id')) {
-                $query->where('id', request()->blog_id);
+                $query->where('slug', request()->blog_id);
             }
 
             $totalCount = $query->count();
