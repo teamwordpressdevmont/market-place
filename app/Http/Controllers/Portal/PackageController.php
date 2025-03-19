@@ -93,8 +93,8 @@ class PackageController extends Controller
         try {
             $package = Package::findOrFail($id);
 
-            $features = json_decode($package->features, true); 
-            
+            $features = is_array($package->features) ? $package->features : json_decode($package->features, true); 
+                     
             if (!$package) {
                 return redirect()->route('package.list')->with('error', 'Package not found.');
             }

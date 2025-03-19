@@ -82,7 +82,7 @@
                         <div class="flex items-center gap-3">
                             <input type="text" name="features[title][]" id="features_title_{{$index}}"
                                 class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3"
-                                value="{{ $feature['heading'] ?? '' }}">
+                                value="{{ $feature}}">
                             <div class="col-1">
                                 <a href="javascript:void(0)" class="mb-2 add_sub_btn add_field mt-0! bg-[#EDE9D0] border border-[#c5c1ad] px-4 py-2.5 rounded-2xl flex! items-center justify-center" data-field_type="features">
                                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
