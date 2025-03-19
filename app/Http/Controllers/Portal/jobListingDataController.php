@@ -199,7 +199,7 @@ class jobListingDataController extends Controller
     public function view($id)
     {
         try {
-            $OrderDetail = OrderDetail::with('order.review.tradeperson' , 'order.tradeperson.categories')->findOrFail($id);
+            $OrderDetail = OrderDetail::with('order.review.tradeperson' , 'order.customer' , 'order.customer.user' , 'order.tradeperson.categories')->findOrFail($id);
             return view('job-listing.view', compact('OrderDetail'));
         } catch (\Throwable $th) {
             dd($th->getMessage());
@@ -234,6 +234,19 @@ class jobListingDataController extends Controller
             return back()->with('success', 'Review Approved Successfully!');
         } catch (\Throwable $th) {
             return back()->with('error', 'Failed to update  review');
+        }
+    }
+
+
+    public function violationClient($id)
+    {
+        return view('job-listing.violation-client');
+        try {
+            $OrderDetail = OrderDetail::with('order.customer' , 'order.customer.user')->findOrFail($id);
+            return view('job-listing.violation-client', compact('OrderDetail'));
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            return redirect()->back()->with('success', 'Something went wrong.');
         }
     }
 }

@@ -116,6 +116,16 @@
    <div class=" pt-10 pb-8">
       <div class="grid grid-cols-1 xl:grid-cols-2 lg:gap-8 gap-5 items-end">
          <div class="">
+            <div class="flex-1 py-4">
+               <div class="flex justify-between sm:items-center items-start flex-col sm:flex-row">
+                  <img src="{{ $OrderDetail->order->customer->user->avatar }} " alt="image" class="2xl:w-[75px] w-[60px] rounded-full object-cover xl:mr-3 sm:mr-2 mr-0 sm:mb-0 mb-3">
+                  <div class="flex flex-1 gap-4 justify-between md:items-center sm:flex-row flex-col">
+                     <div>
+                         <a href="{{ route('joblisting.violation-client', $OrderDetail->id) }}">   <h4 class="font-semibold text-[#072130] text-sm">{{ $OrderDetail->order->customer->first_name }} {{ $OrderDetail->order->customer->last_name }}</h4> </a>
+                     </div>
+                  </div>
+               </div>
+            </div>
             <div class="flex items-center gap-2 bg-white rounded-full text-sm w-fit pr-4">
                <div class="bg-[#FFE9DC] px-3 py-2 rounded-full">
                   <svg width="16" height="16" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -47,9 +47,7 @@ Route::get('/job-management', function() {
     return view('job-management');
 })->name('job-management');
 
-Route::get('/violation-client', function() {
-    return view('violation-client');
-})->name('violation-client');
+// Route::get('/violation-client', function() { return view('violation-client');})->name('violation-client');
 
 Route::get('/subscription-plans', function() {
     return view('subscription-plans');
@@ -148,6 +146,9 @@ Route::group(['prefix'  => 'joblisting', 'middleware' => 'auth'], function() {
     Route::get('/view/{id}', [jobListingDataController::class, 'view'])->name('joblisting.view');
     Route::get('/review-profile/{id}', [jobListingDataController::class, 'reviewProfile'])->name('joblisting.review-profile');
     Route::get('/delete/{id}', [jobListingDataController::class, 'destroy'])->name('joblisting.delete');
+
+    Route::get('/violation-client/{id}', [jobListingDataController::class, 'violationClient'])->name('joblisting.violation-client');
+    
 });
 
 // Contact
