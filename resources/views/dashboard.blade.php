@@ -159,7 +159,7 @@
                                     <h3 class="text-xs font-bold mb-1 text-mat">{{ $order->title }}<span class="font-light"> create his profile</span></h3>
                                     <p class="text-xs text-[#9A9FA5] font-light">{{ $order->created_at->diffForHumans() }}</p>
                                 </div>
-                                <a href="#" class="bg-mat text-white text-xs px-4 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500] w-fit">Review Profile</a>
+                                <a href="{{ route('tradeperson.view', $order->id) }}" class="bg-mat text-white text-xs px-4 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500] w-fit">Review Profile</a>
                             </div>
 
                         @endforeach
@@ -184,7 +184,7 @@
                                     <h3 class="text-xs font-bold mb-1 text-mat">{{ $order->title }} </h3>
                                     <p class="text-xs text-[#9A9FA5] font-light">{{ $order->created_at->diffForHumans() }}</p>
                                     </div>
-                                    <a href="#" class="bg-mat text-white text-xs px-4 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500] w-fit">Review Job</a>
+                                    <a href="{{ route('joblisting.view', $order->id) }}" class="bg-mat text-white text-xs px-4 py-3 leading-[0] rounded-full hover:bg-[#24C500] transition font-[500] w-fit">Review Job</a>
                                 </div>
 
                         @endforeach

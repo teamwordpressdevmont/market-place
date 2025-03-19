@@ -50,75 +50,6 @@
       <div id="table-container" class="overflow-x-auto rounded-xl bg-white border border-[#22222233]">
          <table class="genericTable w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 bg-[#eee] border-b border-[#22222233]">
-               <tr>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="90">Job ID</th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="300">Job Title</th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="150">Type</th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Start & Delivery Date </th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]"> </th>
-                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500] text-right">Action</th>
-               </tr>
-            </thead>
-            <tbody>
-               @if($pendingOrders->isEmpty())
-               <tr class="">
-                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap " colspan="8">
-                     No Pending Orders data available.
-                  </th>
-               </tr>
-               @else
-               @foreach($pendingOrders as $orderDetail)
-               <tr class="bg-white border-b border-[#e9e9e9]">
-                  <th class="px-6 py-5 whitespace-nowrap text-xs   {{ $orderDetail && $orderDetail->urgent ? 'font-bold text-[#DB4A2B]' : 'font-normal  text-[#222222]' }}">#{{ $orderDetail->order->id }}</th>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $orderDetail && $orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-[#222222]' }}">{{ $orderDetail->title }}</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs  {{ $orderDetail && $orderDetail->urgent ? 'font-bold text-[#DB4A2B]' : 'text-[#222222]' }}">
-                      @if($orderDetail)
-                           {{ $orderDetail->urgent ? 'Urgent' : 'Flexible' }}
-                        @endif
-                  </td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">{{ $orderDetail->job_start_timeline }} - {{ $orderDetail->job_end_timeline }}</td>
-                  <td class="px-6 py-5 whitespace-nowrap text-end"><a href="{{ route('tradeperson.view', $orderDetail->id) }}" class="bg-[#222222] text-white font-normal text-xs px-5 py-2 leading-[0] rounded-full hover:bg-[#24C500] transition">Review Profile</a></td>
-                  <td class="px-6 py-5 whitespace-nowrap text-xs text-right">
-                     <button id="dropdownMenuIconButton" data-dropdown-toggle="dd-1" data-popper-placement="bottom-start" class="inline-flex justify-end w-fit ml-auto  px-5" type="button">
-                           <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                              <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                              <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                           </svg>
-                     </button>
-                        <!-- Dropdown menu -->
-                        <div id="dd-1" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1307px, 616px);">
-                           <ul class="bg-white text-sm rounded-xl overflow-hidden" aria-labelledby="dropdownMenuIconButton">
-                              <li class="border-b border-[#d3d3d3]">
-                                 <a href="" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Edit</a>
-                              </li>
-                              <li class="border-b border-[#d3d3d3]">
-                                 <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">View</a>
-                              </li>
-                              <li class="">
-                                 <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Delete</a>
-                              </li>
-                           </ul>
-                        </div>
-
-                  </td>
-
-               </tr>
-               @endforeach
-               @endif
-
-
-
-               </tbody>
-         </table>
-      </div>
-
-      </div>
-      <div class="h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] hidden pr-3" id="styled-settings" role="tabpanel" aria-labelledby="reviews-tab">
-
-      <div id="table-container" class="overflow-x-auto rounded-xl bg-white border border-[#22222233]">
-         <table class="genericTable w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 bg-[#eee] border-b border-[#22222233]">
                 <tr>
                     <th class="px-6 py-3 text-[#ABABAB] font-[500]" width="90">ID</th>
                     <th class="px-6 py-3 text-[#ABABAB] font-[500]" width="200">Tradeperson Name</th>
@@ -183,6 +114,76 @@
                     @endif
             </tbody>
         </table>
+        
+      </div>
+
+      </div>
+      <div class="h-[400px] overflow-y-auto mt-3 rounded-lg text-xs text-[#ABABAB] hidden pr-3" id="styled-settings" role="tabpanel" aria-labelledby="reviews-tab">
+
+      <div id="table-container" class="overflow-x-auto rounded-xl bg-white border border-[#22222233]">
+         <table class="genericTable w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 bg-[#eee] border-b border-[#22222233]">
+               <tr>
+                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="90">Job ID</th>
+                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="300">Job Title</th>
+                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]" width="150">Type</th>
+                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Start & Delivery Date </th>
+                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]"> </th>
+                  <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500] text-right">Action</th>
+               </tr>
+            </thead>
+            <tbody>
+               @if($pendingOrders->isEmpty())
+               <tr class="">
+                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap " colspan="8">
+                     No Pending Orders data available.
+                  </th>
+               </tr>
+               @else
+               @foreach($pendingOrders as $orderDetail)
+               <tr class="bg-white border-b border-[#e9e9e9]">
+                  <th class="px-6 py-5 whitespace-nowrap text-xs   {{ $orderDetail && $orderDetail->urgent ? 'font-bold text-[#DB4A2B]' : 'font-normal  text-[#222222]' }}">#{{ $orderDetail->order->id }}</th>
+                  <td class="px-6 py-5 whitespace-nowrap text-xs font-bold {{ $orderDetail && $orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-[#222222]' }}">{{ $orderDetail->title }}</td>
+                  <td class="px-6 py-5 whitespace-nowrap text-xs  {{ $orderDetail && $orderDetail->urgent ? 'font-bold text-[#DB4A2B]' : 'text-[#222222]' }}">
+                      @if($orderDetail)
+                           {{ $orderDetail->urgent ? 'Urgent' : 'Flexible' }}
+                        @endif
+                  </td>
+                  <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-mat">{{ $orderDetail->job_start_timeline }} - {{ $orderDetail->job_end_timeline }}</td>
+                  <td class="px-6 py-5 whitespace-nowrap text-end"><a href="{{ route('tradeperson.view', $orderDetail->id) }}" class="bg-[#222222] text-white font-normal text-xs px-5 py-2 leading-[0] rounded-full hover:bg-[#24C500] transition">Review Profile</a></td>
+                  <td class="px-6 py-5 whitespace-nowrap text-xs text-right">
+                     <button id="dropdownMenuIconButton" data-dropdown-toggle="dd-1" data-popper-placement="bottom-start" class="inline-flex justify-end w-fit ml-auto  px-5" type="button">
+                           <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M1.99199 8H2.00098" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                              <path d="M1.98418 14H1.99316" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                              <path d="M1.99981 2H2.00879" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                           </svg>
+                     </button>
+                        <!-- Dropdown menu -->
+                        <div id="dd-1" class="absolute top-full right-0 z-10 bg-white rounded-xl w-[122px] border border-[#d3d3d3] hidden" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1307px, 616px);">
+                           <ul class="bg-white text-sm rounded-xl overflow-hidden" aria-labelledby="dropdownMenuIconButton">
+                              <li class="border-b border-[#d3d3d3]">
+                                 <a href="" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Edit</a>
+                              </li>
+                              <li class="border-b border-[#d3d3d3]">
+                                 <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">View</a>
+                              </li>
+                              <li class="">
+                                 <a href="#" class="text-left block px-3 py-3 text-xs font-light transition hover:bg-[#222222] hover:text-white text-mat">Delete</a>
+                              </li>
+                           </ul>
+                        </div>
+
+                  </td>
+
+               </tr>
+               @endforeach
+               @endif
+
+
+
+               </tbody>
+         </table>
       </div>
     </div>
       </div>
