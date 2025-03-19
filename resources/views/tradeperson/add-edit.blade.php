@@ -129,11 +129,11 @@
                                         <input type="file" name="portfolio[]" id="portfolio" multiple accept="image/*" 
                                             class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm">
                                 </div>
-                                @php
+                                {{-- @php
                                     dd($tradeperson->portfolio, $tradeperson->certificate);
-                                @endphp
+                                @endphp --}}
 
-                                {{-- @if(!empty($tradeperson->portfolio))
+                                @if(!empty($tradeperson->portfolio))
                                 @php
                                    $portfolioImages = is_array($tradeperson->portfolio) ? $tradeperson->portfolio : (json_decode($tradeperson->portfolio, true) ?? []); 
                                 @endphp
@@ -146,13 +146,13 @@
                                             </div>
                                         @endforeach
                                     @endif
-                                @endif                                 --}}
+                                @endif                                
 
                             </div>
 
                     
                     
-                            {{-- <div class="">
+                            <div class="">
                                 <label for="certificate" class="block text-sm/6 font-medium text-gray-900">Certificate</label>
                                 <div class="mt-2">                                
                                     <input type="file" name="certificate[]" id="certificate" multiple accept="image/*" 
@@ -171,7 +171,7 @@
                                         @endforeach
                                     @endif
                                 @endif                                
-                            </div>  --}}
+                            </div> 
                     
 
 
