@@ -197,12 +197,12 @@
             <h2 class="text-sm font-semibold">Images</h2>
             <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 mt-2">
                @php
-                  $images = json_decode($OrderDetail->image);
+                  $images = is_array($OrderDetail->image) ? $OrderDetail->image : json_decode($OrderDetail->image);
                @endphp
 
                @if ($images)
-                  @foreach ($images as $img)
-                     <img src="{{ asset('public/images/' . $img) }}" alt="image" class="w-full">
+                  @foreach ($images as  $img)
+                     <img src="{{$img}}" alt="image" class="w-full">
                   @endforeach
                @else
                   <p>No images found.</p>
@@ -280,13 +280,13 @@
                         <h4 class="mb-3 font-semibold text-mat">Portfolio</h4>
                         <div class="grid grid-cols-6 gap-1 mt-2">
                            @php
-                              $portfolio = json_decode($OrderDetail->order->tradeperson->portfolio);
+                              $portfolio = is_array($OrderDetail->order->tradeperson->portfolio) ? $OrderDetail->order->tradeperson->portfolio : json_decode($OrderDetail->order->tradeperson->portfolio);
                            @endphp
 
                            @if ($portfolio)
 
                            @foreach ( $portfolio as $portfolioImage )
-                           <img src="{{ asset('public/storage/portfolio-images/' . $portfolioImage) }}" alt="image" class="h-[60px] object-cover w-full">
+                           <img src="{{$portfolioImage}}" alt="image" class="h-[60px] object-cover w-full">
                            @endforeach
 
                            @endif
@@ -323,13 +323,13 @@
                         <h4 class="mb-3 font-semibold text-mat">Portfolio</h4>
                         <div class="grid grid-cols-6 gap-1 mt-2">
                            @php
-                           $portfolio = json_decode($OrderDetail->order->tradeperson->portfolio);
+                             $portfolio = is_array($OrderDetail->order->tradeperson->portfolio) ? $OrderDetail->order->tradeperson->portfolio : json_decode($OrderDetail->order->tradeperson->portfolio);
                            @endphp
 
                            @if ($portfolio)
 
                            @foreach ( $portfolio as $portfolioImage )
-                           <img src="{{ asset('public/storage/portfolio-images/' . $portfolioImage) }}" alt="image" class="object-cover h-[60px] w-full">
+                           <img src="{{$portfolioImage}}" alt="image" class="object-cover h-[60px] w-full">
                            @endforeach
 
                            @endif

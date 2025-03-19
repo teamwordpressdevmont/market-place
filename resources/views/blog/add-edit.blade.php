@@ -95,7 +95,7 @@
                             <input type="file" name="banner" id="banner" accept="image/*" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm focus:outline-none">
                             @if(isset($blog) && $blog->banner)
                                 <div id="PreviewContainer" class="mt-2  relative">
-                                    <img  src="{{ asset('public/storage/blog-banner/' . $blog->banner) }}" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">
+                                    <img  src="{{ $blog->banner }}" class="Preview w-32 h-32 object-cover rounded-lg border border-gray-300">
                                     <span  class="CloseIcon  absolute top-0 right-0 bg-gray-600 text-white text-xs px-2 py-1 rounded-full cursor-pointer">X</span>
                                 </div>
                             @else
@@ -116,6 +116,7 @@
                     </div>
                 </div>
                 <div class="flex items-center site_field_col mt-0! md:mb-7! !mb-5 gap-3!">
+                    <input type="hidden" name="featured" value="0">
                     <input id="featured-checkbox" type="checkbox" name="featured" value="1"
                         class="w-4 h-4 text-primary bg-white border-white rounded-sm focus:ring-gray-500"
                         {{ isset($blog) && $blog->featured == '1' ? 'checked' : '' }}>

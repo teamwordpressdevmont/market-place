@@ -58,7 +58,7 @@ class jobListingDataController extends Controller
             $OrderStatus = OrderStatus::all(); // Get all order statuses
 
 
-            $imagesDetails = json_decode($OrderDetails->image, true) ?? [];
+            $imagesDetails = is_array($OrderDetails->image) ? $OrderDetails->image : json_decode($OrderDetails->image, true) ?? [];
 
             if (!$OrderDetails) {
                 return redirect()->route('joblisting.list')->with('error', 'Order Detail not found.');
@@ -139,7 +139,7 @@ class jobListingDataController extends Controller
             }
 
             // Handle image uploads
-            $existingImages = json_decode($OrderDetail->image, true) ?? [];
+            $existingImages = is_array($OrderDetail->image) ? $OrderDetail->image : json_decode($OrderDetail->image, true) ?? [];
             $imageData = [];
             $counter = 0;
 
