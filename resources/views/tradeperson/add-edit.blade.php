@@ -138,7 +138,7 @@
                                 @if(!empty($portfolioImages) && is_array($portfolioImages))
                                     @foreach($portfolioImages as $image)
                                         <div class="image-container relative inline-block">
-                                            <img src="{{ asset('storage/portfolio-images/' . $image) }}" class="h-20 w-20 object-cover rounded-md border">
+                                            <img src="{{ asset('storage/tradeperson_portfolio/' . $image) }}" class="h-20 w-20 object-cover rounded-md border">
                                         </div>
                                     @endforeach
                                 @endif
@@ -162,7 +162,7 @@
                                 @if(!empty($certificateImages) && is_array($certificateImages))
                                     @foreach($certificateImages as $image)
                                         <div class="image-container relative inline-block">
-                                            <img src="{{ asset('storage/certificate-images/' . $image) }}" class="h-20 w-20 object-cover rounded-md border">
+                                            <img src="{{ asset('storage/tradeperson_certificate/' . $image) }}" class="h-20 w-20 object-cover rounded-md border">
                                         </div>
                                     @endforeach
                                 @endif
