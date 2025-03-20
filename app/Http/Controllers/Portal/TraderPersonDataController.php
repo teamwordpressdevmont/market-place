@@ -21,7 +21,7 @@ class TraderPersonDataController extends Controller
     {
         $search = $request->input('search');
         $sortBy = $request->input('sort_by', 'id');
-        $sortDirection = $request->input('sort_direction', 'asc');
+        $sortDirection = $request->input('sort_direction', 'desc');
 
         $tradeperson = Tradeperson::when($search, function ($query, $search) {
             return $query->where('business_name', 'like', "%{$search}%");
