@@ -40,8 +40,8 @@
                             <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">S.No</th>
                             <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">ID</th>
                             <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">
-                                <a href="{{ route('subscription.list', array_merge(request()->all(), ['sort_by' => 'name', 'sort_direction' => request('sort_direction') == 'asc' ? 'desc' : 'asc'])) }}">
-                                    Name
+                                <a href="{{ route('subscription.list', array_merge(request()->all(), ['sort_by' => 'title', 'sort_direction' => request('sort_direction') == 'asc' ? 'desc' : 'asc'])) }}">
+                                    Title
                                 </a>
                             </th>
                             <th scope="col" class="px-6 py-3 text-[#ABABAB] font-[500]">Description</th>
@@ -65,7 +65,7 @@
                                 <th scope="row" class="px-6 py-5 whitespace-nowrap text-xs text-mat font-bold">
                                     {{ $subscription->id }}
                                 </th>
-                                <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">{{ $subscription->name }}</td>
+                                <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">{{ $subscription->title }}</td>
                                 <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">{!! html_entity_decode($subscription->description) !!}</td>
                                 <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">{{ $subscription->price }}</td>
                                 <td class="px-6 py-5 whitespace-nowrap text-xs text-mat font-normal">

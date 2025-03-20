@@ -18,16 +18,20 @@ class SubscriptionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'nullable|numeric',
             'features' => 'nullable|array',
+            'clip_number' => 'nullable|numeric',
+            'free_clip_number' => 'nullable|numeric',
+            'binding_period' => 'required|string',
+            'profile_type' => 'required|string|in:Standard,Premium',
         ]);
 
         DB::beginTransaction();
         try {
             $validatedData = $request->only([
-                'name', 'description', 'price', 'features', 
+                'title', 'description', 'price', 'features', 'clip_number', 'free_clip_number', 'binding_period', 'profile_type',
             ]);
 
             
@@ -72,7 +76,7 @@ class SubscriptionController extends Controller
     
         $subscriptions = Subscription::query()
             ->when($search, function ($query) use ($search) {
-                $query->where('name', 'like', "%{$search}%");
+                $query->where('title', 'like', "%{$search}%");
             })
             ->orderBy($sortBy, $sortDirection)
             ->paginate(10);
@@ -108,10 +112,14 @@ class SubscriptionController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'nullable|numeric',
             'features' => 'nullable|array',
+            'clip_number' => 'nullable|numeric',
+            'free_clip_number' => 'nullable|numeric',
+            'binding_period' => 'required|string',
+            'profile_type' => 'required|string|in:Standard,Premium',
         ]);
         
         DB::beginTransaction();
