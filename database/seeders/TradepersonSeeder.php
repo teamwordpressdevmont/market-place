@@ -367,7 +367,30 @@ class TradepersonSeeder extends Seeder
     // trade Person services close 
 
 
+    // tradeperson subscription open
+    $subscriptions = [
+        [
+            'tradeperson_id'  => 31,
+            'subscription_id' => 1,
+            'start_date'      => '2025-03-20',
+            'end_date'        => '2025-03-20',
+            'status_id'       => 1,
+            'created_at'      => Carbon::parse('2025-03-20 14:10:50'),
+            'updated_at'      => Carbon::parse('2025-03-20 14:10:50'),
+        ],
+        [
+            'tradeperson_id'  => 32,
+            'subscription_id' => 2,
+            'start_date'      => '2025-03-20',
+            'end_date'        => '2025-03-20',
+            'status_id'       => 2,
+            'created_at'      => Carbon::parse('2025-03-20 14:10:50'),
+            'updated_at'      => Carbon::parse('2025-03-20 14:10:50'),
+        ]
+    ];
 
+    DB::table('tradeperson_subscriptions')->insert($subscriptions);
+    // tradeperson subscription close
 
 
 }
