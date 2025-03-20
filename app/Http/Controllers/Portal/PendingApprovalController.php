@@ -14,7 +14,7 @@ class PendingApprovalController extends Controller
     {
         $search = $request->input('search');
         $sortBy = $request->input('sort_by', 'id');
-        $sortDirection = $request->input('sort_direction', 'asc');
+        $sortDirection = $request->input('sort_direction', 'desc');
 
         $pendingOrders = OrderDetail::with(['order.orderStatus', 'order.tradeperson', 'order.tradeperson.categories', 'order.tradeperson.user'])
             ->whereHas('order', function ($query) {
