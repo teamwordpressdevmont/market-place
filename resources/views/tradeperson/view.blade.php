@@ -109,8 +109,22 @@
         <div class="grid lg:grid-cols-2 grid-cols-1 items-start mb-8 lg:gap-0 gap-4">
             <h1 class="font-semibold xl:text-4xl lg:text-2xl text-xl mb-2 text-mat">Pending Approval</h1>
             <div class="flex lg:justify-end flex-col sm:flex-row">
-                <a href="#" class="text-white bg-mat hover:bg-primary focus:outline-none rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2 transition w-fit">Reject</a>
-                <a href="#" class="text-white bg-secondary hover:bg-primary focus:outline-none rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2 transition w-fit">Accept</a>
+                    <!-- Reject Button -->
+                    <a href="javascript:void(0);" 
+                       class="tradeperson-approval-btn text-white {{ $tradeperson->user->user_approved ? 'bg-mat' : 'bg-red-500' }} hover:bg-primary focus:outline-none rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2 transition w-fit"
+                       data-id="{{ $tradeperson->user->id }}"
+                       data-status="0">
+                        Reject
+                    </a>
+            
+                    <!-- Accept Button -->
+                    <a href="javascript:void(0);" 
+                       class="tradeperson-approval-btn text-white {{ $tradeperson->user->user_approved ? 'bg-green-500' : 'bg-secondary' }} hover:bg-primary focus:outline-none rounded-full text-sm px-20 py-2.5 text-center me-2 mb-2 transition w-fit"
+                       data-id="{{ $tradeperson->user->id }}"
+                       data-status="1">
+                        Accept
+                    </a>
+                
             </div>
 
         </div>
@@ -122,7 +136,7 @@
 
             <div class="grid grid-cols-1 xl:grid-cols-5">
                 <div class="lg:col-span-1 p-">
-                    <img src="{{ asset('public/images/' . $tradeperson->user->avatar) }}"
+                    <img src="{{ $tradeperson->user->avatar }}"
                         class="rounded-full 2xl:w-60 2xl:h-60 sm:w-50 sm:h-50 w-[150px] h-[150px] object-cover xl:mx-auto sm:-mt-25 -mt-20">
                 </div>
                 <div class="lg:col-span-2 xl:p-4">
@@ -160,7 +174,7 @@
                             @if (!empty($portfolios))
                                 @foreach ($portfolios as $portfolio)
                                 <div class="swiper-slide">
-                                    <img src="{{ asset('public/storage/portfolio-images/' . $portfolio) }}">
+                                    <img src="{{ $portfolio }}">
                                 </div>
                                 @endforeach
                             @else
@@ -184,8 +198,11 @@
 
                             @if (!empty($portfolios))
                                 @foreach ($portfolios as $portfolio)
+                                {{-- @php
+                                    var_dump($portfolio);
+                                @endphp --}}
                                 <div class="swiper-slide">
-                                    <img src="{{ asset('public/storage/portfolio-images/' . $portfolio) }}">
+                                    <img src="{{ $portfolio }}">
                                 </div>
                                 @endforeach
                             @else
@@ -233,7 +250,7 @@
 
                         @if (!empty($certificates))
                             @foreach ($certificates as $certificate)
-                                <img src="{{ asset('public/storage/certificate-images/' . $certificate) }}" class="h-auto max-w-full">
+                                <img src="{{ $certificate }}" class="h-auto max-w-full">
                             @endforeach
                         @else
                             <p class="text-gray-500 text-sm">No certifications available.</p>

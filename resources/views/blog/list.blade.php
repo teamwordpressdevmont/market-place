@@ -76,7 +76,7 @@
                             <td class="px-6 py-5 whitespace-nowrap text-xs font-normal text-[#222222]">
                                 @if($blogs->banner)
 
-                                    <img src="{{ asset('storage/blog-banner/' . $blogs->banner) }}" alt="banner" width="100">
+                                    <img src="{{$blogs->banner}}" alt="banner" width="100">
                                 @else
                                     No Image
                                 @endif

@@ -165,6 +165,7 @@ class TradepersonSeeder extends Seeder
 
 //     ];
 
+
 //     DB::table('tradeperson_categories')->insert($tradepersonCategories);
     // Tradepersons category close
 
@@ -178,6 +179,7 @@ class TradepersonSeeder extends Seeder
 
     // DB::table('tradeperson_reviews')->insert($tradepersonReviews);
     //  trade Person Reviews Close
+
     
     $categories = DB::table('categories')->whereNotNull('parent_id')->pluck('id'); 
 
@@ -193,6 +195,221 @@ class TradepersonSeeder extends Seeder
                 ]);
             }
         }
+
+
+    // trade Person clip usages open 
+    $tradepersonClipUsages = [
+        [
+            'tradeperson_id'  => 1,
+            'total_clips'     => 70,
+            'available_clips' => 40,
+            'used_clips'      => 30,
+            'reset_date'      => '2025-03-19',
+            'last_reset_date' => '2025-03-19',
+            'created_at'      => Carbon::now(),
+            'updated_at'      => Carbon::now(),
+        ],
+        [
+            'tradeperson_id'  => 2,
+            'total_clips'     => 100,
+            'available_clips' => 50,
+            'used_clips'      => 50,
+            'reset_date'      => '2025-03-19',
+            'last_reset_date' => '2025-03-19',
+            'created_at'      => Carbon::now(),
+            'updated_at'      => Carbon::now(),
+        ],
+        [
+            'tradeperson_id'  => 3,
+            'total_clips'     => 129,
+            'available_clips' => 50,
+            'used_clips'      => 79,
+            'reset_date'      => '2025-03-19',
+            'last_reset_date' => '2025-03-19',
+            'created_at'      => Carbon::now(),
+            'updated_at'      => Carbon::now(),
+        ],
+        [
+            'tradeperson_id'  => 4,
+            'total_clips'     => 200,
+            'available_clips' => 80,
+            'used_clips'      => 120,
+            'reset_date'      => '2025-03-19',
+            'last_reset_date' => '2025-03-19',
+            'created_at'      => Carbon::now(),
+            'updated_at'      => Carbon::now(),
+        ],
+    ];
+
+    DB::table('tradeperson_clip_usages')->insert($tradepersonClipUsages);
+    //  trade Person clip usages Close
+
+
+    // trade Person contract usages open 
+    $tradepersonContractUsages = [
+        [
+            'tradeperson_id'      => 31,
+            'total_contracts'     => 100,
+            'available_contracts' => 60,
+            'used_contracts'      => 40,
+            'reset_date'          => '2025-03-19',
+            'last_reset_date'     => '2025-03-19',
+            'created_at'          => Carbon::now(),
+            'updated_at'          => Carbon::now(),
+        ],
+        [
+            'tradeperson_id'      => 32,
+            'total_contracts'     => 130,
+            'available_contracts' => 70,
+            'used_contracts'      => 60,
+            'reset_date'          => '2025-03-19',
+            'last_reset_date'     => '2025-03-19',
+            'created_at'          => Carbon::now(),
+            'updated_at'          => Carbon::now(),
+        ],
+        [
+            'tradeperson_id'      => 33,
+            'total_contracts'     => 120,
+            'available_contracts' => 90,
+            'used_contracts'      => 30,
+            'reset_date'          => '2025-03-19',
+            'last_reset_date'     => '2025-03-19',
+            'created_at'          => Carbon::now(),
+            'updated_at'          => Carbon::now(),
+        ],
+        [
+            'tradeperson_id'      => 34,
+            'total_contracts'     => 60,
+            'available_contracts' => 30,
+            'used_contracts'      => 30,
+            'reset_date'          => '2025-03-19',
+            'last_reset_date'     => '2025-03-19',
+            'created_at'          => Carbon::now(),
+            'updated_at'          => Carbon::now(),
+        ],
+    ];
+
+    DB::table('tradeperson_contract_usages')->insert($tradepersonContractUsages);
+    // trade Person contract usages close 
+
+    // trade Person services open 
+    $tradepersonServices = [
+        [
+            'title'                   => 'Additional Services',
+            'description'             => 'Unleash the power of automation.',
+            'features'                => json_encode([
+                "features_0" => ["heading" => "Job marked as 'Urgent' and displayed at the top"],
+                "features_1" => ["heading" => "More tradespeople see the job"],
+                "features_2" => ["heading" => "Faster response time"]
+            ]),
+            'price'                   => 299.00,
+            'binding_period'          => '1 Month',
+            'search_visibility'       => 'Medium',
+            'recommended_tradeperson' => 1,
+            'appear_homepage'         => 1,
+            'access_premium_tender'   => NULL,
+            'extra_clip'              => 20,
+            'google_visibility'       => 1,
+            'contract_creation'       => NULL,
+            'free_contract'           => NULL,
+            'created_at'              => Carbon::now(),
+            'updated_at'              => Carbon::now(),
+        ],
+        [
+            'title'                   => 'Premium Listing',
+            'description'             => 'Increase your visibility in search results.',
+            'features'                => json_encode([
+                "features_0" => ["heading" => "Job marked as 'Urgent' and displayed at the top"],
+                "features_1" => ["heading" => "More tradespeople see the job"],
+                "features_2" => ["heading" => "Faster response time"]
+            ]),
+            'price'                   => 499.00,
+            'binding_period'          => '3 Months',
+            'search_visibility'       => 'High',
+            'recommended_tradeperson' => 1,
+            'appear_homepage'         => 1,
+            'access_premium_tender'   => 1,
+            'extra_clip'              => 50,
+            'google_visibility'       => 1,
+            'contract_creation'       => 1,
+            'free_contract'           => 1,
+            'created_at'              => Carbon::now(),
+            'updated_at'              => Carbon::now(),
+        ],
+        [
+            'title'                   => 'Basic Plan',
+            'description'             => 'A simple plan for getting started.',
+            'features'                => json_encode([
+                "features_0" => ["heading" => "Job marked as 'Urgent' and displayed at the top"],
+                "features_1" => ["heading" => "More tradespeople see the job"],
+                "features_2" => ["heading" => "Faster response time"]
+            ]),
+            'price'                   => 99.00,
+            'binding_period'          => '1 Month',
+            'search_visibility'       => 'Premium',
+            'recommended_tradeperson' => 0,
+            'appear_homepage'         => 0,
+            'access_premium_tender'   => NULL,
+            'extra_clip'              => 5,
+            'google_visibility'       => 0,
+            'contract_creation'       => NULL,
+            'free_contract'           => NULL,
+            'created_at'              => Carbon::now(),
+            'updated_at'              => Carbon::now(),
+        ],
+        [
+            'title'                   => 'Enterprise Solution',
+            'description'             => 'Best for large businesses.',
+            'features'                => json_encode([
+                "features_0" => ["heading" => "Job marked as 'Urgent' and displayed at the top"],
+                "features_1" => ["heading" => "More tradespeople see the job"],
+                "features_2" => ["heading" => "Faster response time"]
+            ]),
+            'price'                   => 999.00,
+            'binding_period'          => '12 Months',
+            'search_visibility'       => 'Medium',
+            'recommended_tradeperson' => 1,
+            'appear_homepage'         => 1,
+            'access_premium_tender'   => 1,
+            'extra_clip'              => 100,
+            'google_visibility'       => 1,
+            'contract_creation'       => 1,
+            'free_contract'           => 1,
+            'created_at'              => Carbon::now(),
+            'updated_at'              => Carbon::now(),
+        ]
+    ];
+    
+    DB::table('tradeperson_services')->insert($tradepersonServices);
+    // trade Person services close 
+
+
+    // tradeperson subscription open
+    $subscriptions = [
+        [
+            'tradeperson_id'  => 31,
+            'subscription_id' => 1,
+            'start_date'      => '2025-03-20',
+            'end_date'        => '2025-03-20',
+            'status_id'       => 1,
+            'created_at'      => Carbon::parse('2025-03-20 14:10:50'),
+            'updated_at'      => Carbon::parse('2025-03-20 14:10:50'),
+        ],
+        [
+            'tradeperson_id'  => 32,
+            'subscription_id' => 2,
+            'start_date'      => '2025-03-20',
+            'end_date'        => '2025-03-20',
+            'status_id'       => 2,
+            'created_at'      => Carbon::parse('2025-03-20 14:10:50'),
+            'updated_at'      => Carbon::parse('2025-03-20 14:10:50'),
+        ]
+    ];
+
+    DB::table('tradeperson_subscriptions')->insert($subscriptions);
+    // tradeperson subscription close
+
+>>>>>>> zain
 
 }
 

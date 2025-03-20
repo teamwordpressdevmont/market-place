@@ -21,7 +21,7 @@ class TraderPersonDataController extends Controller
     {
         $search = $request->input('search');
         $sortBy = $request->input('sort_by', 'id');
-        $sortDirection = $request->input('sort_direction', 'asc');
+        $sortDirection = $request->input('sort_direction', 'desc');
 
         $tradeperson = Tradeperson::when($search, function ($query, $search) {
             return $query->where('business_name', 'like', "%{$search}%");
@@ -91,21 +91,21 @@ class TraderPersonDataController extends Controller
             if ($request->hasFile('certificate')) {
                 // Delete old certificate images
                 if (!empty($tradeperson->certificate)) {
-                    $existingCertificateFiles = json_decode($tradeperson->certificate, true);
+                    $existingCertificateFiles = is_array($tradeperson->certificate) ? $tradeperson->certificate : json_decode($tradeperson->certificate, true);
                     foreach ($existingCertificateFiles as $oldFile) {
-                        Storage::disk('public')->delete('certificate-images/' . $oldFile);
+                        Storage::disk('public')->delete('tradeperson_certificate/' . $oldFile);
                     }
                 }
 
                 // Upload new certificate images
                 foreach ($request->file('certificate') as $image) {
                     $filename = "certificate-" . time() . "-" . uniqid() . "." . $image->getClientOriginalExtension();
-                    $image->storeAs('certificate-images', $filename, 'public');
+                    $image->storeAs('tradeperson_certificate', $filename, 'public');
                     $certificateFiles[] = $filename;
                 }
             } else {
                 // Retain existing certificate images if no new image is uploaded
-                $certificateFiles = json_decode($tradeperson->certificate, true) ?? [];
+                $certificateFiles = is_array($tradeperson->certificate) ? $tradeperson->certificate : json_decode($tradeperson->certificate, true) ?? [];
             }
 
             // Handle Portfolio Images
@@ -113,27 +113,27 @@ class TraderPersonDataController extends Controller
             if ($request->hasFile('portfolio')) {
                 // Delete old portfolio images
                 if (!empty($tradeperson->portfolio)) {
-                    $existingPortfolioFiles = json_decode($tradeperson->portfolio, true);
+                    $existingPortfolioFiles = is_array($tradeperson->portfolio) ? $tradeperson->portfolio : json_decode($tradeperson->portfolio, true);
                     foreach ($existingPortfolioFiles as $oldFile) {
-                        Storage::disk('public')->delete('portfolio-images/' . $oldFile);
+                        Storage::disk('public')->delete('tradeperson_portfolio/' . $oldFile);
                     }
                 }
 
                 // Upload new portfolio images
                 foreach ($request->file('portfolio') as $image) {
                     $filename = "portfolio-" . time() . "-" . uniqid() . "." . $image->getClientOriginalExtension();
-                    $image->storeAs('portfolio-images', $filename, 'public');
+                    $image->storeAs('tradeperson_portfolio', $filename, 'public');
                     $portfolioFiles[] = $filename;
                 }
             } else {
                 // Retain existing portfolio images if no new image is uploaded
-                $portfolioFiles = json_decode($tradeperson->portfolio, true) ?? [];
+                $portfolioFiles = is_array($tradeperson->portfolio) ? $tradeperson->portfolio : json_decode($tradeperson->portfolio, true) ?? [];
             }
 
             $validatedData = $request->only(['user_id', 'first_name', 'last_name', 'about_me', 'service', 'phone', 'address', 'featured']);
 
-            $validatedData['portfolio'] = json_encode($portfolioFiles);
-            $validatedData['certificate'] = json_encode($certificateFiles);
+            $validatedData['portfolio'] = json_encode($portfolioFiles ?? []);
+            $validatedData['certificate'] = json_encode($certificateFiles ?? []);
             $tradeperson->update($validatedData);
             
 
@@ -187,14 +187,27 @@ class TraderPersonDataController extends Controller
        
     }
 
-    public function tradepersonToggleApproval($id)
+    public function tradepersonToggleApproval(Request $request, $id)
     {
         $user = User::find($id);
+        
         if ($user) {
-            $user->user_approved = !$user->user_approved;
+            if ($request->status == 1) {
+                // Accept
+                $user->user_approved = 1;
+            } elseif ($request->status == 0) {
+                // Reject
+                $user->user_approved = 0;
+            }
+
             $user->save();
-            return response()->json(['success' => true, 'user_approved' => $user->user_approved]);
+
+            return response()->json([
+                'success' => true,
+                'user_approved' => $user->user_approved
+            ]);
         }
+
         return response()->json(['success' => false], 404);
     }
 

@@ -342,27 +342,32 @@ $(document).ready(function() {
     //     }
     // });
     
-    $(document).on('click', '.tradeperson-user-approval', function () {
+   
+    $(document).on('click', '.tradeperson-approval-btn', function () {
         let button = $(this);
         let userId = button.data('id');
-    
+        let status = button.data('status'); // 1 for Accept, 0 for Reject
+
         $.ajax({
             url: '/tradeperson/tradeperson-toggle-approval/' + userId,
             type: 'POST',
             data: {
                 _token: $('meta[name="csrf-token"]').attr("content"),
+                status: status, // Send status to backend
             },
             success: function (response) {
                 if (response.success) {
-                    // Toggle text and styles based on approval status
+                    let acceptButton = $('.tradeperson-approval-btn[data-status="1"]');
+                    let rejectButton = $('.tradeperson-approval-btn[data-status="0"]');
+
                     if (response.user_approved) {
-                        button.removeClass('bg-red-100 text-red-800')
-                              .addClass('bg-green-100 text-green-800')
-                              .text('Approved');
+                        // If approved, Accept button turns green and Reject turns red
+                        acceptButton.removeClass('bg-secondary').addClass('bg-green-500');
+                        rejectButton.removeClass('bg-mat').addClass('bg-red-500');
                     } else {
-                        button.removeClass('bg-green-100 text-green-800')
-                              .addClass('bg-red-100 text-red-800')
-                              .text('Disapproved');
+                        // If disapproved, Accept turns gray and Reject turns primary color
+                        acceptButton.removeClass('bg-green-500').addClass('bg-secondary');
+                        rejectButton.removeClass('bg-red-500').addClass('bg-mat');
                     }
                 } else {
                     alert('Failed to update status.');
@@ -373,7 +378,6 @@ $(document).ready(function() {
             }
         });
     });
-    
 
     
 

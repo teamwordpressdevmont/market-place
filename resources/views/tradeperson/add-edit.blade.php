@@ -129,19 +129,23 @@
                                         <input type="file" name="portfolio[]" id="portfolio" multiple accept="image/*" 
                                             class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm">
                                 </div>
+                                {{-- @php
+                                    dd($tradeperson->portfolio, $tradeperson->certificate);
+                                @endphp --}}
 
                                 @if(!empty($tradeperson->portfolio))
                                 @php
-                                    $portfolioImages = is_array($tradeperson->portfolio) ? $tradeperson->portfolio : json_decode($tradeperson->portfolio, true) ?? []; 
+                                   $portfolioImages = is_array($tradeperson->portfolio) ? $tradeperson->portfolio : (json_decode($tradeperson->portfolio, true) ?? []); 
                                 @endphp
                                 
-                                @if(!empty($portfolioImages) && is_array($portfolioImages))
-                                    @foreach($portfolioImages as $image)
-                                        <div class="image-container relative inline-block">
-                                            <img src="{{ asset('storage/tradeperson_portfolio/' . $image) }}" class="h-20 w-20 object-cover rounded-md border">
-                                        </div>
-                                    @endforeach
-                                @endif
+                                    @if(!empty($portfolioImages) && is_array($portfolioImages))
+                                        @foreach($portfolioImages as $image)
+                                            
+                                            <div class="image-container relative inline-block">
+                                                <img src="{{ $image }}" class="h-20 w-20 object-cover rounded-md border">
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 @endif                                
 
                             </div>
@@ -156,16 +160,16 @@
                                 </div>
                                 @if(!empty($tradeperson->certificate))
                                 @php
-                                    $certificateImages = is_array($tradeperson->certificate) ? $tradeperson->certificate : json_decode($tradeperson->certificate, true) ?? []; 
+                                    $certificateImages = is_array($tradeperson->certificate) ? $tradeperson->certificate : (json_decode($tradeperson->certificate, true) ?? []); 
                                 @endphp
                                 
-                                @if(!empty($certificateImages) && is_array($certificateImages))
-                                    @foreach($certificateImages as $image)
-                                        <div class="image-container relative inline-block">
-                                            <img src="{{ asset('storage/tradeperson_certificate/' . $image) }}" class="h-20 w-20 object-cover rounded-md border">
-                                        </div>
-                                    @endforeach
-                                @endif
+                                    @if(!empty($certificateImages) && is_array($certificateImages))
+                                        @foreach($certificateImages as $image)
+                                            <div class="image-container relative inline-block">
+                                                <img src="{{ $image }}" class="h-20 w-20 object-cover rounded-md border">
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 @endif                                
                             </div> 
                     
