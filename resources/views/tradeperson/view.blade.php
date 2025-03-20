@@ -245,7 +245,7 @@
                     @if ($tradeperson->certificate)
                         @php
                             // Decode the JSON certificate array
-                            $certificates = json_decode($tradeperson->certificate, true);
+                            $certificates =  is_array($tradeperson->certificate) ? $tradeperson->certificate : json_decode($tradeperson->certificate, true);
                         @endphp
 
                         @if (!empty($certificates))

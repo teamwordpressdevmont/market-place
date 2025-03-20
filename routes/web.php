@@ -13,6 +13,8 @@ use App\Http\Controllers\Portal\jobListingDataController;
 use App\Http\Controllers\Portal\AdminMainController;
 use App\Http\Controllers\Portal\PendingApprovalController;
 use App\Http\Controllers\Portal\AnnouncementController;
+use App\Http\Controllers\Portal\CustomerController;
+
 
 
 
@@ -163,6 +165,17 @@ Route::group(['prefix'  => 'package', 'middleware' => 'auth'], function() {
     Route::get('/edit/{id}', [PackageController::class, 'edit'])->name('package.edit');
     Route::put('/update/{id}', [PackageController::class, 'update'])->name('package.update');
     Route::get('/delete/{id}', [PackageController::class, 'destroy'])->name('package.delete');
+});
+
+
+// Admin customer
+Route::group(['prefix'  => 'customer', 'middleware' => 'auth'], function() {
+    Route::get('/', [CustomerController::class, 'list'])->name('customer.list');
+    Route::get('/add', [CustomerController::class, 'addEdit'])->name('customer.addEdit');
+    Route::post('/store', [CustomerController::class, 'store'])->name('customer.store');
+    Route::get('/edit/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
+    Route::put('/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
+    Route::get('/delete/{id}', [CustomerController::class, 'destroy'])->name('customer.delete');
 });
 
 // Report

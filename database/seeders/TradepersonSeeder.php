@@ -384,6 +384,41 @@ class TradepersonSeeder extends Seeder
     // trade Person services close 
 
 
+    // tradeperson service purchases open
+    $purchases = [
+        [
+            'tradeperson_id'          => 32,
+            'tradeperson_service_id'  => 1,
+            'start_date'              => '2025-03-20',
+            'end_date'                => '2025-04-19',
+            'status_id'               => 1,
+            'created_at'              => now(),
+            'updated_at'              => now(),
+        ],
+        [
+            'tradeperson_id'          => 33,
+            'tradeperson_service_id'  => 2,
+            'start_date'              => '2025-03-20',
+            'end_date'                => '2025-04-19',
+            'status_id'               => 1,
+            'created_at'              => now(),
+            'updated_at'              => now(),
+        ],
+        [
+            'tradeperson_id'          => 34,
+            'tradeperson_service_id'  => 3,
+            'start_date'              => '2025-03-20',
+            'end_date'                => '2025-04-19',
+            'status_id'               => 1,
+            'created_at'              => now(),
+            'updated_at'              => now(),
+        ]
+    ];
+
+    DB::table('tradeperson_service_purchases')->insert($purchases);
+    // tradeperson service purchases close
+
+
     // tradeperson subscription open
     $subscriptions = [
         [
@@ -409,7 +444,35 @@ class TradepersonSeeder extends Seeder
     DB::table('tradeperson_subscriptions')->insert($subscriptions);
     // tradeperson subscription close
 
->>>>>>> zain
+
+    // Invite Tradeperson Open
+
+    $invites = [
+        [
+            'order_id'       => 1,
+            'customer_id'    => 9,
+            'tradeperson_id' => 31,
+            'created_at'     => now(),
+            'updated_at'     => now(),
+        ],
+        [
+            'order_id'       => 2,
+            'customer_id'    => 10,
+            'tradeperson_id' => 32,
+            'created_at'     => now(),
+            'updated_at'     => now(),
+        ],
+        [
+            'order_id'       => 3,
+            'customer_id'    => 11,
+            'tradeperson_id' => 33,
+            'created_at'     => now(),
+            'updated_at'     => now(),
+        ],
+    ];
+
+    DB::table('invite_tradepersons')->insert($invites);
+    // Invite Tradeperson Close
 
 }
 
