@@ -14,6 +14,7 @@ use App\Http\Controllers\Portal\AdminMainController;
 use App\Http\Controllers\Portal\PendingApprovalController;
 use App\Http\Controllers\Portal\AnnouncementController;
 use App\Http\Controllers\Portal\CustomerController;
+use App\Http\Controllers\Portal\SubscriptionController;
 
 
 
@@ -176,6 +177,16 @@ Route::group(['prefix'  => 'customer', 'middleware' => 'auth'], function() {
     Route::get('/edit/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
     Route::put('/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
     Route::get('/delete/{id}', [CustomerController::class, 'destroy'])->name('customer.delete');
+});
+
+// Subscription
+Route::group(['prefix'  => 'subscription', 'middleware' => 'auth'], function() {
+    Route::get('/', [SubscriptionController::class, 'list'])->name('subscription.list');
+    Route::get('/add', [SubscriptionController::class, 'addEdit'])->name('subscription.addEdit');
+    Route::post('/store', [SubscriptionController::class, 'store'])->name('subscription.store');
+    Route::get('/edit/{id}', [SubscriptionController::class, 'edit'])->name('subscription.edit');
+    Route::put('/update/{id}', [SubscriptionController::class, 'update'])->name('subscription.update');
+    Route::get('/delete/{id}', [SubscriptionController::class, 'destroy'])->name('subscription.delete');
 });
 
 // Report
