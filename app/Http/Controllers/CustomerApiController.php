@@ -679,8 +679,7 @@ class CustomerApiController extends Controller
             }
 
             $customer_id = Customer::find($request->user()->id);
-            dd($request->user()->id);
-            dd($orderProposal->customer_id != (int) $customer_id , $customer_id);
+       
             if ($orderProposal->customer_id != (int) $customer_id) {
                 return response()->json([
                     'success' => false,

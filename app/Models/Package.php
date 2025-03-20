@@ -13,7 +13,7 @@ class Package extends Model
 
     protected $fillable = ['name', 'description', 'price', 'features'];
 
-    protected $appends = ["tag", "highlighted" , "period"];
+    protected $appends = ["tag", "highlighted" , "period" , "formated_price"];
 
 
 
@@ -54,9 +54,9 @@ class Package extends Model
 
 
 
-    public function getPriceAttribute($value)
+    public function getFormatedPriceAttribute($value)
     {
-        return '$' . $value;
+        return '$' . $this->price;
     }
 
     public function getTagAttribute()

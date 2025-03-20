@@ -14,8 +14,8 @@ use Illuminate\Validation\ValidationException;
 use App\Models\Notification;
 use App\Models\UserNotification;
 use App\Models\Customer;
+use App\Models\OrderDetail;
 use App\Events\SubmitProposal;
-use App\Models\InviteTradeperson;
 
 
 class TradepersonApiController extends Controller
@@ -178,7 +178,7 @@ class TradepersonApiController extends Controller
                 ]);
             }
 
-            $customer_user_id = Customer::where('id',$order->customer_id)->value('user_id');
+            $customer_user_id = Customer::where('id', $order->customer_id)->value('user_id');
 
             $notification = Notification::where("id", 7)->first();
             $user_notification = UserNotification::create([
@@ -196,7 +196,24 @@ class TradepersonApiController extends Controller
 
             DB::commit();
 
-            event( new SubmitProposal( $proposal ) );
+            // Retrieve required details for email
+            $customer = Customer::find($order->customer_id);
+            $customerName = $customer->first_name . ' ' . $customer->last_name;
+            $customerEmail = User::where('id', $customer->user_id)->value('email');
+
+            $currentUserTradePerson = $request->user()->name;
+
+            $orderDetails = OrderDetail::find($request->order_id);
+            $orderTitle = $orderDetails->title;
+
+            $submitProposalEmailData = (object)[
+                'current_user_tradeperson' => $currentUserTradePerson,
+                'customer_name' => $customerName,
+                'order_title' => $orderTitle,
+                'customerEmail_Sender' => $customerEmail
+            ];
+
+            event(new SubmitProposal($submitProposalEmailData));
 
             return response()->json([
                 'success' => true,
@@ -445,6 +462,7 @@ class TradepersonApiController extends Controller
                 'city' => 'sometimes|string',
                 'postal_code' => 'sometimes|string|regex:/^\d{5,6}$/',
                 'about_me' => 'sometimes|string|min:10|max:1000',
+                'service' => 'sometimes|string|min:10|max:1000',
                 'address' => 'sometimes|string',
                 'categories' => 'sometimes|array',
                 'categories.*' => 'integer|exists:categories,id',
@@ -452,6 +470,7 @@ class TradepersonApiController extends Controller
                 'portfolio.*' => 'image|mimes:jpg,png,jpeg|max:2048',
                 'certificate' => 'sometimes|file|mimes:pdf,doc,docx|max:5120',
                 'avatar' => 'sometimes|image|mimes:jpg,png,jpeg|max:2048',
+
             ]);
 
 
@@ -479,7 +498,7 @@ class TradepersonApiController extends Controller
                 $path = $request->file('avatar')->store('avatar', 'public');
                 $user->update(['avatar' => $path]);
             }
-            
+
             $nick_name = strtoupper(substr($validatedData['first_name'] ?? $traderPerson->first_name, 0, 1)) . ' ' . strtoupper(substr($validatedData['last_name'] ?? $traderPerson->last_name, 0, 1));
 
             // Update TradePerson
@@ -492,6 +511,7 @@ class TradepersonApiController extends Controller
                 'city' => $validatedData['city'] ?? $traderPerson->city,
                 'postal_code' => $validatedData['postal_code'] ?? $traderPerson->postal_code,
                 'about_me' => $validatedData['about_me'] ?? $traderPerson->about_me,
+                'service' => $validatedData['service'] ?? $traderPerson->service,
                 'address' => $validatedData['address'] ?? $traderPerson->address,
             ]);
 
@@ -548,48 +568,4 @@ class TradepersonApiController extends Controller
             ], 500);
         }
     }
-
-    // get My invites as Tradeperson api
-    public function getMyInvites(Request $request)
-    {
-        try {
-            // Validate the incoming request
-            $request->validate([
-                'offset' => 'nullable|integer|min:0',
-                'perPage' => 'nullable|integer|min:-1|max:100'
-            ]);
-
-            $my_tradeperson_id = auth()->user()?->tradeperson?->id;
-
-            // Get All Invites
-            $query = InviteTradeperson::with(['orders.orderDetail'])->where('tradeperson_id', $my_tradeperson_id);
-
-            // Get the offset and perPage values from the request, with default values
-            $offset = $request->input('offset', 0);
-            $perPage = $request->input('perPage', 10);
-
-            // Handle pagination
-            if ($perPage == -1) {
-                $invites = $query->get();
-            } else {
-                $invites = $query->offset($offset)->limit($perPage)->get();
-            }
-
-            // Return the response with the tradeperson data
-            return response()->json([
-                'success' => true,
-                'message' => 'Tradepersons Retrieved Successfully',
-                'data' => $invites,
-                'offset' => $offset
-            ], 200);
-        } catch (\Exception $th) {
-            // Return generic error response
-            return response()->json([
-                'success' => false,
-                'message' => 'Something went wrong',
-                'error' => $th->getMessage()
-            ], 500);
-        }
-    }
-
 }

@@ -15,7 +15,7 @@ class Tradeperson extends Model
 
     protected $table = "tradepersons";
 
-    protected $fillable = ['user_id', 'first_name', 'last_name', 'nick_name', 'gender', 'phone', 'city', 'postal_code', 'latitude', 'longitude', 'about_me', 'service', 'address', 'portfolio', 'certificate', 'banner', 'featured'];
+    protected $fillable = ['user_id', 'first_name', 'last_name', 'nick_name', 'username', 'gender', 'phone', 'city', 'postal_code', 'latitude', 'longitude', 'about_me', 'service', 'address', 'portfolio', 'certificate', 'banner', 'featured'];
 
 
     public function user()
@@ -42,6 +42,26 @@ class Tradeperson extends Model
     {
         return $this->hasOne(Proposal::class, 'tradeperson_id', 'id');
     }
+    
+    public function subscriptions()
+    {
+        return $this->hasMany(TradepersonSubscription::class, 'tradeperson_id', 'id');
+    }
+    
+    public function servicePurchases()
+    {
+        return $this->hasMany(TradepersonServicePurchase::class, 'tradeperson_id', 'id');
+    }
+    
+    public function clipUsage()
+    {
+        return $this->hasOne(ClipUsage::class, 'tradeperson_id', 'id');
+    }
+    
+    public function contractUsage()
+    {
+        return $this->hasOne(TradepersonContractUsage::class, 'tradeperson_id', 'id');
+    }
 
 
     // Accessor for Portfolio (Convert JSON to full URLs)
@@ -57,8 +77,10 @@ class Tradeperson extends Model
     // Accessor for Certificate
     protected function certificate(): Attribute
     {
-        return Attribute::make(
-            get: fn($value) => $this->getFullImageUrl('tradeperson_certificate', $value)
+          return Attribute::make(
+            get: fn($value) => collect(json_decode($value, true))
+                ->map(fn($image) => $this->getFullImageUrl('tradeperson_certificate', $image))
+                ->toArray()
         );
     }
 
@@ -69,4 +91,6 @@ class Tradeperson extends Model
             get: fn($value) => $this->getFullImageUrl('tradeperson_banner', $value)
         );
     }
+    
+    
 }

@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class TradepersonServicePurchase extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'tradeperson_id',
+        'tradeperson_service_id',
+        'start_date',
+        'end_date',
+        'status_id',
+    ];
+
+    protected $casts = [
+        'start_date' => 'date',
+        'end_date' => 'date',
+    ];
+
+    public function tradeperson()
+    {
+        return $this->belongsTo(Tradeperson::class, 'tradeperson_id', 'id');
+    }
+
+    public function tradepersonService()
+    {
+        return $this->belongsTo(TradepersonService::class, 'tradeperson_service_id', 'id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(SubscriptionStatus::class, 'status_id', 'id');
+    }
+}

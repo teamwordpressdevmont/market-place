@@ -59,6 +59,11 @@ class Order extends Model
         return $this->hasMany(OrderMilestone::class, 'order_id', 'id');
     }
     
+    public function customerServicePurchases()
+    {
+        return $this->hasMany(CustomerServicePurchase::class, 'order_id', 'id');
+    }
+    
     protected $appends = ['created_at_formated'];
 
     public function getCreatedAtFormatedAttribute()

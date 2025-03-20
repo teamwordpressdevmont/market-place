@@ -47,4 +47,10 @@ class Customer extends Model
         return $this->hasMany(Proposal::class, 'customer_id', 'id');
     }
     
+    public function customerServicePurchases()
+    {
+        return $this->hasMany(CustomerServicePurchase::class, 'customer_id', 'id');
+    }
+    
+    
 }

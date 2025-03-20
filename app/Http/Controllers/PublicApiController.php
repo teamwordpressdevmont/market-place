@@ -361,7 +361,7 @@ class PublicApiController extends Controller
                 $tradeperson->verified = $tradeperson->featured;
                 $tradeperson->available  = "Available";
                 $tradeperson->review_count = $tradeperson->reviews()->count();
-                $tradeperson->average_rating = $tradeperson->reviews()->avg('rating');
+                $tradeperson->average_rating = $tradeperson->reviews()->avg('rating') ?? 0.00;
                 $tradeperson->completed_jobs = $tradeperson->orders()->where('order_status', 4)->count();
                 $tradeperson->active_jobs = $tradeperson->orders()->where('order_status', 2)->count();
 

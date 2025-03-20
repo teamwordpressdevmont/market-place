@@ -16,6 +16,8 @@ use App\Models\User;
 use App\Models\Customer;
 use App\Models\Tradeperson;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Str;
+
 
 
 class AuthController extends Controller
@@ -30,7 +32,8 @@ class AuthController extends Controller
         try {
             DB::beginTransaction();
 
-            $request->validate([
+            // Validation
+            $validated = $request->validate([
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|min:6',
                 'first_name' => 'required|string|min:3|max:30',
@@ -43,85 +46,90 @@ class AuthController extends Controller
                 'address' => 'required|string',
                 'categories' => 'required|array',
                 'categories.*' => 'sometimes|integer|exists:categories,id',
-                'portfolio' => 'sometimes|array',
                 'portfolio.*' => 'image|mimes:jpg,png,jpeg|max:2048',
-                'certificate' => 'sometimes|file|mimes:pdf,doc,docx|max:5120',
+                'certificate.*' => 'file|mimes:pdf,doc,docx|max:5120',
                 'avatar' => 'sometimes|image|mimes:jpg,png,jpeg|max:2048',
+                'banner' => 'sometimes|image|mimes:jpg,png,jpeg|max:2048',
                 'latitude' => 'sometimes|numeric|between:-90,90',
                 'longitude' => 'sometimes|numeric|between:-180,180',
             ]);
 
-            // Create User
-            $fullName = trim($request->first_name . ' ' . $request->get('last_name', ''));
-
+            // User Creation
+            $fullName = trim($request->first_name . ' ' . ($request->last_name ?? ''));
             $user = User::create([
-                'email' => $request->email,
+                'email' => $validated['email'],
                 'name' => $fullName,
-                'password' => Hash::make($request->password),
+                'password' => Hash::make($validated['password']),
                 'email_verified_at' => now(),
                 'user_approved' => 0
             ]);
 
             $user->assignRole('tradeperson');
-            // Handle Avatar Upload
 
-
+            // File Upload Handling Inside Same Function
+            $avatar = null;
             if ($request->hasFile('avatar')) {
-                $filename = time() . '_' . $request->avatar->getClientOriginalName();
-                $path = $request->avatar->storeAs('avatars', $filename, 'public');
-                $user->avatar = $path;
-                $user->save();
+                $file = $request->file('avatar');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $avatar = $file->storeAs('avatars', $filename, 'public');
             }
 
-            // Create Tradeperson Entry
+            $banner = null;
+            if ($request->hasFile('banner')) {
+                $file = $request->file('banner');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $banner = $file->storeAs('tradeperson_banner', $filename, 'public');
+            }
+
+            $portfolio = [];
+            if ($request->hasFile('portfolio')) {
+                foreach ($request->file('portfolio') as $file) {
+                    $filename = time() . '_' . $file->getClientOriginalName();
+                    $portfolio[] = $file->storeAs('tradeperson_portfolio', $filename, 'public');
+                }
+            }
+
+            $certificate = [];
+            if ($request->hasFile('certificate')) {
+                foreach ($request->file('certificate') as $file) {
+                    $filename = time() . '_' . $file->getClientOriginalName();
+                    $certificate[] = $file->storeAs('tradeperson_certificate', $filename, 'public');
+                }
+            }
+
+            // Tradeperson Creation
             $traderPerson = Tradeperson::create([
                 'user_id' => $user->id,
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
-                'nick_name' => $request->nick_name,
-                'gender' => $request->gender,
-                'phone' => $request->phone_number, // Fixed variable
-                'city' => $request->city,
-                'postal_code' => $request->postal_code,
-                'about_me' => $request->get('about_me', ''),
-                'address' => $request->address,
-                'service' => $request->service,
-                'latitude' => $request->get('latitude', ''),
-                'longitude' => $request->get('longitude', ''),
-                'portfolio' => !empty($request->portfolio) && is_array($request->portfolio) ? json_encode(array_filter($request->portfolio)) : null,
-                'certificate' => $request->certificate,
-                'banner' => $request->banner,
-                'featured' => $request->featured,
+                'first_name' => $validated['first_name'],
+                'last_name' => $validated['last_name'] ?? '',
+                'nick_name' => $request->nick_name ?? '',
+                'gender' => $validated['gender'],
+                'phone' => $validated['phone_number'] ?? '',
+                'city' => $validated['city'],
+                'postal_code' => $validated['postal_code'],
+                'about_me' => $validated['about_me'] ?? '',
+                'address' => $validated['address'],
+                'service' => $request->service ?? '',
+                'latitude' => $validated['latitude'] ?? null,
+                'longitude' => $validated['longitude'] ?? null,
+                'featured' => 0,
+                'avatar' => $avatar,
+                'banner' => $banner,
+                'portfolio' => json_encode($portfolio),
+                'certificate' => json_encode($certificate),
+                'username' => Str::lower($validated['first_name'] . (!empty($validated['last_name']) ? $validated['last_name'] : "") . $user->id)
             ]);
 
-            // Handle Portfolio Images
-            if ($request->hasFile('portfolio')) {
-                $portfolioArr = [];
-                foreach ($request->file('portfolio') as $portfolio) {
-                    $path = $portfolio->store('tradeperson_portfolio', 'public');
-                    $portfolioArr[] = $path;
-                }
-                $traderPerson->portfolio = $portfolioArr;
-                $traderPerson->save();
-            }
-
-            // Handle Certificate Upload
-            if ($request->hasFile('certificate')) {
-                $certificatePath = $request->file('certificate')->store('tradeperson_certificate', 'public');
-                $traderPerson->certificate = $certificatePath;
-                $traderPerson->save();
-            }
-
-            if ($request->categories) {
-                $traderPerson->categories()->attach($request->categories);
-            }
+            // Attach Categories
+            $traderPerson->categories()->attach($validated['categories']);
 
             DB::commit();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Trade Person registered successfully!',
                 'data' => $user->load('tradeperson')
-            ], 201); // 201 is better for resource creation
+            ], 201);
         } catch (ValidationException $e) {
             DB::rollback();
             return response()->json([
@@ -138,6 +146,8 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
+
 
     /**
      * Register Customer Api -- POST
@@ -216,8 +226,8 @@ class AuthController extends Controller
             ], 500);
         }
     }
-    
-    
+
+
     /**
      * Google Register Api for Tradeperson
      */
@@ -226,7 +236,7 @@ class AuthController extends Controller
         DB::beginTransaction();
         try {
             $allowedParams = ['email', 'name', 'google_id', 'avatar', 'google_token', 'user_type', 'password', 'phone', 'gender', 'city', 'nick_name', 'postal_code', 'latitude', 'longitude', 'country', 'address', 'address2', 'about_me', 'service', 'portfolio', 'certificate', 'banner', 'featured'];
-    
+
             $unexpectedParams = array_diff(array_keys($request->all()), $allowedParams);
             if (!empty($unexpectedParams)) {
                 return response()->json([
@@ -234,9 +244,9 @@ class AuthController extends Controller
                     'message' => 'Invalid parameters detected: ' . implode(', ', $unexpectedParams)
                 ], 400);
             }
-    
+
             $user = User::where('email', $request->email)->first();
-    
+
             $request->validate([
                 'email' => ['required', Rule::unique('users', 'email')->ignore(optional($user)->id)],
                 'name' => 'required',
@@ -249,9 +259,9 @@ class AuthController extends Controller
                 'postal_code' => 'required_if:user_type,tradeperson',
                 'address' => 'required',
             ]);
-    
+
             $user_type = $request->user_type;
-    
+
             $data = [
                 'name' => $request->name,
                 'google_id' => $request->google_id,
@@ -259,20 +269,20 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
                 'email_verified_at' => now(),
             ];
-    
+
             $exists_user = User::where('email', $request->email)->first();
             if (!$exists_user) {
                 $data['avatar'] = $request->avatar;
             }
-    
+
             $user = User::updateOrCreate(['email' => $request->email], $data);
-            // dd($exists_user);
-    
+            
+
             if (!$exists_user) {
                 $nameParts = explode(' ', trim($request->name), 2);
                 $first_name = $nameParts[0] ?? '';
                 $last_name = $nameParts[1] ?? '';
-    
+
                 if ($user_type === 'customer') {
                     Customer::updateOrCreate(
                         ['user_id' => $user->id],
@@ -314,10 +324,10 @@ class AuthController extends Controller
                     $user->assignRole('tradeperson');
                 }
             }
-    
+
             $token = $user->createToken('API Token')->accessToken;
             DB::commit();
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'User registered successfully!',
@@ -336,7 +346,7 @@ class AuthController extends Controller
             \Log::error('User creation failed: ' . $e->getMessage());
             return response()->json([
                 'success' => false,
-                'message' => 'User creation failed. Please try again later. '. $e->getMessage()
+                'message' => 'User creation failed. Please try again later. ' . $e->getMessage()
             ], 500);
         }
     }
@@ -365,6 +375,11 @@ class AuthController extends Controller
                     'message' => 'User account is deactivated',
                 ], 403);
             }
+            
+            // Revoke current token
+            // $token = $user->token();
+            // $token->revoke();
+            $user->tokens()->delete();
 
             // Generate Passport Token
             $token = $user->createToken('API Token')->accessToken;
@@ -416,7 +431,7 @@ class AuthController extends Controller
         // Find the user by email
         $user = User::where('email', $request->email)->first();
 
-        if(!$user){
+        if (!$user) {
             return response()->json([
                 'success' => false,
                 'message' => 'User Not Found',
@@ -425,10 +440,10 @@ class AuthController extends Controller
 
 
         try {
-    
+
             // Generate the reset token (for the custom notification)
             $token = Password::getRepository()->create($user);
-    
+
             // Encrypt the user's email before including it in the reset URL
             $encryptedEmail = Crypt::encryptString($user->email);
             // Encode the encrypted email to URL-safe Base64
@@ -438,22 +453,19 @@ class AuthController extends Controller
 
             // Send the custom reset password notification with the encrypted email
             $user->notify(new CustomResetPasswordNotification($token, $encodedEmail));
-    
+
             return response()->json([
                 'success' => true,
                 'encyrpted_email' => $encodedEmail,
                 'message' => 'Reset link sent to your email.'
             ], 200);
-        }
-        
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to send link',
                 'error' => $e->getMessage(),
             ], 500);
         }
-
     }
 
     public function resetPassword(Request $request)
@@ -522,9 +534,4 @@ class AuthController extends Controller
         // Handle other potential errors
         return response()->json(['message' => 'Failed to update password.'], 200);
     }
-
-
-
-
-
 }

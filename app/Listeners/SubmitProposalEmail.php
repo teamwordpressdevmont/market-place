@@ -21,7 +21,8 @@ class SubmitProposalEmail
      */
     public function handle(SubmitProposal $event): void
     {
-        $to = 'dev.test@mailinator.com';
+        //$to = 'dev.test@mailinator.com';
+        $to = $event->proposal->customerEmail_Sender;
 
         $subject = 'Proposal Submitted on Job';
 
@@ -29,8 +30,14 @@ class SubmitProposalEmail
                     "MIME-Version: 1.0\r\n" .
                     "Content-type: text/html; charset=UTF-8\r\n";
 
-        $message = 'Proposal Submitted on Job';
+        //$message = 'Proposal Submitted on Job';
 
-        mail($to, $subject, $message, $headers);
+        $message = view('emails.submitProposal' , [
+            'current_user_tradeperson' => $event->proposal->current_user_tradeperson,
+            'customer_name' => $event->proposal->customer_name,
+            'order_title' => $event->proposal->order_title,
+        ])->render();
+
+        mail( $to, $subject, $message, $headers );
     }
 }
