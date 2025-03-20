@@ -18,16 +18,18 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'nullable|numeric',
             'features' => 'nullable|array',
+            'price' => 'nullable|numeric',
+            'options' => 'nullable|string',
+            'option_data' => 'nullable|string',
         ]);
 
         DB::beginTransaction();
         try {
             $validatedData = $request->only([
-                'name', 'description', 'price', 'features', 
+                'title', 'description', 'features' , 'price' , 'options', 'option_data', 
             ]);
 
             
@@ -51,7 +53,7 @@ class CustomerController extends Controller
             
         
             // Save to Database
-            $package = CustomerService::create($validatedData);
+            $customer = CustomerService::create($validatedData);
             
             DB::commit();
             return redirect()->route('customer.list')->with('success', 'Customer submitted successfully!');
@@ -70,9 +72,9 @@ class CustomerController extends Controller
         $sortDirection = $request->input('sort_direction', 'desc');
     
     
-        $packages = CustomerService::query()
+        $customers = CustomerService::query()
             ->when($search, function ($query) use ($search) {
-                $query->where('name', 'like', "%{$search}%");
+                $query->where('title', 'like', "%{$search}%");
             })
             ->orderBy($sortBy, $sortDirection)
             ->paginate(10);
@@ -80,45 +82,51 @@ class CustomerController extends Controller
         // Check if the request is AJAX
         if ($request->ajax()) {
             return response()->json([
-                'html' => view('customer.list', compact('packages'))->render(),
-                'pagination' => (string) $packages->appends($request->all())->links()
+                'html' => view('customer.list', compact('customers'))->render(),
+                'pagination' => (string) $customers->appends($request->all())->links()
             ]);
         }
     
-        return view('customer.list', compact('packages', 'search', 'sortBy', 'sortDirection'));
+        return view('customer.list', compact('customers', 'search', 'sortBy', 'sortDirection'));
     }
 
     public function edit($id)
     {
         try {
-            $package = CustomerService::findOrFail($id);
+            $customer = CustomerService::findOrFail($id);
 
-            $features = is_array($package->features) ? $package->features : json_decode($package->features, true); 
+            $features = is_array($customer->features) ? $customer->features : json_decode($customer->features, true); 
+
+            // dd($customer);
                      
-            if (!$package) {
+            if (!$customer) {
                 return redirect()->route('customer.list')->with('error', 'Customer not found.');
             }
 
-            return view('customer.add-edit', compact('package', 'features'));
+            return view('customer.add-edit', compact('customer', 'features'));
         } catch (\Exception $e) {
-            return redirect()->route('customer.list')->with('e rror', 'Something went wrong.');
+            return redirect()->route('customer.list')->with('error', 'Something went wrong.');
         }
     }
 
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'nullable|numeric',
             'features' => 'nullable|array',
+            'price' => 'nullable|numeric',
+            'options' => 'nullable|string',
+            'option_data' => 'nullable|string',
         ]);
+
+        //   dd($validatedData);
         
         DB::beginTransaction();
         try {
            
 
-            $package = CustomerService::findOrFail($id);
+            $customer = CustomerService::findOrFail($id);
             
             // Handle features Formatting
             if ($request->has('features')) {
@@ -137,7 +145,7 @@ class CustomerController extends Controller
             }
 
             // Update record
-            $package->update($validatedData);
+            $customer->update($validatedData);
 
 
             DB::commit();
@@ -152,10 +160,10 @@ class CustomerController extends Controller
     {
         DB::beginTransaction();
         try {
-            $package = CustomerService::findOrFail($id);
+            $customer = CustomerService::findOrFail($id);
 
-            if (!is_null($package)) {
-                $package->delete();
+            if (!is_null($customer)) {
+                $customer->delete();
             }
     
             DB::commit();
