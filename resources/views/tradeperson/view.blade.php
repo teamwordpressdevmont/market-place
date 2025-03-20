@@ -136,7 +136,7 @@
 
             <div class="grid grid-cols-1 xl:grid-cols-5">
                 <div class="lg:col-span-1 p-">
-                    <img src="{{ asset('public/images/' . $tradeperson->user->avatar) }}"
+                    <img src="{{ $tradeperson->user->avatar }}"
                         class="rounded-full 2xl:w-60 2xl:h-60 sm:w-50 sm:h-50 w-[150px] h-[150px] object-cover xl:mx-auto sm:-mt-25 -mt-20">
                 </div>
                 <div class="lg:col-span-2 xl:p-4">

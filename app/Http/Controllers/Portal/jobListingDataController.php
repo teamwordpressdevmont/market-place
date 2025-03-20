@@ -240,11 +240,14 @@ class jobListingDataController extends Controller
 
     public function violationClient($id)
     {
-        return view('job-listing.violation-client');
         try {
-            $OrderDetail = OrderDetail::with('order.customer' , 'order.customer.user')->findOrFail($id);
-            return view('job-listing.violation-client', compact('OrderDetail'));
-        } catch (\Throwable $th) {
+
+            $clientDetails = Customer::with('user')->findOrFail($id);
+
+            return view('job-listing.violation-client', compact('clientDetails'));
+
+        } 
+        catch (\Throwable $th) {
             dd($th->getMessage());
             return redirect()->back()->with('success', 'Something went wrong.');
         }
