@@ -97,6 +97,9 @@ input[type=file]::file-selector-button {
 .sitePagination span, .sitePagination a {
     background-color: #ffffff;
 }
+.blogViewDetail p {
+    margin-bottom: 2rem;
+}
 
 
 @media (max-width: 1536px) {
