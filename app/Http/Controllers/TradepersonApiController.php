@@ -163,8 +163,10 @@ class TradepersonApiController extends Controller
 
             $milestones = null;
             if (!empty($request->milestones)) {
-                $milestoneData = array_map(function ($milestone) {
+                $i = 1; // Initialize $i before using it
+                $milestoneData = array_map(function ($milestone) use (&$i) {
                     return [
+                        'id' => $i++, // Increment $i
                         'title' => $milestone['title'],
                         'days' => $milestone['days'] ?? null,
                         'approved' => $milestone['approved'] ?? 0
@@ -565,6 +567,145 @@ class TradepersonApiController extends Controller
                 'success' => false,
                 'message' => 'An error occurred',
                 'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    // submit proposal
+    public function milestoneCompleted(Request $request)
+    {
+        try {
+            $tradeperson = $request->user()->tradeperson;
+
+            if (!$tradeperson) {
+                return response()->json(['success' => false, 'message' => 'Unauthorized: No associated tradeperson found'], 401);
+            }
+
+            // Validate request
+            $validated = $request->validate([
+                'order_id' => 'required|exists:orders,id',
+                'milestone_id' => 'required|integer',
+            ]);
+
+            $order_milestone = OrderMilestone::with('order.orderDetail')->where('order_id', $request->order_id)->first(); // Find your milestone by order id
+
+            DB::beginTransaction();
+
+
+            $milestones = json_decode($order_milestone->milestone, true);
+
+            // Loop through and update the specific milestone's approved status
+            foreach ($milestones as &$item) {
+                // Check if there's any milestone with an ID less than the requested milestone that is not approved
+                if ($item['approved'] == false && $item['id'] < $request->milestone_id) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'You cannot mark this milestone as completed. Please complete previous milestones first.',
+                    ], 403);
+                }
+
+                if ($item['id'] == $request->milestone_id) {
+                    $item['approved'] = true;
+                }
+            }
+
+            // Encode the array back into JSON and save it
+            $order_milestone->milestone = json_encode($milestones);
+            $order_milestone->save();
+
+            DB::commit();
+
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Milestone Completed successfully',
+                'milestones' => $order_milestone,
+            ], 201);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            // Log the error (to avoid exposing sensitive details)
+            \Log::error('Proposal Submission Error: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong. Please try again later.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    // submit proposal
+    public function jobCompleted(Request $request)
+    {
+        try {
+            $tradeperson = $request->user()->tradeperson;
+
+            if (!$tradeperson) {
+                return response()->json(['success' => false, 'message' => 'Unauthorized: No associated tradeperson found'], 401);
+            }
+
+            // Validate request
+            $validated = $request->validate([
+                'order_id' => 'required|exists:orders,id',
+            ]);
+
+            $order = Order::with('orderDetail')->find($request->order_id);
+
+            if (!$order) {
+                return response()->json(['success' => false, 'message' => 'Order not found'], 404);
+            }
+
+            $order_milestone = OrderMilestone::with('order.orderDetail')->where('order_id', $request->order_id)->first(); // Find your milestone by order id
+
+            $milestones = json_decode($order_milestone->milestone, true);
+
+            // Loop through and update the specific milestone's approved status
+            foreach ($milestones as &$item) {
+                // Check if there's any milestone with an ID less than the requested milestone that is not approved
+                if ($item['approved'] == false) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'You cannot complete this job Please complete milestone first.',
+                    ], 403);
+                }
+            }
+
+            DB::beginTransaction();
+            
+            // Order Completed
+            $order->update(['order_status' => 4]);
+            
+            DB::commit();
+
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Job completed successfully',
+                'order' => $order,
+            ], 201);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            // Log the error (to avoid exposing sensitive details)
+            \Log::error('Proposal Submission Error: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong. Please try again later.',
+                'error' => $e->getMessage(),
             ], 500);
         }
     }

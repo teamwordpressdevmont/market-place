@@ -107,6 +107,9 @@ Route::middleware('auth:api')->group(function () {
 
         Route::get('/get-invites', [TradepersonApiController::class, 'getMyInvites']);
 
+        Route::post('/milestone-completed', [TradepersonApiController::class, 'milestoneCompleted']);
+        Route::post('/job-completed', [TradepersonApiController::class, 'jobCompleted']);
+
 
     });
 
