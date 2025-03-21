@@ -83,7 +83,7 @@
                                 {{ $order->orderDetail->urgent ? 'Urgent' : 'Flexible' }}
                                 @endif
                             </td>
-                            <td class="px-6 py-5 whitespace-nowrap text-xs font-normal {{ $order->orderDetail && $order->orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-mat' }}">{{ $order->tradeperson->user->email }}</td>
+                            <td class="px-6 py-5 whitespace-nowrap text-xs font-normal {{ $order->orderDetail && $order->orderDetail->urgent ? 'text-[#DB4A2B]' : 'text-mat' }}">    {{ $order->tradeperson ? $order->tradeperson->user->email : '' }}</td>
                             <td class="px-6 py-5 whitespace-nowrap text-xs text-right">
                                 <div class="site_user_dropdown">
                                     <div class="cursor-pointer w-[30px] ml-auto bg-[#eee] px-1 py-2 rounded-md flex justify-center items-center hover:bg-gray-300 transition" data-dropdown-toggle="userDropdown-action-{{ $order->id }}" data-dropdown-placement="bottom-end">

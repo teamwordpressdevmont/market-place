@@ -230,6 +230,8 @@ $(document).ready(function() {
     $(".toggleApprovalBtn").click(function () {
         let button = $(this);
         let testimonialId = button.data("id");
+        const baseUrl = window.location.origin + '/marketplace';
+
 
         if (button.text().trim() === "Add to Website") {
             // Open modal for order number input
@@ -238,7 +240,7 @@ $(document).ready(function() {
         } else {
             // Directly remove testimonial without modal
             $.ajax({
-                url: "/testimonial/toggle-approval/" + testimonialId,
+                url: baseUrl + '/testimonial/toggle-approval/' + testimonialId, // Use dynamic base URL
                 type: "POST",
                 data: {
                     _token: $('meta[name="csrf-token"]').attr("content")
@@ -257,9 +259,11 @@ $(document).ready(function() {
     $(".toggle-user-approval").click(function () {
         let testimonialId = $("#testimonialId").val();
         let orderNumber = $("#order_number").val();
+        const baseUrl = window.location.origin + '/marketplace';
+
 
         $.ajax({
-            url: "/testimonial/toggle-approval/" + testimonialId,
+            url: baseUrl + '/testimonial/toggle-approval/' + testimonialId, // Use the base URL
             type: "POST",
             data: {
                 _token: $('meta[name="csrf-token"]').attr("content"),

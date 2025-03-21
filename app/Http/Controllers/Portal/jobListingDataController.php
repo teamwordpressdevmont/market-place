@@ -64,7 +64,7 @@ class jobListingDataController extends Controller
                 return redirect()->route('joblisting.list')->with('error', 'Order Detail not found.');
             }
 
-            return view('job-listing.add-edit', compact('OrderDetails' , 'OrderStatus'));
+            return view('job-listing.add-edit', compact('OrderDetails' , 'OrderStatus' , 'imagesDetails'));
         } catch (\Exception $e) {
             return redirect()->route('joblisting.list')->with('error', 'Something went wrong.');
         }
