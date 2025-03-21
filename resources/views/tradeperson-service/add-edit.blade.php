@@ -106,9 +106,9 @@
                             <div class="md:mt-4 mt-2">
                                 <div class="flex items-center rounded-md bg-white  outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-gray-500">
                                     <select id="search_visibility" name="search_visibility" class="rounded-2xl bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm p-3">
-                                        <option value="Medium" {{ $tradepersonService->search_visibility == 'Medium' ? 'selected' : '' }}>Medium</option>
-                                        <option value="High" {{ $tradepersonService->search_visibility == 'High' ? 'selected' : '' }}>High</option>
-                                        <option value="Premium" {{ $tradepersonService->search_visibility == 'Premium' ? 'selected' : '' }}>Premium</option>
+                                        <option value="Medium" {{ isset($tradepersonService) && $tradepersonService->search_visibility == 'Medium' ? 'selected' : '' }}>Medium</option>
+                                        <option value="High" {{ isset($tradepersonService) && $tradepersonService->search_visibility == 'High' ? 'selected' : '' }}>High</option>
+                                        <option value="Premium" {{ isset($tradepersonService) && $tradepersonService->search_visibility == 'Premium' ? 'selected' : '' }}>Premium</option>
                                     </select>
                                 </div>
                             </div>
@@ -119,7 +119,7 @@
                             <div class="md:mt-4 mt-2">
                                 <input type="hidden" name="recommended_tradeperson" value="0">
                                 <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" name="recommended_tradeperson" value="1" class="sr-only peer"  {{ $tradepersonService->recommended_tradeperson ? 'checked' : '' }}>
+                                    <input type="checkbox" name="recommended_tradeperson" value="1" class="sr-only peer"  {{ isset ($tradepersonService) &&  $tradepersonService->recommended_tradeperson ? 'checked' : '' }}>
                                     <div class="w-11 h-6 bg-gray-300 peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer peer-checked:after:translate-x-5 peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
                                 </label>
                             </div>
@@ -130,7 +130,7 @@
                             <div class="md:mt-4 mt-2">
                                 <input type="hidden" name="appear_homepage" value="0">
                                 <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" name="appear_homepage" value="1" class="sr-only peer" {{ $tradepersonService->appear_homepage ? 'checked' : '' }}>
+                                    <input type="checkbox" name="appear_homepage" value="1" class="sr-only peer" {{ isset ($tradepersonService) &&  $tradepersonService->appear_homepage ? 'checked' : '' }}>
                                     <div class="w-11 h-6 bg-gray-300 peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer peer-checked:after:translate-x-5 peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
                                 </label>
                             </div>
@@ -141,7 +141,7 @@
                             <div class="md:mt-4 mt-2">
                                 <input type="hidden" name="google_visibility" value="0">
                                 <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" name="google_visibility" value="1" class="sr-only peer" {{ $tradepersonService->google_visibility ? 'checked' : '' }}>
+                                    <input type="checkbox" name="google_visibility" value="1" class="sr-only peer" {{ isset ($tradepersonService) &&  $tradepersonService->google_visibility ? 'checked' : '' }}>
                                     <div class="w-11 h-6 bg-gray-300 peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer peer-checked:after:translate-x-5 peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
                                 </label>
                             </div>
@@ -152,7 +152,7 @@
                             <div class="md:mt-4 mt-2">
                                 <input type="hidden" name="access_premium_tender" value="0">
                                 <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" name="access_premium_tender" value="1" class="sr-only peer" {{ $tradepersonService->access_premium_tender ? 'checked' : '' }}>
+                                    <input type="checkbox" name="access_premium_tender" value="1" class="sr-only peer" {{ isset ($tradepersonService) &&  $tradepersonService->access_premium_tender ? 'checked' : '' }}>
                                     <div class="w-11 h-6 bg-gray-300 peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer peer-checked:after:translate-x-5 peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
                                 </label>
                             </div>

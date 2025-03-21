@@ -103,10 +103,15 @@ class TradePersonServiceController extends Controller
 
     public function edit($id)
     {
-        $tradepersonService = TradepersonService::findOrFail($id);
+       
+        $tradepersonService = TradepersonService::findOrFail($id); // Fetch the service by ID
 
         $features = is_array($tradepersonService->features) ? $tradepersonService->features : json_decode($tradepersonService->features, true); 
-
+       
+        if (!$tradepersonService) {
+            
+            return redirect()->route('tradeperson-service.list')->with('error', 'Service not found.');
+        }
 
         return view('tradeperson-service.add-edit', compact('tradepersonService' , 'features'));
     }

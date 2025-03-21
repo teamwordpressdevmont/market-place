@@ -2,8 +2,17 @@
 @section('content')
 
 <div class="bgShadow pt-10">
-    <div class="flex flex-col md:flex-row gap-4 mb-6">
-        <h4 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2 text-mat">Trade Person Service</h4>
+    <div class="grid lg:grid-cols-2 grid-cols-1 items-start mb-8 lg:gap-0 gap-4">
+        <div class="">
+            <h1 class="font-semibold lg:text-4xl md:text-2xl text-xl mb-2 text-mat">Tradeperson Service</h1>
+        </div>
+        <a href="{{ route('tradeperson-service.addEdit') }}" class="lg:ml-auto bg-secondary rounded-full px-4 py-2 text-sm text-white flex items-center justify-between w-fit border border-primary hover:bg-primary transition gap-8">
+            Add New
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-current group-hover:text-white">
+                    <path d="M12 8V16M16 12L8 12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" stroke-width="1.5"></path>
+                </svg>
+        </a>
     </div>
     <form id="searchForm" method="GET" action="{{ route('tradeperson-service.list') }}" class="relative flex  mb-5 md:w-96 w-full">
         <input type="text" name="search" value="{{ request('search') }}" id="table-search" class="rounded-tl-full rounded-bl-full bg-white border border-gray-300 text-gray-900 focus:ring-gray-500 focus:border-gray-500 block flex-1 min-w-0 w-full text-sm px-5" placeholder="Search for items">
@@ -14,6 +23,7 @@
             </span>
         </div>
     </form>
+  
     <div id="table-container" class="overflow-x-auto rounded-xl bg-white border border-[#22222233]">
         <table class="genericTable w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 bg-[#eee] border-b border-[#22222233]">
