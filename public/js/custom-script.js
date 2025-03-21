@@ -230,7 +230,7 @@ $(document).ready(function() {
     $(".toggleApprovalBtn").click(function () {
         let button = $(this);
         let testimonialId = button.data("id");
-        const baseUrl = window.location.origin + '/marketplace';
+        const baseUrl = window.location.origin + '/market-place';
 
 
         if (button.text().trim() === "Add to Website") {
@@ -259,7 +259,7 @@ $(document).ready(function() {
     $(".toggle-user-approval").click(function () {
         let testimonialId = $("#testimonialId").val();
         let orderNumber = $("#order_number").val();
-        const baseUrl = window.location.origin + '/marketplace';
+        const baseUrl = window.location.origin + '/market-place';
 
 
         $.ajax({
