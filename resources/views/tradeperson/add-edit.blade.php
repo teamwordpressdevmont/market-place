@@ -20,7 +20,7 @@
         </div>
         <div class="">
 
-                <form id="tradeperson" action="{{ isset($tradeperson) ? route('tradeperson.update', $tradeperson->id) : route('tradeperson.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+                <form id="tradeperson" action="{{ isset($tradeperson) ? route('tradeperson-service.update', $tradeperson->id) : route('tradeperson-service.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
                     @csrf
                     @if (isset($tradeperson))
                         @method('PUT')

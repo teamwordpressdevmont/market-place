@@ -15,6 +15,8 @@ use App\Http\Controllers\Portal\PendingApprovalController;
 use App\Http\Controllers\Portal\AnnouncementController;
 use App\Http\Controllers\Portal\CustomerController;
 use App\Http\Controllers\Portal\SubscriptionController;
+use App\Http\Controllers\Portal\TradePersonServiceController;
+
 
 
 
@@ -137,6 +139,19 @@ Route::group(['prefix'  => 'tradeperson', 'middleware' => 'auth'], function() {
     Route::get('/delete/{id}', [TraderPersonDataController::class, 'destroy'])->name('tradeperson.delete');
     Route::post('/tradeperson-toggle-approval/{id}', [TraderPersonDataController::class, 'tradepersonToggleApproval'])
     ->name('tradeperson.tradepersonToggleApproval');
+
+});
+
+
+// Admin Trade Person Service
+Route::group(['prefix'  => 'tradeperson-service', 'middleware' => 'auth'], function() {
+    Route::get('/', [TradePersonServiceController::class, 'list'])->name('tradeperson-service.list');
+    Route::get('/add', [TradePersonServiceController::class, 'addEdit'])->name('tradeperson-service.addEdit');
+    Route::post('/store', [TradePersonServiceController::class, 'store'])->name('tradeperson-service.store');
+    Route::get('/edit/{id}', [TradePersonServiceController::class, 'edit'])->name('tradeperson-service.edit');
+    Route::put('/update/{id}', [TradePersonServiceController::class, 'update'])->name('tradeperson-service.update');
+    Route::get('/view/{id}', [TradePersonServiceController::class, 'view'])->name('tradeperson-service.view');
+    Route::get('/delete/{id}', [TradePersonServiceController::class, 'destroy'])->name('tradeperson-service.delete');
 
 });
 

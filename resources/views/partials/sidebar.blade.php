@@ -167,7 +167,31 @@
              <a href="{{ route( 'customer.addEdit' ) }}" class="flex text-sm items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('customer/add') ? 'bg-primary' : '' }}">Add New Customer Service</a>
            </li>          
          </ul>
-       </li>   
+       </li>  
+       
+       <li>
+        @php
+             $isCategoryActive = Request::is('tradeperson-service') || Request::is('tradeperson-service/add');
+         @endphp 
+         <button type="button" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white w-full {{ $isCategoryActive ? 'bg-primary' : '' }}" aria-controls="dropdown-7" data-collapse-toggle="dropdown-7">
+           <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <path d="M5.5 8.80835C5.5 8.80835 5 10.6111 5 13.5C5 16.3889 5.38889 18.9167 5.77778 19.2778C6.16667 19.6389 8.88889 20 12 20C15.1111 20 17.8333 19.6389 18.2222 19.2778C18.6111 18.9167 19 16.3889 19 13.5C19 10.6111 18.5 8.80835 18.5 8.80835M5.5 8.80835C6.65798 8.91328 9.19021 9 12 9C14.8098 9 17.342 8.91328 18.5 8.80835M5.5 8.80835C5.19265 8.7805 4.98211 8.75135 4.88889 8.72222C4.44444 8.58333 4 7.61111 4 6.5C4 5.38889 4.44444 4.41667 4.88889 4.27778C5.33333 4.13889 8.44444 4 12 4C15.5556 4 18.6667 4.13889 19.1111 4.27778C19.5556 4.41667 20 5.38889 20 6.5C20 7.61111 19.5556 8.58333 19.1111 8.72222C19.0179 8.75135 18.8074 8.7805 18.5 8.80835M10 13C10 13 10.5 12.5 12 12.5C13.5 12.5 14 13 14 13" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+           </svg>
+ 
+               <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap ">Tradeperson Service</span>
+               <svg class="w-3 h-3 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+               </svg>
+         </button>
+         <ul id="dropdown-7" class="hidden py-2 space-y-2">
+           <li>
+             <a href="{{ route( 'tradeperson-service.list' ) }}" class="flex text-sm items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('tradeperson-service') ? 'bg-primary' : '' }}">All Tradeperson Service</a>
+           </li>
+           <li>
+             <a href="{{ route( 'tradeperson-service.addEdit' ) }}" class="flex text-sm items-center font-normal w-full p-2 transition duration-75 rounded-lg pl-11 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('tradeperson-service/add') ? 'bg-primary' : '' }}">Add New Tradeperson Service</a>
+           </li>          
+         </ul>
+       </li>  
       
       <li>
         <a href="{{ route( 'tradeperson.list' ) }}" class="flex items-center p-2 text-white rounded-lg hover:bg-primary group-hover:text-white {{ Request::is('tradeperson') ? 'bg-primary' : '' }}">
